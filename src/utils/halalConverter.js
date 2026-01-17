@@ -1,128 +1,89 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { parse } from "csv-parse/sync";
+import { getIngredientDetails, buildIngredientLookup } from "./halalEngine.js";
 
 // Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Path to CSV file
-const csvFilePath = path.resolve(__dirname, "../data/haram_ingredients.csv");
-
-// Cache for parsed CSV data
-let halalMap = null;
+// Cache for ingredient lookup (built from JSON)
 let ingredientList = null;
 
 /**
- * Load and parse CSV data into memory
- * Uses caching to avoid re-reading file on every request
+ * Load ingredient lookup from JSON knowledge base
+ * Uses caching to avoid rebuilding on every request
  */
-const loadHalalMap = () => {
-  if (halalMap !== null) {
-    return { halalMap, ingredientList };
+const loadIngredientList = () => {
+  if (ingredientList !== null) {
+    return ingredientList;
   }
 
   try {
-    // Read CSV file
-    const fileContent = fs.readFileSync(csvFilePath, "utf8");
-
-    // Parse CSV into records
-    const records = parse(fileContent, {
-      columns: true,
-      skip_empty_lines: true,
-    });
-
-    // Build lookup maps
-    halalMap = {};
-    ingredientList = [];
-
-    records.forEach((row) => {
-      const name = row.haram_ingredient?.trim();
-      if (!name) return;
-
-      const aliases = row.aliases
-        ? row.aliases
-            .split(",")
-            .map((a) => a.trim())
-            .filter(Boolean)
-        : [];
-
-      const entry = {
-        haramIngredient: name,
-        aliases: aliases,
-        replacement: row.halal_alternative?.trim() || "",
-        ratio: row.conversion_ratio?.trim() || "",
-        flavor: row.flavor_role?.trim() || "",
-        cuisine: row.cuisine?.trim() || "",
-        severity: row.severity?.trim().toLowerCase() || "medium",
-        notes: row.notes?.trim() || "",
-        quranReference: row.quran_reference?.trim() || "",
-        hadithReference: row.hadith_reference?.trim() || "",
-      };
-
-      // Store by lowercase name for case-insensitive lookup
-      const key = name.toLowerCase();
-      halalMap[key] = entry;
-
-      // Add to ingredient list for detection
-      ingredientList.push({
-        name: name.toLowerCase(),
-        aliases: aliases.map((a) => a.toLowerCase()),
-        entry: entry,
-      });
-    });
-
-    return { halalMap, ingredientList };
+    // Build lookup from JSON knowledge base
+    ingredientList = buildIngredientLookup();
+    return ingredientList;
   } catch (error) {
-    console.error("Error loading halal map from CSV:", error);
-    // Return empty maps on error to prevent crashes
-    halalMap = {};
+    console.error("Error loading ingredient list from JSON:", error);
+    // Return empty list on error to prevent crashes
     ingredientList = [];
-    return { halalMap, ingredientList };
+    return ingredientList;
   }
 };
 
 /**
- * Detect haram ingredients in recipe text
- * Returns array of detected ingredients with their details
+ * Detect haram/conditional ingredients in recipe text using JSON knowledge base
+ * Returns array of detected ingredients with their details and inheritance chains
  */
-const detectHaramIngredients = (recipeText) => {
+const detectHaramIngredients = (recipeText, userPreferences = {}) => {
   if (!recipeText || typeof recipeText !== "string") {
     return [];
   }
 
-  const { ingredientList } = loadHalalMap();
+  const lookupList = loadIngredientList();
   const detected = [];
-  const textLower = recipeText.toLowerCase();
+  const processed = new Set(); // Track processed ingredients to avoid duplicates
 
-  ingredientList.forEach((item) => {
-    const allNames = [item.name, ...item.aliases].filter(Boolean);
-
-    allNames.forEach((name) => {
-      // Use word boundary regex for accurate detection
-      const regex = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
-      if (regex.test(recipeText)) {
-        // Check if already detected (avoid duplicates)
-        const alreadyDetected = detected.some(
-          (d) => d.ingredient.toLowerCase() === name
-        );
-
-        if (!alreadyDetected) {
+  lookupList.forEach((item) => {
+    const searchTerm = item.searchTerm;
+    
+    // Use word boundary regex for accurate detection
+    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`\\b${escapedTerm}\\b`, "gi");
+    
+    if (regex.test(recipeText)) {
+      const normalizedKey = item.normalizedKey;
+      
+      // Only process each main ingredient once
+      if (!processed.has(normalizedKey)) {
+        processed.add(normalizedKey);
+        
+        // Get full ingredient details with inheritance resolution
+        const details = getIngredientDetails(searchTerm, userPreferences);
+        
+        // Only add if ingredient is haram or conditional
+        if (details && (details.status === "haram" || details.status === "conditional")) {
           detected.push({
-            ingredient: name,
-            haramIngredient: item.entry.haramIngredient,
-            replacement: item.entry.replacement,
-            notes: item.entry.notes,
-            severity: item.entry.severity,
-            flavor: item.entry.flavor,
-            ratio: item.entry.ratio,
-            quranReference: item.entry.quranReference,
-            hadithReference: item.entry.hadithReference,
+            ingredient: searchTerm,
+            normalizedName: normalizedKey,
+            haramIngredient: details.displayName || searchTerm,
+            replacement: details.alternatives?.[0] || "Halal alternative needed",
+            alternatives: details.alternatives || [],
+            notes: details.notes || "",
+            severity: details.severity || "medium",
+            confidence: details.confidenceScore || 0.5,
+            quranReference: details.quranReference || "",
+            hadithReference: details.hadithReference || "",
+            // Add knowledge engine fields
+            inheritedFrom: details.inheritedFrom,
+            eli5: details.eli5,
+            trace: details.trace || [],
+            status: details.status,
+            references: details.references || []
           });
         }
       }
-    });
+    }
   });
 
   return detected;
@@ -161,44 +122,59 @@ const replaceIngredients = (recipeText, detectedIngredients) => {
 };
 
 /**
- * Calculate confidence score based on detected ingredients and replacements
- * - 100% if all haram ingredients have replacements
- * - Lower if some are unknown or partial
+ * Calculate confidence score based on detected ingredients, replacements, and user preferences
+ * - Accounts for inheritance chains and user strictness levels
  */
-const calculateConfidenceScore = (detectedIngredients) => {
+const calculateConfidenceScore = (detectedIngredients, userPreferences = {}) => {
   if (!Array.isArray(detectedIngredients) || detectedIngredients.length === 0) {
     return 100; // No haram ingredients = 100% confidence
   }
 
+  const strictness = userPreferences.strictnessLevel || userPreferences.strictness || "standard";
+  
   const totalDetected = detectedIngredients.length;
   const withReplacement = detectedIngredients.filter(
-    (item) => item.replacement && item.replacement.trim() !== ""
+    (item) => item.replacement && item.replacement !== "Halal alternative needed"
   ).length;
-  const withoutReplacement = totalDetected - withReplacement;
 
   // Base score: percentage of ingredients with replacements
   let baseScore = (withReplacement / totalDetected) * 100;
 
-  // Penalty for high-severity items without replacements
-  const highSeverityMissing = detectedIngredients.filter(
-    (item) =>
-      !item.replacement &&
-      item.severity &&
-      item.severity.toLowerCase() === "high"
+  // Adjust based on inheritance chains (longer chains reduce confidence)
+  const withInheritance = detectedIngredients.filter(
+    (item) => item.inheritedFrom && item.trace && item.trace.length > 1
   ).length;
+  
+  if (withInheritance > 0) {
+    baseScore *= 0.85; // Reduce confidence for ingredients with inheritance chains
+  }
 
-  // Apply penalty: -10 points per high-severity missing replacement
-  const penalty = highSeverityMissing * 10;
-  const finalScore = Math.max(0, Math.min(100, baseScore - penalty));
+  // Adjust based on severity
+  const highSeverityCount = detectedIngredients.filter(
+    (item) => item.severity && item.severity.toLowerCase() === "high"
+  ).length;
+  
+  if (highSeverityCount > 0) {
+    baseScore -= (highSeverityCount * 5); // Additional penalty for high severity
+  }
 
-  return Math.round(finalScore);
+  // Adjust for strictness level
+  if (strictness === "strict") {
+    baseScore *= 0.95; // Slightly reduce for strict mode
+  } else if (strictness === "flexible") {
+    baseScore *= 1.02; // Slightly increase for flexible (capped at 100)
+  }
+
+  const finalScore = Math.max(0, Math.min(100, Math.round(baseScore)));
+  return finalScore;
 };
 
 /**
  * Main conversion function
- * Converts recipe text by detecting and replacing haram ingredients
+ * Converts recipe text by detecting and replacing haram ingredients using JSON knowledge base
+ * Supports user preferences for strictness and school of thought
  */
-export const convertRecipe = (recipeText) => {
+export const convertRecipe = (recipeText, userPreferences = {}) => {
   // Defensive checks
   if (!recipeText || typeof recipeText !== "string") {
     return {
@@ -220,16 +196,16 @@ export const convertRecipe = (recipeText) => {
   }
 
   try {
-    // Step 1: Detect haram ingredients
-    const detectedIngredients = detectHaramIngredients(trimmedText);
+    // Step 1: Detect haram/conditional ingredients using JSON knowledge base
+    const detectedIngredients = detectHaramIngredients(trimmedText, userPreferences);
 
     // Step 2: Replace ingredients in text
     const convertedText = replaceIngredients(trimmedText, detectedIngredients);
 
-    // Step 3: Calculate confidence score
-    const confidenceScore = calculateConfidenceScore(detectedIngredients);
+    // Step 3: Calculate confidence score with user preferences
+    const confidenceScore = calculateConfidenceScore(detectedIngredients, userPreferences);
 
-    // Step 4: Format issues for API response
+    // Step 4: Format issues for API response (backward compatible with frontend)
     const issues = detectedIngredients.map((item) => {
       const quranRef = item.quranReference || "";
       const hadithRef = item.hadithReference || "";
@@ -240,10 +216,17 @@ export const convertRecipe = (recipeText) => {
         replacement: item.replacement || "No replacement available",
         notes: item.notes || "",
         severity: item.severity || "medium",
-        flavor: item.flavor || "",
+        confidence: item.confidence || 0.5,
         quranReference: quranRef,
         hadithReference: hadithRef,
         reference: reference,
+        // Add knowledge engine fields for frontend enhancement
+        inheritedFrom: item.inheritedFrom,
+        alternatives: item.alternatives || [],
+        eli5: item.eli5,
+        trace: item.trace || [],
+        status: item.status || "haram",
+        references: item.references || []
       };
     });
 

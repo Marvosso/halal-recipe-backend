@@ -4,7 +4,7 @@ import { convertRecipe } from "../utils/halalConverter.js";
  * Service layer for recipe conversion
  * Handles input validation and error handling before calling converter
  */
-export const convertService = async (recipe) => {
+export const convertService = async (recipe, userPreferences = {}) => {
   // Defensive checks for input
   if (recipe === null || recipe === undefined) {
     return {
@@ -29,8 +29,8 @@ export const convertService = async (recipe) => {
   }
 
   try {
-    // Call the converter function
-    const result = convertRecipe(recipeText);
+    // Call the converter function with user preferences
+    const result = convertRecipe(recipeText, userPreferences);
 
     // Ensure result has all required fields
     return {
