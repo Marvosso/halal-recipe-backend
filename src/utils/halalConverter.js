@@ -126,19 +126,36 @@ const replaceIngredients = (recipeText, detectedIngredients) => {
  * - Accounts for inheritance chains and user strictness levels
  */
 const calculateConfidenceScore = (detectedIngredients, userPreferences = {}) => {
+  // Guard: If no ingredients evaluated, return null (not 100%)
   if (!Array.isArray(detectedIngredients) || detectedIngredients.length === 0) {
-    return 100; // No haram ingredients = 100% confidence
+    return null; // null indicates no evaluation, not a perfect score
   }
 
   const strictness = userPreferences.strictnessLevel || userPreferences.strictness || "standard";
   
   const totalDetected = detectedIngredients.length;
   const withReplacement = detectedIngredients.filter(
-    (item) => item.replacement && item.replacement !== "Halal alternative needed"
+    (item) => item.replacement && item.replacement !== "Halal alternative needed" && item.replacement.trim() !== ""
   ).length;
+  const withoutReplacement = totalDetected - withReplacement;
+  const replacementRatio = withReplacement / totalDetected;
 
-  // Base score: percentage of ingredients with replacements
-  let baseScore = (withReplacement / totalDetected) * 100;
+  // Base score: start from replacement ratio, but ensure high confidence when all are replaced
+  // When all ingredients are replaced (replacementRatio = 1.0), base score should be 95%
+  // When none are replaced (replacementRatio = 0.0), base score should be 0%
+  let baseScore = replacementRatio * 95; // Scale from 0 to 95 based on replacement ratio
+
+  // Boost for successful full replacement (all items replaced)
+  if (replacementRatio === 1.0) {
+    // All items successfully replaced - ensure high confidence (95-100%)
+    baseScore = 95;
+  }
+
+  // Apply penalties for missing replacements (only if not all replaced)
+  if (withoutReplacement > 0 && replacementRatio < 1.0) {
+    // Missing replacement reduces confidence by 20% per missing item
+    baseScore *= Math.pow(0.8, withoutReplacement);
+  }
 
   // Adjust based on inheritance chains (longer chains reduce confidence)
   const withInheritance = detectedIngredients.filter(
@@ -146,23 +163,46 @@ const calculateConfidenceScore = (detectedIngredients, userPreferences = {}) => 
   ).length;
   
   if (withInheritance > 0) {
-    baseScore *= 0.85; // Reduce confidence for ingredients with inheritance chains
+    // Only apply inheritance penalty if it doesn't drop us below 80% for full replacement
+    const inheritancePenalty = 0.85;
+    const newScore = baseScore * inheritancePenalty;
+    // Don't penalize below 80% if all items are replaced
+    if (replacementRatio === 1.0 && newScore < 80) {
+      baseScore = Math.max(80, newScore);
+    } else {
+      baseScore = newScore;
+    }
   }
 
-  // Adjust based on severity
+  // Adjust based on severity (only for non-replaced items)
   const highSeverityCount = detectedIngredients.filter(
-    (item) => item.severity && item.severity.toLowerCase() === "high"
+    (item) => (!item.replacement || item.replacement === "Halal alternative needed" || item.replacement.trim() === "") &&
+              item.severity && item.severity.toLowerCase() === "high"
   ).length;
   
-  if (highSeverityCount > 0) {
-    baseScore -= (highSeverityCount * 5); // Additional penalty for high severity
+  if (highSeverityCount > 0 && replacementRatio < 1.0) {
+    // Additional penalty for high severity items without replacements
+    baseScore -= (highSeverityCount * 5);
   }
 
   // Adjust for strictness level
   if (strictness === "strict") {
-    baseScore *= 0.95; // Slightly reduce for strict mode
+    // Only apply strict penalty if it doesn't drop us below 80% for full replacement
+    const strictPenalty = 0.95;
+    const newScore = baseScore * strictPenalty;
+    if (replacementRatio === 1.0 && newScore < 80) {
+      baseScore = Math.max(80, newScore);
+    } else {
+      baseScore = newScore;
+    }
   } else if (strictness === "flexible") {
-    baseScore *= 1.02; // Slightly increase for flexible (capped at 100)
+    baseScore = Math.min(100, baseScore * 1.02); // Slightly increase for flexible (capped at 100)
+  }
+
+  // Ensure score reflects successful replacements
+  // If all ingredients are replaced, confidence should be high (80-100%)
+  if (replacementRatio === 1.0 && baseScore < 80) {
+    baseScore = 80; // Minimum 80% when all items are successfully replaced
   }
 
   const finalScore = Math.max(0, Math.min(100, Math.round(baseScore)));
