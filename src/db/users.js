@@ -152,3 +152,61 @@ export async function getAllUsers() {
     client.release();
   }
 }
+
+/**
+ * Update user display name
+ * @param {string|number} userId - User ID (UUID or number)
+ * @param {string} displayName - New display name
+ * @returns {Promise<Object|null>} Updated user object (without password_hash), or null if not found
+ */
+export async function updateUserDisplayName(userId, displayName) {
+  if (!userId || !displayName) {
+    throw new Error("User ID and display name are required");
+  }
+
+  const pool = getPool();
+  const client = await pool.connect();
+
+  try {
+    const result = await client.query(
+      `UPDATE users 
+       SET display_name = $1 
+       WHERE id = $2
+       RETURNING id, email, display_name, profile_image_url, created_at`,
+      [displayName.trim(), userId]
+    );
+
+    return result.rows[0] || null;
+  } finally {
+    client.release();
+  }
+}
+
+/**
+ * Update user profile image URL
+ * @param {string|number} userId - User ID (UUID or number)
+ * @param {string} profileImageUrl - New profile image URL
+ * @returns {Promise<Object|null>} Updated user object (without password_hash), or null if not found
+ */
+export async function updateUserProfileImage(userId, profileImageUrl) {
+  if (!userId) {
+    throw new Error("User ID is required");
+  }
+
+  const pool = getPool();
+  const client = await pool.connect();
+
+  try {
+    const result = await client.query(
+      `UPDATE users 
+       SET profile_image_url = $1 
+       WHERE id = $2
+       RETURNING id, email, display_name, profile_image_url, created_at`,
+      [profileImageUrl, userId]
+    );
+
+    return result.rows[0] || null;
+  } finally {
+    client.release();
+  }
+}
