@@ -273,21 +273,34 @@ export const convertRecipe = (recipeText, userPreferences = {}) => {
   }
 
   try {
+    const pipelineStart = Date.now();
+    
     // STEP 1: DETECT ingredients (pure detection, no replacement, no scoring)
+    const detectStart = Date.now();
     const detectedIngredients = detectHaramIngredients(trimmedText, userPreferences);
+    const detectTime = Date.now() - detectStart;
 
     // STEP 2: CONVERT ingredients (pure replacement, no scoring logic)
     // Conversion ALWAYS runs fully, regardless of what will happen in scoring
+    const convertStart = Date.now();
     const conversionResult = convertIngredients(trimmedText, detectedIngredients);
     const { convertedText, replacements, unresolved } = conversionResult;
+    const convertTime = Date.now() - convertStart;
 
     // STEP 3: CALCULATE confidence score (pure scoring, uses FINAL conversion state)
     // Scoring happens AFTER all replacements are complete
+    const scoreStart = Date.now();
     const confidenceScore = calculateConfidenceScore({
       originalIngredients: detectedIngredients,
       replacements: replacements,
       unresolved: unresolved
     });
+    const scoreTime = Date.now() - scoreStart;
+    
+    const totalTime = Date.now() - pipelineStart;
+    
+    // Lightweight server-side timing logs (console only)
+    console.log(`[PERF] convertRecipe - Detect: ${detectTime}ms, Convert: ${convertTime}ms, Score: ${scoreTime}ms, Total: ${totalTime}ms`);
 
     // Check if any substitutions occurred (for confidence_type classification)
     const hasSubstitutions = convertedText !== trimmedText;

@@ -29,8 +29,13 @@ export const convertService = async (recipe, userPreferences = {}) => {
   }
 
   try {
+    const conversionStart = Date.now();
     // Call the converter function with user preferences
     const result = convertRecipe(recipeText, userPreferences);
+    const conversionTime = Date.now() - conversionStart;
+
+    // Lightweight server-side timing log (console only)
+    console.log(`[PERF] convertService - Conversion: ${conversionTime}ms, Issues: ${result.issues?.length || 0}`);
 
     // Ensure result has all required fields
     return {
@@ -43,7 +48,7 @@ export const convertService = async (recipe, userPreferences = {}) => {
           : 0,
     };
   } catch (error) {
-    console.error("Error in convertService:", error);
+    console.error("[PERF] convertService - Error:", error);
     // Return safe fallback on error
     return {
       originalText: recipeText,

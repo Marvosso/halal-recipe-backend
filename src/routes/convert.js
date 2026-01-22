@@ -4,6 +4,7 @@ import { convertService } from "../services/convertService.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
+  const requestStart = Date.now();
   const { recipe, preferences } = req.body;
   
   // Validate that recipe is provided
@@ -18,10 +19,18 @@ router.post("/", async (req, res) => {
   };
   
   try {
+    const conversionStart = Date.now();
     const result = await convertService(recipe, userPreferences);
+    const conversionTime = Date.now() - conversionStart;
+    const totalTime = Date.now() - requestStart;
+    
+    // Lightweight server-side timing logs (console only)
+    console.log(`[PERF] /convert - Conversion: ${conversionTime}ms, Total: ${totalTime}ms`);
+    
     res.json(result);
   } catch (err) {
-    console.error("Error in /convert endpoint:", err);
+    const totalTime = Date.now() - requestStart;
+    console.error(`[PERF] /convert - Error after ${totalTime}ms:`, err);
     res.status(500).json({ error: "Conversion failed. Please try again later." });
   }
 });

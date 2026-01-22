@@ -26,6 +26,16 @@ app.use(cors({
   credentials: false
 }));
 
+// Request timing middleware (lightweight, console only)
+app.use((req, res, next) => {
+  req.startTime = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - req.startTime;
+    console.log(`[PERF] ${req.method} ${req.path} - ${res.statusCode} - ${duration}ms`);
+  });
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
