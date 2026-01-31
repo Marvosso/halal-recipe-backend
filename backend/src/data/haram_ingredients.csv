@@ -1,0 +1,107 @@
+haram_ingredient,aliases,halal_alternative,conversion_ratio,flavor_role,cuisine,severity,notes,quran_reference,hadith_reference
+pork,"pork, pork belly, pancetta",chicken thigh,1:1,fat & protein,"asian,western",high,Chicken thigh mimics pork fat better than breast,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+bacon,"smoked pork, rashers",smoked turkey bacon,1:1,smoke & salt,western,high,Add a dash of oil if turkey is lean,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+ham,"cured pork, prosciutto",halal beef pastrami,1:1,cured umami,universal,high,Beef pastrami preserves cured flavor,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+pork sausage,"breakfast sausage, italian sausage",chicken sausage,1:1,spiced fat,"western,italian,french",high,Choose seasoned chicken sausage,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+gelatin,"pork gelatin, collagen",agar-agar,1:0.5,texture/binding,universal,medium,Agar is stronger than gelatin,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+lard,"pork fat, rendered pork",beef tallow,1:1,fat & mouthfeel,western,high,Neutral replacement for frying,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+wine,"red wine, white wine, cooking wine",grape juice + vinegar,1:0.75,acidity & sweetness,"western,italian,french",high,Use 3 parts juice + 1 part vinegar,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+beer,"ale, lager",malt vinegar + water,1:0.5,bitterness,western,high,Reduces bitterness without alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+mirin,sweet rice wine,sugar + rice vinegar,1:0.5,sweetness,"asian,japanese",high,1 tsp sugar + 1 tsp vinegar,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+beef,"steak, ground beef",halal-certified beef,1:1,protein,universal,low,Must be halal-certified,Surah Al-Baqarah 2:172,Sahih Bukhari 7:67:400
+pâté,"pork pâté,liver mousse",halal chicken liver pâté,1:1,umami richness,western,high,Use halal-certified liver only,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+non-halal sausage,"italian sausage,breakfast sausage",halal chicken sausage,1:1,spiced fat,western,high,Match seasoning profile,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+non-halal pepperoni,"pepperoni,pork salami",halal beef pepperoni,1:1,spicy umami,western,high,Halal beef preserves spice and chew,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+liver (non-halal),"pork liver,calf liver",halal chicken liver,1:1,deep umami,universal,high,Chicken liver substitutes well,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+lard pastry,"lard crust,shortcrust pastry",butter or halal shortening,1:1,flaky fat,western,high,Butter gives similar flake,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+wine vinegar (non-halal),"wine vinegar,red wine vinegar",apple cider vinegar,1:1,acidity,universal,medium,No alcohol involvement,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+rum extract,"rum essence,rum flavor",vanilla extract,1:1,warm sweetness,western,high,Alcohol-free flavoring,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+bourbon glaze,"bourbon sauce,whiskey glaze",brown sugar + apple juice,1:1,sweet depth,western,high,Simulates caramel notes,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+non-halal marshmallows,"marshmallows,gelatin candy",halal marshmallows,1:1,texture/sweetness,universal,medium,Must be halal-certified gelatin,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+brandy,"brandy,cognac",grape juice reduction,1:0.75,fruity depth,western,high,Reduces alcohol while keeping flavor,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+rum,"dark rum,light rum",vanilla extract + molasses,1:0.75,warm sweetness,western,high,Mimics depth without alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+whiskey,"bourbon,scotch",apple juice reduction,1:0.75,caramel depth,western,high,Reduces bitterness and alcohol,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+vodka,neutral spirits,water + citrus extract,1:1,neutral carrier,universal,high,Used only as solvent replacement,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+beer batter,"beer batter,ale batter",sparkling water,1:1,lightness/crisp,western,high,Carbonation replaces beer effect,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+non-halal vanilla extract,vanilla extract (alcohol),alcohol-free vanilla,1:1,aroma,universal,medium,Ensure alcohol-free labeling,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+animal rennet,"rennet,cheese enzyme",microbial rennet,1:1,coagulation,western,high,Common in cheese production,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+non-halal enzymes,"digestive enzymes,processing enzymes",plant-based enzymes,1:1,processing aid,universal,medium,Used in baking and dairy,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+shortening (animal-based),"shortening,tallow shortening",vegetable shortening,1:1,fat structure,universal,high,Check label for animal fats,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+mono-diglycerides (animal),"E471,emulsifier",plant-based emulsifier,1:1,texture stabilization,universal,medium,Source-dependent ingredient,Surah Al-Baqarah 2:172,Sahih Muslim 10:3893
+carmine,"cochineal,E120",beetroot color,1:1,coloring,universal,medium,Derived from insects,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+gelatin candy,"gummies,fruit snacks",halal gelatin candy,1:1,texture/chew,universal,high,Must be halal-certified gelatin,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+marshmallow fluff,marshmallow creme,halal marshmallow fluff,1:1,texture/sweetness,western,high,Most contain pork gelatin,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+shellac,"confectioners glaze,E904",plant-based glaze,1:1,shiny coating,universal,medium,Derived from insects,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+animal shortening,animal fat shortening,vegetable shortening,1:1,fat/structure,universal,high,Often pork-based,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+non-halal hot dogs,"hot dogs,frankfurters",halal beef hot dogs,1:1,protein/umami,western,high,Must be halal-certified,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+pepperoni sticks,"snack sticks,pork sticks",halal beef snack sticks,1:1,smoky umami,western,high,Spices preserved in halal version,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+non-halal meatballs,"meatballs,frozen meatballs",halal beef meatballs,1:1,protein/fat,universal,high,Frozen products often non-halal,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+meat extract,"meat extract,beef extract",halal yeast extract,1:1,umami enhancer,universal,medium,Yeast provides similar depth,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+alcohol spray,"alcohol glaze,surface alcohol",oil or syrup glaze,1:1,shine/aroma,universal,high,Used in baking finishes,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+rum-soaked raisins,"rum raisins,alcohol-soaked fruit",grape juice-soaked raisins,1:1,sweet depth,western,high,Soak overnight for flavor,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3883
+non-halal cheese,"cheese,aged cheese",halal-certified cheese,1:1,umami/fat,universal,high,Often contains animal rennet,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+animal rennet cheese,"rennet cheese,traditional cheese",microbial rennet cheese,1:1,texture/aging,western,high,Microbial rennet is halal-safe,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+non-halal yogurt,"yogurt,cultured yogurt",halal-certified yogurt,1:1,tangy creaminess,universal,medium,Check starter cultures,Surah Al-Baqarah 2:172,Sahih Bukhari 7:67:400
+non-halal ice cream,"ice cream,frozen dessert",halal ice cream,1:1,creaminess/sweetness,western,medium,May contain gelatin or alcohol,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+donuts (non-halal),"donuts,fried dough",halal donuts,1:1,sweet/fat,western,medium,Fried in animal fat sometimes,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+pastries with lard,"lard pastry,shortening pastry",butter pastry,1:1,flaky texture,western,high,Lard commonly used in bakeries,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+cakes with alcohol,"rum cake,liqueur cake",alcohol-free cake,1:1,moist sweetness,western,high,Alcohol used for moisture/flavor,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+custard (non-halal),"custard,cream filling",halal custard,1:1,creaminess,western,medium,Check vanilla source,Surah Al-Baqarah 2:172,Sahih Muslim 10:3893
+processed gravy,"gravy mix,instant gravy",halal gravy,1:1,umami/sauce,western,high,Often contains meat extract,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+stuffing mix,"stuffing,dressing mix",halal stuffing,1:1,savory herbs,western,high,May contain animal fat,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+vanilla extract (alcohol-based),"vanilla extract,vanilla essence",alcohol-free vanilla,1:1,aroma/sweetness,universal,high,Alcohol used as solvent,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+imitation vanilla (alcohol),"imitation vanilla,synthetic vanilla",powdered vanilla,1:1,aroma,universal,medium,Often contains ethanol,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+rum flavoring,"rum essence,rum flavor",alcohol-free rum flavor,1:1,warm sweetness,western,high,Even small alcohol amounts are impermissible,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+brandy flavor,"brandy essence,liqueur flavor",alcohol-free brandy flavor,1:1,aromatic depth,western,high,Derived from alcohol flavorings,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+e471 (mono-diglycerides),"E471,emulsifier",plant-based emulsifier,1:1,texture/emulsion,universal,medium,Source may be animal fat,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+e472 (fatty acid esters),"E472,emulsifier",plant-derived E472,1:1,stability/texture,universal,medium,Must be plant sourced,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+l-cysteine,"E920,dough conditioner",plant-based L-cysteine,1:1,dough elasticity,western,high,Often derived from human hair,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+animal shortening,"shortening,vegetable shortening",plant-based shortening,1:1,fat/texture,western,high,May contain pork fat,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+marshmallow gelatin,"marshmallows,gelatin candy",halal gelatin marshmallow,1:1,texture/sweet,western,high,Contains pork gelatin,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+confectioner glaze,"shellac,food glaze",plant wax glaze,1:1,shine/coating,western,medium,Derived from insects,Surah Al-Baqarah 2:173,Sahih Muslim 10:3893
+oyster sauce (alcohol-based),"oyster sauce,stir-fry sauce",alcohol-free oyster sauce,1:1,umami/saltiness,asian,medium,Some brands contain alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+teriyaki sauce (with alcohol),"teriyaki glaze,teriyaki marinade",halal teriyaki sauce,1:1,sweet-salty glaze,japanese,high,Often contains mirin or sake,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+bbq sauce (with alcohol),"barbecue sauce,smoky sauce",alcohol-free bbq sauce,1:1,smoke/sweetness,western,medium,Some brands add whiskey or wine,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+worcestershire sauce,"worcestershire,anchovy sauce",halal worcestershire,1:1,umami/tang,western,high,Often fermented with alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+soy sauce (fermented alcohol),"soy sauce,shoyu",halal-certified soy sauce,1:1,umami/saltiness,asian,medium,Naturally produces alcohol during fermentation,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+hoisin sauce (with alcohol),hoisin glaze,halal hoisin sauce,1:1,sweet umami,chinese,medium,Some brands contain alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+demi-glace,"brown sauce,meat glaze",halal demi-glace,1:1,deep umami,french,high,Traditionally made with wine,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+pan sauce (wine-based),wine reduction sauce,stock + vinegar reduction,1:0.75,acidity/body,western,high,Wine used for reduction,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+cooking spray (animal fat),"pan spray,release spray",plant-based cooking spray,1:1,nonstick aid,universal,medium,May contain animal-derived lecithin,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+mustard (wine vinegar),dijon mustard,mustard with halal vinegar,1:1,acidity/spice,western,medium,Some use wine vinegar,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+gelatin (non-halal),"gelatin,pork gelatin",halal beef gelatin or agar-agar,1:0.5,texture/binding,universal,high,Common in gummies and desserts,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+marshmallows,"marshmallow,mallow candy",halal marshmallows,1:1,sweet/texture,western,high,Usually made with pork gelatin,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+gummy candy,"gummies,chewy candy",halal gummy candy,1:1,chewy sweetness,universal,high,Pork gelatin common,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+lard-based pie crust,shortcrust pastry,butter or vegetable shortening,1:1,flakiness,western,high,Lard derived from pork fat,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+rum flavoring,"rum essence,rum extract",alcohol-free rum flavor,1:1,aroma/sweetness,western,high,May contain real alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+brandy flavoring,brandy essence,alcohol-free brandy flavor,1:1,warm sweetness,western,high,Alcohol-based flavoring,Surah Al-Ma'idah 5:90,Sahih Bukhari 7:69:494
+vanilla extract (alcohol),pure vanilla extract,alcohol-free vanilla,1:1,aroma,universal,medium,Alcohol used as solvent,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+liqueur-filled chocolate,alcohol chocolate,halal chocolate filling,1:1,sweet/filling,western,high,Contains intoxicants,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+cake glaze (alcohol-based),mirror glaze,sugar glaze or fruit glaze,1:1,shine/sweetness,universal,medium,Some glazes use alcohol,Surah Al-Ma'idah 5:90,Sahih Muslim 10:3893
+candy coating (shellac),confectioner glaze,plant-based glaze,1:1,shine/protection,universal,medium,Shellac can be insect-derived,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+chicken broth (non-halal),"chicken stock,broth",halal chicken broth,1:1,umami/base,universal,medium,Must be halal-slaughtered,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+beef broth (non-halal),"beef stock,broth",halal beef broth,1:1,umami/base,universal,medium,Common in soups and rice,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+ramen seasoning,instant noodle seasoning,halal seasoning mix,1:1,salty/umami,asian,high,Often contains pork extract,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+pepperoni,pepperoni slices,halal beef pepperoni,1:1,spiced meat,western,high,Typically pork-based,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+salami,dry salami,halal beef salami,1:1,cured meat,western,high,Pork is default meat,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+hot dogs (non-halal),"frankfurter,wiener",halal beef or chicken hot dog,1:1,processed meat,western,high,Often pork or mixed meat,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+frozen lasagna,ready-made lasagna,halal lasagna,1:1,complete dish,italian,high,Contains pork or non-halal beef,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+canned soup (non-halal),ready soup,halal-certified soup,1:1,broth-based,universal,medium,Hidden animal fats common,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+refried beans (lard),refried beans,vegetable-oil refried beans,1:1,texture/fat,mexican,high,Lard frequently used,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+potato chips (lard),fried chips,vegetable-oil chips,1:1,crunch/fat,universal,medium,Some brands fry in pork fat,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+gravy (meat-based),brown gravy,halal gravy or mushroom gravy,1:1,umami,western,medium,Meat drippings may be haram,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+instant mashed potatoes,potato flakes,halal-certified brand,1:1,texture,western,low,May contain non-halal dairy enzymes,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+animal rennet,"rennet,enzymes",microbial rennet,1:1,cheese coagulation,universal,high,Most rennet comes from non-halal calves,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+lipase (animal),lipase enzyme,microbial lipase,1:1,cheese flavor,universal,medium,Often pork-derived unless specified,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+pepsin,digestive enzyme,plant-based enzymes,1:1,protein breakdown,universal,high,Derived from pig stomach lining,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+gelatin (animal),"gelatine,collagen",agar-agar or pectin,1:0.5,texture/binding,universal,high,Usually pork unless labeled halal,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+mono and diglycerides,E471,plant-based emulsifiers,1:1,emulsification,universal,medium,May be animal-derived,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+glycerin,"glycerol,E422",vegetable glycerin,1:1,moisture/sweetness,universal,medium,Animal origin possible,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+shortening (animal),vegetable shortening*,pure vegetable shortening,1:1,fat/texture,western,medium,May contain animal fat despite label,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+lecithin (animal),E322,soy or sunflower lecithin,1:1,emulsification,universal,low,Animal lecithin uncommon but possible,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+natural flavors (meat-based),natural flavoring,plant-based flavor extracts,1:1,aroma/flavor,universal,medium,Can contain meat or alcohol carriers,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+L-cysteine (animal),E920,synthetic L-cysteine,1:1,dough conditioning,universal,high,Oftentimes from hair or feathers,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+carmine,"E120,cochineal",beet or paprika extract,1:1,coloring,universal,high,Derived from insects,Surah Al-Baqarah 2:173,Sahih Bukhari 7:67:400
+marshmallows,gelatin candy,halal marshmallows,1:1,texture/sweet,western,high,Standard gelatin is pork-based,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+yogurt cultures (animal),starter cultures,plant-based cultures,1:1,fermentation,universal,low,Some cultures grown on animal media,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808
+cheese flavoring,cheese powder,halal cheese powder,1:1,umami/dairy,universal,medium,May contain animal enzymes,Surah Al-Baqarah 2:173,Sahih Muslim 13:3808

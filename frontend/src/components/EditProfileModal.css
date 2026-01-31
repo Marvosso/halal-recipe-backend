@@ -1,0 +1,358 @@
+.edit-profile-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.edit-profile-intro {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--green-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.edit-profile-intro-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-green);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.edit-profile-intro-text {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit-profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.edit-profile-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-label-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent-gold);
+}
+
+.edit-profile-optional {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-input,
+.edit-profile-textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.edit-profile-input:focus,
+.edit-profile-textarea:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(10, 157, 88, 0.1);
+}
+
+.edit-profile-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.edit-profile-hint {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-char-count {
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-colors {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.edit-profile-color-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.edit-profile-color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.edit-profile-color-btn.active {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
+}
+
+.color-check {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.edit-profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.edit-profile-save-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.edit-profile-save-btn:hover {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--primary-green) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.edit-profile-save-btn:active {
+  transform: translateY(0);
+}
+
+.save-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.edit-profile-cancel-btn {
+  padding: 1rem 1.5rem;
+  background: var(--card-bg);
+  color: var(--primary-green);
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.edit-profile-cancel-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--primary-green);
+}
+
+.edit-profile-note {
+  padding: 1rem;
+  background: var(--green-bg);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.edit-profile-note-text {
+  color: var(--text-color);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.edit-profile-note-text strong {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.edit-profile-note-text a {
+  color: var(--primary-green, #0A9D58);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.edit-profile-note-text a:hover {
+  color: var(--green-dark, #059669);
+}
+
+.edit-profile-error {
+  padding: 0.875rem 1rem;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  color: #991b1b;
+  font-size: 0.875rem;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .edit-profile-error {
+  background: #7f1d1d;
+  border-color: #991b1b;
+  color: #fecaca;
+}
+
+.edit-profile-photo-section {
+  margin-bottom: 2rem;
+}
+
+.edit-profile-photo-label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-color, #1a1a1a);
+  margin-bottom: 0.75rem;
+  font-family: "Inter", sans-serif;
+}
+
+.edit-profile-photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit-profile-photo-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-photo-preview-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-green, #0A9D58);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.change-photo-btn,
+.upload-photo-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-green, #0A9D58);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.change-photo-btn:hover,
+.upload-photo-btn:hover {
+  background: var(--green-dark, #059669);
+  transform: translateY(-2px);
+}
+
+.change-photo-btn:disabled,
+.upload-photo-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.camera-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.edit-profile-photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green, #0A9D58) 0%, var(--accent-gold, #D4AF37) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 3px solid var(--primary-green, #0A9D58);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.photo-placeholder-icon {
+  width: 48px;
+  height: 48px;
+  color: #ffffff;
+}
+
+.photo-placeholder-text {
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.edit-profile-save-btn:disabled,
+.edit-profile-cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

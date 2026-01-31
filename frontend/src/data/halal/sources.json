@@ -1,0 +1,15 @@
+{
+  "pork": {
+    "type": "source",
+    "default_status": "haram",
+    "reason": "Explicitly prohibited in Quran 2:173"
+  },
+  "halal_slaughtered_beef": {
+    "type": "source",
+    "default_status": "halal"
+  },
+  "unknown_animal": {
+    "type": "source",
+    "default_status": "unknown"
+  }
+}

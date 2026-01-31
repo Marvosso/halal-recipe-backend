@@ -28,6 +28,7 @@ function HomePage() {
 
         <section className="seo-content">
           <article>
+            <p>Impact-Site-Verification: fe2ab7e4-4056-474d-ad17-32d276d1e47c</p>
             <h2>Why Use Halal Kitchen?</h2>
             <p>
               Halal Kitchen is the easiest way to make any recipe halal-compliant. 

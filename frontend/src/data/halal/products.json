@@ -1,0 +1,8 @@
+{
+  "lucky_charms": {
+    "type": "product",
+    "brand": "General Mills",
+    "contains": ["marshmallow"],
+    "eli5": "Lucky Charms contain marshmallows that usually use pork gelatin."
+  }
+}

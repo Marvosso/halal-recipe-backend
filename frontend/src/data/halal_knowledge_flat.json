@@ -1,0 +1,380 @@
+{
+  "pork": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "chicken_thigh",
+      "beef_halal_certified"
+    ],
+    "notes": "Pork is from pigs, which are not allowed in Islam",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pork_belly",
+      "pancetta",
+      "pork_fat"
+    ],
+    "confidence_score_base": 0.6,
+    "eli5": "Pork is from pigs, which are not allowed in Islam",
+    "category": "meat",
+    "rulings": {
+      "default": "haram",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Pork",
+    "inheritedHaramSource": null,
+    "confidenceImpact": -40
+  },
+  "bacon": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "smoked_turkey_bacon",
+      "beef_bacon_halal"
+    ],
+    "notes": "Bacon is made from pork, which is forbidden in Islam",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "smoked_pork",
+      "rashers",
+      "streaky_bacon",
+      "canadian_bacon"
+    ],
+    "confidence_score_base": 0.6,
+    "eli5": "Bacon is made from pork, which is forbidden in Islam",
+    "category": "meat",
+    "rulings": {
+      "default": "haram",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Bacon",
+    "inheritedHaramSource": "pork",
+    "confidenceImpact": -40
+  },
+  "gelatin": {
+    "status": "conditional",
+    "inheritance": [],
+    "alternatives": [
+      "agar_agar",
+      "halal_beef_gelatin",
+      "pectin"
+    ],
+    "notes": "Gelatin is typically derived from pork or non-halal animals. Must verify source or use halal-certified alternatives",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "pork_gelatin",
+      "collagen",
+      "gelatine",
+      "animal_gelatin"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Gelatin is typically derived from pork or non-halal animals. Must verify source or use halal-certified alternatives",
+    "category": "animal_derivative",
+    "rulings": {
+      "default": "conditional",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Gelatin",
+    "inheritedHaramSource": null,
+    "confidenceImpact": -30
+  },
+  "pork_gelatin": {
+    "status": "haram",
+    "inheritance": [
+      "gelatin",
+      "pork"
+    ],
+    "alternatives": [
+      "agar_agar",
+      "halal_beef_gelatin",
+      "pectin"
+    ],
+    "notes": "Gelatin derived from pork is haram",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [],
+    "confidence_score_base": 0.6,
+    "eli5": "Gelatin derived from pork is haram",
+    "category": "animal_derivative",
+    "rulings": {
+      "default": "haram",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Gelatin (Pork-derived)",
+    "inheritedHaramSource": "gelatin",
+    "confidenceImpact": -40
+  },
+  "marshmallow": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_marshmallow",
+      "vegan_marshmallow",
+      "dandies_marshmallow"
+    ],
+    "notes": "Most marshmallows contain pork-derived gelatin. Look for halal or vegan alternatives",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "marshmallows"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Most marshmallows contain pork-derived gelatin. Look for halal or vegan alternatives",
+    "category": "dessert",
+    "rulings": {
+      "default": "conditional",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Marshmallow",
+    "inheritedHaramSource": "gelatin",
+    "confidenceImpact": -30
+  },
+  "lucky_charms": {
+    "status": "haram",
+    "inheritance": [
+      "marshmallow",
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_certified_cereals",
+      "homemade_cereal",
+      "cereal_without_marshmallows"
+    ],
+    "notes": "Lucky Charms contain marshmallows that typically use pork-derived gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "lucky_charms_cereal"
+    ],
+    "confidence_score_base": 0.6,
+    "eli5": "Lucky Charms contain marshmallows that typically use pork-derived gelatin",
+    "category": "processed_food",
+    "rulings": {
+      "default": "haram",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "Lucky Charms Cereal",
+    "inheritedHaramSource": "marshmallow",
+    "confidenceImpact": -40
+  },
+  "vanilla_extract": {
+    "status": "conditional",
+    "inheritance": [],
+    "alternatives": [
+      "vanilla_essence",
+      "vanilla_bean_powder",
+      "halal_vanilla_extract"
+    ],
+    "notes": "Most vanilla extract contains alcohol. Check label or use alcohol-free alternatives",
+    "references": [],
+    "aliases": [
+      "vanilla",
+      "pure_vanilla_extract"
+    ],
+    "confidence_score_base": 0.85,
+    "eli5": "Most vanilla extract contains alcohol. Check label or use alcohol-free alternatives",
+    "category": "flavoring",
+    "rulings": {
+      "default": "questionable",
+      "hanafi": "questionable",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "questionable"
+    },
+    "displayName": "Vanilla Extract",
+    "inheritedHaramSource": null,
+    "confidenceImpact": -15
+  },
+  "soy_sauce": {
+    "status": "conditional",
+    "inheritance": [],
+    "alternatives": [
+      "halal_soy_sauce",
+      "coconut_aminos",
+      "tamari_halal"
+    ],
+    "notes": "Traditional soy sauce may contain alcohol from fermentation. Look for halal-certified versions",
+    "references": [],
+    "aliases": [
+      "soy_sauce_regular",
+      "chinese_soy_sauce"
+    ],
+    "confidence_score_base": 0.85,
+    "eli5": "Traditional soy sauce may contain alcohol from fermentation. Look for halal-certified versions",
+    "category": "condiment",
+    "rulings": {
+      "default": "questionable",
+      "hanafi": "questionable",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "questionable"
+    },
+    "displayName": "Soy Sauce",
+    "inheritedHaramSource": null,
+    "confidenceImpact": -15
+  },
+  "white_wine": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "white_wine_vinegar_halal",
+      "apple_cider_vinegar",
+      "lemon_juice"
+    ],
+    "notes": "White wine contains alcohol and is haram",
+    "references": [
+      "Surah Al-Baqarah 2:219",
+      "Surah Al-Ma'idah 5:90"
+    ],
+    "aliases": [
+      "wine",
+      "alcohol"
+    ],
+    "confidence_score_base": 0.6,
+    "eli5": "White wine contains alcohol and is haram",
+    "category": "alcohol",
+    "rulings": {
+      "default": "haram",
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "displayName": "White Wine",
+    "inheritedHaramSource": null,
+    "confidenceImpact": -40
+  },
+  "beef": {
+    "status": "conditional",
+    "inheritance": [],
+    "alternatives": [
+      "halal_beef_certified"
+    ],
+    "notes": "Beef must be halal-certified and slaughtered according to Islamic principles",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "beef_meat",
+      "cow_meat"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Beef must be halal-certified and slaughtered according to Islamic principles",
+    "category": "meat",
+    "rulings": {
+      "default": "conditional",
+      "hanafi": "conditional",
+      "shafii": "conditional",
+      "maliki": "conditional",
+      "hanbali": "conditional"
+    },
+    "displayName": "Beef",
+    "inheritedHaramSource": null,
+    "confidenceImpact": 0
+  },
+  "chicken": {
+    "status": "conditional",
+    "inheritance": [],
+    "alternatives": [
+      "halal_chicken_certified"
+    ],
+    "notes": "Chicken must be halal-certified and slaughtered according to Islamic principles",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "chicken_meat"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Chicken must be halal-certified and slaughtered according to Islamic principles",
+    "category": "meat",
+    "rulings": {
+      "default": "conditional",
+      "hanafi": "conditional",
+      "shafii": "conditional",
+      "maliki": "conditional",
+      "hanbali": "conditional"
+    },
+    "displayName": "Chicken",
+    "inheritedHaramSource": null,
+    "confidenceImpact": 0
+  },
+  "halal_beef_gelatin": {
+    "status": "halal",
+    "inheritance": [
+      "beef"
+    ],
+    "alternatives": [],
+    "notes": "Gelatin derived from halal-certified beef is halal",
+    "references": [],
+    "aliases": [],
+    "confidence_score_base": 1,
+    "eli5": "Gelatin derived from halal-certified beef is halal",
+    "category": "animal_derivative",
+    "rulings": {
+      "default": "halal",
+      "hanafi": "halal",
+      "shafii": "halal",
+      "maliki": "halal",
+      "hanbali": "halal"
+    },
+    "displayName": "Halal Beef Gelatin",
+    "inheritedHaramSource": null,
+    "confidenceImpact": 0
+  },
+  "halal_chicken": {
+    "status": "halal",
+    "inheritance": [
+      "chicken"
+    ],
+    "alternatives": [],
+    "notes": "Halal-certified chicken slaughtered according to Islamic principles",
+    "references": [],
+    "aliases": [],
+    "confidence_score_base": 1,
+    "eli5": "Halal-certified chicken slaughtered according to Islamic principles",
+    "category": "meat",
+    "rulings": {
+      "default": "halal",
+      "hanafi": "halal",
+      "shafii": "halal",
+      "maliki": "halal",
+      "hanbali": "halal"
+    },
+    "displayName": "Halal Chicken",
+    "inheritedHaramSource": null,
+    "confidenceImpact": 0
+  }
+}

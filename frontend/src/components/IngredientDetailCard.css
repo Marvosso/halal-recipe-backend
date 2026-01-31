@@ -1,0 +1,191 @@
+/* IngredientDetailCard - For ingredient detail screens */
+
+.ingredient-detail-card {
+  background: var(--white, #ffffff);
+  border: 1px solid var(--border-light, #e0e0e0);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.ingredient-detail-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ingredient-detail-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  background: var(--bg-secondary, #f8f9fa);
+  transition: background-color 0.2s ease;
+}
+
+.ingredient-detail-card-header:hover {
+  background: var(--bg-color, #ffffff);
+}
+
+.ingredient-detail-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.ingredient-detail-card-title strong {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary, #1b5e20);
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-status-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-status-badge.status-halal {
+  background: rgba(10, 157, 88, 0.1);
+  color: var(--primary-green, #0A9D58);
+}
+
+.ingredient-status-badge.status-conditional,
+.ingredient-status-badge.status-questionable {
+  background: rgba(255, 209, 102, 0.1);
+  color: #d97706;
+}
+
+.ingredient-status-badge.status-haram {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.ingredient-status-badge.status-unknown {
+  background: rgba(156, 163, 175, 0.1);
+  color: #6b7280;
+}
+
+.ingredient-detail-chevron {
+  color: var(--text-secondary, #6b7280);
+  flex-shrink: 0;
+}
+
+.ingredient-detail-card-content {
+  padding: 1.25rem;
+}
+
+.ingredient-detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.ingredient-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.ingredient-detail-section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary, #1b5e20);
+  margin-bottom: 0.75rem;
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-detail-explanation {
+  color: var(--text-secondary, #4a5568);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-substitute-primary {
+  margin-bottom: 1rem;
+}
+
+.ingredient-substitute-label {
+  font-size: 0.9375rem;
+  color: var(--text-primary, #1b5e20);
+  margin-bottom: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-substitute-label strong {
+  color: var(--primary-green, #0A9D58);
+}
+
+.ingredient-substitutes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ingredient-substitute-item {
+  padding: 0.75rem;
+  background: var(--bg-secondary, #f8f9fa);
+  border-radius: 6px;
+}
+
+.ingredient-alternatives-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredient-alternatives-list li {
+  padding: 0.5rem 0;
+  color: var(--text-primary, #1b5e20);
+  font-size: 0.9375rem;
+  border-bottom: 1px solid var(--border-light, #e0e0e0);
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-alternatives-list li:last-child {
+  border-bottom: none;
+}
+
+.ingredient-references {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ingredient-reference {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.ingredient-reference strong {
+  color: var(--text-primary, #1b5e20);
+}
+
+/* Dark mode */
+[data-theme="dark"] .ingredient-detail-card {
+  background: var(--bg-color, #111827);
+  border-color: var(--border-light, #374151);
+}
+
+[data-theme="dark"] .ingredient-detail-card-header {
+  background: var(--bg-secondary, #1f2937);
+}
+
+[data-theme="dark"] .ingredient-substitute-item {
+  background: var(--bg-secondary, #1f2937);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ingredient-detail-card-header {
+    padding: 0.875rem 1rem;
+  }
+  
+  .ingredient-detail-card-content {
+    padding: 1rem;
+  }
+}

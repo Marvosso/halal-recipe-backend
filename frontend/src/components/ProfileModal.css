@@ -1,0 +1,138 @@
+.profile-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.profile-modal-content {
+  background: var(--card-bg);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--border-light);
+  animation: slideUp 0.3s ease-out;
+  transition: all 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.profile-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--border-light);
+  transition: border-color 0.3s ease;
+}
+
+.profile-modal-title {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.profile-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--accent-gold);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.profile-modal-close:hover {
+  background: var(--green-bg);
+  transform: rotate(90deg);
+}
+
+.profile-modal-close:active {
+  transform: rotate(90deg) scale(0.95);
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.profile-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.profile-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.profile-modal-body::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+.profile-modal-body::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 4px;
+}
+
+.profile-modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .profile-modal-content {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 20px 20px 0 0;
+    margin-top: auto;
+  }
+
+  .profile-modal-header {
+    padding: 1.25rem;
+  }
+
+  .profile-modal-body {
+    padding: 1.25rem;
+  }
+}

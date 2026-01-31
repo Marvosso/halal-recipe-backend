@@ -1,0 +1,50 @@
+{
+  "pork": {
+    "status": "haram",
+    "derivesFrom": [],
+    "alternatives": ["Beef", "Lamb", "Chicken", "Turkey"],
+    "tags": ["animal-source", "explicit-haram"],
+    "notes": "Explicitly prohibited in Quran 2:173",
+    "eli5": "Pork is from pigs, which are not allowed in Islam."
+  },
+  "gelatin": {
+    "status": "conditional",
+    "derivesFrom": ["pork"],
+    "alternatives": ["Halal gelatin", "Agar-agar", "Pectin"],
+    "tags": ["animal-derived", "gelatin_unknown"],
+    "notes": "Gelatin is typically derived from pork or non-halal sources. Check the source before consuming.",
+    "eli5": "Gelatin is made from animal parts, so whether it's halal depends on the animal."
+  },
+  "marshmallow": {
+    "status": "conditional",
+    "derivesFrom": ["gelatin"],
+    "alternatives": ["Halal marshmallows", "Vegan marshmallows"],
+    "tags": ["contains-gelatin"],
+    "notes": "Marshmallows typically contain gelatin, which may come from pork sources.",
+    "eli5": "Marshmallows often contain gelatin, which may come from pork."
+  },
+  "lucky_charms": {
+    "status": "haram",
+    "derivesFrom": ["marshmallow"],
+    "alternatives": ["Halal-certified cereals", "Homemade cereal"],
+    "tags": ["contains-marshmallow"],
+    "notes": "Lucky Charms contain marshmallows that typically use pork-derived gelatin.",
+    "eli5": "Lucky Charms contain marshmallows that usually use pork gelatin."
+  },
+  "white_wine": {
+    "status": "haram",
+    "derivesFrom": [],
+    "alternatives": ["Chicken stock", "Vegetable stock", "Non-alcoholic white wine"],
+    "tags": ["alcohol", "alcohol_trace"],
+    "notes": "Alcoholic beverages are prohibited in Islam. Use halal alternatives for cooking.",
+    "eli5": "White wine contains alcohol, which is not allowed in Islam."
+  },
+  "vanilla_extract": {
+    "status": "conditional",
+    "derivesFrom": [],
+    "alternatives": ["Vanilla powder", "Vanilla bean paste", "Alcohol-free vanilla extract"],
+    "tags": ["alcohol_trace"],
+    "notes": "Most vanilla extracts contain alcohol. Look for alcohol-free versions or use vanilla powder instead.",
+    "eli5": "Vanilla extract often has a little bit of alcohol in it, so check if it's alcohol-free."
+  }
+}

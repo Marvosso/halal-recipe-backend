@@ -1,0 +1,160 @@
+.community-tips {
+  margin-top: 1rem;
+  border-top: 1px solid var(--green-lightest, #c8e6c9);
+  padding-top: 1rem;
+}
+
+.community-tips-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  color: var(--green-primary, #2E7D32);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  text-align: left;
+}
+
+.community-tips-toggle:hover {
+  color: var(--green-dark, #1b5e20);
+}
+
+.tips-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.tips-label {
+  flex: 1;
+}
+
+.tips-chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.community-tips-content {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #fff4d6 0%, #ffeaa7 100%); /* Slightly darker beige for better contrast */
+  border-left: 4px solid #f59e0b;
+  border-radius: 12px;
+  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Light mode text - ensure high contrast with beige background */
+.tips-text {
+  color: #2d3436 !important; /* Dark gray text for better readability on beige */
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 500; /* Slightly bolder for better readability */
+}
+
+/* Dark mode support for community tips */
+@media (prefers-color-scheme: dark) {
+  .community-tips-content {
+    background: linear-gradient(135deg, #3d3526 0%, #4a4030 100%);
+    border-left-color: #f59e0b;
+  }
+
+  .tips-text {
+    color: #e0e0e0 !important; /* Light text for dark background */
+  }
+
+  .tips-header strong {
+    color: #f59e0b;
+  }
+}
+
+/* Explicit dark mode class support */
+[data-theme="dark"] .community-tips-content {
+  background: linear-gradient(135deg, #3d3526 0%, #4a4030 100%);
+  border-left-color: #f59e0b;
+}
+
+[data-theme="dark"] .tips-text {
+  color: #e0e0e0 !important; /* Light text for dark background */
+}
+
+[data-theme="dark"] .tips-header strong {
+  color: #f59e0b;
+}
+
+.tips-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.tips-header-icon {
+  width: 20px;
+  height: 20px;
+  color: #f59e0b;
+  flex-shrink: 0;
+}
+
+.tips-header strong {
+  color: #f59e0b;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* .tips-text moved above for better specificity */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .community-tips-toggle {
+    font-size: 0.875rem;
+  }
+
+  .tips-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tips-chevron {
+    width: 14px;
+    height: 14px;
+  }
+
+  .community-tips-content {
+    padding: 0.875rem 1rem;
+  }
+
+  .tips-header-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .tips-header strong {
+    font-size: 0.875rem;
+  }
+
+  .tips-text {
+    font-size: 0.875rem;
+  }
+}

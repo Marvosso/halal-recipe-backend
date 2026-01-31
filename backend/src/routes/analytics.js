@@ -10,6 +10,7 @@
 
 import express from 'express';
 import { getPool } from '../database.js';
+import premiumAnalyticsRouter from './premiumAnalytics.js';
 
 const router = express.Router();
 
@@ -315,5 +316,8 @@ async function getRegionalBreakdown(pool, dateFilter, regionFilter, params) {
   );
   return result.rows;
 }
+
+// Mount premium analytics routes
+router.use('/', premiumAnalyticsRouter);
 
 export default router;

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /app
+Allow: /is-it-halal
+Allow: /halal-substitutes
+Allow: /how-it-works
+Allow: /about
+
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://halalkitchen.app/sitemap.xml

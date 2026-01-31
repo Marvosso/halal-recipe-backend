@@ -1,7 +1,7 @@
-# Monetization Boundaries: Free vs. Premium
+# Monetization Boundaries: Free vs. Premium - $2.99/month
 
 ## Overview
-Clear feature boundaries between free and premium tiers to drive conversions while maintaining trust and value for free users.
+Clear feature boundaries between free and premium tiers at an affordable $2.99/month price point. Designed to maximize conversions while maintaining trust and value for free users.
 
 ## Core Principles
 
@@ -9,6 +9,7 @@ Clear feature boundaries between free and premium tiers to drive conversions whi
 2. **Premium Adds Real Value**: Premium features should be genuinely useful, not just artificial limits
 3. **No Affiliate Bias**: Premium users get better features, not different affiliate links
 4. **Trust First**: Never degrade free experience to force upgrades
+5. **Affordable Premium**: $2.99/month removes price friction and maximizes conversions
 
 ---
 
@@ -181,15 +182,16 @@ Clear feature boundaries between free and premium tiers to drive conversions whi
 
 ### Option 1: Monthly Subscription (Recommended)
 
-**Price**: $9.99/month
+**Price**: $2.99/month
 
 **Rationale**:
-- Affordable for regular users
-- Recurring revenue
-- Low barrier to entry
-- Competitive with similar services
+- **Impulse Purchase Territory**: Under $3 removes price friction
+- **High Value Perception**: Premium feels like a steal at this price
+- **Mass Market Appeal**: Accessible to students, families, casual users
+- **Competitive**: Lower than most subscription services
+- **Higher Conversion**: Lower price = higher conversion rate (8-12% vs. 5-10%)
 
-**Annual Discount**: $99/year (save $20, ~17% discount)
+**Annual Discount**: $29.99/year (save $6, ~17% discount = $2.50/month)
 
 ---
 

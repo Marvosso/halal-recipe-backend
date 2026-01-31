@@ -1,0 +1,2292 @@
+{
+  "beef": {
+    "name": "beef",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_beef"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified (halal slaughter)",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "chicken": {
+    "name": "chicken",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_chicken"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified (halal slaughter)",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "lamb": {
+    "name": "lamb",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_lamb"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified (halal slaughter)",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "turkey": {
+    "name": "turkey",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_turkey"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified (halal slaughter)",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "ground_meat": {
+    "name": "ground meat",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_ground_meat"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified. Often contains mixed or non-halal meat",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "mono_diglycerides": {
+    "name": "mono diglycerides",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_emulsifier",
+      "lecithin"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Source-dependent ingredient. May be animal-derived unless specified plant-based",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Muslim 10:3893",
+    "children": []
+  },
+  "carmine": {
+    "name": "carmine",
+    "status": "questionable",
+    "halal_alternatives": [
+      "beetroot_color",
+      "paprika_extract",
+      "red_cabbage_extract"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Derived from insects (cochineal). Some schools allow, others don't",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "shellac": {
+    "name": "shellac",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_glaze",
+      "carnauba_wax"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Derived from insects. Used as shiny coating on candies",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "animal_shortening": {
+    "name": "animal shortening",
+    "status": "questionable",
+    "halal_alternatives": [
+      "vegetable_shortening",
+      "halal_certified_shortening"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "May contain pork fat. Check label for animal fats",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "glycerin": {
+    "name": "glycerin",
+    "status": "questionable",
+    "halal_alternatives": [
+      "vegetable_glycerin",
+      "plant_based_glycerin"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Animal origin possible. Must be vegetable glycerin",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "lecithin_animal": {
+    "name": "lecithin animal",
+    "status": "questionable",
+    "halal_alternatives": [
+      "soy_lecithin",
+      "sunflower_lecithin"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Animal lecithin uncommon but possible. Soy or sunflower preferred",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "natural_flavors_meat": {
+    "name": "natural flavors meat",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_flavor_extracts",
+      "halal_certified_flavors"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Can contain meat or alcohol carriers. Check for halal-certified or plant-based",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "whey_protein": {
+    "name": "whey protein",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_whey",
+      "plant_based_protein"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "May be from non-halal dairy. Check for halal-certified",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "casein": {
+    "name": "casein",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_casein",
+      "plant_based_protein"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Milk protein. Check for halal-certified dairy source",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "oyster_sauce": {
+    "name": "oyster sauce",
+    "status": "questionable",
+    "halal_alternatives": [
+      "alcohol_free_oyster_sauce",
+      "mushroom_sauce"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Some brands contain alcohol. Hanafi school: haram due to shellfish. Others: check for alcohol",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Ma'idah 5:90",
+    "hadith_reference": "Sahih Muslim 10:3893",
+    "children": []
+  },
+  "canned_soup": {
+    "name": "canned soup",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_soup",
+      "homemade_soup"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Hidden animal fats common. Check ingredients",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "stuffing_mix": {
+    "name": "stuffing mix",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_stuffing",
+      "homemade_stuffing"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "May contain animal fat",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 10:3893",
+    "children": []
+  },
+  "donuts": {
+    "name": "donuts",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_donuts",
+      "homemade_donuts"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Fried in animal fat sometimes",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "chicken_broth": {
+    "name": "chicken broth",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_chicken_broth",
+      "vegetable_broth"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-slaughtered",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "beef_broth": {
+    "name": "beef broth",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_beef_broth",
+      "vegetable_broth"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Common in soups and rice. Must be halal-certified",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "cooking_spray": {
+    "name": "cooking spray",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_cooking_spray",
+      "vegetable_oil_spray"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "May contain animal-derived lecithin",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "balsamic_vinegar": {
+    "name": "balsamic vinegar",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_balsamic",
+      "aged_balsamic_without_wine"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Traditional balsamic is grape-based only, no alcohol. Check ingredients",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "stearic_acid": {
+    "name": "stearic acid",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_stearic_acid",
+      "vegetable_stearic_acid"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Can be animal or plant-derived. Must be plant-based",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "palmitic_acid": {
+    "name": "palmitic acid",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_palmitic_acid"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Fatty acid that can be animal or plant-derived",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "oleic_acid": {
+    "name": "oleic acid",
+    "status": "questionable",
+    "halal_alternatives": [
+      "plant_based_oleic_acid"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Usually plant-derived but can be animal-sourced. Check label",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "beef_jerky": {
+    "name": "beef jerky",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_beef_jerky",
+      "turkey_jerky_halal"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Must be halal-certified. Often contains non-halal meat",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "artificial_flavoring": {
+    "name": "artificial flavoring",
+    "status": "questionable",
+    "halal_alternatives": [
+      "halal_certified_flavoring",
+      "plant_based_flavors"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "May contain alcohol carriers or meat-based flavors. Check for halal-certified",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  },
+  "beeswax": {
+    "name": "beeswax",
+    "status": "halal",
+    "halal_alternatives": [
+      "carnauba_wax",
+      "candellila_wax"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Beeswax is generally considered halal. Used as food coating",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah An-Nahl 16:68-69",
+    "hadith_reference": "",
+    "children": []
+  },
+  "msg": {
+    "name": "msg",
+    "status": "halal",
+    "halal_alternatives": [
+      "halal_certified_msg",
+      "seaweed_extract"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Generally halal if derived from plant sources or fermentation. Check source",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:172",
+    "hadith_reference": "",
+    "children": []
+  },
+  "pork": {
+    "name": "pork",
+    "status": "haram",
+    "halal_alternatives": [
+      "chicken_thigh",
+      "beef_halal_certified"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Chicken thigh mimics pork fat better than breast",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": [
+      {
+        "name": "bacon",
+        "status": "haram",
+        "halal_alternatives": [
+          "smoked_turkey_bacon",
+          "beef_bacon_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Add a dash of oil if turkey is lean",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "ham",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_beef_pastrami",
+          "turkey_ham_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Beef pastrami preserves cured flavor",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "lard",
+        "status": "haram",
+        "halal_alternatives": [
+          "beef_tallow_halal",
+          "vegetable_shortening"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Neutral replacement for frying",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "pate",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_chicken_liver_pate"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Use halal-certified liver only",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "pepperoni",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_beef_pepperoni",
+          "turkey_pepperoni_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Typically pork-based. Halal beef preserves spice and chew",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "salami",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_beef_salami",
+          "turkey_salami_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Pork is default meat. Must be halal-certified",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "hot dogs",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_beef_hot_dogs",
+          "chicken_hot_dogs_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often pork or mixed meat. Must be halal-certified",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "sausage",
+        "status": "haram",
+        "halal_alternatives": [
+          "chicken_sausage",
+          "turkey_sausage_halal",
+          "beef_sausage_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Choose seasoned chicken sausage to match flavor profile",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "gelatin",
+        "status": "questionable",
+        "halal_alternatives": [
+          "agar_agar",
+          "halal_beef_gelatin",
+          "pectin"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Agar is stronger than gelatin. Check the source before consuming. Must be halal-certified if animal-derived",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": [
+          {
+            "name": "marshmallows",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_marshmallows",
+              "vegan_marshmallows",
+              "marshmallows_with_agar"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Marshmallows typically contain gelatin, which may come from pork sources. Must be halal-certified gelatin",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": [
+              {
+                "name": "lucky charms",
+                "status": "haram",
+                "halal_alternatives": [
+                  "halal_certified_cereals",
+                  "homemade_cereal",
+                  "cereal_without_marshmallows"
+                ],
+                "flavor_role": "",
+                "cuisine": "",
+                "notes": "Lucky Charms contain marshmallows that typically use pork-derived gelatin",
+                "school_of_thought": [
+                  "Hanafi",
+                  "Shafi'i",
+                  "Maliki",
+                  "Hanbali"
+                ],
+                "quranic_reference": "Surah Al-Baqarah 2:173",
+                "hadith_reference": "",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "gummy candy",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_gummy_candy",
+              "vegan_gummies",
+              "fruit_leather"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Pork gelatin common. Must be halal-certified gelatin",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "jello",
+            "status": "questionable",
+            "halal_alternatives": [
+              "agar_agar_jelly",
+              "halal_jello",
+              "fruit_gel"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Typically contains pork gelatin. Use agar-agar for halal version",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "marshmallow fluff",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_marshmallow_fluff"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Most contain pork gelatin",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Muslim 10:3893",
+            "children": []
+          },
+          {
+            "name": "panna cotta",
+            "status": "questionable",
+            "halal_alternatives": [
+              "panna_cotta_with_agar",
+              "halal_panna_cotta"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Traditionally uses gelatin. Use agar-agar for halal version",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "cheesecake",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_cheesecake",
+              "no_bake_cheesecake_without_gelatin"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "May contain gelatin in some recipes. Check ingredients or make halal version",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "yogurt with gelatin",
+            "status": "questionable",
+            "halal_alternatives": [
+              "yogurt_without_gelatin",
+              "halal_certified_yogurt"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Check ingredients. Some yogurts use gelatin as thickener",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "ice cream gelatin",
+            "status": "questionable",
+            "halal_alternatives": [
+              "gelato_without_gelatin",
+              "halal_ice_cream"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "May contain gelatin or alcohol",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Muslim 10:3893",
+            "children": []
+          },
+          {
+            "name": "jelly candies",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_jelly_candies",
+              "vegan_jelly_candies"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Pork gelatin common. Must be halal-certified",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "fruit snacks",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_fruit_snacks",
+              "fruit_leather"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Often contains gelatin for texture",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "mousse",
+            "status": "questionable",
+            "halal_alternatives": [
+              "mousse_without_gelatin",
+              "vegan_mousse"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Some recipes use gelatin. Check ingredients or make without gelatin",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          },
+          {
+            "name": "pate de fruit",
+            "status": "questionable",
+            "halal_alternatives": [
+              "pate_de_fruit_with_agar",
+              "halal_fruit_confit"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Traditionally uses pectin or gelatin. Use agar-agar for halal version",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:173",
+            "hadith_reference": "Sahih Bukhari 7:67:400",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "meatballs",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_beef_meatballs",
+          "homemade_meatballs_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Frozen products often non-halal. Contains pork or non-halal beef",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "ramen seasoning",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_seasoning_mix",
+          "homemade_ramen_seasoning"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains pork extract or pork-based flavoring",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "frozen lasagna",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_lasagna",
+          "homemade_lasagna"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Contains pork or non-halal beef. Check ingredients carefully",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "refried beans",
+        "status": "questionable",
+        "halal_alternatives": [
+          "vegetable_oil_refried_beans",
+          "homemade_refried_beans"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Lard frequently used. Must check label for vegetable oil version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "gravy mix",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_gravy",
+          "mushroom_gravy"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains meat extract or pork flavoring",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "potato chips lard",
+        "status": "questionable",
+        "halal_alternatives": [
+          "vegetable_oil_chips",
+          "halal_certified_chips"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some brands fry in pork fat",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "pastries with lard",
+        "status": "haram",
+        "halal_alternatives": [
+          "butter_pastry",
+          "vegetable_shortening_pastry"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Lard commonly used in bakeries",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "meat extract",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_yeast_extract",
+          "vegetable_broth_concentrate"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Yeast provides similar depth. Often contains non-halal meat",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "pancetta",
+        "status": "haram",
+        "halal_alternatives": [
+          "beef_pancetta_halal",
+          "turkey_pancetta"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Italian cured pork belly. Use halal beef or turkey version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "prosciutto",
+        "status": "haram",
+        "halal_alternatives": [
+          "beef_prosciutto_halal",
+          "turkey_prosciutto"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Italian dry-cured ham. Must use halal-certified alternatives",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "pork belly",
+        "status": "haram",
+        "halal_alternatives": [
+          "chicken_thigh",
+          "beef_brisket_halal"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "High fat content. Chicken thigh works well",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "chorizo",
+        "status": "haram",
+        "halal_alternatives": [
+          "beef_chorizo_halal",
+          "chicken_chorizo"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Spicy sausage typically pork-based. Use halal beef or chicken version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "instant noodles",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_instant_noodles",
+          "homemade_noodles"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Seasoning packets often contain pork extract. Check for halal-certified brands",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "frozen pizza",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_frozen_pizza",
+          "homemade_pizza"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains pepperoni or pork. Check ingredients carefully",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "hot pockets",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_hot_pockets",
+          "homemade_pastries"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains pepperoni or pork sausage. Check ingredients",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      },
+      {
+        "name": "frozen burritos",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_frozen_burritos",
+          "homemade_burritos"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains pork or lard. Check for halal-certified versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Muslim 13:3808",
+        "children": []
+      }
+    ]
+  },
+  "alcohol": {
+    "name": "alcohol",
+    "status": "haram",
+    "halal_alternatives": [
+      "non_alcoholic_substitutes",
+      "vinegar",
+      "broth"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Alcohol in any form is prohibited in Islam",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Ma'idah 5:90",
+    "hadith_reference": "Sahih Bukhari 7:69:494",
+    "children": [
+      {
+        "name": "wine",
+        "status": "haram",
+        "halal_alternatives": [
+          "grape_juice_plus_vinegar",
+          "non_alcoholic_wine"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Use 3 parts juice + 1 part vinegar",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Bukhari 7:69:494",
+        "children": []
+      },
+      {
+        "name": "beer",
+        "status": "haram",
+        "halal_alternatives": [
+          "malt_vinegar_plus_water",
+          "sparkling_water",
+          "non_alcoholic_beer"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Reduces bitterness without alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "rum",
+        "status": "haram",
+        "halal_alternatives": [
+          "vanilla_extract_plus_molasses",
+          "alcohol_free_rum_flavor"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Mimics depth without alcohol. Even small amounts are impermissible",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "brandy",
+        "status": "haram",
+        "halal_alternatives": [
+          "grape_juice_reduction",
+          "alcohol_free_brandy_flavor"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Reduces alcohol while keeping flavor",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3883",
+        "children": []
+      },
+      {
+        "name": "whiskey",
+        "status": "haram",
+        "halal_alternatives": [
+          "apple_juice_reduction",
+          "alcohol_free_whiskey_flavor"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Reduces bitterness and alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Bukhari 7:69:494",
+        "children": []
+      },
+      {
+        "name": "vodka",
+        "status": "haram",
+        "halal_alternatives": [
+          "water_plus_citrus_extract",
+          "non_alcoholic_vodka"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Used only as solvent replacement",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3883",
+        "children": []
+      },
+      {
+        "name": "mirin",
+        "status": "haram",
+        "halal_alternatives": [
+          "sugar_plus_rice_vinegar",
+          "halal_mirin"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "1 tsp sugar + 1 tsp vinegar",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "sake",
+        "status": "haram",
+        "halal_alternatives": [
+          "rice_vinegar",
+          "non_alcoholic_sake"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Rice wine contains alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "vanilla extract",
+        "status": "questionable",
+        "halal_alternatives": [
+          "alcohol_free_vanilla",
+          "vanilla_powder",
+          "vanilla_bean_paste"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Ensure alcohol-free labeling. Some scholars allow trace amounts, others don't",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": [
+          {
+            "name": "custard",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_custard",
+              "homemade_custard"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Check vanilla source (may contain alcohol)",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:172",
+            "hadith_reference": "Sahih Muslim 10:3893",
+            "children": []
+          },
+          {
+            "name": "creme brulee",
+            "status": "questionable",
+            "halal_alternatives": [
+              "halal_creme_brulee",
+              "homemade_creme_brulee"
+            ],
+            "flavor_role": "",
+            "cuisine": "",
+            "notes": "Check vanilla source (may contain alcohol)",
+            "school_of_thought": [
+              "Hanafi",
+              "Shafi'i",
+              "Maliki",
+              "Hanbali"
+            ],
+            "quranic_reference": "Surah Al-Baqarah 2:172",
+            "hadith_reference": "Sahih Muslim 10:3893",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "almond extract",
+        "status": "questionable",
+        "halal_alternatives": [
+          "almond_flavoring_alcohol_free",
+          "almond_paste"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains alcohol as carrier. Check for alcohol-free version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "lemon extract",
+        "status": "questionable",
+        "halal_alternatives": [
+          "lemon_zest",
+          "lemon_juice",
+          "alcohol_free_lemon_extract"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "May contain alcohol. Use lemon zest or juice instead",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "worcestershire sauce",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_worcestershire",
+          "soy_sauce_with_vinegar"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often fermented with alcohol. Check for halal-certified version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "teriyaki sauce",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_teriyaki_sauce",
+          "homemade_teriyaki"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often contains mirin or sake (alcohol). Make homemade halal version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Bukhari 7:69:494",
+        "children": []
+      },
+      {
+        "name": "soy sauce",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_soy_sauce",
+          "tamari_alcohol_free"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Naturally produces alcohol during fermentation. Most scholars allow if trace amounts",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "hoisin sauce",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_hoisin_sauce",
+          "homemade_hoisin"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some brands contain alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "bbq sauce",
+        "status": "questionable",
+        "halal_alternatives": [
+          "alcohol_free_bbq_sauce",
+          "homemade_bbq"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some brands add whiskey or wine",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "demi glace",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_demi_glace",
+          "beef_stock_reduction"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Traditionally made with wine",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Bukhari 7:69:494",
+        "children": []
+      },
+      {
+        "name": "cake glaze",
+        "status": "questionable",
+        "halal_alternatives": [
+          "fruit_glaze",
+          "sugar_glaze",
+          "chocolate_glaze"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some glazes use alcohol. Use fruit or sugar glazes instead",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "liqueur chocolate",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_chocolate_filling",
+          "chocolate_without_alcohol"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Contains intoxicants. Avoid all chocolate with alcohol fillings",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "tiramisu",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_tiramisu",
+          "non_alcoholic_tiramisu"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Contains coffee liqueur or alcohol. Make halal version without alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "rum cake",
+        "status": "haram",
+        "halal_alternatives": [
+          "alcohol_free_cake",
+          "vanilla_cake"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Alcohol used for moisture/flavor",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Bukhari 7:69:494",
+        "children": []
+      },
+      {
+        "name": "chocolate liqueurs",
+        "status": "haram",
+        "halal_alternatives": [
+          "chocolate_without_liqueur",
+          "chocolate_ganache"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Contains alcohol fillings. Avoid all varieties",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "mustard wine",
+        "status": "questionable",
+        "halal_alternatives": [
+          "mustard_with_halal_vinegar",
+          "yellow_mustard"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some use wine vinegar",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "wine vinegar",
+        "status": "questionable",
+        "halal_alternatives": [
+          "apple_cider_vinegar",
+          "rice_vinegar"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "No alcohol involvement in final product. Some scholars allow",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3883",
+        "children": []
+      },
+      {
+        "name": "grand marnier",
+        "status": "haram",
+        "halal_alternatives": [
+          "orange_extract",
+          "orange_juice_reduction"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Orange-flavored liqueur. Use orange extract instead",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "kirsch",
+        "status": "haram",
+        "halal_alternatives": [
+          "cherry_extract",
+          "cherry_juice"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Cherry-flavored alcohol. Use cherry extract or juice",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "amaretto",
+        "status": "haram",
+        "halal_alternatives": [
+          "almond_extract",
+          "amaretto_flavoring_alcohol_free"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Almond-flavored liqueur. Use almond extract instead",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "kahlua",
+        "status": "haram",
+        "halal_alternatives": [
+          "coffee_extract",
+          "espresso_plus_sugar"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Coffee-flavored liqueur. Use strong espresso instead",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "ice cream alcohol",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_ice_cream",
+          "non_alcoholic_ice_cream"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Some premium ice creams contain alcohol. Avoid all varieties with alcohol",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      },
+      {
+        "name": "chocolate truffles",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_chocolate_truffles",
+          "truffles_without_liqueur"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "May contain liqueur fillings. Check ingredients or make halal version",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Ma'idah 5:90",
+        "hadith_reference": "Sahih Muslim 10:3893",
+        "children": []
+      }
+    ]
+  },
+  "rennet_cheese": {
+    "name": "rennet cheese",
+    "status": "haram",
+    "halal_alternatives": [
+      "microbial_rennet_cheese",
+      "vegetarian_cheese",
+      "halal_certified_cheese"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Most rennet comes from non-halal calves. Microbial rennet is halal-safe",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "animal_rennet": {
+    "name": "animal rennet",
+    "status": "haram",
+    "halal_alternatives": [
+      "microbial_rennet",
+      "vegetarian_rennet"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Common in cheese production. Check for microbial/vegetarian sources",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": [
+      {
+        "name": "parmesan cheese",
+        "status": "haram",
+        "halal_alternatives": [
+          "vegetarian_parmesan",
+          "halal_certified_parmesan"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Traditionally uses animal rennet. Look for vegetarian or halal-certified versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "blue cheese",
+        "status": "haram",
+        "halal_alternatives": [
+          "halal_certified_blue_cheese",
+          "vegetarian_blue_cheese"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often uses animal rennet. Check for halal-certified versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "feta cheese",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_feta",
+          "vegetarian_feta"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "May use animal rennet. Check ingredients or use halal-certified",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "brie cheese",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_brie",
+          "vegetarian_brie"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "May use animal rennet. Check for vegetarian or halal-certified",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "camembert",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_camembert",
+          "vegetarian_camembert"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Soft cheese may use animal rennet. Check label",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "gouda",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_gouda",
+          "vegetarian_gouda"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often uses animal rennet. Look for vegetarian or halal versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "cheddar",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_cheddar",
+          "vegetarian_cheddar"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "May use animal rennet. Check for vegetarian or halal versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      },
+      {
+        "name": "swiss cheese",
+        "status": "questionable",
+        "halal_alternatives": [
+          "halal_certified_swiss",
+          "vegetarian_swiss"
+        ],
+        "flavor_role": "",
+        "cuisine": "",
+        "notes": "Often uses animal rennet. Check for halal-certified versions",
+        "school_of_thought": [
+          "Hanafi",
+          "Shafi'i",
+          "Maliki",
+          "Hanbali"
+        ],
+        "quranic_reference": "Surah Al-Baqarah 2:173",
+        "hadith_reference": "Sahih Bukhari 7:67:400",
+        "children": []
+      }
+    ]
+  },
+  "l_cysteine": {
+    "name": "l cysteine",
+    "status": "haram",
+    "halal_alternatives": [
+      "plant_based_l_cysteine",
+      "synthetic_l_cysteine"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Often derived from human hair or feathers. Must be plant-based or synthetic",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 10:3893",
+    "children": []
+  },
+  "pepsin": {
+    "name": "pepsin",
+    "status": "haram",
+    "halal_alternatives": [
+      "plant_based_enzymes",
+      "microbial_enzymes"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Derived from pig stomach lining. Must use plant-based alternatives",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Bukhari 7:67:400",
+    "children": []
+  },
+  "lipase": {
+    "name": "lipase",
+    "status": "haram",
+    "halal_alternatives": [
+      "microbial_lipase",
+      "plant_based_lipase"
+    ],
+    "flavor_role": "",
+    "cuisine": "",
+    "notes": "Often pork-derived unless specified. Used in cheese flavoring",
+    "school_of_thought": [
+      "Hanafi",
+      "Shafi'i",
+      "Maliki",
+      "Hanbali"
+    ],
+    "quranic_reference": "Surah Al-Baqarah 2:173",
+    "hadith_reference": "Sahih Muslim 13:3808",
+    "children": []
+  }
+}

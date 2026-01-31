@@ -1,0 +1,144 @@
+.privacy-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.privacy-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--green-bg) 0%, var(--card-bg) 100%);
+  border-radius: 16px;
+  border: 2px solid var(--primary-green);
+  transition: all 0.3s ease;
+}
+
+.privacy-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--primary-green);
+  flex-shrink: 0;
+}
+
+.privacy-badge-title {
+  color: var(--primary-green);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.privacy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.privacy-section-title {
+  color: var(--primary-green);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.privacy-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.privacy-item:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.privacy-item-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.privacy-item-content {
+  flex: 1;
+}
+
+.privacy-item-title {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.privacy-item-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.privacy-list {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  transition: color 0.3s ease;
+}
+
+.privacy-list li {
+  margin-bottom: 0.5rem;
+}
+
+.privacy-note {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--green-bg);
+  border-left: 4px solid var(--primary-green);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
+}
+
+.privacy-future {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-secondary) 100%);
+  border-radius: 16px;
+  border: 2px dashed var(--accent-gold);
+  transition: all 0.3s ease;
+}
+
+.privacy-future-text {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0.75rem 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.privacy-future-note {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--green-bg);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}

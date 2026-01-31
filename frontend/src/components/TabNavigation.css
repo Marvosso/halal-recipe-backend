@@ -1,0 +1,116 @@
+.tab-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border-top: 2px solid var(--border-light);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tab-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  min-width: 60px;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: var(--primary-green);
+  background: var(--green-bg);
+  border-radius: 12px;
+}
+
+.tab-button.active {
+  color: var(--primary-green);
+}
+
+.tab-button.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--accent-gold);
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.tab-button.active .tab-icon {
+  transform: scale(1.1);
+}
+
+.tab-label {
+  font-size: 0.6875rem;
+  line-height: 1;
+  margin-top: 0.125rem;
+}
+
+/* Desktop: Show tabs at top */
+@media (min-width: 768px) {
+  .tab-navigation {
+    position: static;
+    border-top: none;
+    border-bottom: 2px solid var(--border-light, #e0e0e0);
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .tab-button {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    min-width: auto;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+  }
+
+  .tab-button.active::before {
+    display: none;
+  }
+
+  .tab-button.active {
+    border-bottom-color: var(--accent-gold);
+    background: var(--green-bg);
+  }
+
+  .tab-label {
+    font-size: 0.9375rem;
+    margin-top: 0;
+  }
+
+  .tab-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

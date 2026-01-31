@@ -1,0 +1,19 @@
+{
+  "gelatin": {
+    "type": "ingredient",
+    "category": "animal-derived",
+    "default_status": "conditional",
+    "depends_on": ["gelatin_source"],
+    "eli5": "Gelatin is made from animal parts, so whether it's halal depends on the animal.",
+    "schools": {
+      "hanafi": { "status": "conditional" },
+      "shafii": { "status": "haram" }
+    }
+  },
+  "marshmallow": {
+    "type": "ingredient",
+    "default_status": "conditional",
+    "contains": ["gelatin"],
+    "eli5": "Marshmallows often contain gelatin, which may come from pork."
+  }
+}

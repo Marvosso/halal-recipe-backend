@@ -1,0 +1,115 @@
+/* Affiliate Link Component Styles */
+/* Designed to be helpful, not intrusive */
+
+.affiliate-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: var(--green-bg, #e8f5e9);
+  border: 1.5px solid var(--green-lighter, #81c784);
+  border-radius: 8px;
+  color: var(--green-primary, #2E7D32);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.affiliate-button:hover {
+  background: var(--green-lighter, #81c784);
+  border-color: var(--green-primary, #2E7D32);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.15);
+}
+
+.affiliate-button:active {
+  transform: translateY(0);
+}
+
+.affiliate-icon {
+  flex-shrink: 0;
+  color: var(--green-primary, #2E7D32);
+}
+
+.affiliate-external-icon {
+  flex-shrink: 0;
+  opacity: 0.7;
+  margin-left: 0.25rem;
+}
+
+/* Link variant */
+.affiliate-link-simple {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--green-primary, #2E7D32);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.affiliate-link-simple:hover {
+  color: var(--green-dark, #1b5e20);
+  border-bottom-color: var(--green-primary, #2E7D32);
+}
+
+.affiliate-link-simple .affiliate-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Inline variant */
+.affiliate-link-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.affiliate-link-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--green-primary, #2E7D32);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.affiliate-link-text:hover {
+  color: var(--green-dark, #1b5e20);
+  text-decoration: underline;
+}
+
+.affiliate-icon-inline {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .affiliate-button {
+  background: rgba(46, 125, 50, 0.15);
+  border-color: rgba(129, 199, 132, 0.3);
+  color: var(--green-lighter, #81c784);
+}
+
+[data-theme="dark"] .affiliate-button:hover {
+  background: rgba(46, 125, 50, 0.25);
+  border-color: var(--green-lighter, #81c784);
+}
+
+[data-theme="dark"] .affiliate-link-simple,
+[data-theme="dark"] .affiliate-link-text {
+  color: var(--green-lighter, #81c784);
+}
+
+[data-theme="dark"] .affiliate-link-simple:hover,
+[data-theme="dark"] .affiliate-link-text:hover {
+  color: var(--green-primary, #2E7D32);
+}

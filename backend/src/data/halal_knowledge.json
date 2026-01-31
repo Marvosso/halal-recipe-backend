@@ -1,0 +1,2956 @@
+{
+  "pork": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "chicken_thigh",
+      "beef_halal_certified"
+    ],
+    "notes": "Chicken thigh mimics pork fat better than breast",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pork_belly",
+      "pancetta",
+      "pork_fat"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pork is from pigs, which are not allowed in Islam.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "bacon": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "smoked_turkey_bacon",
+      "beef_bacon_halal"
+    ],
+    "notes": "Add a dash of oil if turkey is lean",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "smoked_pork",
+      "rashers",
+      "streaky_bacon",
+      "canadian_bacon"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Bacon is made from pork, which is forbidden in Islam.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "ham": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_beef_pastrami",
+      "turkey_ham_halal"
+    ],
+    "notes": "Beef pastrami preserves cured flavor",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "cured_pork",
+      "prosciutto",
+      "serrano_ham",
+      "parma_ham"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Ham is made from pork, which is forbidden in Islam.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lard": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "beef_tallow_halal",
+      "vegetable_shortening"
+    ],
+    "notes": "Neutral replacement for frying",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "pork_fat",
+      "rendered_pork_fat"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Lard is fat from pigs, which is forbidden in Islam.",
+    "category": "fat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pate": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_chicken_liver_pate"
+    ],
+    "notes": "Use halal-certified liver only",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pork_pate",
+      "liver_mousse",
+      "foie_gras"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pâté is often made from pork liver, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pepperoni": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_beef_pepperoni",
+      "turkey_pepperoni_halal"
+    ],
+    "notes": "Typically pork-based. Halal beef preserves spice and chew",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "pepperoni_slices",
+      "pepperoni_sticks"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pepperoni is usually made from pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "salami": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_beef_salami",
+      "turkey_salami_halal"
+    ],
+    "notes": "Pork is default meat. Must be halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "dry_salami",
+      "pork_salami",
+      "genoa_salami"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Salami is usually made from pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "hot_dogs": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_beef_hot_dogs",
+      "chicken_hot_dogs_halal"
+    ],
+    "notes": "Often pork or mixed meat. Must be halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "frankfurters",
+      "wieners",
+      "frankfurters"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Hot dogs often contain pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "sausage": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "chicken_sausage",
+      "turkey_sausage_halal",
+      "beef_sausage_halal"
+    ],
+    "notes": "Choose seasoned chicken sausage to match flavor profile",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "pork_sausage",
+      "breakfast_sausage",
+      "italian_sausage",
+      "chorizo"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Many sausages contain pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "gelatin": {
+    "status": "conditional",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "agar_agar",
+      "halal_beef_gelatin",
+      "pectin"
+    ],
+    "notes": "Agar is stronger than gelatin. Check the source before consuming. Must be halal-certified if animal-derived",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pork_gelatin",
+      "collagen",
+      "gelatine",
+      "animal_gelatin"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Gelatin is made from animal parts, so whether it's halal depends on the animal.",
+    "category": "gelatin",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "haram",
+      "maliki": "haram",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:0.5",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "marshmallows": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_marshmallows",
+      "vegan_marshmallows",
+      "marshmallows_with_agar"
+    ],
+    "notes": "Marshmallows typically contain gelatin, which may come from pork sources. Must be halal-certified gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "marshmallow",
+      "mallow_candy",
+      "gelatin_candy"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Marshmallows often contain gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "gummy_candy": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_gummy_candy",
+      "vegan_gummies",
+      "fruit_leather"
+    ],
+    "notes": "Pork gelatin common. Must be halal-certified gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "gummies",
+      "fruit_snacks",
+      "jelly_candy",
+      "chewy_candy",
+      "gummy_bears"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Gummy candy often contains gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "jello": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "agar_agar_jelly",
+      "halal_jello",
+      "fruit_gel"
+    ],
+    "notes": "Typically contains pork gelatin. Use agar-agar for halal version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "jelly",
+      "gelatin_dessert",
+      "fruit_jelly"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Jello contains gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.5",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lucky_charms": {
+    "status": "haram",
+    "inheritance": [
+      "marshmallows"
+    ],
+    "alternatives": [
+      "halal_certified_cereals",
+      "homemade_cereal",
+      "cereal_without_marshmallows"
+    ],
+    "notes": "Lucky Charms contain marshmallows that typically use pork-derived gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173"
+    ],
+    "aliases": [
+      "lucky_charms_cereal"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Lucky Charms contain marshmallows that usually use pork gelatin.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "marshmallow_fluff": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_marshmallow_fluff"
+    ],
+    "notes": "Most contain pork gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "marshmallow_creme"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Marshmallow fluff usually contains gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "panna_cotta": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "panna_cotta_with_agar",
+      "halal_panna_cotta"
+    ],
+    "notes": "Traditionally uses gelatin. Use agar-agar for halal version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "italian_cream_dessert"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Panna cotta contains gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "cheesecake": {
+    "status": "questionable",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_cheesecake",
+      "no_bake_cheesecake_without_gelatin"
+    ],
+    "notes": "May contain gelatin in some recipes. Check ingredients or make halal version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "new_york_cheesecake",
+      "baked_cheesecake"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Some cheesecakes contain gelatin, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "yogurt_with_gelatin": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "yogurt_without_gelatin",
+      "halal_certified_yogurt"
+    ],
+    "notes": "Check ingredients. Some yogurts use gelatin as thickener",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "gelatin_yogurt",
+      "greek_yogurt_thickened"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some yogurt contains gelatin to make it thicker, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "ice_cream_gelatin": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "gelato_without_gelatin",
+      "halal_ice_cream"
+    ],
+    "notes": "May contain gelatin or alcohol",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "gelatin_ice_cream"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some ice cream contains gelatin, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "alcohol": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "non_alcoholic_substitutes",
+      "vinegar",
+      "broth"
+    ],
+    "notes": "Alcohol in any form is prohibited in Islam",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "ethanol",
+      "spirits",
+      "liquor",
+      "intoxicant"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Alcohol is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "wine": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "grape_juice_plus_vinegar",
+      "non_alcoholic_wine"
+    ],
+    "notes": "Use 3 parts juice + 1 part vinegar",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "red_wine",
+      "white_wine",
+      "cooking_wine",
+      "wine_vinegar"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Wine contains alcohol, which is not allowed in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.75",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "beer": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "malt_vinegar_plus_water",
+      "sparkling_water",
+      "non_alcoholic_beer"
+    ],
+    "notes": "Reduces bitterness without alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "ale",
+      "lager",
+      "beer_batter",
+      "stout"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Beer contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.5",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "rum": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "vanilla_extract_plus_molasses",
+      "alcohol_free_rum_flavor"
+    ],
+    "notes": "Mimics depth without alcohol. Even small amounts are impermissible",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "dark_rum",
+      "light_rum",
+      "rum_extract",
+      "rum_flavoring",
+      "rum_essence"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Rum contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.75",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "brandy": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "grape_juice_reduction",
+      "alcohol_free_brandy_flavor"
+    ],
+    "notes": "Reduces alcohol while keeping flavor",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3883"
+    ],
+    "aliases": [
+      "cognac",
+      "brandy_flavor",
+      "liqueur",
+      "armagnac"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Brandy contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.75",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "whiskey": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "apple_juice_reduction",
+      "alcohol_free_whiskey_flavor"
+    ],
+    "notes": "Reduces bitterness and alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "bourbon",
+      "scotch",
+      "whisky",
+      "whiskey_sauce"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Whiskey contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.75",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "vodka": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "water_plus_citrus_extract",
+      "non_alcoholic_vodka"
+    ],
+    "notes": "Used only as solvent replacement",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3883"
+    ],
+    "aliases": [
+      "neutral_spirits",
+      "vodka_sauce"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Vodka contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "mirin": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "sugar_plus_rice_vinegar",
+      "halal_mirin"
+    ],
+    "notes": "1 tsp sugar + 1 tsp vinegar",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "sweet_rice_wine",
+      "cooking_sake",
+      "japanese_rice_wine"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Mirin contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.5",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "sake": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "rice_vinegar",
+      "non_alcoholic_sake"
+    ],
+    "notes": "Rice wine contains alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "rice_wine",
+      "japanese_sake"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Sake contains alcohol, which is forbidden in Islam.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.5",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "vanilla_extract": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "alcohol_free_vanilla",
+      "vanilla_powder",
+      "vanilla_bean_paste"
+    ],
+    "notes": "Ensure alcohol-free labeling. Some scholars allow trace amounts, others don't",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "vanilla_extract_alcohol",
+      "pure_vanilla_extract",
+      "imitation_vanilla"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Vanilla extract often has a little bit of alcohol in it, so check if it's alcohol-free.",
+    "category": "flavoring",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "almond_extract": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "almond_flavoring_alcohol_free",
+      "almond_paste"
+    ],
+    "notes": "Often contains alcohol as carrier. Check for alcohol-free version",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "almond_essence"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Almond extract might have alcohol, so check for alcohol-free versions.",
+    "category": "flavoring",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lemon_extract": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "lemon_zest",
+      "lemon_juice",
+      "alcohol_free_lemon_extract"
+    ],
+    "notes": "May contain alcohol. Use lemon zest or juice instead",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "lemon_essence"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Lemon extract might have alcohol, so use lemon zest or juice instead.",
+    "category": "flavoring",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "beef": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_beef"
+    ],
+    "notes": "Must be halal-certified (halal slaughter)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "steak",
+      "ground_beef",
+      "beef_meat",
+      "beef_roast"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Beef is halal if the animal was prepared in the Islamic way.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "chicken": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_chicken"
+    ],
+    "notes": "Must be halal-certified (halal slaughter)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "chicken_meat",
+      "poultry",
+      "chicken_breast"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Chicken is halal if the animal was prepared in the Islamic way.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lamb": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_lamb"
+    ],
+    "notes": "Must be halal-certified (halal slaughter)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "mutton",
+      "lamb_meat",
+      "lamb_chops"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Lamb is halal if the animal was prepared in the Islamic way.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "turkey": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_turkey"
+    ],
+    "notes": "Must be halal-certified (halal slaughter)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "turkey_meat",
+      "turkey_breast"
+    ],
+    "confidence_score_base": 1,
+    "eli5": "Turkey is halal if the animal was prepared in the Islamic way.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "ground_meat": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_ground_meat"
+    ],
+    "notes": "Must be halal-certified. Often contains mixed or non-halal meat",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "minced_meat",
+      "meat_mince"
+    ],
+    "confidence_score_base": 0.8,
+    "eli5": "Ground meat must be from halal-certified animals.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "meatballs": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_beef_meatballs",
+      "homemade_meatballs_halal"
+    ],
+    "notes": "Frozen products often non-halal. Contains pork or non-halal beef",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "frozen_meatballs",
+      "italian_meatballs"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Store-bought meatballs often contain pork or non-halal meat.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "rennet_cheese": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "microbial_rennet_cheese",
+      "vegetarian_cheese",
+      "halal_certified_cheese"
+    ],
+    "notes": "Most rennet comes from non-halal calves. Microbial rennet is halal-safe",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "animal_rennet_cheese",
+      "traditional_cheese",
+      "aged_cheese"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Some cheese is made with enzymes from animals that weren't slaughtered halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "animal_rennet": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "microbial_rennet",
+      "vegetarian_rennet"
+    ],
+    "notes": "Common in cheese production. Check for microbial/vegetarian sources",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "rennet",
+      "cheese_enzyme",
+      "chymosin"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Animal rennet comes from the stomach of calves that may not be halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "parmesan_cheese": {
+    "status": "haram",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "vegetarian_parmesan",
+      "halal_certified_parmesan"
+    ],
+    "notes": "Traditionally uses animal rennet. Look for vegetarian or halal-certified versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "parmigiano_reggiano",
+      "parmesan"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Parmesan cheese often uses animal rennet, which may not be halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "blue_cheese": {
+    "status": "haram",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_blue_cheese",
+      "vegetarian_blue_cheese"
+    ],
+    "notes": "Often uses animal rennet. Check for halal-certified versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "roquefort",
+      "gorgonzola",
+      "stilton"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Blue cheese often uses animal rennet, which may not be halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "feta_cheese": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_feta",
+      "vegetarian_feta"
+    ],
+    "notes": "May use animal rennet. Check ingredients or use halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "feta"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Feta cheese might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "mono_diglycerides": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_emulsifier",
+      "lecithin"
+    ],
+    "notes": "Source-dependent ingredient. May be animal-derived unless specified plant-based",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "e471",
+      "emulsifier",
+      "glycerides"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This ingredient can come from animal or plant sources, so check the label.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "l_cysteine": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_l_cysteine",
+      "synthetic_l_cysteine"
+    ],
+    "notes": "Often derived from human hair or feathers. Must be plant-based or synthetic",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "e920",
+      "dough_conditioner",
+      "cysteine"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "This ingredient often comes from human hair, which is not halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "carmine": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "beetroot_color",
+      "paprika_extract",
+      "red_cabbage_extract"
+    ],
+    "notes": "Derived from insects (cochineal). Some schools allow, others don't",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "e120",
+      "cochineal",
+      "carmine_red",
+      "natural_red_4"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This red color comes from insects, which some Muslims avoid.",
+    "category": "additive",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "shellac": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_glaze",
+      "carnauba_wax"
+    ],
+    "notes": "Derived from insects. Used as shiny coating on candies",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "e904",
+      "confectioners_glaze",
+      "food_glaze",
+      "lac_resin"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This shiny coating comes from insects, which some Muslims avoid.",
+    "category": "additive",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "haram"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pepsin": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_enzymes",
+      "microbial_enzymes"
+    ],
+    "notes": "Derived from pig stomach lining. Must use plant-based alternatives",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "digestive_enzyme",
+      "pepsin_enzyme"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pepsin comes from pig stomachs, which is forbidden.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "animal_shortening": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "vegetable_shortening",
+      "halal_certified_shortening"
+    ],
+    "notes": "May contain pork fat. Check label for animal fats",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "shortening",
+      "tallow_shortening",
+      "animal_fat_shortening"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This shortening might contain pork fat, so check the label.",
+    "category": "fat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "glycerin": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "vegetable_glycerin",
+      "plant_based_glycerin"
+    ],
+    "notes": "Animal origin possible. Must be vegetable glycerin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "glycerol",
+      "e422"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Glycerin can come from animals or plants, so check for vegetable glycerin.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lecithin_animal": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "soy_lecithin",
+      "sunflower_lecithin"
+    ],
+    "notes": "Animal lecithin uncommon but possible. Soy or sunflower preferred",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "e322_animal",
+      "animal_lecithin"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Lecithin can come from animals, so look for soy or sunflower lecithin.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "lipase": {
+    "status": "haram",
+    "inheritance": [],
+    "alternatives": [
+      "microbial_lipase",
+      "plant_based_lipase"
+    ],
+    "notes": "Often pork-derived unless specified. Used in cheese flavoring",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "lipase_enzyme",
+      "animal_lipase"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Lipase often comes from pork, which is forbidden.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "natural_flavors_meat": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_flavor_extracts",
+      "halal_certified_flavors"
+    ],
+    "notes": "Can contain meat or alcohol carriers. Check for halal-certified or plant-based",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "natural_flavoring",
+      "meat_flavoring"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Natural flavors might contain meat or alcohol, so check for halal versions.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "whey_protein": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_whey",
+      "plant_based_protein"
+    ],
+    "notes": "May be from non-halal dairy. Check for halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "whey",
+      "milk_whey"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Whey protein might come from non-halal dairy, so check for halal-certified.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "casein": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_casein",
+      "plant_based_protein"
+    ],
+    "notes": "Milk protein. Check for halal-certified dairy source",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "milk_casein",
+      "casein_protein"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Casein is a milk protein, so make sure it's from halal dairy.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "worcestershire_sauce": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_worcestershire",
+      "soy_sauce_with_vinegar"
+    ],
+    "notes": "Often fermented with alcohol. Check for halal-certified version",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "worcestershire",
+      "anchovy_sauce"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This sauce might contain alcohol, so check for halal versions.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "teriyaki_sauce": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_teriyaki_sauce",
+      "homemade_teriyaki"
+    ],
+    "notes": "Often contains mirin or sake (alcohol). Make homemade halal version",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "teriyaki_glaze",
+      "teriyaki_marinade"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Teriyaki sauce often contains alcohol from mirin or sake.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "oyster_sauce": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "alcohol_free_oyster_sauce",
+      "mushroom_sauce"
+    ],
+    "notes": "Some brands contain alcohol. Hanafi school: haram due to shellfish. Others: check for alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "oyster_sauce",
+      "stir_fry_sauce"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This sauce contains oysters and might have alcohol, so check for halal versions.",
+    "category": "flavoring",
+    "school_of_thought_variation": {
+      "hanafi": "haram",
+      "shafii": "questionable",
+      "maliki": "questionable",
+      "hanbali": "questionable"
+    },
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "soy_sauce": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_certified_soy_sauce",
+      "tamari_alcohol_free"
+    ],
+    "notes": "Naturally produces alcohol during fermentation. Most scholars allow if trace amounts",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "shoyu",
+      "soy_sauce_fermented"
+    ],
+    "confidence_score_base": 0.8,
+    "eli5": "Soy sauce naturally has tiny amounts of alcohol from fermentation, but most scholars allow it.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "hoisin_sauce": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_hoisin_sauce",
+      "homemade_hoisin"
+    ],
+    "notes": "Some brands contain alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "hoisin_glaze"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Hoisin sauce might contain alcohol, so check the ingredients.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "bbq_sauce": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "alcohol_free_bbq_sauce",
+      "homemade_bbq"
+    ],
+    "notes": "Some brands add whiskey or wine",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "barbecue_sauce",
+      "smoky_sauce"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "BBQ sauce might contain alcohol, so check the ingredients.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "demi_glace": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_demi_glace",
+      "beef_stock_reduction"
+    ],
+    "notes": "Traditionally made with wine",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "brown_sauce",
+      "meat_glaze"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Demi-glace is usually made with wine, which contains alcohol.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "ramen_seasoning": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_seasoning_mix",
+      "homemade_ramen_seasoning"
+    ],
+    "notes": "Often contains pork extract or pork-based flavoring",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "instant_noodle_seasoning",
+      "ramen_flavor_packet"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Ramen seasoning often contains pork flavoring, which is forbidden.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "frozen_lasagna": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_lasagna",
+      "homemade_lasagna"
+    ],
+    "notes": "Contains pork or non-halal beef. Check ingredients carefully",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "ready_made_lasagna",
+      "prepared_lasagna"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Frozen lasagna often contains pork or meat that isn't halal.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "refried_beans": {
+    "status": "questionable",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "vegetable_oil_refried_beans",
+      "homemade_refried_beans"
+    ],
+    "notes": "Lard frequently used. Must check label for vegetable oil version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "refried_beans_lard"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Refried beans are often cooked with pork fat, so check the label.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "canned_soup": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_soup",
+      "homemade_soup"
+    ],
+    "notes": "Hidden animal fats common. Check ingredients",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "ready_soup",
+      "prepared_soup"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Canned soup might contain pork fat or non-halal meat, so check the ingredients.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "gravy_mix": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_gravy",
+      "mushroom_gravy"
+    ],
+    "notes": "Often contains meat extract or pork flavoring",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "instant_gravy",
+      "gravy_powder"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Gravy mix often contains pork or non-halal meat extracts.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "stuffing_mix": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_stuffing",
+      "homemade_stuffing"
+    ],
+    "notes": "May contain animal fat",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "stuffing",
+      "dressing_mix"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Stuffing mix might contain pork fat, so check the ingredients.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "potato_chips_lard": {
+    "status": "questionable",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "vegetable_oil_chips",
+      "halal_certified_chips"
+    ],
+    "notes": "Some brands fry in pork fat",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "fried_chips",
+      "lard_fried_chips"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some potato chips are fried in pork fat, so check the label.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "donuts": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_donuts",
+      "homemade_donuts"
+    ],
+    "notes": "Fried in animal fat sometimes",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "donuts_nonhalal",
+      "fried_dough"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Donuts might be fried in pork fat, so check where they're from.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pastries_with_lard": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "butter_pastry",
+      "vegetable_shortening_pastry"
+    ],
+    "notes": "Lard commonly used in bakeries",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "lard_pastry",
+      "shortening_pastry"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pastries often contain pork fat (lard), which is forbidden.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "custard": {
+    "status": "questionable",
+    "inheritance": [
+      "vanilla_extract"
+    ],
+    "alternatives": [
+      "halal_custard",
+      "homemade_custard"
+    ],
+    "notes": "Check vanilla source (may contain alcohol)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "cream_filling",
+      "custard_powder"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Custard might contain vanilla extract with alcohol, so check the ingredients.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "cake_glaze": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "fruit_glaze",
+      "sugar_glaze",
+      "chocolate_glaze"
+    ],
+    "notes": "Some glazes use alcohol. Use fruit or sugar glazes instead",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "mirror_glaze",
+      "sugar_glaze"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some cake glazes use alcohol, so check the ingredients.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "liqueur_chocolate": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_chocolate_filling",
+      "chocolate_without_alcohol"
+    ],
+    "notes": "Contains intoxicants. Avoid all chocolate with alcohol fillings",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "alcohol_chocolate",
+      "chocolate_with_liqueur"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "This chocolate contains alcohol, which is forbidden.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "tiramisu": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_tiramisu",
+      "non_alcoholic_tiramisu"
+    ],
+    "notes": "Contains coffee liqueur or alcohol. Make halal version without alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "italian_dessert"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Tiramisu contains alcohol, which is forbidden.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "rum_cake": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "alcohol_free_cake",
+      "vanilla_cake"
+    ],
+    "notes": "Alcohol used for moisture/flavor",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Bukhari 7:69:494"
+    ],
+    "aliases": [
+      "liqueur_cake",
+      "alcohol_cake"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Rum cake contains alcohol, which is forbidden.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "chocolate_liqueurs": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "chocolate_without_liqueur",
+      "chocolate_ganache"
+    ],
+    "notes": "Contains alcohol fillings. Avoid all varieties",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "chocolate_liqueur_filling"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "These chocolates contain alcohol, which is forbidden.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "chicken_broth": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_chicken_broth",
+      "vegetable_broth"
+    ],
+    "notes": "Must be halal-slaughtered",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "chicken_stock",
+      "broth_nonhalal"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Chicken broth must be from halal-certified chickens.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "beef_broth": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_beef_broth",
+      "vegetable_broth"
+    ],
+    "notes": "Common in soups and rice. Must be halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "beef_stock",
+      "broth_nonhalal"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Beef broth must be from halal-certified beef.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "meat_extract": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_yeast_extract",
+      "vegetable_broth_concentrate"
+    ],
+    "notes": "Yeast provides similar depth. Often contains non-halal meat",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "meat_extract",
+      "beef_extract"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Meat extract often contains pork or non-halal meat.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "cooking_spray": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_cooking_spray",
+      "vegetable_oil_spray"
+    ],
+    "notes": "May contain animal-derived lecithin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pan_spray",
+      "release_spray"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Cooking spray might contain animal-based ingredients, so check the label.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "mustard_wine": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "mustard_with_halal_vinegar",
+      "yellow_mustard"
+    ],
+    "notes": "Some use wine vinegar",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "dijon_mustard"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some mustard uses wine vinegar, so check the ingredients.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "wine_vinegar": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "apple_cider_vinegar",
+      "rice_vinegar"
+    ],
+    "notes": "No alcohol involvement in final product. Some scholars allow",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3883"
+    ],
+    "aliases": [
+      "red_wine_vinegar",
+      "white_wine_vinegar"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Wine vinegar is usually okay because the alcohol is gone, but some Muslims avoid it.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "balsamic_vinegar": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_balsamic",
+      "aged_balsamic_without_wine"
+    ],
+    "notes": "Traditional balsamic is grape-based only, no alcohol. Check ingredients",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "balsamic"
+    ],
+    "confidence_score_base": 0.8,
+    "eli5": "Real balsamic vinegar doesn't have alcohol, but check the ingredients to be sure.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pancetta": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "beef_pancetta_halal",
+      "turkey_pancetta"
+    ],
+    "notes": "Italian cured pork belly. Use halal beef or turkey version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "italian_bacon",
+      "cured_pork_belly"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pancetta is made from pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "prosciutto": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "beef_prosciutto_halal",
+      "turkey_prosciutto"
+    ],
+    "notes": "Italian dry-cured ham. Must use halal-certified alternatives",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "italian_ham",
+      "dry_cured_ham"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Prosciutto is made from pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pork_belly": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "chicken_thigh",
+      "beef_brisket_halal"
+    ],
+    "notes": "High fat content. Chicken thigh works well",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "pork_fat"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Pork belly is from pigs, which are forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "chorizo": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "beef_chorizo_halal",
+      "chicken_chorizo"
+    ],
+    "notes": "Spicy sausage typically pork-based. Use halal beef or chicken version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "spanish_sausage",
+      "mexican_chorizo"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Chorizo is usually made from pork, which is forbidden.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "jelly_candies": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_jelly_candies",
+      "vegan_jelly_candies"
+    ],
+    "notes": "Pork gelatin common. Must be halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "jelly_beans",
+      "fruit_jellies"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Jelly candies often contain gelatin, which may come from pork.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "fruit_snacks": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "halal_fruit_snacks",
+      "fruit_leather"
+    ],
+    "notes": "Often contains gelatin for texture",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "fruit_rolls",
+      "fruit_gushers"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Fruit snacks might contain gelatin, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "mousse": {
+    "status": "questionable",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "mousse_without_gelatin",
+      "vegan_mousse"
+    ],
+    "notes": "Some recipes use gelatin. Check ingredients or make without gelatin",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "chocolate_mousse",
+      "dessert_mousse"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Some mousse desserts contain gelatin, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "pate_de_fruit": {
+    "status": "conditional",
+    "inheritance": [
+      "gelatin"
+    ],
+    "alternatives": [
+      "pate_de_fruit_with_agar",
+      "halal_fruit_confit"
+    ],
+    "notes": "Traditionally uses pectin or gelatin. Use agar-agar for halal version",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "fruit_paste",
+      "fruit_confit"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Fruit paste might contain gelatin, so check the ingredients.",
+    "category": "gelatin",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "grand_marnier": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "orange_extract",
+      "orange_juice_reduction"
+    ],
+    "notes": "Orange-flavored liqueur. Use orange extract instead",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "orange_liqueur",
+      "curacao"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Grand Marnier contains alcohol, which is forbidden.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:0.75",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "kirsch": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "cherry_extract",
+      "cherry_juice"
+    ],
+    "notes": "Cherry-flavored alcohol. Use cherry extract or juice",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "cherry_liqueur",
+      "cherry_brandy"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Kirsch contains alcohol, which is forbidden.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "amaretto": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "almond_extract",
+      "amaretto_flavoring_alcohol_free"
+    ],
+    "notes": "Almond-flavored liqueur. Use almond extract instead",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "almond_liqueur"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Amaretto contains alcohol, which is forbidden.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "kahlua": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "coffee_extract",
+      "espresso_plus_sugar"
+    ],
+    "notes": "Coffee-flavored liqueur. Use strong espresso instead",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "coffee_liqueur"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Kahlua contains alcohol, which is forbidden.",
+    "category": "alcohol",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "brie_cheese": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_brie",
+      "vegetarian_brie"
+    ],
+    "notes": "May use animal rennet. Check for vegetarian or halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "brie",
+      "soft_cheese"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Brie cheese might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "camembert": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_camembert",
+      "vegetarian_camembert"
+    ],
+    "notes": "Soft cheese may use animal rennet. Check label",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "french_soft_cheese"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Camembert might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "gouda": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_gouda",
+      "vegetarian_gouda"
+    ],
+    "notes": "Often uses animal rennet. Look for vegetarian or halal versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "dutch_cheese"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Gouda might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "cheddar": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_cheddar",
+      "vegetarian_cheddar"
+    ],
+    "notes": "May use animal rennet. Check for vegetarian or halal versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "cheddar_cheese",
+      "aged_cheddar"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Cheddar cheese might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "swiss_cheese": {
+    "status": "questionable",
+    "inheritance": [
+      "animal_rennet"
+    ],
+    "alternatives": [
+      "halal_certified_swiss",
+      "vegetarian_swiss"
+    ],
+    "notes": "Often uses animal rennet. Check for halal-certified versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "emmental",
+      "gruyere"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Swiss cheese might use animal rennet, so check the ingredients.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "stearic_acid": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_stearic_acid",
+      "vegetable_stearic_acid"
+    ],
+    "notes": "Can be animal or plant-derived. Must be plant-based",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "e570",
+      "octadecanoic_acid"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Stearic acid can come from animals, so check for plant-based versions.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "palmitic_acid": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_palmitic_acid"
+    ],
+    "notes": "Fatty acid that can be animal or plant-derived",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "hexadecanoic_acid"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "This ingredient can come from animals, so check the source.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "oleic_acid": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "plant_based_oleic_acid"
+    ],
+    "notes": "Usually plant-derived but can be animal-sourced. Check label",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "omega_9"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Oleic acid usually comes from plants, but check the label to be sure.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "beeswax": {
+    "status": "halal",
+    "inheritance": [],
+    "alternatives": [
+      "carnauba_wax",
+      "candellila_wax"
+    ],
+    "notes": "Beeswax is generally considered halal. Used as food coating",
+    "references": [
+      "Surah An-Nahl 16:68-69"
+    ],
+    "aliases": [
+      "e901",
+      "yellow_wax"
+    ],
+    "confidence_score_base": 0.9,
+    "eli5": "Beeswax comes from bees and is generally considered halal.",
+    "category": "additive",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "instant_noodles": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_instant_noodles",
+      "homemade_noodles"
+    ],
+    "notes": "Seasoning packets often contain pork extract. Check for halal-certified brands",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "ramen_noodles",
+      "cup_noodles"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Instant noodles often contain pork flavoring in the seasoning packet.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "frozen_pizza": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_frozen_pizza",
+      "homemade_pizza"
+    ],
+    "notes": "Often contains pepperoni or pork. Check ingredients carefully",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "ready_made_pizza",
+      "premade_pizza"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Frozen pizza often contains pork toppings like pepperoni.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "hot_pockets": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_hot_pockets",
+      "homemade_pastries"
+    ],
+    "notes": "Often contains pepperoni or pork sausage. Check ingredients",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "microwave_pastries",
+      "frozen_sandwiches"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Hot pockets often contain pork products like pepperoni or sausage.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "frozen_burritos": {
+    "status": "haram",
+    "inheritance": [
+      "pork"
+    ],
+    "alternatives": [
+      "halal_frozen_burritos",
+      "homemade_burritos"
+    ],
+    "notes": "Often contains pork or lard. Check for halal-certified versions",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "ready_burritos",
+      "premade_burritos"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Frozen burritos often contain pork or pork fat.",
+    "category": "processed_food",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "beef_jerky": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_beef_jerky",
+      "turkey_jerky_halal"
+    ],
+    "notes": "Must be halal-certified. Often contains non-halal meat",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Bukhari 7:67:400"
+    ],
+    "aliases": [
+      "jerky",
+      "dried_meat"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Beef jerky must be from halal-certified beef.",
+    "category": "meat",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "creme_brulee": {
+    "status": "questionable",
+    "inheritance": [
+      "vanilla_extract"
+    ],
+    "alternatives": [
+      "halal_creme_brulee",
+      "homemade_creme_brulee"
+    ],
+    "notes": "Check vanilla source (may contain alcohol)",
+    "references": [
+      "Surah Al-Baqarah 2:172",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "burnt_cream",
+      "custard_dessert"
+    ],
+    "confidence_score_base": 0.7,
+    "eli5": "Crème brûlée might contain vanilla extract with alcohol, so check the ingredients.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "ice_cream_alcohol": {
+    "status": "haram",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_ice_cream",
+      "non_alcoholic_ice_cream"
+    ],
+    "notes": "Some premium ice creams contain alcohol. Avoid all varieties with alcohol",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "alcoholic_ice_cream",
+      "ice_cream_with_liqueur"
+    ],
+    "confidence_score_base": 0.1,
+    "eli5": "Some ice cream contains alcohol, which is forbidden.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "chocolate_truffles": {
+    "status": "questionable",
+    "inheritance": [
+      "alcohol"
+    ],
+    "alternatives": [
+      "halal_chocolate_truffles",
+      "truffles_without_liqueur"
+    ],
+    "notes": "May contain liqueur fillings. Check ingredients or make halal version",
+    "references": [
+      "Surah Al-Ma'idah 5:90",
+      "Sahih Muslim 10:3893"
+    ],
+    "aliases": [
+      "truffles",
+      "chocolate_confections"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Some chocolate truffles contain alcohol, so check the ingredients.",
+    "category": "dessert",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "artificial_flavoring": {
+    "status": "questionable",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_flavoring",
+      "plant_based_flavors"
+    ],
+    "notes": "May contain alcohol carriers or meat-based flavors. Check for halal-certified",
+    "references": [
+      "Surah Al-Baqarah 2:173",
+      "Sahih Muslim 13:3808"
+    ],
+    "aliases": [
+      "natural_flavoring",
+      "artificial_flavor"
+    ],
+    "confidence_score_base": 0.5,
+    "eli5": "Artificial flavoring might contain alcohol or meat, so check for halal versions.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  },
+  "msg": {
+    "status": "halal",
+    "inheritance": [],
+    "alternatives": [
+      "halal_certified_msg",
+      "seaweed_extract"
+    ],
+    "notes": "Generally halal if derived from plant sources or fermentation. Check source",
+    "references": [
+      "Surah Al-Baqarah 2:172"
+    ],
+    "aliases": [
+      "monosodium_glutamate",
+      "e621"
+    ],
+    "confidence_score_base": 0.9,
+    "eli5": "MSG is usually halal if it comes from plants or fermentation.",
+    "category": "flavoring",
+    "school_of_thought_variation": {},
+    "conversion_ratio": "1:1",
+    "flavor_role": "",
+    "cuisine": ""
+  }
+}

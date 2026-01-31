@@ -1,0 +1,107 @@
+.help-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.help-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.help-section-title {
+  color: var(--primary-green);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.help-text {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.help-disclaimer {
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.help-list {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  transition: color 0.3s ease;
+}
+
+.help-list li {
+  margin-bottom: 0.75rem;
+}
+
+.help-list strong {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.help-note {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--green-bg);
+  border-left: 4px solid var(--primary-green);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
+}
+
+.help-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.help-link-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--border-light);
+  color: var(--primary-green);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.help-link-btn:hover {
+  background: var(--green-bg);
+  border-color: var(--accent-gold);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-gold);
+}
+
+.help-link-btn:active {
+  transform: translateX(4px) scale(0.98);
+}
+
+.help-footer {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border-light);
+  transition: border-color 0.3s ease;
+}
+
+.help-footer-text {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  text-align: center;
+  margin: 0;
+  transition: color 0.3s ease;
+}

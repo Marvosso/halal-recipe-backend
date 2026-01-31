@@ -1,0 +1,144 @@
+/* Ingredient Tree Display Styles */
+
+.ingredient-tree-display {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--green-bg, #f0fdf4);
+  border-left: 4px solid var(--accent-gold, #D4AF37);
+  border-radius: 12px;
+  color: var(--text-primary, #1b5e20);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-family: "Inter", sans-serif;
+}
+
+.tree-chain-display {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-green, #0A9D58);
+}
+
+.tree-chain-display strong {
+  color: var(--text-color, #1b5e20);
+  margin-right: 0.5rem;
+}
+
+.tree-details {
+  margin-top: 0.75rem;
+  border-top: 1px dashed var(--border-light);
+  padding-top: 0.75rem;
+}
+
+.tree-summary {
+  font-weight: 600;
+  color: var(--primary-green, #0A9D58);
+  cursor: pointer;
+  list-style: none;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  user-select: none;
+}
+
+.tree-summary:hover {
+  color: var(--green-dark, #087f47);
+}
+
+.tree-summary::-webkit-details-marker {
+  display: none;
+}
+
+.tree-summary::before {
+  content: "▶ ";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.tree-details[open] .tree-summary::before {
+  transform: rotate(90deg);
+}
+
+.tree-container {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent-gold, #D4AF37);
+}
+
+.tree-node {
+  margin: 0.75rem 0;
+  padding: 0.5rem;
+  background: var(--card-bg, #ffffff);
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+}
+
+.tree-node-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tree-node-status {
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tree-node-name {
+  font-weight: 600;
+  color: var(--text-color, #1b5e20);
+}
+
+.tree-node-alternatives {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #4a5568);
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.tree-node-children {
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  border-left: 2px dashed var(--border-light);
+}
+
+.tree-node.depth-0 {
+  background: var(--green-lightest, #e8f5e9);
+}
+
+.tree-node.depth-1 {
+  background: var(--card-bg, #ffffff);
+}
+
+.tree-node.depth-2 {
+  background: var(--green-bg, #f0fdf4);
+}
+
+.tree-node.depth-3 {
+  background: var(--card-bg, #ffffff);
+}
+
+/* Dark mode support */
+[data-theme="dark"] .ingredient-tree-display {
+  background: var(--bg-secondary, #1E293B);
+  border-left-color: var(--accent-gold, #FBBF24);
+  color: var(--text-light, #F1F5F9);
+}
+
+[data-theme="dark"] .tree-chain-display strong {
+  color: var(--text-light, #F1F5F9);
+}
+
+[data-theme="dark"] .tree-node {
+  background: var(--bg-color, #0F172A);
+  border-color: var(--border-color, #334155);
+}
+
+[data-theme="dark"] .tree-node-name {
+  color: var(--text-light, #F1F5F9);
+}
+
+[data-theme="dark"] .tree-node-alternatives {
+  color: var(--text-secondary, #94a3b8);
+}

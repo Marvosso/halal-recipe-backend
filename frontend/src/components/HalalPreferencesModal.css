@@ -1,0 +1,143 @@
+.halal-preferences-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.halal-preferences-intro {
+  padding: 1.25rem;
+  background: var(--green-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.halal-preferences-intro-text {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.halal-preferences-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.halal-preferences-section-title {
+  color: var(--primary-green);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.halal-preferences-description {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.halal-preferences-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.halal-preferences-radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.halal-preferences-radio-option:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.halal-preferences-radio-option input[type="radio"] {
+  margin-top: 0.25rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-green);
+}
+
+.halal-preferences-radio-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.halal-preferences-radio-label {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.halal-preferences-radio-description {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.halal-preferences-radio-option:has(input:checked) {
+  border-color: var(--primary-green);
+  background: var(--green-bg);
+}
+
+.halal-preferences-select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.halal-preferences-select:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(10, 157, 88, 0.1);
+}
+
+.halal-preferences-current-selection {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--green-bg);
+  border-left: 4px solid var(--primary-green);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.halal-preferences-current-selection strong {
+  color: var(--primary-green);
+  font-weight: 600;
+}
