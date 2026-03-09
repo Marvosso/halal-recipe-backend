@@ -22,6 +22,43 @@ const isDbAvailable = () => {
   }
 };
 
+// Format DB recipe for frontend (id, userId, title, originalRecipe, convertedRecipe, createdAt, etc.)
+function formatDbRecipeForFrontend(r) {
+  return {
+    id: r.id,
+    user_id: r.user_id,
+    userId: r.user_id,
+    username: r.username,
+    title: r.title,
+    original_recipe: r.original_recipe || "",
+    originalRecipe: r.original_recipe || "",
+    converted_recipe: r.converted_recipe || "",
+    convertedRecipe: r.converted_recipe || "",
+    original: r.original_recipe || "",
+    converted: r.converted_recipe || "",
+    description: r.instructions || "",
+    ingredients: r.ingredients || [],
+    instructions: r.instructions || "",
+    category: r.category || "Main Course",
+    hashtags: r.hashtags || [],
+    media_url: r.media_url,
+    mediaUrls: r.media_url ? [r.media_url] : [],
+    confidence_score: r.confidence_score || 0,
+    confidenceScore: r.confidence_score || 0,
+    is_public: r.visibility === "public",
+    isPublic: r.visibility === "public",
+    visibility: r.visibility,
+    likes: r.likes || 0,
+    comments: r.comments || 0,
+    shares: r.shares || 0,
+    created_at: r.created_at,
+    createdAt: r.created_at,
+    savedAt: r.created_at,
+    updated_at: r.updated_at,
+    updatedAt: r.updated_at,
+  };
+}
+
 /**
  * GET /api/recipes/public
  * Get all public recipes (no authentication required)
@@ -71,14 +108,23 @@ router.get("/", optionalAuth, (req, res) => {
 
 /**
  * GET /api/recipes/my
- * Get current user's recipes (protected)
+ * Get current user's recipes (protected). Uses DB when available.
  */
-router.get("/my", authenticateToken, (req, res) => {
+router.get("/my", authenticateToken, async (req, res) => {
   try {
+    const userId = req.user.id || req.user.userId;
+    if (isDbAvailable()) {
+      try {
+        const dbRecipes = await getRecipesByUserIdDB(userId);
+        const formatted = dbRecipes.map(formatDbRecipeForFrontend);
+        return res.json({ recipes: formatted });
+      } catch (dbErr) {
+        console.error("DB error in GET /my, falling back to file:", dbErr);
+      }
+    }
     const recipes = readRecipes();
-    const userRecipes = recipes.filter((r) => r.userId === req.user.userId);
-    userRecipes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+    const userRecipes = recipes.filter((r) => r.userId === userId);
+    userRecipes.sort((a, b) => new Date(b.createdAt || b.created_at) - new Date(a.createdAt || a.created_at));
     res.json({ recipes: userRecipes });
   } catch (error) {
     console.error("Error fetching user recipes:", error);
@@ -88,22 +134,33 @@ router.get("/my", authenticateToken, (req, res) => {
 
 /**
  * GET /api/recipes/:id
- * Get single recipe by ID
+ * Get single recipe by ID. Uses DB when available.
  */
-router.get("/:id", optionalAuth, (req, res) => {
+router.get("/:id", optionalAuth, async (req, res) => {
   try {
+    const id = req.params.id;
+    if (isDbAvailable()) {
+      try {
+        const dbRecipe = await getRecipeByIdDB(id);
+        if (!dbRecipe) {
+          return res.status(404).json({ error: "Recipe not found" });
+        }
+        if (dbRecipe.visibility !== "public" && (!req.user || (req.user.id || req.user.userId) !== dbRecipe.user_id)) {
+          return res.status(403).json({ error: "Access denied" });
+        }
+        return res.json({ recipe: formatDbRecipeForFrontend(dbRecipe) });
+      } catch (dbErr) {
+        console.error("DB error in GET /:id, falling back to file:", dbErr);
+      }
+    }
     const recipes = readRecipes();
-    const recipe = recipes.find((r) => r.id === req.params.id);
-
+    const recipe = recipes.find((r) => r.id === id);
     if (!recipe) {
       return res.status(404).json({ error: "Recipe not found" });
     }
-
-    // Check if user can access this recipe
     if (!recipe.isPublic && (!req.user || recipe.userId !== req.user.userId)) {
       return res.status(403).json({ error: "Access denied" });
     }
-
     res.json({ recipe });
   } catch (error) {
     console.error("Error fetching recipe:", error);
@@ -345,27 +402,37 @@ router.put("/:id", authenticateToken, (req, res) => {
 
 /**
  * DELETE /api/recipes/:id
- * Delete recipe (protected, only owner)
+ * Delete recipe (protected, only owner). Uses DB when available.
  */
-router.delete("/:id", authenticateToken, (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   try {
+    const id = req.params.id;
+    const userId = req.user.id || req.user.userId;
+    if (isDbAvailable()) {
+      try {
+        const deleted = await deleteRecipeDB(id, userId);
+        if (deleted) {
+          return res.json({ message: "Recipe deleted successfully" });
+        }
+        return res.status(404).json({ error: "Recipe not found" });
+      } catch (dbErr) {
+        if (dbErr.message && dbErr.message.includes("only delete your own")) {
+          return res.status(403).json({ error: dbErr.message });
+        }
+        console.error("DB error in DELETE /:id, falling back to file:", dbErr);
+      }
+    }
     const recipes = readRecipes();
-    const recipeIndex = recipes.findIndex((r) => r.id === req.params.id);
-
+    const recipeIndex = recipes.findIndex((r) => r.id === id);
     if (recipeIndex === -1) {
       return res.status(404).json({ error: "Recipe not found" });
     }
-
     const recipe = recipes[recipeIndex];
-
-    // Check ownership
-    if (recipe.userId !== req.user.userId) {
+    if (recipe.userId !== userId) {
       return res.status(403).json({ error: "You can only delete your own recipes" });
     }
-
     recipes.splice(recipeIndex, 1);
     writeRecipes(recipes);
-
     res.json({ message: "Recipe deleted successfully" });
   } catch (error) {
     console.error("Error deleting recipe:", error);

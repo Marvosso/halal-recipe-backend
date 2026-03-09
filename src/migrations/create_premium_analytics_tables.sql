@@ -18,9 +18,9 @@ CREATE INDEX IF NOT EXISTS idx_premium_analytics_created_at ON premium_analytics
 CREATE INDEX IF NOT EXISTS idx_premium_analytics_session_id ON premium_analytics_events(session_id);
 CREATE INDEX IF NOT EXISTS idx_premium_analytics_user_id ON premium_analytics_events(user_id);
 
--- GIN indexes for JSONB queries
-CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_plan ON premium_analytics_events USING GIN ((event_props->>'plan'));
-CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_feature ON premium_analytics_events USING GIN ((event_props->>'feature'));
-CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_trigger ON premium_analytics_events USING GIN ((event_props->>'trigger_feature'));
+-- BTREE on text expressions; GIN has no default opclass for text
+CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_plan ON premium_analytics_events ((event_props->>'plan'));
+CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_feature ON premium_analytics_events ((event_props->>'feature'));
+CREATE INDEX IF NOT EXISTS idx_premium_analytics_props_trigger ON premium_analytics_events ((event_props->>'trigger_feature'));
 
 COMMIT;
