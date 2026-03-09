@@ -189,6 +189,14 @@ export const UPGRADE_COPY = {
       message: "View and manage your past conversions. Build your halal recipe library. Premium feature.",
       cta: "Upgrade to View History",
       dismiss: "Continue Free"
+    },
+    
+    additiveBreakdown: {
+      title: "Additive & E-Number Breakdown",
+      message: "Get detailed breakdown of additives and E-numbers in ingredients. See which additives are halal, conditional, or haram with simplified explanations.",
+      cta: "Upgrade to See Additive Breakdown",
+      dismiss: "Continue Free",
+      valueProp: "Make informed decisions with detailed additive analysis and halal status explanations."
     }
   },
   

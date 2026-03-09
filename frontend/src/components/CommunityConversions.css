@@ -1,0 +1,108 @@
+/* Community Conversions – simple, non-intrusive social proof */
+
+.community-conversions {
+  margin: 2.5rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.community-conversions-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin: 0 0 0.25rem 0;
+  font-family: "Inter", sans-serif;
+}
+
+.community-conversions-subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+  font-family: "Inter", sans-serif;
+}
+
+.community-conversions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.community-conversion-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.9375rem;
+  font-family: "Inter", sans-serif;
+  flex-wrap: wrap;
+}
+
+.community-conversion-item:last-child {
+  border-bottom: none;
+}
+
+.community-conversion-icon {
+  color: var(--primary-green);
+  flex-shrink: 0;
+}
+
+.community-conversion-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.community-conversion-title {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.community-conversion-type {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.community-conversion-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.community-conversion-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.community-conversion-stat svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.community-conversions-cta {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-family: "Inter", sans-serif;
+  transition: color 0.2s;
+}
+
+.community-conversions-cta:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .community-conversions {
+    margin: 2rem 0;
+    padding: 1.25rem 0;
+  }
+  .community-conversion-item {
+    padding: 0.6rem 0;
+  }
+}

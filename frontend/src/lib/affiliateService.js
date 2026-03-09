@@ -1,146 +1,183 @@
 /**
- * Affiliate Service
- * Fetches affiliate links for halal substitutes
- * NEVER attaches affiliate links to haram ingredients
+ * Affiliate Service – provider-agnostic monetization layer.
+ * Prefers backend API; fallback to client config. Single-provider (Amazon) until more are approved.
  */
 
-import { autoRouteAffiliateLinks } from './affiliateRouting';
-
+import { getProviderById, MAX_LINKS_PER_INGREDIENT } from '../config/affiliateProviderConfig';
 import { autoRouteAffiliateLinks } from './affiliateRouting';
 
 /**
- * Get affiliate links for a substitute ingredient
- * Now includes region-aware routing
- * @param {string} substituteId - Normalized ingredient ID (e.g., 'agar_agar')
- * @param {string} regionCode - Optional region code (auto-detected if not provided)
- * @param {number} limit - Maximum number of links to return (default: 3)
- * @returns {Promise<Array>} Array of affiliate link objects
+ * Fetch affiliate links from backend API (normalized data).
+ * @param {string[]} substituteIds
+ * @param {string} [regionCode]
+ * @param {number} [limitPerSubstitute]
+ * @returns {Promise<Record<string, Array>>} linksBySubstitute – each link normalized to { id, platform: { name, display_name, color_hex }, search_query, url, is_featured }
  */
-export async function getAffiliateLinksForSubstitute(substituteId, regionCode = null, limit = 3) {
-  // For now, return mock data structure
-  // In production, this would call the backend API
-  // TODO: Replace with actual API call to backend/src/db/affiliate.js
-  
+async function fetchAffiliateLinksFromApi(substituteIds, regionCode = 'US', limitPerSubstitute = MAX_LINKS_PER_INGREDIENT) {
   try {
-    // Mock affiliate links - replace with actual API call
-    const mockLinks = generateMockAffiliateLinks(substituteId, regionCode || 'US');
-    
-    // Apply region-aware routing
-    const routedLinks = await autoRouteAffiliateLinks(mockLinks, substituteId);
-    
-    // Limit to requested number
-    return routedLinks.slice(0, limit);
-  } catch (error) {
-    console.error('Error fetching affiliate links:', error);
-    return []; // Return empty array on error - don't break conversion
+    const { getAPIBaseURL } = await import('../utils/apiConfig');
+    const base = await getAPIBaseURL();
+    const res = await fetch(`${base}/api/affiliate/links/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        substituteIds: substituteIds || [],
+        regionCode: regionCode || null,
+        limitPerSubstitute: limitPerSubstitute || MAX_LINKS_PER_INGREDIENT,
+      }),
+    });
+    if (!res.ok) return {};
+    const data = await res.json();
+    const linksBySubstitute = data.linksBySubstitute || {};
+    const out = {};
+    for (const [slug, links] of Object.entries(linksBySubstitute)) {
+      if (!Array.isArray(links) || links.length === 0) continue;
+      out[slug] = links.map((link) => ({
+        id: link.id,
+        platform: {
+          name: link.platform ?? link.platform_display ?? 'unknown',
+          display_name: link.platform_display ?? link.platform ?? 'Unknown',
+          color_hex: link.platform_color ?? null,
+        },
+        search_query: link.search_query ?? '',
+        url: link.url ?? null,
+        is_featured: !!link.is_featured,
+      }));
+    }
+    return out;
+  } catch (e) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('[affiliate] API unavailable, using fallback:', e?.message);
+    }
+    return {};
   }
 }
 
-/**
- * Generate mock affiliate links (for development)
- * Replace with actual API call in production
- */
-function generateMockAffiliateLinks(substituteId, regionCode) {
-  const platformMap = {
-    amazon: {
-      name: 'amazon',
-      display_name: 'Amazon',
-      base_url_template: 'https://www.amazon.com/s?k={query}',
-      color_hex: '#FF9900'
-    },
-    instacart: {
-      name: 'instacart',
-      display_name: 'Instacart',
-      base_url_template: 'https://www.instacart.com/store/search?q={query}',
-      color_hex: '#00A862'
-    },
-    thrivemarket: {
-      name: 'thrivemarket',
-      display_name: 'Thrive Market',
-      base_url_template: 'https://thrivemarket.com/search?q={query}',
-      color_hex: '#2E7D32'
-    }
-  };
-
-  // Map common substitutes to affiliate links
-  const substituteLinkMap = {
-    'agar_agar': [
-      { platform: 'amazon', search_query: 'agar agar halal certified', is_featured: true },
-      { platform: 'instacart', search_query: 'agar agar', is_featured: false },
-      { platform: 'thrivemarket', search_query: 'organic agar agar', is_featured: false }
-    ],
-    'turkey_bacon': [
-      { platform: 'amazon', search_query: 'halal turkey bacon certified', is_featured: true },
-      { platform: 'instacart', search_query: 'halal turkey bacon', is_featured: false }
-    ],
-    'grape_juice': [
-      { platform: 'amazon', search_query: '100% pure grape juice halal', is_featured: true },
-      { platform: 'instacart', search_query: 'pure grape juice', is_featured: false }
-    ],
-    'halal_vanilla_extract': [
-      { platform: 'amazon', search_query: 'alcohol free vanilla extract halal', is_featured: true },
-      { platform: 'thrivemarket', search_query: 'alcohol free vanilla', is_featured: false }
-    ],
-    'white_wine_vinegar_halal': [
-      { platform: 'amazon', search_query: 'halal white wine vinegar', is_featured: true }
-    ]
-  };
-
-  const links = substituteLinkMap[substituteId] || [];
-  
-  return links.map((link, index) => ({
-    id: `link_${substituteId}_${link.platform}_${index}`,
-    platform: platformMap[link.platform],
-    search_query: link.search_query,
-    affiliate_tag: link.platform === 'amazon' ? 'halalkitchen-20' : null, // Replace with actual tag
-    is_featured: link.is_featured,
-    click_count: Math.floor(Math.random() * 100), // Mock data
-    region_code: regionCode
+/** Fallback: client-side mock + routing when API has no data for this substitute. */
+async function getAffiliateLinksForSubstituteFallback(substituteId, regionCode, limit) {
+  const rawLinks = generateMockAffiliateLinks(substituteId, regionCode || 'US');
+  const routed = await autoRouteAffiliateLinks(rawLinks, substituteId);
+  return routed.slice(0, limit).map((link) => ({
+    ...link,
+    url: buildAffiliateUrl(link),
   }));
 }
 
 /**
- * Build affiliate URL from link data
- * @param {Object} linkData - Affiliate link data
- * @returns {string} Complete affiliate URL
+ * Get affiliate links for a substitute (single). Tries API first, then fallback.
  */
-export function buildAffiliateUrl(linkData) {
-  if (!linkData || !linkData.platform) {
-    return null;
+export async function getAffiliateLinksForSubstitute(substituteId, regionCode = null, limit = MAX_LINKS_PER_INGREDIENT) {
+  try {
+    const region = regionCode || 'US';
+    const fromApi = await fetchAffiliateLinksFromApi([substituteId], region, limit);
+    if (fromApi[substituteId] && fromApi[substituteId].length > 0) {
+      return fromApi[substituteId];
+    }
+    return await getAffiliateLinksForSubstituteFallback(substituteId, region, limit);
+  } catch (error) {
+    console.error('Error fetching affiliate links:', error);
+    return [];
   }
+}
 
-  const searchQuery = encodeURIComponent(linkData.search_query);
-  let url = linkData.platform.base_url_template.replace('{query}', searchQuery);
-  
-  // Add affiliate tag if available
-  if (linkData.affiliate_tag) {
-    const separator = url.includes('?') ? '&' : '?';
-    url += `${separator}tag=${linkData.affiliate_tag}`;
+function platformFromProvider(providerId) {
+  const p = getProviderById(providerId);
+  if (!p) return null;
+  return {
+    id: p.id,
+    name: p.name,
+    display_name: p.display_name,
+    color_hex: p.color_hex,
+  };
+}
+
+function getSubstituteLinkMap() {
+  return {
+    agar_agar: [
+      { platform: 'amazon', search_query: 'agar agar halal certified', is_featured: true },
+      { platform: 'walmart', search_query: 'agar agar', is_featured: false },
+      { platform: 'thrivemarket', search_query: 'organic agar agar', is_featured: false },
+    ],
+    turkey_bacon: [
+      { platform: 'amazon', search_query: 'halal turkey bacon certified', is_featured: true },
+      { platform: 'walmart', search_query: 'halal turkey bacon', is_featured: false },
+      { platform: 'target', search_query: 'halal turkey bacon', is_featured: false },
+    ],
+    halal_beef_bacon: [
+      { platform: 'amazon', search_query: 'halal beef bacon certified', is_featured: true },
+      { platform: 'walmart', search_query: 'halal beef bacon', is_featured: false },
+      { platform: 'target', search_query: 'halal beef bacon', is_featured: false },
+    ],
+    beef_bacon: [
+      { platform: 'amazon', search_query: 'halal beef bacon certified', is_featured: true },
+      { platform: 'walmart', search_query: 'halal beef bacon', is_featured: false },
+    ],
+    grape_juice: [
+      { platform: 'amazon', search_query: '100% pure grape juice halal', is_featured: true },
+      { platform: 'walmart', search_query: 'pure grape juice', is_featured: false },
+      { platform: 'thrivemarket', search_query: 'grape juice', is_featured: false },
+    ],
+    halal_vanilla_extract: [
+      { platform: 'amazon', search_query: 'alcohol free vanilla extract halal', is_featured: true },
+      { platform: 'thrivemarket', search_query: 'alcohol free vanilla', is_featured: false },
+    ],
+    white_wine_vinegar_halal: [
+      { platform: 'amazon', search_query: 'halal white wine vinegar', is_featured: true },
+      { platform: 'walmart', search_query: 'white wine vinegar', is_featured: false },
+    ],
+  };
+}
+
+function generateMockAffiliateLinks(substituteId, regionCode) {
+  const linkMap = getSubstituteLinkMap();
+  const entries = linkMap[substituteId] || [];
+  const region = regionCode || 'US';
+
+  return entries.map((entry, index) => {
+    const platform = platformFromProvider(entry.platform);
+    if (!platform) return null;
+    return {
+      id: `link_${substituteId}_${entry.platform}_${index}`,
+      platform,
+      search_query: entry.search_query,
+      affiliate_tag: entry.platform === 'amazon' ? 'halalkitchen-20' : null,
+      is_featured: entry.is_featured || false,
+      click_count: 0,
+      region_code: region,
+    };
+  }).filter(Boolean);
+}
+
+export function buildAffiliateUrl(linkData) {
+  if (!linkData || !linkData.platform) return null;
+  if (linkData.url) return linkData.url;
+  const provider = getProviderById(linkData.platform.id || linkData.platform.name);
+  if (!provider || !provider.url_template) return null;
+
+  const query = encodeURIComponent(linkData.search_query || '');
+  let url = provider.url_template.replace('{query}', query);
+  if (provider.affiliate_param && provider.affiliate_param.key && provider.affiliate_param.value) {
+    const sep = url.includes('?') ? '&' : '?';
+    url += `${sep}${provider.affiliate_param.key}=${encodeURIComponent(provider.affiliate_param.value)}`;
   }
-  
   return url;
 }
 
 /**
- * Get affiliate links for multiple substitutes
- * Now includes region-aware routing
- * @param {Array<string>} substituteIds - Array of normalized ingredient IDs
- * @param {string} regionCode - Optional region code (auto-detected if not provided)
- * @param {number} limitPerSubstitute - Max links per substitute
- * @returns {Promise<Object>} Map of substituteId -> affiliate links
+ * Get affiliate links for multiple substitutes. Prefers API; fallback per substitute when API missing.
  */
-export async function getAffiliateLinksForSubstitutes(substituteIds, regionCode = null, limitPerSubstitute = 3) {
-  const linksMap = {};
-  
-  // Fetch links for each substitute in parallel
-  const promises = substituteIds.map(async (substituteId) => {
-    const links = await getAffiliateLinksForSubstitute(substituteId, regionCode, limitPerSubstitute);
-    if (links.length > 0) {
-      linksMap[substituteId] = links;
-    }
-  });
-  
-  await Promise.all(promises);
-  
+export async function getAffiliateLinksForSubstitutes(substituteIds, regionCode = null, limitPerSubstitute = MAX_LINKS_PER_INGREDIENT) {
+  const ids = (substituteIds || []).filter((s) => s && typeof s === 'string');
+  const region = regionCode || 'US';
+
+  const fromApi = await fetchAffiliateLinksFromApi(ids, region, limitPerSubstitute);
+  const linksMap = { ...fromApi };
+
+  for (const id of ids) {
+    if (linksMap[id] && linksMap[id].length > 0) continue;
+    const fallback = await getAffiliateLinksForSubstituteFallback(id, region, limitPerSubstitute);
+    if (fallback.length > 0) linksMap[id] = fallback;
+  }
+
   return linksMap;
 }

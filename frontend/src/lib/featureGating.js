@@ -167,12 +167,12 @@ export async function canViewConversionHistory() {
  * @param {Array} alternatives - All available alternatives
  * @returns {Promise<Array>} Filtered alternatives based on user tier
  */
-export async function applySubstitutionLimit(alternatives) {
+export function applySubstitutionLimit(alternatives) {
   if (!alternatives || !Array.isArray(alternatives)) {
     return [];
   }
 
-  const limit = await getSubstitutionLimit();
+  const limit = getSubstitutionLimit();
   
   if (limit === Infinity) {
     return alternatives; // Premium: all alternatives

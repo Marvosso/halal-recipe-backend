@@ -1,0 +1,121 @@
+/* SubstitutePurchaseCard - compact card next to substitution result */
+
+.substitute-purchase-card {
+  margin-top: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+}
+
+.substitute-purchase-replacement {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.substitute-purchase-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.substitute-purchase-original {
+  font-size: 0.9375rem;
+  color: var(--text-color);
+}
+
+.substitute-purchase-arrow {
+  color: var(--primary-green);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.substitute-purchase-substitute {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.substitute-purchase-why {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0.5rem 0 0.75rem 0;
+}
+
+.substitute-purchase-buy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.substitute-purchase-buy-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.substitute-purchase-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.substitute-purchase-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-light);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  font-family: "Inter", sans-serif;
+}
+
+.substitute-purchase-btn:hover {
+  border-color: var(--platform-color, var(--primary-green));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.substitute-purchase-buttons--count-1 .substitute-purchase-btn {
+  min-width: 10rem;
+}
+
+.substitute-purchase-disclosure {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.substitute-purchase-disclosure small {
+  font-size: inherit;
+}
+
+@media (max-width: 480px) {
+  .substitute-purchase-buy-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .substitute-purchase-buttons {
+    width: 100%;
+  }
+  .substitute-purchase-btn {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+}

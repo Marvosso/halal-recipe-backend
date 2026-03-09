@@ -20,10 +20,10 @@ describe('AffiliateLinkGroup Component', () => {
     },
     {
       id: 'link_2',
-      platform: 'instacart',
-      platform_display: 'Instacart',
-      platform_color: '#00A862',
-      url: 'https://www.instacart.com/store/search?q=test',
+      platform: 'walmart',
+      platform_display: 'Walmart',
+      platform_color: '#0071CE',
+      url: 'https://www.walmart.com/search?q=test',
       search_query: 'test ingredient',
       is_featured: false
     }
@@ -48,7 +48,7 @@ describe('AffiliateLinkGroup Component', () => {
 
       expect(screen.getByText('Find Agar Agar')).toBeInTheDocument();
       expect(screen.getByText('Shop on Amazon')).toBeInTheDocument();
-      expect(screen.getByText('Shop on Instacart')).toBeInTheDocument();
+      expect(screen.getByText('Shop on Walmart')).toBeInTheDocument();
     });
 
     it('should not render when no links provided', () => {

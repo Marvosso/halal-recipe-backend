@@ -78,12 +78,110 @@
   color: var(--text-muted);
 }
 
+.seo-halal-status-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
 .ruling-summary-text {
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
   line-height: 1.6;
+}
+
+.seo-last-reviewed {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0.75rem 0 0 0;
+  font-weight: 400;
+}
+
+.seo-section-note {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.seo-related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.seo-related-list li {
+  margin: 0;
+}
+
+.seo-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.seo-related-link:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+.seo-related-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--primary-green);
+}
+
+/* Embedded lookup on SEO pages */
+.seo-lookup-section .seo-lookup-intro {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.seo-embedded-lookup {
+  margin-top: 0.5rem;
+  padding: 1.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+}
+
+/* Warnings list */
+.seo-warnings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seo-warning-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: #fffbf0;
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.seo-warning-item:last-child {
+  margin-bottom: 0;
 }
 
 /* Section Styling */
@@ -411,6 +509,11 @@
 [data-theme="dark"] .seo-faq-item {
   background: var(--bg-secondary);
   border-color: var(--border-light);
+}
+
+[data-theme="dark"] .seo-warning-item {
+  background: #78350f;
+  border-left-color: var(--accent-gold);
 }
 
 [data-theme="dark"] .seo-faq-question:hover {

@@ -1072,7 +1072,7 @@
     "cuisine": ""
   },
   "parmesan_cheese": {
-    "status": "haram",
+    "status": "conditional",
     "inheritance": [
       "animal_rennet"
     ],
@@ -1080,7 +1080,7 @@
       "vegetarian_parmesan",
       "halal_certified_parmesan"
     ],
-    "notes": "Traditionally uses animal rennet. Look for vegetarian or halal-certified versions",
+    "notes": "Traditionally uses animal rennet, which may not be halal. Look for vegetarian or halal-certified versions. Requires halal certification or use of microbial rennet.",
     "references": [
       "Surah Al-Baqarah 2:173",
       "Sahih Bukhari 7:67:400"
@@ -1089,8 +1089,8 @@
       "parmigiano_reggiano",
       "parmesan"
     ],
-    "confidence_score_base": 0.1,
-    "eli5": "Parmesan cheese often uses animal rennet, which may not be halal.",
+    "confidence_score_base": 0.5,
+    "eli5": "Parmesan cheese often uses animal rennet, which may not be halal. Requires halal certification or use of microbial rennet.",
     "category": "additive",
     "school_of_thought_variation": {},
     "conversion_ratio": "1:1",

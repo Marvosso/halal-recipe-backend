@@ -1,0 +1,51 @@
+/* Light contextual ad – one per section, never blocks actions */
+
+.contextual-ad {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.contextual-ad-wrapper {
+  background: var(--bg-secondary, #f8f9fa);
+  border: 1px solid var(--border-light, #e9ecef);
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contextual-ad-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #6c757d);
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+.contextual-ad-ins {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Responsive: limit width on large screens so it doesn’t dominate */
+@media (min-width: 768px) {
+  .contextual-ad-wrapper {
+    max-width: 728px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .contextual-ad {
+    margin-top: 1rem;
+  }
+  .contextual-ad-wrapper {
+    padding: 0.5rem;
+    min-height: 50px;
+  }
+}

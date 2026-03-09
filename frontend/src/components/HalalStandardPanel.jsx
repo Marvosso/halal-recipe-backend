@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Settings, X } from "lucide-react";
 import { isPremiumUser } from "../lib/subscription";
 import { canUseStrictHalalMode } from "../lib/featureGating";
+import { trackStrictHalalModeUsage } from "../lib/premiumAnalytics";
 import UpgradePrompt from "./UpgradePrompt";
 import "./HalalStandardPanel.css";
 
@@ -61,7 +62,6 @@ function HalalStandardPanel({ onSettingsChange }) {
     
     // Track strict halal mode usage (if premium)
     if (level === "strict" && isPremiumUser()) {
-      const { trackStrictHalalModeUsage } = require("../lib/premiumAnalytics");
       trackStrictHalalModeUsage(true);
     }
     

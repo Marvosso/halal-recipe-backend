@@ -12,10 +12,10 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // Log error for debugging (only in development)
-    if (import.meta.env.DEV) {
-      console.error("ErrorBoundary caught an error:", error, errorInfo);
-    }
+    // Always log error for debugging (helps in production too)
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    console.error("Error stack:", error.stack);
+    console.error("Error info:", errorInfo);
   }
 
   handleReset = () => {

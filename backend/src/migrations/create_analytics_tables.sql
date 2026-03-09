@@ -13,9 +13,10 @@ CREATE TABLE IF NOT EXISTS analytics_events (
 CREATE INDEX IF NOT EXISTS idx_analytics_event_type ON analytics_events(event_type);
 CREATE INDEX IF NOT EXISTS idx_analytics_created_at ON analytics_events(created_at);
 CREATE INDEX IF NOT EXISTS idx_analytics_session_id ON analytics_events(session_id);
-CREATE INDEX IF NOT EXISTS idx_analytics_props_ingredient ON analytics_events USING GIN ((event_props->>'ingredient_id'));
-CREATE INDEX IF NOT EXISTS idx_analytics_props_platform ON analytics_events USING GIN ((event_props->>'platform'));
-CREATE INDEX IF NOT EXISTS idx_analytics_props_region ON analytics_events USING GIN ((event_props->>'region'));
+-- BTREE: expression returns text; GIN has no default opclass for text
+CREATE INDEX IF NOT EXISTS idx_analytics_props_ingredient ON analytics_events ((event_props->>'ingredient_id'));
+CREATE INDEX IF NOT EXISTS idx_analytics_props_platform ON analytics_events ((event_props->>'platform'));
+CREATE INDEX IF NOT EXISTS idx_analytics_props_region ON analytics_events ((event_props->>'region'));
 
 -- Partition by month for better performance (optional, for high volume)
 -- CREATE TABLE analytics_events_2024_01 PARTITION OF analytics_events

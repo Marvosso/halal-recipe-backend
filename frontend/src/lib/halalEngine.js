@@ -15,6 +15,11 @@ import nestedIngredients from "../data/nested_ingredients.json";
 import halalKnowledgeLegacy from "../data/halal_knowledge.json"; // Keep for backward compatibility
 import { HALAL_RULES } from "./halalRules";
 import { formatIngredientName } from "./ingredientDisplay";
+import { classifyIngredient, getDefaultNaturalStatus } from "./ingredientClassification";
+import { getBaseIngredientOverride } from "./baseIngredientOverrides";
+import { detectModifiers, applyModifierLogic, extractBaseIngredient, parseIngredientWithModifiers, getModifierOverrideStatus } from "./ingredientModifiers";
+import { getTaxonomyResult, isInTaxonomy } from "./ingredientTaxonomy";
+import { applyConfidenceScoring } from "./confidenceScoringEngine";
 
 // Merge legacy knowledge for backward compatibility
 const halalKnowledge = {
@@ -132,6 +137,233 @@ export function evaluateItem(itemId, options = {}) {
   // Normalize item ID
   const normalizedId = itemId.toLowerCase().trim().replace(/\s+/g, "_");
 
+  // Parse into base ingredient + status-override modifiers (halal-certified, plant-based, bovine, pork, alcohol)
+  const parsed = parseIngredientWithModifiers(normalizedId);
+  const overrideStatus = getModifierOverrideStatus(parsed.statusModifiers);
+
+  // If status-override modifier is haram (pork, alcohol), return haram with detected modifiers
+  if (overrideStatus && overrideStatus.status === "haram") {
+    const normalizedDisplayName = formatIngredientName(normalizedId);
+    const haramResult = {
+      status: "haram",
+      confidenceScore: 0,
+      confidence: 0,
+      confidencePercentage: 0,
+      confidenceLevel: "haram",
+      ingredientType: "processed",
+      trace: [`Status modifier override: ${parsed.statusModifiers.join(", ")} → haram`],
+      eli5: overrideStatus.explanation || "Contains a non-permissible source.",
+      simpleExplanation: overrideStatus.explanation || "Contains a non-permissible source.",
+      explanation: overrideStatus.explanation || "This ingredient is derived from or contains a source that is not permissible in Islam.",
+      alternatives: [],
+      notes: overrideStatus.explanation,
+      references: ["Qur'an 5:90", "Qur'an 2:173"],
+      tags: ["haram", "modified"],
+      displayName: normalizedDisplayName,
+      confidenceImpact: -100,
+      detectedModifiers: parsed.statusModifiers,
+      baseIngredient: parsed.base,
+      bypassAI: true,
+    };
+    return applyConfidenceScoring(haramResult, {
+      isProcessed: true,
+      isCertified: false,
+      hasAdditives: false,
+      hasInheritance: false,
+      hasConditionalModifier: false,
+      hasProcessingModifier: false,
+      isTaxonomyBased: false,
+      isBaseIngredientOverride: false,
+      isNaturalPlant: false,
+    });
+  }
+
+  // Detect legacy modifiers (processing/conditional); haram list no longer includes "gelatin" alone
+  const modifierDetection = detectModifiers(normalizedId);
+
+  // If haram modifier detected (e.g. pork, alcohol in legacy list), return haram immediately
+  if (modifierDetection.hasHaramModifier) {
+    const haramModifier = modifierDetection.haramModifiers[0];
+    let explanation = `This ingredient contains ${haramModifier.replace(/_/g, ' ')}, which is haram.`;
+    
+    // Specific explanations for common haram modifiers
+    if (haramModifier.includes('wine') || haramModifier.includes('alcohol')) {
+      explanation = `This ingredient contains alcohol (${haramModifier.replace(/_/g, ' ')}), which is haram according to Islamic law.`;
+    } else if (haramModifier.includes('pork') || haramModifier.includes('bacon') || haramModifier.includes('lard')) {
+      explanation = `This ingredient contains pork or pork-derived products (${haramModifier.replace(/_/g, ' ')}), which is haram.`;
+    }
+    
+    const normalizedDisplayName = formatIngredientName(normalizedId);
+    
+    const haramResult = {
+      status: "haram",
+      confidenceScore: 0,
+      confidence: 0,
+      confidencePercentage: 0,
+      confidenceLevel: "haram",
+      ingredientType: "processed", // Modified ingredients are processed
+      trace: [`Haram modifier detected: ${haramModifier}`],
+      eli5: `Contains ${haramModifier.replace(/_/g, ' ')}, which is haram.`,
+      simpleExplanation: `Contains ${haramModifier.replace(/_/g, ' ')}, which is haram.`,
+      explanation: explanation,
+      alternatives: [],
+      notes: explanation,
+      references: ["Qur'an 5:90", "Qur'an 2:173"],
+      tags: ["haram", "modified"],
+      displayName: normalizedDisplayName,
+      confidenceImpact: -100,
+      isHaramModifierOverride: true,
+      haramModifiers: modifierDetection.haramModifiers,
+      bypassAI: true
+    };
+    
+    // Apply confidence scoring engine (haram = low confidence)
+    return applyConfidenceScoring(haramResult, {
+      isProcessed: true,
+      isCertified: false,
+      hasAdditives: false,
+      hasInheritance: false,
+      hasConditionalModifier: false,
+      hasProcessingModifier: false,
+      isTaxonomyBased: false,
+      isBaseIngredientOverride: false,
+      isNaturalPlant: false
+    });
+  }
+
+  // Base for evaluation: use parsed base when we have status modifiers, else extract from full id
+  const baseIngredientId = parsed.statusModifiers.length > 0 ? parsed.base : extractBaseIngredient(normalizedId);
+
+  // Check taxonomy FIRST (before base ingredient override)
+  // Taxonomy provides systematic classification with default status and confidence
+  const taxonomyResult = getTaxonomyResult(baseIngredientId || normalizedId, null);
+  if (taxonomyResult) {
+    const normalizedDisplayName = formatIngredientName(normalizedId);
+    const taxonomyConfidenceScore = calculateConfidenceScore(
+      taxonomyResult.confidenceScore / 100,
+      0,
+      strictness,
+      false
+    );
+    
+    // Build base result from taxonomy
+    const taxonomyBaseResult = {
+      status: taxonomyResult.status,
+      confidenceScore: taxonomyConfidenceScore,
+      confidence: taxonomyConfidenceScore / 100,
+      confidencePercentage: taxonomyConfidenceScore,
+      confidenceLevel: taxonomyResult.confidenceLevel,
+      ingredientType: taxonomyResult.category === "natural_plant" ? "natural" :
+                     taxonomyResult.category === "processed_plant" ? "processed" :
+                     taxonomyResult.category === "animal" ? "animal" :
+                     taxonomyResult.category === "alcohol" ? "alcohol-derived" :
+                     "processed",
+      trace: [`Taxonomy classification: ${taxonomyResult.categoryLabel}`],
+      eli5: taxonomyResult.explanation,
+      simpleExplanation: taxonomyResult.explanation,
+      explanation: taxonomyResult.explanation,
+      alternatives: [],
+      notes: taxonomyResult.explanation,
+      references: [],
+      tags: [taxonomyResult.category, taxonomyResult.categoryLabel.toLowerCase()],
+      displayName: normalizedDisplayName,
+      confidenceImpact: 0,
+      isTaxonomyBased: true,
+      taxonomyCategory: taxonomyResult.category,
+      requiresVerification: taxonomyResult.requiresVerification
+    };
+    
+    // Apply modifier logic (processing modifiers may add conditions)
+    let result = applyModifierLogic(normalizedId, taxonomyBaseResult, modifierDetection);
+    if (overrideStatus && (overrideStatus.status === "halal" || overrideStatus.status === "conditional")) {
+      result = {
+        ...result,
+        status: overrideStatus.status,
+        confidenceLevel: overrideStatus.status === "halal" ? "certain_halal" : "conditional",
+        confidenceScore: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidenceScore || 75),
+        confidence: overrideStatus.status === "halal" ? 0.95 : Math.min(0.75, (result.confidenceScore || 75) / 100),
+        confidencePercentage: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidencePercentage || 75),
+        explanation: overrideStatus.explanation || result.explanation,
+        simpleExplanation: overrideStatus.explanation || result.simpleExplanation,
+        eli5: overrideStatus.explanation || result.eli5,
+        detectedModifiers: parsed.statusModifiers,
+        baseIngredient: parsed.base,
+      };
+    } else if (parsed.statusModifiers.length > 0) {
+      result = { ...result, detectedModifiers: parsed.statusModifiers, baseIngredient: parsed.base };
+    }
+    return applyConfidenceScoring(result, {
+      isProcessed: taxonomyResult.category === 'processed_plant',
+      isCertified: false,
+      hasAdditives: taxonomyResult.category === 'processed_plant',
+      hasInheritance: false,
+      hasConditionalModifier: modifierDetection.hasConditionalModifier,
+      hasProcessingModifier: modifierDetection.hasProcessingModifier,
+      isTaxonomyBased: true,
+      isBaseIngredientOverride: false,
+      isNaturalPlant: taxonomyResult.category === 'natural_plant'
+    });
+  }
+  
+  // Check for base ingredient override on BASE ingredient (not modified version)
+  // Plain plant-based ingredients (rice, wheat, vegetables, legumes, fruits) always return halal
+  const baseOverride = getBaseIngredientOverride(baseIngredientId);
+  if (baseOverride) {
+    const normalizedDisplayName = formatIngredientName(normalizedId);
+    const halalConfidenceScore = calculateConfidenceScore(STATUS_SCORE.halal, 0, strictness, false);
+    
+    const baseResult = {
+      status: "halal",
+      confidenceScore: halalConfidenceScore,
+      confidence: halalConfidenceScore / 100,
+      confidencePercentage: halalConfidenceScore,
+      confidenceLevel: baseOverride.confidenceLevel,
+      ingredientType: baseOverride.ingredientType,
+      trace: [`Base ingredient override: ${baseIngredientId} (plain plant-based, always halal)`],
+      eli5: baseOverride.simpleExplanation,
+      simpleExplanation: baseOverride.simpleExplanation,
+      explanation: baseOverride.explanation,
+      alternatives: [],
+      notes: baseOverride.explanation,
+      references: [],
+      tags: ["natural", "plant-based", "base-ingredient"],
+      displayName: normalizedDisplayName,
+      confidenceImpact: 0,
+      isBaseIngredientOverride: true,
+      bypassAI: true
+    };
+    
+    let result = applyModifierLogic(normalizedId, baseResult, modifierDetection);
+    if (overrideStatus && (overrideStatus.status === "halal" || overrideStatus.status === "conditional")) {
+      result = {
+        ...result,
+        status: overrideStatus.status,
+        confidenceLevel: overrideStatus.status === "halal" ? "certain_halal" : "conditional",
+        confidenceScore: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidenceScore || 75),
+        confidence: overrideStatus.status === "halal" ? 0.95 : Math.min(0.75, (result.confidenceScore || 75) / 100),
+        confidencePercentage: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidencePercentage || 75),
+        explanation: overrideStatus.explanation || result.explanation,
+        simpleExplanation: overrideStatus.explanation || result.simpleExplanation,
+        eli5: overrideStatus.explanation || result.eli5,
+        detectedModifiers: parsed.statusModifiers,
+        baseIngredient: parsed.base,
+      };
+    } else if (parsed.statusModifiers.length > 0) {
+      result = { ...result, detectedModifiers: parsed.statusModifiers, baseIngredient: parsed.base };
+    }
+    return applyConfidenceScoring(result, {
+      isProcessed: false,
+      isCertified: false,
+      hasAdditives: false,
+      hasInheritance: false,
+      hasConditionalModifier: modifierDetection.hasConditionalModifier,
+      hasProcessingModifier: modifierDetection.hasProcessingModifier,
+      isTaxonomyBased: false,
+      isBaseIngredientOverride: true,
+      isNaturalPlant: true
+    });
+  }
+
   // Helper to resolve inheritance chain
   function resolveInheritance(id, path = []) {
     if (visited.has(id) || path.includes(id)) {
@@ -239,35 +471,98 @@ export function evaluateItem(itemId, options = {}) {
     return ingredient;
   }
 
-  // Resolve inheritance chain
-  const rootItem = resolveInheritance(normalizedId);
-  
+  // Resolve inheritance chain (use base when we parsed modifiers, e.g. bovine_gelatin → lookup gelatin)
+  const rootItem = resolveInheritance(baseIngredientId || normalizedId);
+
   if (!rootItem) {
-    // Unknown ingredient - explicitly marked with neutral confidence impact
+    // Unknown ingredient - check if it's a natural plant-based ingredient (default to halal)
+    const defaultNatural = getDefaultNaturalStatus(normalizedId);
+    
+    if (defaultNatural) {
+      // Natural plant-based ingredient - default to halal
+      const normalizedDisplayName = formatIngredientName(normalizedId);
+      const halalConfidenceScore = calculateConfidenceScore(STATUS_SCORE.halal, 0, strictness, false);
+      
+      const defaultResult = {
+        status: "halal",
+        confidenceScore: halalConfidenceScore,
+        confidence: halalConfidenceScore / 100,
+        confidencePercentage: halalConfidenceScore,
+        confidenceLevel: "certain_halal",
+        ingredientType: "natural",
+        trace: [`Natural plant-based ingredient: ${normalizedId} (default halal)`],
+        eli5: defaultNatural.explanation,
+        simpleExplanation: defaultNatural.explanation,
+        explanation: defaultNatural.explanation,
+        alternatives: [],
+        notes: defaultNatural.explanation,
+        references: [],
+        tags: ["natural", "plant-based"],
+        displayName: normalizedDisplayName,
+        confidenceImpact: 0,
+        isDefaultHalal: true
+      };
+      
+      // Apply modifier logic first
+      const result = applyModifierLogic(normalizedId, defaultResult, modifierDetection);
+      
+      // Apply confidence scoring engine
+      return applyConfidenceScoring(result, {
+        isProcessed: false,
+        isCertified: false,
+        hasAdditives: false,
+        hasInheritance: false,
+        hasConditionalModifier: modifierDetection.hasConditionalModifier,
+        hasProcessingModifier: modifierDetection.hasProcessingModifier,
+        isTaxonomyBased: false,
+        isBaseIngredientOverride: false,
+        isNaturalPlant: true
+      });
+    }
+    
+    // Truly unknown ingredient (not natural) - use rare_unknown
     const normalizedDisplayName = formatIngredientName(normalizedId);
     const unknownConfidenceScore = calculateConfidenceScore(STATUS_SCORE.unknown, 0, strictness, false);
     
     return {
       status: "unknown",
-      confidenceScore: unknownConfidenceScore, // PRIMARY: 0-100 format (required)
-      confidence: unknownConfidenceScore / 100, // Backward compatibility: 0-1 format
-      confidencePercentage: unknownConfidenceScore, // Alias for confidenceScore
-      trace: [`Unknown item: ${normalizedId}`],
-      eli5: "Insufficient data — please verify",
-      simpleExplanation: "Insufficient data — please verify", // ELI5 format
-      explanation: "Insufficient data — please verify", // Full explanation
+      confidenceScore: unknownConfidenceScore,
+      confidence: unknownConfidenceScore / 100,
+      confidencePercentage: unknownConfidenceScore,
+      confidenceLevel: "rare_unknown",
+      ingredientType: "processed", // Default to processed for unknown
+      trace: [`Unknown item: ${normalizedId} (rare/unknown)`],
+      eli5: "Insufficient data — please verify with a qualified Islamic scholar",
+      simpleExplanation: "Insufficient data — please verify with a qualified Islamic scholar",
+      explanation: "Insufficient data — please verify with a qualified Islamic scholar",
       alternatives: [],
-      notes: "Insufficient data — please verify",
+      notes: "Insufficient data — please verify with a qualified Islamic scholar",
       references: [],
       tags: [],
       displayName: normalizedDisplayName,
-      confidenceImpact: 0, // Neutral impact for unknown
-      isUnknown: true // Explicit flag
+      confidenceImpact: 0,
+      isUnknown: true
     };
   }
 
   // Get final ruling based on school and strictness
   finalRuling = getRuling(rootItem, madhab, strictness);
+  
+  // Classify ingredient type and confidence level
+  const classification = classifyIngredient(normalizedId, rootItem, finalRuling);
+  
+  // Apply default halal for natural plant-based if status is unknown
+  if (classification.isDefaultHalal && finalRuling === "unknown") {
+    finalRuling = "halal";
+    const defaultNatural = getDefaultNaturalStatus(normalizedId);
+    if (defaultNatural) {
+      eli5 = defaultNatural.explanation;
+      notes = defaultNatural.explanation;
+      if (!tags.includes("natural")) {
+        tags.push("natural", "plant-based");
+      }
+    }
+  }
   
   // Check if preference was applied (ruling changed from default)
   const defaultRuling = rootItem.rulings?.default || rootItem.status || "unknown";
@@ -338,11 +633,13 @@ export function evaluateItem(itemId, options = {}) {
   // Ensure confidenceScore is ALWAYS a number 0-100, never undefined or 0 unless truly 0
   const confidenceScore = finalConfidence; // Already 0-100 from calculateConfidenceScore
 
-  const result = {
+  const baseResult = {
     status: finalRuling,
     confidenceScore: confidenceScore, // PRIMARY: 0-100 format (required, never undefined)
     confidence: confidenceScore / 100, // Backward compatibility: 0-1 format
     confidencePercentage: confidenceScore, // Alias for confidenceScore
+    confidenceLevel: classification.confidenceLevel, // NEW: certain_halal, conditional, haram, rare_unknown
+    ingredientType: classification.type, // NEW: natural, processed, animal, alcohol-derived
     trace: fullTrace,
     eli5: simpleExplanation, // ELI5 format (simple explanation)
     simpleExplanation: simpleExplanation, // Explicit ELI5 field
@@ -355,10 +652,30 @@ export function evaluateItem(itemId, options = {}) {
     aliases: rootItem.aliases || undefined,
     displayName: finalDisplayName, // Normalized display name (never snake_case)
     confidenceImpact,
-    inheritanceChain: inheritanceChain.length > 0 ? inheritanceChain : undefined
+    inheritanceChain: inheritanceChain.length > 0 ? inheritanceChain : undefined,
+    isDefaultHalal: classification.isDefaultHalal || false // Flag for default halal natural ingredients
   };
+  
+  let result = applyModifierLogic(normalizedId, baseResult, modifierDetection);
 
-  // Add inheritedFrom if applicable
+  if (overrideStatus && (overrideStatus.status === "halal" || overrideStatus.status === "conditional")) {
+    result = {
+      ...result,
+      status: overrideStatus.status,
+      confidenceLevel: overrideStatus.status === "halal" ? "certain_halal" : "conditional",
+      confidenceScore: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidenceScore || 75),
+      confidence: overrideStatus.status === "halal" ? 0.95 : Math.min(0.75, (result.confidenceScore || 75) / 100),
+      confidencePercentage: overrideStatus.status === "halal" ? 95 : Math.min(75, result.confidencePercentage || 75),
+      explanation: overrideStatus.explanation || result.explanation,
+      simpleExplanation: overrideStatus.explanation || result.simpleExplanation,
+      eli5: overrideStatus.explanation || result.eli5,
+      detectedModifiers: parsed.statusModifiers,
+      baseIngredient: parsed.base,
+    };
+  } else if (parsed.statusModifiers.length > 0) {
+    result = { ...result, detectedModifiers: parsed.statusModifiers, baseIngredient: parsed.base };
+  }
+
   if (inheritedFrom) {
     result.inheritedFrom = inheritedFrom;
   }
@@ -371,6 +688,19 @@ export function evaluateItem(itemId, options = {}) {
       madhab: madhab !== "no-preference" ? madhab : undefined
     };
   }
-
-  return result;
+  
+  // Apply confidence scoring engine (maps to high/medium/low)
+  const finalResult = applyConfidenceScoring(result, {
+    isProcessed: classification.type === 'processed',
+    isCertified: false, // TODO: Add certification detection
+    hasAdditives: classification.type === 'processed',
+    hasInheritance: !!inheritedFrom,
+    hasConditionalModifier: modifierDetection.hasConditionalModifier,
+    hasProcessingModifier: modifierDetection.hasProcessingModifier,
+    isTaxonomyBased: false,
+    isBaseIngredientOverride: false,
+    isNaturalPlant: classification.type === 'natural'
+  });
+  
+  return finalResult;
 }

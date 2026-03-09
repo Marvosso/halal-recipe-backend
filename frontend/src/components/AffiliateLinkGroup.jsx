@@ -1,5 +1,6 @@
 import React from "react";
 import { ShoppingCart, ExternalLink } from "lucide-react";
+import { MAX_LINKS_PER_INGREDIENT } from "../config/affiliateProviderConfig";
 import "./AffiliateLinkGroup.css";
 
 /**
@@ -24,8 +25,7 @@ function AffiliateLinkGroup({
   variant = "card",
   showDisclosure = true 
 }) {
-  // Limit to maximum 3 links
-  const displayLinks = affiliateLinks.slice(0, 3);
+  const displayLinks = affiliateLinks.slice(0, MAX_LINKS_PER_INGREDIENT);
   
   // Don't render if no links
   if (displayLinks.length === 0) {
@@ -53,14 +53,11 @@ function AffiliateLinkGroup({
     }
   };
 
-  // Button hierarchy: Featured first, then by platform order
+  // Use order from routing (product-fit ranked); featured first
   const sortedLinks = [...displayLinks].sort((a, b) => {
     if (a.is_featured && !b.is_featured) return -1;
     if (!a.is_featured && b.is_featured) return 1;
-    
-    // Platform priority: Amazon > Instacart > Thrive Market
-    const platformOrder = { amazon: 1, instacart: 2, thrivemarket: 3 };
-    return (platformOrder[a.platform] || 99) - (platformOrder[b.platform] || 99);
+    return 0; // Preserve provider-agnostic order from routing
   });
 
   if (variant === "inline") {

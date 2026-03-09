@@ -149,26 +149,21 @@ function isValidCountryCode(code) {
 }
 
 /**
- * Check if Instacart is available in region
+ * Check if Walmart is available in region (Walmart Affiliate / Walmart Creator).
  * @param {string} countryCode - ISO country code
- * @param {string} zipCode - Optional zip code
- * @returns {Promise<boolean>}
+ * @returns {boolean}
  */
-export async function isInstacartAvailable(countryCode, zipCode = null) {
-  // Instacart availability map
-  const instacartRegions = {
-    'US': true,
-    'CA': true
-  };
+export function isWalmartAvailable(countryCode) {
+  return countryCode === 'US';
+}
 
-  // Check country-level availability
-  if (!instacartRegions[countryCode]) {
-    return false;
-  }
-
-  // For US/CA, check zip code coverage (would need API call in production)
-  // For now, return true if country is supported
-  return true;
+/**
+ * Check if Target Affiliates is available in region.
+ * @param {string} countryCode - ISO country code
+ * @returns {boolean}
+ */
+export function isTargetAvailable(countryCode) {
+  return countryCode === 'US';
 }
 
 /**

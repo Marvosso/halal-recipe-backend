@@ -1,42 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
 import AffiliateLink from "./AffiliateLink";
+import { getEnabledProviders } from "../config/affiliateProviderConfig";
 import "./IngredientShopSection.css";
 
 /**
- * Subtle "Shop Ingredients" section that appears after recipe conversion
- * Only shows for ingredients that were replaced (haram → halal)
- * 
- * @param {Object} props
- * @param {Array} props.replacements - Array of replaced ingredients with replacement info
+ * Subtle "Shop Ingredients" section after recipe conversion.
+ * Only shows for ingredients that were replaced (haram → halal).
+ * Platform list is config-driven (no hardcoded retailers).
  */
 function IngredientShopSection({ replacements = [] }) {
+  const enabledProviders = useMemo(() => getEnabledProviders(), []);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedPlatform, setSelectedPlatform] = useState('amazon');
+  const [selectedPlatform, setSelectedPlatform] = useState(
+    enabledProviders[0]?.name ?? "amazon"
+  );
 
-  // Filter to only show ingredients that have replacements
   const shopableIngredients = replacements
-    .filter(item => item.replacement && item.replacement !== "Halal alternative needed")
-    .map(item => ({
+    .filter(
+      (item) =>
+        item.replacement && item.replacement !== "Halal alternative needed"
+    )
+    .map((item) => ({
       original: item.ingredient || item.original,
       replacement: item.replacement,
-      status: item.status
+      status: item.status,
     }));
 
-  // Don't show if no shopable ingredients
   if (shopableIngredients.length === 0) {
+    return null;
+  }
+
+  if (enabledProviders.length === 0) {
     return null;
   }
 
   return (
     <div className="ingredient-shop-section">
-      <div 
+      <div
         className="ingredient-shop-header"
         onClick={() => setIsExpanded(!isExpanded)}
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             setIsExpanded(!isExpanded);
           }
@@ -49,7 +56,8 @@ function IngredientShopSection({ replacements = [] }) {
           <div className="ingredient-shop-header-text">
             <h3 className="ingredient-shop-title">Shop Halal Ingredients</h3>
             <p className="ingredient-shop-subtitle">
-              Find halal-certified alternatives for {shopableIngredients.length} ingredient{shopableIngredients.length !== 1 ? 's' : ''}
+              Find halal alternatives for {shopableIngredients.length} ingredient
+              {shopableIngredients.length !== 1 ? "s" : ""}
             </p>
           </div>
         </div>
@@ -62,35 +70,22 @@ function IngredientShopSection({ replacements = [] }) {
 
       {isExpanded && (
         <div className="ingredient-shop-content">
-          {/* Platform selector */}
           <div className="ingredient-shop-platform-selector">
             <span className="platform-selector-label">Shop on:</span>
             <div className="platform-buttons">
-              <button
-                className={`platform-button ${selectedPlatform === 'amazon' ? 'active' : ''}`}
-                onClick={() => setSelectedPlatform('amazon')}
-                aria-label="Shop on Amazon"
-              >
-                Amazon
-              </button>
-              <button
-                className={`platform-button ${selectedPlatform === 'instacart' ? 'active' : ''}`}
-                onClick={() => setSelectedPlatform('instacart')}
-                aria-label="Shop on Instacart"
-              >
-                Instacart
-              </button>
-              <button
-                className={`platform-button ${selectedPlatform === 'thrivemarket' ? 'active' : ''}`}
-                onClick={() => setSelectedPlatform('thrivemarket')}
-                aria-label="Shop on Thrive Market"
-              >
-                Thrive Market
-              </button>
+              {enabledProviders.map((p) => (
+                <button
+                  key={p.id}
+                  className={`platform-button ${selectedPlatform === p.name ? "active" : ""}`}
+                  onClick={() => setSelectedPlatform(p.name)}
+                  aria-label={`Shop on ${p.display_name}`}
+                >
+                  {p.display_name}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Ingredient list */}
           <ul className="ingredient-shop-list">
             {shopableIngredients.map((item, index) => (
               <li key={index} className="ingredient-shop-item">
@@ -111,7 +106,7 @@ function IngredientShopSection({ replacements = [] }) {
 
           <p className="ingredient-shop-disclaimer">
             <small>
-              💚 We may earn a small commission if you purchase through these links, at no extra cost to you. 
+              We may earn a small commission if you purchase through these links, at no extra cost to you.
               This helps us keep Halal Kitchen free for everyone.
             </small>
           </p>

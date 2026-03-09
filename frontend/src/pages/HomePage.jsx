@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import CommunityConversions from "../components/CommunityConversions";
+import { COMMUNITY_CONVERSIONS_MOCK } from "../data/communityConversionsData";
 import "./SEO.css";
 
 function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Halal Kitchen - Convert Any Recipe to Halal | Free Recipe Converter</title>
+        <title>Halal Kitchen - Cook Any Recipe, Halal-Certified | Free Recipe Converter</title>
         <meta 
           name="description" 
           content="Convert any recipe to halal-compliant with our free AI-powered recipe converter. Get halal substitutes, Islamic dietary guidance, and confidence scores. Start converting recipes today!" 
@@ -18,12 +20,31 @@ function HomePage() {
       </Helmet>
       
       <main className="seo-page">
-        <header className="seo-header">
-          <h1>Halal Kitchen - Your Free Recipe Conversion Tool</h1>
-          <p className="seo-subtitle">
-            Convert any recipe to halal-compliant instantly. Get halal substitutes, 
-            Islamic dietary guidance, and confidence scores for every conversion.
+        <header className="hero-section">
+          <h1 className="hero-headline">Cook Any Recipe, Halal-Certified</h1>
+          <p className="hero-subheadline">
+            Paste any recipe and get halal-compliant alternatives in seconds—with clear substitutes, 
+            Islamic references, and confidence scores. No guesswork, no stress.
           </p>
+          <div className="hero-trust-bar" aria-label="Why trust Halal Kitchen">
+            <div className="hero-trust-item">
+              <span className="hero-trust-icon" aria-hidden="true">✓</span>
+              <span>Free to try — convert your first recipe now</span>
+            </div>
+            <div className="hero-trust-item">
+              <span className="hero-trust-icon" aria-hidden="true">✓</span>
+              <span>Instant results — halal swaps in seconds</span>
+            </div>
+            <div className="hero-trust-item">
+              <span className="hero-trust-icon" aria-hidden="true">✓</span>
+              <span>Islamic guidance — clear references & substitutes</span>
+            </div>
+          </div>
+          <div className="hero-cta-wrap">
+            <Link to="/app" className="hero-cta-primary">
+              Try the converter — it's free
+            </Link>
+          </div>
         </header>
 
         <section className="seo-content">
@@ -61,6 +82,8 @@ function HomePage() {
             </div>
           </article>
         </section>
+
+        <CommunityConversions items={COMMUNITY_CONVERSIONS_MOCK} maxItems={5} />
 
         <section className="seo-links">
           <h2>Learn More</h2>

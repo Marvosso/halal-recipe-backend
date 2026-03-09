@@ -1,0 +1,262 @@
+.ingredient-scan-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.ingredient-scan-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.ingredient-scan-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary, #fff);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ingredient-scan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-light, #eee);
+  flex-shrink: 0;
+}
+
+.ingredient-scan-header h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-color, #1a1a1a);
+}
+
+.ingredient-scan-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text-secondary, #666);
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.ingredient-scan-close:hover {
+  background: var(--bg-secondary, #f5f5f5);
+  color: var(--text-color, #1a1a1a);
+}
+
+.ingredient-scan-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ingredient-scan-hint {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #555);
+  line-height: 1.45;
+}
+
+.ingredient-scan-file-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.ingredient-scan-capture-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-green, #0d9488);
+  background: rgba(13, 148, 136, 0.12);
+  border: 2px solid var(--primary-green, #0d9488);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.ingredient-scan-capture-btn:hover {
+  background: rgba(13, 148, 136, 0.2);
+}
+
+.ingredient-scan-preview-wrap {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-light, #eee);
+  max-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary, #f8f8f8);
+}
+
+.ingredient-scan-preview {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
+  display: block;
+}
+
+.ingredient-scan-error {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--error-color, #b91c1c);
+}
+
+.ingredient-scan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.ingredient-scan-primary {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary-green, #0d9488);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ingredient-scan-primary:hover {
+  filter: brightness(1.05);
+}
+
+.ingredient-scan-secondary {
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary, #555);
+  background: var(--bg-secondary, #f0f0f0);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ingredient-scan-secondary:hover {
+  background: var(--border-light, #e5e5e5);
+}
+
+.ingredient-scan-extracting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.ingredient-scan-extracting .spin {
+  animation: ingredient-scan-spin 0.8s linear infinite;
+}
+
+@keyframes ingredient-scan-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ingredient-scan-progress-wrap {
+  width: 100%;
+  max-width: 200px;
+  height: 6px;
+  background: var(--bg-secondary, #eee);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ingredient-scan-progress-bar {
+  height: 100%;
+  background: var(--primary-green, #0d9488);
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
+.ingredient-scan-progress-text {
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #666);
+}
+
+.ingredient-scan-results {
+  margin-top: 0;
+}
+
+.ingredient-scan-results-intro {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  color: var(--text-secondary, #555);
+}
+
+.ingredient-scan-group {
+  margin-bottom: 1.25rem;
+}
+
+.ingredient-scan-group:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.ingredient-scan-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-color, #1a1a1a);
+}
+
+.ingredient-scan-group ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ingredient-scan-group li {
+  margin-bottom: 0.25rem;
+}
+
+.ingredient-scan-haram h3 { color: var(--haram-color, #b91c1c); }
+.ingredient-scan-questionable h3 { color: var(--warning-color, #b45309); }
+.ingredient-scan-halal h3 { color: var(--halal-color, #0d9488); }
+
+.ingredient-scan-explain {
+  font-weight: normal;
+  color: var(--text-secondary, #555);
+}
+
+.ingredient-scan-results .ingredient-scan-actions {
+  margin-top: 1.25rem;
+}

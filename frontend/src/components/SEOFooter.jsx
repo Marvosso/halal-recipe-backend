@@ -13,6 +13,7 @@ function SEOFooter() {
           <Link to="/how-it-works">How It Works</Link>
           <Link to="/about">About</Link>
           <Link to="/app">Recipe Converter</Link>
+          <Link to="/my-halal-recipes">My Halal Recipes</Link>
         </nav>
         <p className="seo-footer-copyright">
           © {new Date().getFullYear()} Halal Kitchen - Making recipes halal-compliant

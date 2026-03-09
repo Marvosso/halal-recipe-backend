@@ -1,0 +1,87 @@
+.ingredient-sources {
+  margin-top: 0.75rem;
+}
+
+.sources-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  padding: 0.25rem 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: color 0.2s;
+}
+
+.sources-toggle:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+.sources-content {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+}
+
+.sources-section {
+  margin-bottom: 0.75rem;
+}
+
+.sources-section:last-child {
+  margin-bottom: 0;
+}
+
+.sources-section-title {
+  display: block;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.sources-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.5;
+}
+
+.sources-list li {
+  margin-bottom: 0.35rem;
+}
+
+.sources-list li:last-child {
+  margin-bottom: 0;
+}
+
+.sources-cite {
+  font-style: normal;
+  color: var(--primary-green);
+  font-weight: 500;
+}
+
+.sources-list.rulings .sources-cite,
+.sources-list .sources-cite {
+  display: inline;
+  font-size: 0.75rem;
+}
+
+.sources-disclaimer {
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}

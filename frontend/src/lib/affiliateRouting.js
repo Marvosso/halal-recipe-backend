@@ -1,197 +1,109 @@
 /**
- * Affiliate Link Routing Logic
- * Determines which platforms to show based on region and ingredient type
+ * Affiliate link routing – provider-agnostic.
+ * Ranks retailers by product fit (pantry → Amazon/Thrive; grocery → Walmart/Target; specialty → halal partners).
+ * Uses config for enabled providers only; no hardcoded retailer in UI.
  */
 
-import { 
-  detectUserRegion, 
-  isInstacartAvailable, 
-  isAmazonAvailable, 
-  isThriveMarketAvailable 
-} from './regionDetection';
+import {
+  getEnabledProviders,
+  getProviderById,
+  isProviderAvailableInRegion,
+  MAX_LINKS_PER_INGREDIENT,
+  PRODUCT_FIT,
+} from '../config/affiliateProviderConfig';
 
 /**
- * Categorize ingredient type
+ * Categorize ingredient for product-fit ranking.
  * @param {string} ingredientId - Normalized ingredient ID
- * @returns {string} - 'fresh', 'pantry', 'specialty', 'unknown'
+ * @returns {string} - 'pantry' | 'grocery' | 'specialty' | 'unknown'
  */
-function categorizeIngredient(ingredientId) {
+export function categorizeIngredient(ingredientId) {
   if (!ingredientId) return 'unknown';
 
   const ingredient = ingredientId.toLowerCase();
-  
-  // Fresh ingredients (perishable, need local delivery)
-  const freshIngredients = [
-    'turkey_bacon', 'halal_beef', 'halal_chicken', 'halal_lamb',
-    'fresh_herbs', 'vegetables', 'fruits', 'dairy', 'eggs'
-  ];
-  
-  // Pantry goods (shelf-stable, can ship)
+
   const pantryIngredients = [
-    'agar_agar', 'grape_juice', 'vanilla_extract', 'spices',
-    'flour', 'sugar', 'oil', 'vinegar', 'canned', 'dried'
+    'agar_agar', 'grape_juice', 'vanilla_extract', 'spices', 'flour', 'sugar',
+    'oil', 'vinegar', 'canned', 'dried', 'halal_vanilla_extract', 'white_wine_vinegar_halal',
   ];
-  
-  // Specialty items (may need specific sourcing)
+  const groceryIngredients = [
+    'turkey_bacon', 'halal_beef_bacon', 'beef_bacon', 'halal_beef', 'halal_chicken',
+    'halal_lamb', 'fresh_herbs', 'vegetables', 'fruits', 'dairy', 'eggs',
+  ];
   const specialtyIngredients = [
-    'halal_gelatin', 'halal_cheese', 'halal_parmesan'
+    'halal_gelatin', 'halal_cheese', 'halal_parmesan', 'halal_gelatin',
   ];
 
-  if (freshIngredients.some(fresh => ingredient.includes(fresh))) {
-    return 'fresh';
-  }
-  
-  if (pantryIngredients.some(pantry => ingredient.includes(pantry))) {
-    return 'pantry';
-  }
-  
-  if (specialtyIngredients.some(spec => ingredient.includes(spec))) {
-    return 'specialty';
-  }
+  if (pantryIngredients.some((p) => ingredient.includes(p))) return PRODUCT_FIT.PANTRY;
+  if (groceryIngredients.some((g) => ingredient.includes(g))) return PRODUCT_FIT.GROCERY;
+  if (specialtyIngredients.some((s) => ingredient.includes(s))) return PRODUCT_FIT.SPECIALTY;
 
   return 'unknown';
 }
 
 /**
- * Select platforms based on region and ingredient type
- * 
- * Decision Logic:
- * 1. If Instacart available + fresh ingredient → Prefer Instacart
- * 2. If Instacart available + pantry → Show Instacart + Amazon
- * 3. If no Instacart → Show Amazon
- * 4. If pantry + US → Show Thrive Market
- * 5. Always include Amazon as fallback if available
- * 
+ * Select provider IDs to show based on product fit and region.
+ * Pantry → Amazon, Thrive Market. Grocery → Walmart, Target. Specialty → Amazon, Thrive (future: halal partners).
  * @param {string} ingredientId - Normalized ingredient ID
  * @param {string} countryCode - User's country code
- * @param {string} zipCode - Optional zip code
- * @returns {Promise<Array<string>>} - Array of platform names in priority order
+ * @returns {string[]} - Provider ids in priority order (max MAX_LINKS_PER_INGREDIENT)
  */
-export async function selectAffiliatePlatforms(ingredientId, countryCode = 'US', zipCode = null) {
-  const ingredientType = categorizeIngredient(ingredientId);
-  const platforms = [];
-  
-  // Check platform availability
-  const instacartAvailable = await isInstacartAvailable(countryCode, zipCode);
-  const amazonAvailable = isAmazonAvailable(countryCode);
-  const thriveAvailable = isThriveMarketAvailable(countryCode);
+export function selectAffiliateProviders(ingredientId, countryCode = 'US') {
+  const productFit = categorizeIngredient(ingredientId);
+  const enabled = getEnabledProviders();
 
-  // Decision Logic
-
-  // 1. Fresh ingredients → Prefer Instacart (local delivery)
-  if (ingredientType === 'fresh') {
-    if (instacartAvailable) {
-      platforms.push('instacart');
-    }
-    if (amazonAvailable) {
-      platforms.push('amazon'); // Fallback
-    }
-    return platforms.slice(0, 3); // Max 3
-  }
-
-  // 2. Pantry goods → Show multiple options
-  if (ingredientType === 'pantry') {
-    // If Instacart available, include it (convenience)
-    if (instacartAvailable) {
-      platforms.push('instacart');
-    }
-    
-    // Always include Amazon (widest selection)
-    if (amazonAvailable) {
-      platforms.push('amazon');
-    }
-    
-    // Thrive Market only for pantry + US
-    if (thriveAvailable && ingredientType === 'pantry') {
-      platforms.push('thrivemarket');
-    }
-    
-    return platforms.slice(0, 3); // Max 3
-  }
-
-  // 3. Specialty items → Amazon + Instacart (if available)
-  if (ingredientType === 'specialty') {
-    if (amazonAvailable) {
-      platforms.push('amazon');
-    }
-    if (instacartAvailable) {
-      platforms.push('instacart');
-    }
-    return platforms.slice(0, 3);
-  }
-
-  // 4. Unknown → Default to Amazon, then Instacart
-  if (amazonAvailable) {
-    platforms.push('amazon');
-  }
-  if (instacartAvailable) {
-    platforms.push('instacart');
-  }
-
-  return platforms.slice(0, 3); // Max 3
-}
-
-/**
- * Route affiliate links based on region and ingredient
- * Filters and prioritizes affiliate links from conversion result
- * 
- * @param {Array} affiliateLinks - All affiliate links from conversion
- * @param {string} ingredientId - Normalized ingredient ID
- * @param {string} countryCode - User's country code
- * @param {string} zipCode - Optional zip code
- * @returns {Promise<Array>} - Filtered and prioritized affiliate links (max 3)
- */
-export async function routeAffiliateLinks(affiliateLinks = [], ingredientId, countryCode = 'US', zipCode = null) {
-  if (!affiliateLinks || affiliateLinks.length === 0) {
-    return [];
-  }
-
-  // Get preferred platforms for this ingredient and region
-  const preferredPlatforms = await selectAffiliatePlatforms(ingredientId, countryCode, zipCode);
-
-  // Filter links to preferred platforms
-  const filteredLinks = affiliateLinks.filter(link => 
-    preferredPlatforms.includes(link.platform?.name || link.platform)
+  const inRegion = enabled.filter((p) => isProviderAvailableInRegion(p.id, countryCode));
+  const withFit = inRegion.filter((p) =>
+    p.product_fit && (p.product_fit.includes(productFit) || p.product_fit.includes(PRODUCT_FIT.SPECIALTY))
   );
 
-  // Sort by platform priority
-  const platformPriority = {};
-  preferredPlatforms.forEach((platform, index) => {
-    platformPriority[platform] = index;
-  });
+  const providersToConsider = withFit.length > 0 ? withFit : inRegion;
+  const sorted = [...providersToConsider].sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99));
 
-  const sortedLinks = filteredLinks.sort((a, b) => {
-    const platformA = a.platform?.name || a.platform || '';
-    const platformB = b.platform?.name || b.platform || '';
-    
-    // Featured links first
-    if (a.is_featured && !b.is_featured) return -1;
-    if (!a.is_featured && b.is_featured) return 1;
-    
-    // Then by platform priority
-    const priorityA = platformPriority[platformA] ?? 99;
-    const priorityB = platformPriority[platformB] ?? 99;
-    
-    if (priorityA !== priorityB) {
-      return priorityA - priorityB;
-    }
-    
-    // Then by click count
-    return (b.click_count || 0) - (a.click_count || 0);
-  });
-
-  return sortedLinks.slice(0, 3); // Max 3 links
+  return sorted.slice(0, MAX_LINKS_PER_INGREDIENT).map((p) => p.id);
 }
 
 /**
- * Auto-detect region and route affiliate links
- * Convenience function that combines detection and routing
- * 
- * @param {Array} affiliateLinks - All affiliate links from conversion
+ * Route and rank affiliate links: filter to enabled providers in region, match product fit, sort, limit to 3.
+ * @param {Array} affiliateLinks - Raw links (each has platform object or platform id)
  * @param {string} ingredientId - Normalized ingredient ID
- * @returns {Promise<Array>} - Filtered and prioritized affiliate links
+ * @param {string} countryCode - User's country code
+ * @returns {Array} - Filtered and sorted links (max 3)
+ */
+export async function routeAffiliateLinks(affiliateLinks = [], ingredientId, countryCode = 'US') {
+  if (!affiliateLinks || affiliateLinks.length === 0) return [];
+
+  const preferredIds = selectAffiliateProviders(ingredientId, countryCode);
+
+  const getPlatformId = (link) => link.platform?.id || link.platform?.name || link.platform;
+
+  const filtered = affiliateLinks.filter((link) => {
+    const id = getPlatformId(link);
+    const provider = id ? getProviderById(id) : null;
+    return provider && provider.enabled && preferredIds.includes(id);
+  });
+
+  const priority = {};
+  preferredIds.forEach((id, index) => {
+    priority[id] = index;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
+    const idA = getPlatformId(a);
+    const idB = getPlatformId(b);
+    if (a.is_featured && !b.is_featured) return -1;
+    if (!a.is_featured && b.is_featured) return 1;
+    return (priority[idA] ?? 99) - (priority[idB] ?? 99);
+  });
+
+  return sorted.slice(0, MAX_LINKS_PER_INGREDIENT);
+}
+
+/**
+ * Auto-detect region and route affiliate links.
  */
 export async function autoRouteAffiliateLinks(affiliateLinks = [], ingredientId) {
+  const { detectUserRegion } = await import('./regionDetection');
   const region = await detectUserRegion();
-  return routeAffiliateLinks(affiliateLinks, ingredientId, region.countryCode, region.zipCode);
+  return routeAffiliateLinks(affiliateLinks, ingredientId, region.countryCode);
 }

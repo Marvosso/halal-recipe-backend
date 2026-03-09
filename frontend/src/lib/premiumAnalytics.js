@@ -9,10 +9,15 @@
  * - Feature usage by premium users
  */
 
-import { v4 as uuidv4 } from 'uuid';
-
 const SESSION_ID_KEY = 'analytics_session_id';
 const CONSENT_KEY = 'analytics_consent';
+
+/**
+ * Generate a random string for session ID
+ */
+function generateRandomId() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 /**
  * Generates or retrieves a session ID
@@ -22,7 +27,7 @@ function getSessionId() {
   
   let sessionId = sessionStorage.getItem(SESSION_ID_KEY);
   if (!sessionId) {
-    sessionId = `sess_${Date.now()}_${uuidv4().slice(0, 8)}`;
+    sessionId = `sess_${Date.now()}_${generateRandomId().slice(0, 8)}`;
     sessionStorage.setItem(SESSION_ID_KEY, sessionId);
   }
   return sessionId;

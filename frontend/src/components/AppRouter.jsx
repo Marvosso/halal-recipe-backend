@@ -2,12 +2,17 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import HomePage from "../pages/HomePage";
+import SharePage from "../pages/SharePage";
+import MyHalalRecipesPage from "../pages/MyHalalRecipesPage";
 import IsItHalalPage from "../pages/IsItHalalPage";
 import HalalSubstitutesPage from "../pages/HalalSubstitutesPage";
 import HowItWorksPage from "../pages/HowItWorksPage";
 import AboutPage from "../pages/AboutPage";
 import AppWrapper from "./AppWrapper";
 import SEOFooter from "./SEOFooter";
+
+// Config-driven ingredient page (e.g. /is-soy-sauce-halal, /is-gelatin-halal)
+const IsIngredientHalalPage = lazy(() => import("../pages/IsIngredientHalalPage"));
 
 // Lazy load SEO ingredient pages
 const IsGelatinHalalPage = lazy(() => import("../pages/IsGelatinHalalPage"));
@@ -40,6 +45,8 @@ function AppRouter() {
           <Route path="/halal-substitutes" element={<><HalalSubstitutesPage /><SEOFooter /></>} />
           <Route path="/how-it-works" element={<><HowItWorksPage /><SEOFooter /></>} />
           <Route path="/about" element={<><AboutPage /><SEOFooter /></>} />
+          <Route path="/my-halal-recipes" element={<><MyHalalRecipesPage /><SEOFooter /></>} />
+          <Route path="/share" element={<SharePage />} />
           
           {/* SEO Ingredient Pages - Lazy Loaded */}
           <Route 
@@ -74,6 +81,15 @@ function AppRouter() {
             element={
               <Suspense fallback={<SEOPageLoader />}>
                 <IsWineVinegarHalalPage />
+                <SEOFooter />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/is-:slug-halal" 
+            element={
+              <Suspense fallback={<SEOPageLoader />}>
+                <IsIngredientHalalPage />
                 <SEOFooter />
               </Suspense>
             } 

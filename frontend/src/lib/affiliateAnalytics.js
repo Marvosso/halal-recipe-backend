@@ -100,15 +100,60 @@ export async function trackSubstituteClick(ingredientId, substituteId, source = 
 }
 
 /**
- * Track affiliate link click
- * Fired when user clicks an affiliate link
- * 
+ * Track substitute viewed (purchase card shown for a halal replacement).
+ * Use with affiliate_provider_shown and affiliate_click for CTR: clicks / substitute_views.
+ *
+ * @param {string} originalId - Original haram ingredient ID
+ * @param {string} substituteId - Halal substitute ingredient ID
+ * @param {string[]} providerIds - List of affiliate provider ids shown (e.g. ['amazon','walmart'])
+ */
+export async function trackSubstituteViewed(originalId, substituteId, providerIds = []) {
+  if (!originalId || !substituteId) return;
+
+  const region = await getRegion();
+  const event = {
+    event: 'substitute_viewed',
+    props: {
+      ingredient_id: originalId,
+      substitute_id: substituteId,
+      providers_shown: providerIds,
+      region: region,
+    },
+  };
+  sendAnalyticsEvent(event);
+}
+
+/**
+ * Track which affiliate providers were shown for a substitute (for CTR per provider).
+ *
+ * @param {string} substituteId - Halal substitute ingredient ID
+ * @param {string[]} providerIds - List of affiliate provider ids shown
+ */
+export async function trackAffiliateProviderShown(substituteId, providerIds = []) {
+  if (!substituteId || !providerIds || providerIds.length === 0) return;
+
+  const region = await getRegion();
+  const event = {
+    event: 'affiliate_provider_shown',
+    props: {
+      substitute_id: substituteId,
+      providers: providerIds,
+      region: region,
+    },
+  };
+  sendAnalyticsEvent(event);
+}
+
+/**
+ * Track affiliate link click.
+ * CTR = affiliate_click events / substitute_viewed (or affiliate_provider_shown) events.
+ *
  * @param {string} ingredientId - Original haram ingredient ID
  * @param {string} substituteId - Halal substitute ingredient ID
- * @param {string} platform - 'amazon' | 'instacart' | 'thrivemarket'
+ * @param {string} platform - Provider id (e.g. 'amazon' | 'walmart' | 'target' | 'thrivemarket')
  * @param {string} linkId - Affiliate link ID (for tracking specific links)
  * @param {boolean} isFeatured - Whether link was featured
- * @param {string} ingredientType - 'fresh' | 'pantry' | 'specialty'
+ * @param {string} ingredientType - 'pantry' | 'grocery' | 'specialty'
  */
 export async function trackAffiliateClick(
   ingredientId,
@@ -130,8 +175,8 @@ export async function trackAffiliateClick(
       link_id: linkId || 'unknown',
       is_featured: isFeatured,
       ingredient_type: ingredientType,
-      region: region
-    }
+      region: region,
+    },
   };
 
   sendAnalyticsEvent(event);

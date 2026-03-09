@@ -1,0 +1,194 @@
+.share-halal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: shareHalalFadeIn 0.2s ease;
+}
+
+@keyframes shareHalalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.share-halal-modal {
+  background: var(--card-bg);
+  border-radius: 20px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--primary-green);
+  overflow: hidden;
+  animation: shareHalalSlideIn 0.25s ease;
+}
+
+@keyframes shareHalalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.share-halal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.share-halal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  font-family: "Inter", sans-serif;
+}
+
+.share-halal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.share-halal-close:hover {
+  background: var(--green-bg);
+  color: var(--primary-green);
+}
+
+.share-halal-card-preview {
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  margin: 0 1rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+}
+
+.share-card-inner {
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+}
+
+.share-card-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.share-card-section {
+  margin-bottom: 0.75rem;
+}
+
+.share-card-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.share-card-list {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.share-card-branding {
+  margin: 1rem 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-green);
+}
+
+.share-halal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0 1.5rem 1rem;
+}
+
+.share-action-btn {
+  flex: 1;
+  min-width: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.share-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.share-action-btn.whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.share-action-btn.whatsapp:hover {
+  background: #20bd5a;
+}
+
+.share-action-btn.instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+}
+
+.share-action-btn.instagram:hover {
+  opacity: 0.95;
+}
+
+.share-action-btn.copy-link {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.share-action-btn.copy-link:hover {
+  background: var(--green-dark);
+}
+
+.share-halal-hint {
+  padding: 0 1.5rem 1.5rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-family: "Inter", sans-serif;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .share-halal-actions {
+    flex-direction: column;
+  }
+  .share-action-btn {
+    min-width: 100%;
+  }
+}

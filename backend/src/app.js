@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import convertRouter from "./routes/convert.js";
+import affiliateRouter from "./routes/affiliate.js";
 
 const app = express();
 
@@ -22,5 +23,8 @@ app.get("/health", (req, res) => {
 
 // Conversion route
 app.use("/convert", convertRouter);
+
+// Monetization: affiliate providers + ingredient substitute links (provider-agnostic)
+app.use("/api/affiliate", affiliateRouter);
 
 export default app;

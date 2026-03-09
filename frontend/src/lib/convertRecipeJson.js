@@ -13,7 +13,9 @@ import { FEATURES } from "./featureFlags";
 import halalKnowledge from "../data/halal_knowledge.json";
 import { formatIngredientName } from "./ingredientDisplay";
 import { getAffiliateLinksForSubstitutes, buildAffiliateUrl } from "./affiliateService";
+import { MAX_LINKS_PER_INGREDIENT } from "../config/affiliateProviderConfig";
 import { applySubstitutionLimit, shouldShowAdvancedSubstitutionFeatures } from "./featureGating";
+import { getRankedSubstitutes } from "./substitutionRanking";
 
 /**
  * Normalize ingredient name for lookup
@@ -89,18 +91,27 @@ function detectIngredientsInText(recipeText, userPreferences = {}) {
           
           // Only add if ingredient is haram or conditional
           if (engineResult.status === "haram" || engineResult.status === "conditional") {
-            // Get replacement ingredient ID (first alternative)
-            const replacementId = entry?.alternatives?.[0] || engineResult.alternatives?.[0] || null;
-            
+            // Ranked substitutes (3–5) with metadata; fallback to knowledge alternatives
+            const rankedSubstitutes = getRankedSubstitutes(normalizedKey, { maxCount: 5 });
+            const replacementId =
+              (rankedSubstitutes[0] && rankedSubstitutes[0].id) ||
+              entry?.alternatives?.[0] ||
+              engineResult.alternatives?.[0] ||
+              null;
+            const alternatives = rankedSubstitutes.length > 0
+              ? rankedSubstitutes.map((s) => s.id)
+              : (engineResult.alternatives || entry?.alternatives || []);
+
             detected.push({
               ingredient_id: normalizedKey, // Internal ID (snake_case)
               ingredient: normalizedKey, // Keep for backward compatibility
               normalizedName: normalizedKey,
               matchedTerm: term, // Store the actual term that matched in the recipe text
               status: engineResult.status,
-              replacement_id: replacementId, // Replacement ingredient ID
+              replacement_id: replacementId, // Replacement ingredient ID (top-ranked)
               replacement: replacementId, // Keep for backward compatibility (will be formatted in UI)
-              alternatives: engineResult.alternatives || entry?.alternatives || [],
+              alternatives,
+              ranked_substitutes: rankedSubstitutes, // Full ranked list with why_it_works, rank_score, etc.
               // Extract replacement ratio and culinary notes
               replacementRatio: engineResult.replacementRatio || entry?.conversion_ratio || null,
               culinaryNotes: engineResult.culinaryNotes || null,
@@ -372,11 +383,11 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
     
     const allSubstituteIds = [...new Set([...substituteIds, ...allAlternativeIds])];
     
-    // Fetch affiliate links (limit to 3 per substitute)
+    // Fetch affiliate links (limit per substitute from config; single-provider mode = 1)
     const affiliateLinksMap = await getAffiliateLinksForSubstitutes(
       allSubstituteIds, 
       'US', // TODO: Get from user preferences or geolocation
-      3 // Max 3 links per substitute
+      MAX_LINKS_PER_INGREDIENT
     );
     
     // STEP 3: CALCULATE confidence score (pure scoring, uses FINAL conversion state)
@@ -421,14 +432,14 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
           replacementId !== "Halal alternative needed" && 
           replacementId.trim() !== "" &&
           affiliateLinksMap[replacementId]) {
-        // Get affiliate links for this substitute (limit to 1-3)
-        const links = affiliateLinksMap[replacementId].slice(0, 3);
+        // Get affiliate links for this substitute (limit from config; 1 in single-provider mode)
+        const links = affiliateLinksMap[replacementId].slice(0, MAX_LINKS_PER_INGREDIENT);
         substituteAffiliateLinks = links.map(link => ({
           id: link.id,
-          platform: link.platform.name,
-          platform_display: link.platform.display_name,
-          platform_color: link.platform.color_hex,
-          url: buildAffiliateUrl(link),
+          platform: link.platform?.name ?? link.platform,
+          platform_display: link.platform?.display_name ?? link.platform_display,
+          platform_color: link.platform?.color_hex ?? link.platform_color,
+          url: link.url || buildAffiliateUrl(link),
           search_query: link.search_query,
           is_featured: link.is_featured || false
         }));
@@ -457,26 +468,34 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
         }
       }
       
-      // Get 1-3 halal substitutes with affiliate links
+      // Ranked substitutes (3–5) with why_it_works; fallback to plain alternatives
+      const rankedSubstitutes = item.ranked_substitutes || [];
       const allAlternatives = item.alternatives || [];
-      const substitutesWithLinks = allAlternatives
-        .slice(0, 3) // Limit to 3 substitutes
-        .map(altId => {
-          const altLinks = affiliateLinksMap[altId] || [];
-          return {
-            id: altId,
-            name: formatIngredientName(altId),
-            affiliate_links: altLinks.slice(0, 3).map(link => ({
-              id: link.id,
-              platform: link.platform.name,
-              platform_display: link.platform.display_name,
-              platform_color: link.platform.color_hex,
-              url: buildAffiliateUrl(link),
-              search_query: link.search_query,
-              is_featured: link.is_featured || false
-            }))
-          };
-        });
+      const substituteList = rankedSubstitutes.length > 0
+        ? rankedSubstitutes.slice(0, 5)
+        : allAlternatives.slice(0, 5).map((id) => ({ id, why_it_works: "", rank_score: 0 }));
+
+      const substitutesWithLinks = substituteList.map((sub) => {
+        const altId = typeof sub === "string" ? sub : sub.id;
+        const altLinks = affiliateLinksMap[altId] || [];
+        return {
+          id: altId,
+          name: formatIngredientName(altId),
+          why_it_works: typeof sub === "object" && sub.why_it_works ? sub.why_it_works : undefined,
+          rank_score: typeof sub === "object" && sub.rank_score != null ? sub.rank_score : undefined,
+          flavor_similarity: typeof sub === "object" && sub.flavor_similarity != null ? sub.flavor_similarity : undefined,
+          availability: typeof sub === "object" && sub.availability ? sub.availability : undefined,
+          affiliate_links: altLinks.slice(0, MAX_LINKS_PER_INGREDIENT).map(link => ({
+            id: link.id,
+            platform: link.platform?.name ?? link.platform,
+            platform_display: link.platform?.display_name ?? link.platform_display,
+            platform_color: link.platform?.color_hex ?? link.platform_color,
+            url: link.url || buildAffiliateUrl(link),
+            search_query: link.search_query,
+            is_featured: link.is_featured || false
+          }))
+        };
+      });
       
       return {
         ingredient_id: item.ingredient_id || item.ingredient, // Internal ID
@@ -507,6 +526,7 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
         // Add knowledge engine fields
         inheritedFrom: item.engineResult?.inheritedFrom,
         alternatives: allAlternatives, // All alternatives (for display)
+        ranked_substitutes: item.ranked_substitutes || [], // Ranked 3–5 with why_it_works, rank_score
         eli5: item.engineResult?.eli5 || item.engineResult?.simpleExplanation,
         simpleExplanation: item.engineResult?.simpleExplanation || item.engineResult?.eli5,
         trace: item.engineResult?.trace || [],

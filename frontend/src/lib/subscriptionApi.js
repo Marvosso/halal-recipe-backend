@@ -11,7 +11,7 @@ import { getAxiosInstance } from '../api/axiosConfig';
  */
 export async function getSubscriptionStatus() {
   try {
-    const axios = getAxiosInstance();
+    const axios = await getAxiosInstance();
     const response = await axios.get('/api/subscriptions/status');
     return response.data;
   } catch (error) {
@@ -34,7 +34,7 @@ export async function getSubscriptionStatus() {
  */
 export async function createCheckoutSession(plan = 'monthly') {
   try {
-    const axios = getAxiosInstance();
+    const axios = await getAxiosInstance();
     const response = await axios.post('/api/subscriptions/create-checkout', { plan });
     return response.data.checkout_url || response.data.checkoutUrl;
   } catch (error) {
@@ -49,7 +49,7 @@ export async function createCheckoutSession(plan = 'monthly') {
  */
 export async function cancelSubscription() {
   try {
-    const axios = getAxiosInstance();
+    const axios = await getAxiosInstance();
     const response = await axios.post('/api/subscriptions/cancel');
     return response.data;
   } catch (error) {
@@ -64,7 +64,7 @@ export async function cancelSubscription() {
  */
 export async function reactivateSubscription() {
   try {
-    const axios = getAxiosInstance();
+    const axios = await getAxiosInstance();
     const response = await axios.post('/api/subscriptions/reactivate');
     return response.data;
   } catch (error) {
@@ -80,7 +80,7 @@ export async function reactivateSubscription() {
  */
 export async function changeSubscriptionPlan(newPlan) {
   try {
-    const axios = getAxiosInstance();
+    const axios = await getAxiosInstance();
     const response = await axios.post('/api/subscriptions/change-plan', { newPlan });
     return response.data;
   } catch (error) {

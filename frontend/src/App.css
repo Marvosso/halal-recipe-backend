@@ -344,6 +344,20 @@ input[type="text"]::placeholder {
   flex-wrap: wrap;
 }
 
+/* Scan ingredients: show only on mobile (camera/capture) */
+.scan-ingredients-btn {
+  display: none;
+}
+@media (max-width: 768px) {
+  .scan-ingredients-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 40px;
+  }
+}
+
 .demo-btn {
   padding: 0.75rem 1.5rem;
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
@@ -500,6 +514,114 @@ button:hover::before {
   box-shadow: var(--shadow-gold);
 }
 
+/* Batch / meal plan conversion */
+.batch-convert-section {
+  margin: 1rem 0 2rem;
+  border: 1px solid var(--border-light, #eee);
+  border-radius: 12px;
+  background: var(--bg-secondary, #f8f8f8);
+  overflow: hidden;
+}
+.batch-convert-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text-color, #1a1a1a);
+}
+.batch-convert-summary::-webkit-details-marker { display: none; }
+.batch-convert-summary svg { flex-shrink: 0; }
+.batch-convert-inner {
+  padding: 0 1rem 1rem;
+}
+.batch-convert-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #555);
+}
+.batch-convert-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  border: 1px solid var(--border-light, #ddd);
+  border-radius: 8px;
+  resize: vertical;
+  margin-bottom: 0.75rem;
+}
+.batch-convert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--primary-green, #0d9488);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.batch-convert-btn:disabled { opacity: 0.8; cursor: not-allowed; }
+.batch-convert-btn .spin-inline { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.batch-result {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light, #eee);
+}
+.batch-result-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-color, #1a1a1a);
+}
+.batch-result-note {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #555);
+}
+.batch-result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.batch-result-card {
+  padding: 1rem;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-light, #eee);
+  border-radius: 10px;
+}
+.batch-result-label {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-green, #0d9488);
+}
+.batch-result-error {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--error-color, #b91c1c);
+}
+.batch-result-recipe {
+  margin: 0;
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-color, #1a1a1a);
+  max-height: 200px;
+  overflow-y: auto;
+}
+.batch-result-issues {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #555);
+}
+
 button:hover {
   background: linear-gradient(135deg, var(--green-dark) 0%, var(--primary-green) 100%);
   transform: translateY(-3px);
@@ -633,6 +755,44 @@ button:hover .button-icon-inline {
   background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold);
+}
+
+.share-halal-version-btn {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  gap: 0.5rem;
+}
+
+.share-halal-version-btn:hover {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--primary-green) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* App footer and disclaimer */
+.app-footer {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.app-footer .footer-text {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  font-family: "Inter", sans-serif;
+}
+
+.app-footer .footer-disclaimer {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+  line-height: 1.4;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Results section - card style with fade-in animation */
@@ -1878,8 +2038,20 @@ table tbody tr:nth-child(even):hover {
   color: var(--green-primary);
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid var(--green-lightest);
-  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.saved-recipes-view-all {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary-green, var(--green-primary));
+  margin-left: auto;
+  text-decoration: none;
+}
+.saved-recipes-view-all:hover {
+  text-decoration: underline;
 }
 
 .saved-recipes-list {

@@ -1,0 +1,90 @@
+.share-page {
+  min-height: 100vh;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.share-page-card {
+  max-width: 480px;
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--primary-green);
+}
+
+.share-page-recipe-title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  font-family: "Inter", sans-serif;
+}
+
+.share-page-section {
+  margin-bottom: 1rem;
+}
+
+.share-page-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  font-family: "Inter", sans-serif;
+}
+
+.share-page-list {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  font-family: "Inter", sans-serif;
+}
+
+.share-page-branding {
+  margin: 1.5rem 0 1.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  font-family: "Inter", sans-serif;
+}
+
+.share-page-cta {
+  display: inline-block;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.share-page-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.share-page-error {
+  text-align: center;
+}
+
+.share-page-error h1 {
+  color: var(--text-color);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.share-page-error p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}

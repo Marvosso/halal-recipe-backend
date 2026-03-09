@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./App.css";
 import { getAxiosInstance } from "./api/axiosConfig";
 import halalArabicImage from "./assets/halal-arabic.png";
 import halalInputIcon from "./assets/halal-input.png";
 import halalOutputIcon from "./assets/halal-output.png";
 import halalSavedIcon from "./assets/halal-saved.png";
-import { RefreshCw, ClipboardCopy, Download, Bookmark, Star, ThumbsUp, ThumbsDown, Play, Share2 } from "lucide-react";
+import { RefreshCw, ClipboardCopy, Download, Bookmark, Star, ThumbsUp, ThumbsDown, Play, Share2, Camera, CalendarDays, ChevronDown, ChevronUp } from "lucide-react";
 import HaramIngredient from "./components/HaramIngredient";
 import QuickLookup from "./components/QuickLookup";
 import IngredientTreeDisplay from "./components/IngredientTreeDisplay";
+import IngredientSources from "./components/IngredientSources";
 import HalalStandardPanel from "./components/HalalStandardPanel";
 import CommunityTips from "./components/CommunityTips";
 import TabNavigation from "./components/TabNavigation";
 import IngredientShopSection from "./components/IngredientShopSection";
 import AffiliateLink from "./components/AffiliateLink";
 import AffiliateLinkGroup from "./components/AffiliateLinkGroup";
+import SubstitutePurchaseCard from "./components/SubstitutePurchaseCard";
+import ContextualAd from "./components/ContextualAd";
+import { MAX_LINKS_PER_INGREDIENT } from "./config/affiliateProviderConfig";
 import SocialFeed from "./components/SocialFeed";
 import UserProfile from "./components/UserProfile";
 import CreatePostModal from "./components/CreatePostModal";
+import ShareHalalModal from "./components/ShareHalalModal";
+import IngredientScanModal from "./components/IngredientScanModal";
 import AuthModal from "./components/AuthModal";
 import { t } from "./lib/i18n";
 import { useAnalytics } from "./hooks/useAnalytics";
@@ -25,17 +32,20 @@ import logger from "./utils/logger";
 import { evaluateItem } from "./lib/halalEngine";
 import { FEATURES } from "./lib/featureFlags";
 import { convertRecipeWithJson } from "./lib/convertRecipeJson";
+import { convertBatchRecipes } from "./lib/batchConversion";
 import { formatIngredientName } from "./lib/ingredientDisplay";
 import { isPremiumUser, canConvert, getRemainingConversionsThisMonth, getConversionsThisMonth, trackConversion } from "./lib/subscription";
 import { checkConversionLimit, canUseAdvancedSubstitutions, canUseStrictHalalMode, canExportShoppingList } from "./lib/featureGating";
-import { trackConversionLimitHit, trackUpgradeModalView, trackUpgradeAttempt } from "./lib/premiumAnalytics";
+import { trackConversionLimitHit, trackUpgradeModalView, trackUpgradeAttempt, trackConversionLimitApproach } from "./lib/premiumAnalytics";
 import { isAuthenticated, getUserData, getCurrentUser, clearAuth } from "./api/authApi";
 import UpgradePrompt from "./components/UpgradePrompt";
 import PremiumUpgradeModal from "./components/PremiumUpgradeModal";
-import { createRecipe } from "./api/recipesApi";
+import { createRecipe, getMyRecipes, deleteRecipe as deleteRecipeApi } from "./api/recipesApi";
 
 function App() {
   const analytics = useAnalytics();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState("");
   const [converted, setConverted] = useState("");
   const [issues, setIssues] = useState([]);
@@ -53,11 +63,19 @@ function App() {
   });
   const [activeTab, setActiveTab] = useState("convert");
   const [showCreatePostModal, setShowCreatePostModal] = useState(false);
+  const [showShareHalalModal, setShowShareHalalModal] = useState(false);
+  const [showScanModal, setShowScanModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("login"); // "login" or "register"
   const [user, setUser] = useState(null);
   const [isOffline, setIsOffline] = useState(false);
   const [showCachedResult, setShowCachedResult] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeTriggerFeature, setUpgradeTriggerFeature] = useState(null);
+  const [mealPlanInput, setMealPlanInput] = useState("");
+  const [batchResult, setBatchResult] = useState(null);
+  const [batchLoading, setBatchLoading] = useState(false);
+  const [batchSectionOpen, setBatchSectionOpen] = useState(false);
 
   // Listen for auth modal trigger and other events
   useEffect(() => {
@@ -107,6 +125,23 @@ function App() {
         logger.error("Error loading user:", err);
         clearAuth();
       });
+      // Load saved recipes from account when authenticated
+      getMyRecipes().then((list) => {
+        if (Array.isArray(list) && list.length > 0) {
+          const normalized = list.map((r) => ({
+            id: r.id,
+            title: r.title || "Untitled Recipe",
+            original: r.originalRecipe ?? r.original_recipe ?? r.original ?? "",
+            converted: r.convertedRecipe ?? r.converted_recipe ?? r.converted ?? "",
+            savedAt: r.createdAt ?? r.created_at ?? r.savedAt,
+            isPublic: r.isPublic ?? r.is_public ?? false,
+          }));
+          setSavedRecipes(normalized);
+          if (typeof Storage !== "undefined") {
+            localStorage.setItem("halalRecipes", JSON.stringify(normalized));
+          }
+        }
+      }).catch(() => { /* fall back to localStorage below */ });
     } else {
       // Try loading from localStorage
       const userData = getUserData();
@@ -122,7 +157,7 @@ function App() {
         const strictness = localStorage.getItem("halalStrictnessLevel");
         const school = localStorage.getItem("halalSchoolOfThought");
         
-        if (saved) {
+        if (saved && !isAuthenticated()) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed)) {
             setSavedRecipes(parsed);
@@ -151,6 +186,14 @@ function App() {
     // Track initial page view
     analytics.trackPageView(activeTab);
   }, []);
+
+  // When navigating from "My Halal Recipes" with a recipe to load, open it in the converter
+  useEffect(() => {
+    const toLoad = location.state?.loadRecipe;
+    if (!toLoad || (!toLoad.original && !toLoad.converted)) return;
+    loadSavedRecipe(toLoad);
+    navigate(location.pathname, { replace: true, state: {} });
+  }, [location.state, location.pathname, navigate]);
 
   // Handle mobile tap to show/hide tooltips
   useEffect(() => {
@@ -458,7 +501,6 @@ function App() {
       
       // Track conversion limit approach
       if (!isPremiumUser() && conversionResult.remaining <= 2 && conversionResult.remaining > 0) {
-        const { trackConversionLimitApproach } = require("./lib/premiumAnalytics");
         trackConversionLimitApproach(conversionResult.used, conversionResult.limit, conversionResult.remaining);
       }
       
@@ -524,6 +566,27 @@ function App() {
     }
   };
 
+  const handleBatchConvert = async () => {
+    const trimmed = (mealPlanInput || "").trim();
+    if (!trimmed) {
+      alert("Paste your meal plan or multiple recipes first.");
+      return;
+    }
+    setBatchLoading(true);
+    setBatchResult(null);
+    setError("");
+    try {
+      const result = await convertBatchRecipes(trimmed, halalSettings);
+      setBatchResult(result);
+      setBatchSectionOpen(true);
+    } catch (err) {
+      logger.error("Batch conversion error:", err);
+      setError(err?.message || "Meal plan conversion failed.");
+    } finally {
+      setBatchLoading(false);
+    }
+  };
+
   const copyToClipboard = () => {
     const textToCopy = converted || "";
     if (!textToCopy) {
@@ -549,7 +612,7 @@ function App() {
     URL.revokeObjectURL(url);
   };
 
-  const saveRecipe = () => {
+  const saveRecipe = async () => {
     const originalText = recipe || "";
     const convertedText = converted || "";
     
@@ -558,26 +621,56 @@ function App() {
       return;
     }
 
+    const titleFromRecipe = originalText.split(/\n/)[0]?.trim() || "Converted Recipe";
+    const title = titleFromRecipe.length > 80 ? titleFromRecipe.slice(0, 77) + "..." : titleFromRecipe;
+
     try {
+      if (isAuthenticated()) {
+        const recipeData = {
+          title,
+          originalRecipe: originalText,
+          convertedRecipe: convertedText,
+          isPublic: false,
+          visibility: "private",
+        };
+        const saved = await createRecipe(recipeData);
+        const newRecipe = {
+          id: saved?.id || Date.now().toString(),
+          title: saved?.title || title,
+          original: saved?.originalRecipe ?? saved?.original_recipe ?? originalText,
+          converted: saved?.convertedRecipe ?? saved?.converted_recipe ?? convertedText,
+          savedAt: saved?.createdAt ?? saved?.created_at ?? new Date().toISOString(),
+          isPublic: false,
+        };
+        const updated = [...savedRecipes, newRecipe];
+        setSavedRecipes(updated);
+        if (typeof Storage !== "undefined") {
+          localStorage.setItem("halalRecipes", JSON.stringify(updated));
+        }
+        alert("Halal version saved to your account!");
+        return;
+      }
+
       if (typeof Storage !== "undefined") {
         const newRecipe = {
           id: Date.now().toString(),
           original: originalText,
           converted: convertedText,
+          title,
           savedAt: new Date().toISOString(),
           isPublic: false,
         };
-
         const updated = [...savedRecipes, newRecipe];
         setSavedRecipes(updated);
         localStorage.setItem("halalRecipes", JSON.stringify(updated));
-        alert("Recipe saved successfully!");
+        alert("Recipe saved locally. Log in to save to your account and sync across devices.");
       } else {
         alert("LocalStorage is not available in your browser.");
       }
     } catch (err) {
       logger.error("Error saving recipe:", err);
-      alert("Error saving recipe. Please try again.");
+      const msg = err?.error || err?.message || "Error saving recipe. Please try again.";
+      alert(typeof msg === "string" ? msg : "Error saving recipe. Please try again.");
     }
   };
 
@@ -662,33 +755,36 @@ function App() {
     }
   };
 
-  const deleteSavedRecipe = (id, isPublic = false) => {
+  const deleteSavedRecipe = async (id, isPublic = false) => {
     if (!id) return;
 
     try {
-      if (typeof Storage !== "undefined") {
-        if (isPublic) {
-          const updated = publicRecipes.filter((r) => r?.id !== id);
-          setPublicRecipes(updated);
+      if (isPublic) {
+        const updated = publicRecipes.filter((r) => r?.id !== id);
+        setPublicRecipes(updated);
+        if (typeof Storage !== "undefined") {
           localStorage.setItem("halalPublicRecipes", JSON.stringify(updated));
-        } else {
-          const updated = savedRecipes.filter((r) => r?.id !== id);
-          setSavedRecipes(updated);
+        }
+      } else {
+        if (isAuthenticated()) {
+          await deleteRecipeApi(id);
+        }
+        const updated = savedRecipes.filter((r) => r?.id !== id);
+        setSavedRecipes(updated);
+        if (typeof Storage !== "undefined") {
           localStorage.setItem("halalRecipes", JSON.stringify(updated));
         }
-        
-        // If viewing the deleted recipe, clear the view
-        if (viewingRecipe === id) {
-          setViewingRecipe(null);
-          setRecipe("");
-          setConverted("");
-          setIssues([]);
-          setConfidence(0);
-        }
+      }
+      if (viewingRecipe === id) {
+        setViewingRecipe(null);
+        setRecipe("");
+        setConverted("");
+        setIssues([]);
+        setConfidence(0);
       }
     } catch (err) {
       logger.error("Error deleting recipe:", err);
-      alert("Error deleting recipe. Please try again.");
+      alert(err?.error || err?.message || "Error deleting recipe. Please try again.");
     }
   };
 
@@ -782,32 +878,18 @@ function App() {
     }, 100);
   };
 
-  const handleDemoRecipe = () => {
-    const demoRecipe = `Chicken Carbonara
+  /** Sample recipe for "Try Example" — reduces blank-state friction for new users. */
+  const EXAMPLE_RECIPE = `Spaghetti
+Eggs
+Pancetta
+Parmesan
+White wine`;
 
-Ingredients:
-- 500g pasta
-- 200g bacon, diced
-- 2 cloves garlic
-- 1 cup white wine
-- 1 cup heavy cream
-- 100g parmesan cheese
-- 2 eggs
-- Salt and pepper to taste
-
-Instructions:
-1. Cook pasta according to package directions.
-2. In a large pan, cook bacon until crispy.
-3. Add garlic and cook for 1 minute.
-4. Deglaze with white wine.
-5. Add cream and bring to a simmer.
-6. Toss with cooked pasta.
-7. Add beaten eggs and parmesan.
-8. Season with salt and pepper.`;
-    
-    setRecipe(demoRecipe);
+  const handleTryExample = () => {
+    setRecipe(EXAMPLE_RECIPE);
+    setError("");
     setTimeout(() => {
-      handleConvert(demoRecipe, false);
+      handleConvert(EXAMPLE_RECIPE, true);
     }, 100);
   };
 
@@ -1074,12 +1156,21 @@ Instructions:
               />
               <div className="input-actions">
                 <button
-                  onClick={handleDemoRecipe}
-                  className="demo-btn"
-                  aria-label="Load demo recipe"
+                  onClick={handleTryExample}
+                  className="try-example-btn demo-btn"
+                  aria-label="Try example recipe and convert"
                 >
                   <Play className="button-icon-inline" aria-hidden="true" />
-                  <span>{t("demoRecipe")}</span>
+                  <span>{t("tryExample")}</span>
+                </button>
+                <button
+                  type="button"
+                  className="scan-ingredients-btn"
+                  onClick={() => setShowScanModal(true)}
+                  aria-label="Scan ingredients from label photo"
+                >
+                  <Camera className="button-icon-inline" aria-hidden="true" />
+                  <span>Scan ingredients</span>
                 </button>
               </div>
             </div>
@@ -1088,6 +1179,69 @@ Instructions:
               <RefreshCw className="button-icon-inline" aria-hidden="true" />
               <span>{t("convert")}</span>
             </button>
+
+            <details
+              className="batch-convert-section"
+              open={batchSectionOpen}
+              onToggle={(e) => setBatchSectionOpen(e.target.open)}
+            >
+              <summary className="batch-convert-summary">
+                <CalendarDays size={18} aria-hidden="true" />
+                <span>Convert meal plan (multiple recipes)</span>
+                {batchResult ? ` — ${batchResult.total} recipe${batchResult.total !== 1 ? "s" : ""} converted` : ""}
+                {batchSectionOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </summary>
+              <div className="batch-convert-inner">
+                <p className="batch-convert-hint">Paste a weekly meal plan or several recipes. Use day names (Monday:, Tuesday:), numbers (1. Recipe... 2. Recipe...), or separate each recipe with a blank line.</p>
+                <textarea
+                  className="batch-convert-textarea"
+                  placeholder={"Monday: Pasta with bacon\nIngredients: ...\n\nTuesday: Chicken curry\n..."}
+                  value={mealPlanInput}
+                  onChange={(e) => setMealPlanInput(e.target.value)}
+                  rows={5}
+                  aria-label="Meal plan or multiple recipes"
+                />
+                <button
+                  type="button"
+                  className="batch-convert-btn"
+                  onClick={handleBatchConvert}
+                  disabled={batchLoading}
+                  aria-label="Convert meal plan"
+                >
+                  {batchLoading ? (
+                    <>
+                      <RefreshCw size={18} className="spin-inline" aria-hidden="true" />
+                      <span>Converting…</span>
+                    </>
+                  ) : (
+                    <>
+                      <CalendarDays size={18} aria-hidden="true" />
+                      <span>Convert meal plan</span>
+                    </>
+                  )}
+                </button>
+                {batchResult && batchResult.recipes && batchResult.recipes.length > 0 && (
+                  <div className="batch-result" role="region" aria-label="Weekly halal meal plan">
+                    <h3 className="batch-result-title">Your halal meal plan</h3>
+                    {batchResult.truncated && (
+                      <p className="batch-result-note">Showing first 14 recipes. Rest omitted.</p>
+                    )}
+                    <div className="batch-result-list">
+                      {batchResult.recipes.map((item, idx) => (
+                        <div key={idx} className="batch-result-card">
+                          <h4 className="batch-result-label">{item.label}</h4>
+                          {item.error && <p className="batch-result-error" role="alert">{item.error}</p>}
+                          <pre className="batch-result-recipe">{item.convertedText}</pre>
+                          {item.issues && item.issues.length > 0 && (
+                            <p className="batch-result-issues">{item.issues.length} ingredient{item.issues.length !== 1 ? "s" : ""} adjusted (halal substitutes applied).</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </details>
 
             {safeConverted && (
               <div className="results fade-in">
@@ -1108,13 +1262,17 @@ Instructions:
                       <Download className="button-icon-inline" aria-hidden="true" />
                       <span>{t("download")}</span>
                     </button>
-                    <button onClick={saveRecipe} className="gold-outline" aria-label="Save recipe privately">
+                    <button onClick={saveRecipe} className="gold-outline save-halal-version-btn" aria-label="Save halal version to your account">
                       <Bookmark className="button-icon-inline" aria-hidden="true" />
-                      <span>Save Privately</span>
+                      <span>Save Halal Version</span>
                     </button>
                     <button onClick={handleShareToCommunity} className="share-community-btn" aria-label="Share to community">
                       <Share2 className="button-icon-inline" aria-hidden="true" />
                       <span>Share to Feed</span>
+                    </button>
+                    <button onClick={() => setShowShareHalalModal(true)} className="share-halal-version-btn" aria-label="Share halal version">
+                      <Share2 className="button-icon-inline" aria-hidden="true" />
+                      <span>Share Halal Version</span>
                     </button>
                   </div>
                   <div className="feedback-section">
@@ -1250,25 +1408,40 @@ Instructions:
                                       <span className="detail-label">Original:</span>
                                       <span className="detail-value">{formatIngredientName(issue?.ingredient_id || issue?.ingredient || "—")}</span>
                                     </div>
-                                    <div className="ingredient-detail-row">
-                                      <span className="detail-label">Halal Replacement:</span>
-                                      <div className="detail-value-with-shop">
-                                        <span className="detail-value">{formatIngredientName(issue?.replacement_id || issue?.replacement || "—")}</span>
-                                      </div>
-                                    </div>
-                                    
-                                    {/* Affiliate Links for Substitute (ONLY on substitute, NEVER on haram ingredient) */}
-                                    {issue?.substitute_affiliate_links && 
-                                     issue.substitute_affiliate_links.length > 0 && 
-                                     issue?.replacement_id && 
-                                     issue.replacement_id !== "Halal alternative needed" && (
-                                      <div className="ingredient-detail-row">
-                                        <AffiliateLinkGroup
-                                          affiliateLinks={issue.substitute_affiliate_links}
-                                          ingredientName={formatIngredientName(issue.replacement_id || issue.replacement)}
-                                          variant="card"
+                                    {/* Purchase card: replacement + buy options (up to 3) when links exist; otherwise replacement row only */}
+                                    {issue?.replacement_id && issue.replacement_id !== "Halal alternative needed" && (
+                                      (issue?.substitute_affiliate_links?.length > 0) ? (
+                                        <SubstitutePurchaseCard
+                                          originalId={issue?.ingredient_id || issue?.ingredient}
+                                          originalName={formatIngredientName(issue?.ingredient_id || issue?.ingredient)}
+                                          replacementId={issue.replacement_id}
+                                          replacementName={formatIngredientName(issue.replacement_id || issue?.replacement)}
+                                          affiliateLinks={(issue?.substitute_affiliate_links || []).slice(0, MAX_LINKS_PER_INGREDIENT)}
                                           showDisclosure={true}
+                                          whyItWorks={(() => {
+                                            const r = (issue?.ranked_substitutes || []).find(s => s.id === issue.replacement_id);
+                                            if (r?.why_it_works) return r.why_it_works;
+                                            const sw = (issue?.substitutes_with_links || []).find(s => s.id === issue.replacement_id);
+                                            return sw?.why_it_works || "";
+                                          })()}
                                         />
+                                      ) : (
+                                        <div className="ingredient-detail-row">
+                                          <span className="detail-label">Halal Replacement:</span>
+                                          <span className="detail-value">{formatIngredientName(issue.replacement_id || issue?.replacement || "—")}</span>
+                                          {(() => {
+                                            const r = (issue?.ranked_substitutes || []).find(s => s.id === issue.replacement_id);
+                                            return r?.why_it_works ? (
+                                              <p className="substitute-why-inline" style={{ marginTop: 6, marginBottom: 0, fontSize: "0.9em", color: "var(--text-secondary)" }}>{r.why_it_works}</p>
+                                            ) : null;
+                                          })()}
+                                        </div>
+                                      )
+                                    )}
+                                    {(!issue?.replacement_id || issue.replacement_id === "Halal alternative needed") && (
+                                      <div className="ingredient-detail-row">
+                                        <span className="detail-label">Halal Replacement:</span>
+                                        <span className="detail-value">{formatIngredientName(issue?.replacement_id || issue?.replacement || "—")}</span>
                                       </div>
                                     )}
                                     
@@ -1344,15 +1517,25 @@ Instructions:
                                       </div>
                                     )}
                                     
-                                    {/* Alternatives from Knowledge Model */}
-                                    {(issue?.alternatives && Array.isArray(issue.alternatives) && issue.alternatives.length > 0) && (
+                                    {/* Alternatives: ranked with why_it_works when available */}
+                                    {((issue?.ranked_substitutes && issue.ranked_substitutes.length > 0) || (issue?.alternatives && Array.isArray(issue.alternatives) && issue.alternatives.length > 0)) && (
                                       <div className="ingredient-detail-row">
-                                        <span className="detail-label">Alternatives:</span>
+                                        <span className="detail-label">More substitutes:</span>
                                         <div className="alternatives-list">
                                           <ul>
-                                            {issue.alternatives.map((alt, idx) => (
-                                              <li key={idx}>{formatIngredientName(alt)}</li>
-                                            ))}
+                                            {(issue?.ranked_substitutes && issue.ranked_substitutes.length > 0
+                                              ? issue.ranked_substitutes.map((sub, idx) => (
+                                                  <li key={sub.id || idx}>
+                                                    <strong>{formatIngredientName(sub.id)}</strong>
+                                                    {sub.why_it_works && (
+                                                      <span className="alternatives-why"> — {sub.why_it_works}</span>
+                                                    )}
+                                                  </li>
+                                                ))
+                                              : issue.alternatives.map((alt, idx) => (
+                                                  <li key={idx}>{formatIngredientName(alt)}</li>
+                                                ))
+                                            )}
                                           </ul>
                                           {/* Show upgrade prompt if more alternatives available (free users) */}
                                           {issue.allAlternatives && 
@@ -1378,14 +1561,15 @@ Instructions:
                                     )}
                                     
                                     {/* Explanation - Religious justification (why ingredient is not halal) */}
-                                    {issue?.explanation ? (
-                                      <div className="ingredient-detail-row">
+                                    {(issue?.explanation || issue?.reason || issue?.notes || issue?.eli5) && (
+                                      <div className="ingredient-detail-row explanation-row">
                                         <span className="detail-label">Explanation:</span>
                                         <span className="detail-value">
-                                          {issue.explanation}
+                                          {issue.explanation || issue.reason || issue.notes || issue.eli5}
                                         </span>
                                       </div>
-                                    ) : null}
+                                    )}
+                                    <IngredientSources status={issue?.status || "conditional"} ingredientId={issue?.ingredient_id || issue?.ingredient} />
                                     
                                     {/* Derived Ingredient Warning */}
                                     {issue?.trace && Array.isArray(issue.trace) && issue.trace.length > 1 && (
@@ -1488,6 +1672,8 @@ Instructions:
                     </div>
                   )}
                 </div>
+
+                <ContextualAd placement="recipe_conversion" className="conversion-results-ad" />
               </div>
             )}
 
@@ -1508,6 +1694,7 @@ Instructions:
                 <h2>
                   <Star className="section-icon-inline" aria-hidden="true" />
                   <span>{t("savedRecipes")}</span>
+                  <Link to="/my-halal-recipes" className="saved-recipes-view-all">View all</Link>
                 </h2>
                 <div className="saved-recipes-list">
                   {safeSavedRecipes.map((recipeItem) => renderRecipeCard(recipeItem, false))}
@@ -1538,6 +1725,18 @@ Instructions:
         halalSettings={halalSettings}
       />
 
+      {/* Share Halal Version Modal */}
+      <ShareHalalModal
+        isOpen={showShareHalalModal}
+        onClose={() => setShowShareHalalModal(false)}
+        recipe={recipe}
+        converted={converted}
+        issues={safeIssues}
+      />
+
+      {/* Ingredient scan (mobile): camera → OCR → halal summary */}
+      <IngredientScanModal open={showScanModal} onClose={() => setShowScanModal(false)} />
+
       {/* Auth Modal */}
       <AuthModal
         isOpen={showAuthModal}
@@ -1562,6 +1761,7 @@ Instructions:
 
       <footer className="app-footer">
         <p className="footer-text">© {new Date().getFullYear()} Halal Kitchen. Providing halal recipe conversion guidance.</p>
+        <p className="footer-disclaimer">This tool provides general guidance and is not a religious ruling (fatwa). Consult a local scholar for complex cases.</p>
       </footer>
     </div>
   );
