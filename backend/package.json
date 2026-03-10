@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "test": "node --test src/__tests__/hybrid.deterministic.test.js src/__tests__/hybrid.modifiers.test.js src/__tests__/hybrid.explanation.test.js src/__tests__/hybrid.substitution.test.js src/__tests__/hybrid.ocr.test.js src/__tests__/hybrid.regression.test.js src/__tests__/hybrid.integration.test.js"
   },
   "dependencies": {
     "axios": "^1.13.2",

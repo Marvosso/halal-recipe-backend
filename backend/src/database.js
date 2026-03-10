@@ -146,7 +146,12 @@ export async function initializeDatabase() {
     await client.query(`
       CREATE INDEX IF NOT EXISTS idx_recipes_visibility ON recipes(visibility)
     `);
-    
+
+    // Save Halal Version: substitutions used (optional column for existing DBs)
+    await client.query(`
+      ALTER TABLE recipes ADD COLUMN IF NOT EXISTS substitutions_used JSONB DEFAULT '[]'
+    `);
+
     client.release();
     console.log("✅ Database schema initialized");
     console.log("   - app_health table ready");

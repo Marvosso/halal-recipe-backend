@@ -41,6 +41,7 @@ import { isAuthenticated, getUserData, getCurrentUser, clearAuth } from "./api/a
 import UpgradePrompt from "./components/UpgradePrompt";
 import PremiumUpgradeModal from "./components/PremiumUpgradeModal";
 import { createRecipe, getMyRecipes, deleteRecipe as deleteRecipeApi } from "./api/recipesApi";
+import SaveHalalVersionButton from "./components/SaveHalalVersionButton";
 
 function App() {
   const analytics = useAnalytics();
@@ -615,7 +616,7 @@ function App() {
   const saveRecipe = async () => {
     const originalText = recipe || "";
     const convertedText = converted || "";
-    
+
     if (!originalText || !convertedText) {
       alert("No recipe to save. Please convert a recipe first.");
       return;
@@ -624,12 +625,25 @@ function App() {
     const titleFromRecipe = originalText.split(/\n/)[0]?.trim() || "Converted Recipe";
     const title = titleFromRecipe.length > 80 ? titleFromRecipe.slice(0, 77) + "..." : titleFromRecipe;
 
+    // Build substitutions_used from current issues (ingredient, replacement, alternatives, status)
+    const substitutionsUsed = Array.isArray(issues) ? issues.map((issue) => ({
+      ingredient: issue.ingredient ?? issue.haramIngredient ?? issue.normalizedName,
+      replacement: issue.replacement ?? issue.replacement_id,
+      alternatives: issue.alternatives ?? [],
+      status: issue.status ?? issue.halal_status,
+      notes: issue.notes ?? issue.explanation,
+    })) : [];
+
     try {
       if (isAuthenticated()) {
         const recipeData = {
           title,
           originalRecipe: originalText,
           convertedRecipe: convertedText,
+          ingredients: [],
+          instructions: "",
+          confidenceScore: confidence,
+          substitutionsUsed,
           isPublic: false,
           visibility: "private",
         };
@@ -640,6 +654,8 @@ function App() {
           original: saved?.originalRecipe ?? saved?.original_recipe ?? originalText,
           converted: saved?.convertedRecipe ?? saved?.converted_recipe ?? convertedText,
           savedAt: saved?.createdAt ?? saved?.created_at ?? new Date().toISOString(),
+          issues: saved?.substitutions_used ?? saved?.substitutionsUsed ?? saved?.issues ?? substitutionsUsed,
+          confidenceScore: saved?.confidence_score ?? saved?.confidenceScore ?? confidence,
           isPublic: false,
         };
         const updated = [...savedRecipes, newRecipe];
@@ -658,6 +674,8 @@ function App() {
           converted: convertedText,
           title,
           savedAt: new Date().toISOString(),
+          issues: substitutionsUsed,
+          confidenceScore: confidence,
           isPublic: false,
         };
         const updated = [...savedRecipes, newRecipe];
@@ -682,10 +700,11 @@ function App() {
     }
 
     let recipeText = "";
+    const hasSavedConversion = savedRecipe.converted && typeof savedRecipe.converted === "string";
+    const savedIssues = savedRecipe.issues ?? savedRecipe.substitutions_used ?? savedRecipe.substitutionsUsed;
 
     // Handle both old format (original/converted) and new format (title/ingredients/instructions)
     if (savedRecipe.original && typeof savedRecipe.original === "string") {
-      // Old format: use original text for conversion
       recipeText = savedRecipe.original.trim();
     } else if (
       savedRecipe.ingredients &&
@@ -693,39 +712,35 @@ function App() {
       savedRecipe.instructions &&
       typeof savedRecipe.instructions === "string"
     ) {
-      // New format: combine into recipe text
-      const title = savedRecipe.title && typeof savedRecipe.title === "string" 
-        ? savedRecipe.title.trim() 
-        : "";
+      const title = savedRecipe.title && typeof savedRecipe.title === "string" ? savedRecipe.title.trim() : "";
       const ingredients = savedRecipe.ingredients.trim();
       const instructions = savedRecipe.instructions.trim();
-      const notes = savedRecipe.notes && typeof savedRecipe.notes === "string"
-        ? savedRecipe.notes.trim()
-        : "";
-      
+      const notes = savedRecipe.notes && typeof savedRecipe.notes === "string" ? savedRecipe.notes.trim() : "";
       recipeText = `${title ? `${title}\n\n` : ""}Ingredients:\n${ingredients}\n\nInstructions:\n${instructions}${notes ? `\n\nNotes:\n${notes}` : ""}`;
     } else {
       alert("Invalid recipe format. Recipe data is missing required fields.");
       return;
     }
 
-    // Validate that we have recipe text
     if (!recipeText || recipeText.trim() === "") {
       alert("Recipe text is empty. Cannot load recipe.");
       return;
     }
 
-    // Set recipe state first to update the input field
     setRecipe(recipeText);
-
-    // Set viewing recipe ID
     setViewingRecipe(savedRecipe.id || null);
-    
-    // Automatically trigger conversion with the recipe text
-    // Pass isAutoConvert=true to prevent alert from showing
+
+    // Reopen: show saved converted text and substitutions without re-converting
+    if (hasSavedConversion && (savedIssues != null || savedRecipe.converted)) {
+      setConverted(savedRecipe.converted.trim());
+      setIssues(Array.isArray(savedIssues) ? savedIssues : []);
+      setConfidence(savedRecipe.confidenceScore ?? savedRecipe.confidence_score ?? 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // No saved conversion: run conversion
     await handleConvert(recipeText, true);
-    
-    // Scroll to top to show the loaded recipe
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -1262,10 +1277,7 @@ White wine`;
                       <Download className="button-icon-inline" aria-hidden="true" />
                       <span>{t("download")}</span>
                     </button>
-                    <button onClick={saveRecipe} className="gold-outline save-halal-version-btn" aria-label="Save halal version to your account">
-                      <Bookmark className="button-icon-inline" aria-hidden="true" />
-                      <span>Save Halal Version</span>
-                    </button>
+                    <SaveHalalVersionButton disabled={!converted} onClick={saveRecipe} />
                     <button onClick={handleShareToCommunity} className="share-community-btn" aria-label="Share to community">
                       <Share2 className="button-icon-inline" aria-hidden="true" />
                       <span>Share to Feed</span>

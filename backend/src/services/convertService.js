@@ -1,4 +1,4 @@
-import { convertRecipe } from "../utils/halalConverter.js";
+import { convertRecipe, convertRecipeHybrid } from "../utils/halalConverter.js";
 
 /**
  * Service layer for recipe conversion
@@ -30,8 +30,8 @@ export const convertService = async (recipe, userPreferences = {}) => {
 
   try {
     const conversionStart = Date.now();
-    // Call the converter function with user preferences
-    const result = convertRecipe(recipeText, userPreferences);
+    // Hybrid path: rule engine (DB) first, JSON fallback. Status is never from AI.
+    const result = await convertRecipeHybrid(recipeText, userPreferences);
     const conversionTime = Date.now() - conversionStart;
 
     // Lightweight server-side timing log (console only)

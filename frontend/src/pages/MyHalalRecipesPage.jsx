@@ -29,6 +29,8 @@ function MyHalalRecipesPage() {
               original: r.originalRecipe ?? r.original_recipe ?? r.original ?? "",
               converted: r.convertedRecipe ?? r.converted_recipe ?? r.converted ?? "",
               savedAt: r.createdAt ?? r.created_at ?? r.savedAt,
+              issues: r.issues ?? r.substitutions_used ?? r.substitutionsUsed ?? [],
+              confidenceScore: r.confidenceScore ?? r.confidence_score,
             }))
           : [];
         setRecipes(normalized);

@@ -15,7 +15,6 @@ function HomePage() {
           content="Convert any recipe to halal-compliant with our free AI-powered recipe converter. Get halal substitutes, Islamic dietary guidance, and confidence scores. Start converting recipes today!" 
         />
         <meta name="keywords" content="halal recipe converter, halal food, halal substitutes, Islamic cooking, halal ingredients, recipe conversion" />
-        <meta name="impact-site-verification" value="fe2ab7e4-4056-474d-ad17-32d276d1e47c" />
         <link rel="canonical" href="https://halalkitchen.app/" />
       </Helmet>
       
@@ -49,7 +48,6 @@ function HomePage() {
 
         <section className="seo-content">
           <article>
-            <p>Impact-Site-Verification: fe2ab7e4-4056-474d-ad17-32d276d1e47c</p>
             <h2>Why Use Halal Kitchen?</h2>
             <p>
               Halal Kitchen is the easiest way to make any recipe halal-compliant. 

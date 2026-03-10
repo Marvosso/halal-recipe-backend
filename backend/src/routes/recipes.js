@@ -22,8 +22,11 @@ const isDbAvailable = () => {
   }
 };
 
-// Format DB recipe for frontend (id, userId, title, originalRecipe, convertedRecipe, createdAt, etc.)
+// Format DB recipe for frontend (id, userId, title, originalRecipe, convertedRecipe, substitutions_used, created_at, etc.)
 function formatDbRecipeForFrontend(r) {
+  const subs = r.substitutions_used != null
+    ? (Array.isArray(r.substitutions_used) ? r.substitutions_used : [])
+    : [];
   return {
     id: r.id,
     user_id: r.user_id,
@@ -45,6 +48,9 @@ function formatDbRecipeForFrontend(r) {
     mediaUrls: r.media_url ? [r.media_url] : [],
     confidence_score: r.confidence_score || 0,
     confidenceScore: r.confidence_score || 0,
+    substitutions_used: subs,
+    substitutionsUsed: subs,
+    issues: subs,
     is_public: r.visibility === "public",
     isPublic: r.visibility === "public",
     visibility: r.visibility,
@@ -186,6 +192,8 @@ router.post("/", authenticateToken, async (req, res) => {
       hashtags,
       mediaUrls,
       confidenceScore,
+      substitutionsUsed,
+      substitutions_used,
     } = req.body;
 
     // Validation
@@ -206,6 +214,7 @@ router.post("/", authenticateToken, async (req, res) => {
     // Try PostgreSQL first
     if (isDbAvailable()) {
       try {
+        const subs = Array.isArray(substitutionsUsed) ? substitutionsUsed : (Array.isArray(substitutions_used) ? substitutions_used : []);
         const recipeData = {
           userId: req.user.id || req.user.userId,
           title: title.trim(),
@@ -218,43 +227,19 @@ router.post("/", authenticateToken, async (req, res) => {
           mediaUrl: media_url,
           confidenceScore: confidenceScore || 0,
           visibility: visibility,
+          substitutionsUsed: subs,
         };
 
         const dbRecipe = await createRecipeDB(recipeData);
 
-        // Format response for frontend compatibility
-        const formattedRecipe = {
-          id: dbRecipe.id,
-          user_id: dbRecipe.user_id,
-          userId: dbRecipe.user_id, // Backward compatibility
+        // Format response for frontend compatibility (use shared formatter when available)
+        const formattedRecipe = formatDbRecipeForFrontend({
+          ...dbRecipe,
           username: req.user.displayName || req.user.username || req.user.email?.split("@")[0],
-          title: dbRecipe.title,
-          original_recipe: dbRecipe.original_recipe || "",
-          originalRecipe: dbRecipe.original_recipe || "", // Backward compatibility
-          converted_recipe: dbRecipe.converted_recipe || "",
-          convertedRecipe: dbRecipe.converted_recipe || "", // Backward compatibility
-          description: dbRecipe.instructions || "",
-          ingredients: dbRecipe.ingredients || [],
-          category: dbRecipe.category || "Main Course",
-          hashtags: dbRecipe.hashtags || [],
-          media_url: dbRecipe.media_url,
-          mediaUrls: dbRecipe.media_url ? [dbRecipe.media_url] : [], // Backward compatibility
-          mediaType: "image",
-          confidence_score: dbRecipe.confidence_score || 0,
-          confidenceScore: dbRecipe.confidence_score || 0, // Backward compatibility
-          is_public: dbRecipe.visibility === "public",
-          isPublic: dbRecipe.visibility === "public", // Backward compatibility
-          visibility: dbRecipe.visibility,
-          likes: dbRecipe.likes || 0,
-          comments: dbRecipe.comments || 0,
-          shares: dbRecipe.shares || 0,
-          isLiked: false,
-          isSaved: false,
-          created_at: dbRecipe.created_at,
-          createdAt: dbRecipe.created_at, // Backward compatibility
-          updated_at: dbRecipe.updated_at,
-          updatedAt: dbRecipe.updated_at, // Backward compatibility
-        };
+        });
+        formattedRecipe.mediaType = "image";
+        formattedRecipe.isLiked = false;
+        formattedRecipe.isSaved = false;
 
         return res.status(201).json({
           message: visibility === "public" ? "Recipe posted successfully" : "Recipe saved successfully",

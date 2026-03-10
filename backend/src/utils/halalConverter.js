@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { getIngredientDetails, buildIngredientLookup } from "./halalEngine.js";
+import { evaluateIngredient } from "../services/ingredientRuleEngine.js";
 
 // Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -88,6 +89,69 @@ const detectHaramIngredients = (recipeText, userPreferences = {}) => {
       }
     }
   });
+
+  return detected;
+};
+
+/**
+ * Map rule engine result to the same shape as getIngredientDetails-based detection.
+ */
+function mapRuleResultToDetected(item, ruleResult, searchTerm) {
+  const status = ruleResult.halal_status;
+  const alternatives = ruleResult.alternatives || [];
+  const replacement = alternatives[0] || null;
+  const severity = status === "haram" ? "high" : "medium";
+  const confidence = ruleResult.confidence != null ? ruleResult.confidence : (status === "haram" ? 0.1 : 0.5);
+  return {
+    ingredient: searchTerm,
+    normalizedName: ruleResult.base_slug || item.normalizedKey,
+    haramIngredient: searchTerm,
+    replacement,
+    alternatives,
+    notes: ruleResult.notes || "",
+    severity,
+    confidence,
+    quranReference: "",
+    hadithReference: "",
+    inheritedFrom: null,
+    eli5: ruleResult.notes || "",
+    trace: ruleResult.source === "rule_engine" ? [`Rule: ${ruleResult.base_slug} + ${ruleResult.modifier_slug}`] : [],
+    status,
+    references: [],
+    matchedTerm: searchTerm,
+  };
+}
+
+/**
+ * Detect haram/conditional ingredients using hybrid architecture: rule engine first, then JSON fallback.
+ * Async so we can call evaluateIngredient (DB). Status is never from AI.
+ */
+const detectHaramIngredientsHybrid = async (recipeText, userPreferences = {}) => {
+  if (!recipeText || typeof recipeText !== "string") {
+    return [];
+  }
+
+  const lookupList = loadIngredientList();
+  const detected = [];
+  const processed = new Set();
+
+  for (const item of lookupList) {
+    const searchTerm = item.searchTerm;
+    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`\\b${escapedTerm}\\b`, "gi");
+    if (!regex.test(recipeText)) continue;
+
+    const normalizedKey = item.normalizedKey;
+    if (processed.has(normalizedKey)) continue;
+    processed.add(normalizedKey);
+
+    const ruleResult = await evaluateIngredient(searchTerm, userPreferences);
+    const status = ruleResult.halal_status;
+    if (status !== "haram" && status !== "conditional") continue;
+
+    const mapped = mapRuleResultToDetected(item, ruleResult, searchTerm);
+    detected.push(mapped);
+  }
 
   return detected;
 };
@@ -244,7 +308,7 @@ const calculateConfidenceScore = ({ originalIngredients, replacements, unresolve
 };
 
 /**
- * Main conversion function
+ * Main conversion function (sync, legacy)
  * Converts recipe text by detecting and replacing haram ingredients using JSON knowledge base
  * Supports user preferences for strictness and school of thought
  * 
@@ -349,6 +413,94 @@ export const convertRecipe = (recipeText, userPreferences = {}) => {
   } catch (error) {
     console.error("Error in convertRecipe:", error);
     // Return safe fallback on error - still return original text even on error
+    return {
+      originalText: trimmedText,
+      convertedText: trimmedText,
+      issues: [],
+      confidenceScore: 0,
+    };
+  }
+};
+
+/**
+ * Hybrid conversion: rule engine (DB) for status first, JSON fallback. Status is never from AI.
+ * Use this as the default conversion path when DB is available.
+ */
+export const convertRecipeHybrid = async (recipeText, userPreferences = {}) => {
+  if (!recipeText || typeof recipeText !== "string") {
+    return {
+      originalText: "",
+      convertedText: "",
+      issues: [],
+      confidenceScore: 0,
+    };
+  }
+
+  const trimmedText = recipeText.trim();
+  if (trimmedText === "") {
+    return {
+      originalText: "",
+      convertedText: "",
+      issues: [],
+      confidenceScore: 0,
+    };
+  }
+
+  try {
+    const pipelineStart = Date.now();
+    const detectStart = Date.now();
+    const detectedIngredients = await detectHaramIngredientsHybrid(trimmedText, userPreferences);
+    const detectTime = Date.now() - detectStart;
+
+    const convertStart = Date.now();
+    const conversionResult = convertIngredients(trimmedText, detectedIngredients);
+    const { convertedText, replacements, unresolved } = conversionResult;
+    const convertTime = Date.now() - convertStart;
+
+    const scoreStart = Date.now();
+    const confidenceScore = calculateConfidenceScore({
+      originalIngredients: detectedIngredients,
+      replacements,
+      unresolved,
+    });
+    const scoreTime = Date.now() - scoreStart;
+    const totalTime = Date.now() - pipelineStart;
+
+    console.log(`[PERF] convertRecipeHybrid - Detect: ${detectTime}ms, Convert: ${convertTime}ms, Score: ${scoreTime}ms, Total: ${totalTime}ms`);
+
+    const issues = detectedIngredients.map((item) => {
+      const wasReplaced = replacements.some(r => r.original === (item.ingredient || item.matchedTerm));
+      const quranRef = item.quranReference || "";
+      const hadithRef = item.hadithReference || "";
+      const reference = [quranRef, hadithRef].filter(Boolean).join("; ") || "";
+      return {
+        ingredient: item.ingredient,
+        replacement: item.replacement || "No replacement available",
+        notes: item.notes || "",
+        severity: item.severity || "medium",
+        confidence: item.confidence ?? 0.5,
+        quranReference: quranRef,
+        hadithReference: hadithRef,
+        reference,
+        inheritedFrom: item.inheritedFrom,
+        alternatives: item.alternatives || [],
+        eli5: item.eli5,
+        trace: item.trace || [],
+        status: item.status || "haram",
+        references: item.references || [],
+        wasReplaced,
+      };
+    });
+
+    const finalConfidenceScore = confidenceScore === null ? 0 : confidenceScore;
+    return {
+      originalText: trimmedText,
+      convertedText,
+      issues,
+      confidenceScore: finalConfidenceScore,
+    };
+  } catch (error) {
+    console.error("Error in convertRecipeHybrid:", error);
     return {
       originalText: trimmedText,
       convertedText: trimmedText,

@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS recipes (
   hashtags TEXT[],
   media_url TEXT,
   confidence_score INTEGER DEFAULT 0,
+  substitutions_used JSONB DEFAULT '[]',
   visibility TEXT DEFAULT 'public' CHECK (visibility IN ('public', 'private')),
   likes INTEGER DEFAULT 0,
   comments INTEGER DEFAULT 0,
@@ -54,3 +55,4 @@ CREATE TABLE IF NOT EXISTS recipes (
 CREATE INDEX IF NOT EXISTS idx_profiles_user_id ON profiles(user_id);
 CREATE INDEX IF NOT EXISTS idx_recipes_user_id ON recipes(user_id);
 CREATE INDEX IF NOT EXISTS idx_recipes_visibility ON recipes(visibility);
+
