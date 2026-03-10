@@ -4,14 +4,23 @@
  */
 
 import express from 'express';
+import multer from 'multer';
 import { authenticateToken } from '../middleware/auth.js';
 import { requirePremium, attachFeatureLimits } from '../middleware/featureGate.js';
 import { hasPremiumAccess } from '../services/subscriptionService.js';
 import { checkConversionLimit, trackConversion } from '../services/conversionLimitService.js';
 import { getPool } from '../database.js';
 import convertService from '../services/convertService.js';
+import { classifyIngredient } from '../services/halalClassificationService.js';
+import { runPhotoScanPipeline } from '../services/photoScanPipelineService.js';
+import { extractTextFromImage } from '../services/ocrAdapter.js';
+import { ROUTE, shouldUseOCRCleanupAI } from '../services/aiRoutingService.js';
+import { getAIFeatureFlags, isFallbackAIEnabled } from '../config/aiFeatureFlags.js';
 
 const router = express.Router();
+
+// In-memory upload for scan (no disk write)
+const scanUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } });
 
 /**
  * POST /convert
@@ -58,6 +67,91 @@ router.post('/', authenticateToken, async (req, res) => {
     console.error('Error converting recipe:', error);
     res.status(500).json({ error: 'Failed to convert recipe' });
   }
+});
+
+/**
+ * POST /convert/classify-ingredient
+ * Hybrid halal classification: deterministic rule engine + AI-enhanced explanation and substitutes.
+ * Returns structured output; halal_status and confidence always from rules, not AI.
+ *
+ * Body: { ingredient: string, useOCRNormalization?: boolean, recipeContext?: object, intent?: string, ocrConfidence?: number }
+ * intent: simple_lookup | known_page | recipe_conversion | ocr_cleanup | ambiguous_fallback (optional; inferred from recipeContext if omitted)
+ * Response: { ingredient, modifiers, halal_status, confidence, explanation, warnings, substitutes }
+ * substitutes: { best: { name, score, reason, notes } | null, alternatives: Array<{ name, score, reason, notes }> }
+ */
+router.post('/classify-ingredient', authenticateToken, async (req, res) => {
+  try {
+    const { ingredient, useOCRNormalization, recipeContext, userPreferences, intent, ocrConfidence } = req.body || {};
+    if (!ingredient || typeof ingredient !== 'string') {
+      return res.status(400).json({ error: 'ingredient string is required' });
+    }
+    const result = await classifyIngredient(ingredient.trim(), {
+      userPreferences: userPreferences || {},
+      useOCRNormalization: Boolean(useOCRNormalization),
+      recipeContext: recipeContext || {},
+      intent: intent || undefined,
+      ocrConfidence: ocrConfidence != null ? Number(ocrConfidence) : undefined,
+    });
+    res.json(result);
+  } catch (error) {
+    console.error('Error classifying ingredient:', error);
+    res.status(500).json({ error: 'Failed to classify ingredient' });
+  }
+});
+
+/**
+ * POST /convert/scan-ingredients
+ * Photo scan pipeline: OCR text (or raw text) → parse → normalize → rule-engine evaluation.
+ * Body (JSON): { rawText: string, ocrConfidence?: number, useAINormalization?: boolean }
+ * Or multipart: field "image" (file) — then OCR runs server-side and pipeline uses extracted text.
+ * Response: { summary: { halal, conditional, haram, unknown }, ingredients: [...], ocr_confidence }
+ */
+router.post('/scan-ingredients', authenticateToken, scanUpload.single('image'), async (req, res) => {
+  try {
+    let rawText = '';
+    let ocrConfidence = 0.7;
+
+    const body = req.body && typeof req.body === 'object' ? req.body : {};
+    if (req.file && req.file.buffer) {
+      const { text, confidence } = await extractTextFromImage(req.file.buffer);
+      rawText = text || '';
+      ocrConfidence = typeof confidence === 'number' ? confidence : 0.5;
+    } else {
+      rawText = (body.rawText != null ? String(body.rawText) : '').trim();
+      if (body.ocrConfidence != null) ocrConfidence = Number(body.ocrConfidence);
+    }
+
+    if (!rawText) {
+      return res.status(400).json({
+        error: 'No text to analyze. Send rawText (JSON) or upload an image (multipart/form-data with field "image").',
+      });
+    }
+
+    const useOCRRoute = ocrConfidence < 0.5 ? ROUTE.AMBIGUOUS_FALLBACK : ROUTE.OCR_CLEANUP;
+    const aiCleanupAllowed =
+      shouldUseOCRCleanupAI(useOCRRoute, { ocrConfidence }) ||
+      (ocrConfidence < 0.5 && isFallbackAIEnabled());
+    const useAINormalization = (body.useAINormalization !== false) && aiCleanupAllowed;
+
+    const result = await runPhotoScanPipeline(rawText, {
+      userPreferences: body.userPreferences || {},
+      ocrConfidence,
+      useAINormalization,
+    });
+
+    res.json(result);
+  } catch (error) {
+    console.error('Error in scan-ingredients:', error);
+    res.status(500).json({ error: 'Failed to scan ingredients' });
+  }
+});
+
+/**
+ * GET /convert/ai-flags
+ * Expose AI feature flags (read-only). Env: AI_EXPLANATION_ENABLED, AI_SUBSTITUTES_ENABLED, AI_OCR_CLEANUP_ENABLED, AI_FALLBACK_ENABLED.
+ */
+router.get('/ai-flags', authenticateToken, (req, res) => {
+  res.json(getAIFeatureFlags());
 });
 
 /**
