@@ -12,6 +12,7 @@ import healthRouter from "./routes/health.js";
 import devRouter from "./routes/dev.js";
 import subscriptionsRouter from "./routes/subscriptions.js";
 import analyticsRouter from "./routes/analytics.js";
+import affiliateRouter from "./routes/affiliate.js";
 import { testConnection, initializeDatabase, closePool } from "./database.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -71,6 +72,7 @@ app.use("/api/recipes", recipesRouter);
 app.use("/api/health", healthRouter);
 app.use("/api/subscriptions", subscriptionsRouter);
 app.use("/api/analytics", analyticsRouter);
+app.use("/api/affiliate", affiliateRouter);
 app.use("/api/dev", devRouter); // ⚠️ Dev-only routes - remove or protect in production
 
 app.get("/health", (req, res) => res.json({ status: "ok" }));
@@ -87,6 +89,9 @@ function logRegisteredRoutes() {
   console.log("   GET    /api/profile/*");
   console.log("   GET    /api/recipes/*");
   console.log("   GET    /api/health/*");
+  console.log("   GET    /api/affiliate/providers");
+  console.log("   GET    /api/affiliate/links");
+  console.log("   POST   /api/affiliate/links/batch");
   console.log("   GET    /api/dev/*");
   console.log("   Static /uploads/*");
 }
