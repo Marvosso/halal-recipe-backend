@@ -58,3 +58,7 @@ export const convertService = async (recipe, userPreferences = {}) => {
     };
   }
 };
+
+// Stubs for premium routes (implement when needed)
+convertService.getAdvancedSubstitutions = async () => ({ alternatives: [] });
+convertService.generateShoppingList = async () => ({ items: [] });
