@@ -22,6 +22,7 @@ function __agentLog(payload) {
   try {
     fs.appendFileSync(__logPath, line);
   } catch (_) {}
+  console.log("[DEBUG 38872d]", payload.location, payload.message, payload.data ? JSON.stringify(payload.data) : "");
 }
 __agentLog({ location: "index.js:top", message: "imports done", hypothesisId: "H1" });
 // #endregion
@@ -176,6 +177,7 @@ process.on('SIGINT', async () => {
 startServer().catch((error) => {
   // #region agent log
   __agentLog({ location: "index.js:startServer.catch", message: "startServer failed", data: { message: error?.message, stack: error?.stack, name: error?.name }, hypothesisId: "H5" });
+  console.log("[DEBUG 38872d] EXIT_ERROR", error?.message || String(error));
   // #endregion
   console.error("❌ Failed to start server:", error);
   console.error("Error details:", error.stack);
