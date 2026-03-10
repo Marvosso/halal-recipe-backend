@@ -15,6 +15,17 @@ import analyticsRouter from "./routes/analytics.js";
 import affiliateRouter from "./routes/affiliate.js";
 import { testConnection, initializeDatabase, closePool } from "./database.js";
 
+// #region agent log
+const __logPath = "debug-38872d.log";
+function __agentLog(payload) {
+  const line = JSON.stringify({ sessionId: "38872d", ...payload, timestamp: Date.now() }) + "\n";
+  try {
+    fs.appendFileSync(__logPath, line);
+  } catch (_) {}
+}
+__agentLog({ location: "index.js:top", message: "imports done", hypothesisId: "H1" });
+// #endregion
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -101,12 +112,24 @@ const HOST = process.env.HOST || '0.0.0.0';
 
 // Initialize database connection and start server
 async function startServer() {
+  // #region agent log
+  __agentLog({ location: "index.js:startServer:entry", message: "startServer entered", hypothesisId: "H2" });
+  // #endregion
   // Test database connection
   const dbConnected = await testConnection();
+  // #region agent log
+  __agentLog({ location: "index.js:afterTestConnection", message: "testConnection done", data: { dbConnected }, hypothesisId: "H2" });
+  // #endregion
   
   if (dbConnected) {
     // Initialize database schema
+    // #region agent log
+    __agentLog({ location: "index.js:beforeInitDb", message: "about to initializeDatabase", hypothesisId: "H3" });
+    // #endregion
     await initializeDatabase();
+    // #region agent log
+    __agentLog({ location: "index.js:afterInitDb", message: "initializeDatabase done", hypothesisId: "H3" });
+    // #endregion
   } else {
     console.warn("⚠️  Server starting without database connection. Some features may be unavailable.");
   }
@@ -114,6 +137,9 @@ async function startServer() {
   // Log registered routes
   logRegisteredRoutes();
   
+  // #region agent log
+  __agentLog({ location: "index.js:beforeListen", message: "about to app.listen", data: { PORT, HOST }, hypothesisId: "H4" });
+  // #endregion
   // Start Express server
   app.listen(PORT, HOST, () => { 
     console.log(`\n🚀 Server running on http://${HOST}:${PORT}`);
@@ -148,6 +174,9 @@ process.on('SIGINT', async () => {
 
 // Start the server
 startServer().catch((error) => {
+  // #region agent log
+  __agentLog({ location: "index.js:startServer.catch", message: "startServer failed", data: { message: error?.message, stack: error?.stack, name: error?.name }, hypothesisId: "H5" });
+  // #endregion
   console.error("❌ Failed to start server:", error);
   console.error("Error details:", error.stack);
   process.exit(1);
