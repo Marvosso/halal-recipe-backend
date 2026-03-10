@@ -10,7 +10,7 @@ import { requirePremium, attachFeatureLimits } from '../middleware/featureGate.j
 import { hasPremiumAccess } from '../services/subscriptionService.js';
 import { checkConversionLimit, trackConversion } from '../services/conversionLimitService.js';
 import { getPool } from '../database.js';
-import { convertService } from '../services/convertService.js';
+import convertService from '../services/convertService.js';
 import { classifyIngredient } from '../services/halalClassificationService.js';
 import { runPhotoScanPipeline } from '../services/photoScanPipelineService.js';
 import { extractTextFromImage } from '../services/ocrAdapter.js';
