@@ -173,10 +173,10 @@ function CreatePostModal({ isOpen, onClose, onPost, originalRecipe, convertedRec
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="create-post-modal-title">
       <div className="create-post-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Share to Community</h2>
+          <h2 id="create-post-modal-title">Share to Community</h2>
           <button className="modal-close-btn" onClick={onClose} aria-label="Close">
             <X className="close-icon" />
           </button>

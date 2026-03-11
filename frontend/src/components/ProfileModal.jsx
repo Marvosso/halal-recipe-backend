@@ -89,6 +89,7 @@ function ProfileModal({ isOpen, onClose, title, children, ariaLabel }) {
       }}
       role="dialog"
       aria-modal="true"
+      aria-labelledby="profile-modal-title"
       aria-label={ariaLabel || title}
     >
       <div
@@ -97,7 +98,7 @@ function ProfileModal({ isOpen, onClose, title, children, ariaLabel }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="profile-modal-header">
-          <h2 className="profile-modal-title">{title}</h2>
+          <h2 id="profile-modal-title" className="profile-modal-title">{title}</h2>
           <button
             className="profile-modal-close"
             onClick={onClose}

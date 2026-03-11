@@ -110,11 +110,11 @@ function HalalStandardPanel({ onSettingsChange }) {
           onClick={() => setIsOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label="Halal Standard Settings"
+          aria-labelledby="halal-standard-dialog-title"
         >
           <div className="settings-panel" onClick={(e) => e.stopPropagation()}>
             <div className="settings-header">
-              <h2>My Halal Standard</h2>
+              <h2 id="halal-standard-dialog-title">My Halal Standard</h2>
               <button
                 className="settings-close-btn"
                 onClick={() => setIsOpen(false)}
