@@ -1,10 +1,10 @@
-import { convertRecipe, convertRecipeHybrid } from "../utils/halalConverter.js";
+import { convertRecipe } from "../utils/halalConverter.js";
 
 /**
  * Service layer for recipe conversion
  * Handles input validation and error handling before calling converter
  */
-const convertService = async (recipe, userPreferences = {}) => {
+export const convertService = async (recipe, userPreferences = {}) => {
   // Defensive checks for input
   if (recipe === null || recipe === undefined) {
     return {
@@ -30,8 +30,8 @@ const convertService = async (recipe, userPreferences = {}) => {
 
   try {
     const conversionStart = Date.now();
-    // Hybrid path: rule engine (DB) first, JSON fallback. Status is never from AI.
-    const result = await convertRecipeHybrid(recipeText, userPreferences);
+    // Call the converter function with user preferences
+    const result = convertRecipe(recipeText, userPreferences);
     const conversionTime = Date.now() - conversionStart;
 
     // Lightweight server-side timing log (console only)
@@ -59,9 +59,8 @@ const convertService = async (recipe, userPreferences = {}) => {
   }
 };
 
-// Stubs for premium routes (implement when needed)
+// Stubs for premium routes (convert.js calls these)
 convertService.getAdvancedSubstitutions = async () => ({ alternatives: [] });
 convertService.generateShoppingList = async () => ({ items: [] });
 
 export default convertService;
-export { convertService };
