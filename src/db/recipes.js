@@ -22,7 +22,8 @@ export async function createRecipe(recipeData) {
     hashtags,
     mediaUrl,
     confidenceScore,
-    visibility = "public"
+    visibility = "public",
+    substitutionsUsed = []
   } = recipeData;
 
   if (!userId || !title) {
@@ -37,9 +38,9 @@ export async function createRecipe(recipeData) {
       `INSERT INTO recipes (
         user_id, title, original_recipe, converted_recipe,
         ingredients, instructions, category, hashtags,
-        media_url, confidence_score, visibility
+        media_url, confidence_score, visibility, substitutions_used
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       RETURNING *`,
       [
         userId,
@@ -52,16 +53,22 @@ export async function createRecipe(recipeData) {
         hashtags || [],
         mediaUrl || null,
         confidenceScore || 0,
-        visibility
+        visibility,
+        Array.isArray(substitutionsUsed) ? JSON.stringify(substitutionsUsed) : "[]"
       ]
     );
 
-    // Parse JSONB ingredients back to object
+    // Parse JSONB ingredients and substitutions_used
     const recipe = result.rows[0];
     if (recipe.ingredients) {
-      recipe.ingredients = typeof recipe.ingredients === "string" 
+      recipe.ingredients = typeof recipe.ingredients === "string"
         ? JSON.parse(recipe.ingredients)
         : recipe.ingredients;
+    }
+    if (recipe.substitutions_used != null) {
+      recipe.substitutions_used = typeof recipe.substitutions_used === "string"
+        ? JSON.parse(recipe.substitutions_used)
+        : recipe.substitutions_used;
     }
 
     return recipe;
@@ -97,11 +104,16 @@ export async function getRecipeById(recipeId) {
     }
 
     const recipe = result.rows[0];
-    // Parse JSONB ingredients
+    // Parse JSONB ingredients and substitutions_used
     if (recipe.ingredients) {
       recipe.ingredients = typeof recipe.ingredients === "string"
         ? JSON.parse(recipe.ingredients)
         : recipe.ingredients;
+    }
+    if (recipe.substitutions_used != null) {
+      recipe.substitutions_used = typeof recipe.substitutions_used === "string"
+        ? JSON.parse(recipe.substitutions_used)
+        : recipe.substitutions_used;
     }
 
     return recipe;
@@ -131,12 +143,17 @@ export async function getPublicRecipes(limit = 50, offset = 0) {
       [limit, offset]
     );
 
-    // Parse JSONB ingredients for all recipes
+    // Parse JSONB ingredients and substitutions_used for all recipes
     return result.rows.map(recipe => {
       if (recipe.ingredients) {
         recipe.ingredients = typeof recipe.ingredients === "string"
           ? JSON.parse(recipe.ingredients)
           : recipe.ingredients;
+      }
+      if (recipe.substitutions_used != null) {
+        recipe.substitutions_used = typeof recipe.substitutions_used === "string"
+          ? JSON.parse(recipe.substitutions_used)
+          : recipe.substitutions_used;
       }
       return recipe;
     });
@@ -185,12 +202,17 @@ export async function getRecipesByUserId(userId, includePrivate = true) {
 
     const result = await client.query(query, params);
 
-    // Parse JSONB ingredients for all recipes
+    // Parse JSONB ingredients and substitutions_used for all recipes
     return result.rows.map(recipe => {
       if (recipe.ingredients) {
         recipe.ingredients = typeof recipe.ingredients === "string"
           ? JSON.parse(recipe.ingredients)
           : recipe.ingredients;
+      }
+      if (recipe.substitutions_used != null) {
+        recipe.substitutions_used = typeof recipe.substitutions_used === "string"
+          ? JSON.parse(recipe.substitutions_used)
+          : recipe.substitutions_used;
       }
       return recipe;
     });
@@ -269,6 +291,10 @@ export async function updateRecipe(recipeId, userId, updateData) {
       fields.push(`visibility = $${paramIndex++}`);
       values.push(updateData.visibility);
     }
+    if (updateData.substitutionsUsed !== undefined) {
+      fields.push(`substitutions_used = $${paramIndex++}`);
+      values.push(Array.isArray(updateData.substitutionsUsed) ? JSON.stringify(updateData.substitutionsUsed) : "[]");
+    }
 
     if (fields.length === 0) {
       return recipe;
@@ -291,6 +317,11 @@ export async function updateRecipe(recipeId, userId, updateData) {
       updatedRecipe.ingredients = typeof updatedRecipe.ingredients === "string"
         ? JSON.parse(updatedRecipe.ingredients)
         : updatedRecipe.ingredients;
+    }
+    if (updatedRecipe.substitutions_used != null) {
+      updatedRecipe.substitutions_used = typeof updatedRecipe.substitutions_used === "string"
+        ? JSON.parse(updatedRecipe.substitutions_used)
+        : updatedRecipe.substitutions_used;
     }
 
     return updatedRecipe;
