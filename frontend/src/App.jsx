@@ -1117,9 +1117,6 @@ White wine`;
         <div className="header-section">
           <div className="header-top">
             <img src={halalArabicImage} alt="Halal" className="halal-arabic" />
-            <div className="header-actions">
-              <HalalStandardPanel onSettingsChange={setHalalSettings} />
-            </div>
           </div>
           <h1>
             {t("halalKitchen")}
@@ -1128,16 +1125,22 @@ White wine`;
         </div>
       )}
 
+      {/* Floating "My Halal Standard" pill - always visible on convert tab */}
+      {activeTab === "convert" && (
+        <div className="halal-standard-floating" aria-label="Halal settings">
+          <HalalStandardPanel onSettingsChange={setHalalSettings} />
+        </div>
+      )}
+
       {/* Tab Content */}
       <div className="tab-content">
         {activeTab === "convert" && (
           <>
-            <QuickLookup onConvertClick={handleQuickLookupConvert} />
-            
-            <div className="input-section">
-              <label htmlFor="recipe-input" className="input-label">
-                <img src={halalInputIcon} alt="Recipe Input" className="section-icon" />
-                <span>Recipe Input</span>
+            {/* Recipe Conversion - primary, prominent */}
+            <div className="input-section input-section-primary">
+              <label htmlFor="recipe-input" className="input-label input-label-primary">
+                <img src={halalInputIcon} alt="" className="section-icon" aria-hidden="true" />
+                <span>Convert a recipe</span>
               </label>
               {error && (
                 <div className="error-message" role="alert">
@@ -1190,6 +1193,8 @@ White wine`;
               <RefreshCw className="button-icon-inline" aria-hidden="true" />
               <span>{t("convert")}</span>
             </button>
+
+            <QuickLookup onConvertClick={handleQuickLookupConvert} />
 
             <details
               className="batch-convert-section"
