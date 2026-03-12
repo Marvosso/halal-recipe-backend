@@ -1,6 +1,6 @@
 /**
- * Premium Subscription Management
- * Handles subscription status, features, and limits
+ * Feature limits and subscription helpers.
+ * All features are available to all users (no premium gating).
  */
 
 const FREE_TIER_LIMITS = {
@@ -86,22 +86,11 @@ const PREMIUM_FEATURES = {
 };
 
 /**
- * Check if user has premium subscription
+ * All users have full access; no premium tier.
  * @returns {boolean}
  */
 export function isPremiumUser() {
-  // Check localStorage first (for offline/quick check)
-  const premiumStatus = localStorage.getItem('premiumStatus');
-  if (premiumStatus === 'active') {
-    return true;
-  }
-  
-  // Check user object if available
-  if (typeof window !== 'undefined' && window.user) {
-    return window.user.isPremium === true;
-  }
-  
-  return false;
+  return true;
 }
 
 /**

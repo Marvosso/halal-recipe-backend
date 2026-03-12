@@ -1,11 +1,9 @@
 /**
- * Premium Brand-Level Ingredient Lookup
- * Allows users to search specific brands and get halal certification information
- * Premium feature only
+ * Brand-Level Ingredient Lookup
+ * Search specific brands and get halal certification information.
  */
 
 import { evaluateItem } from './halalEngine';
-import { isPremiumUser } from './subscription';
 import { formatIngredientName } from './ingredientDisplay';
 
 /**
@@ -202,21 +200,11 @@ function formatBrandResult(brandData, genericResult) {
 }
 
 /**
- * Perform premium brand-level lookup
+ * Perform brand-level lookup
  * @param {string} searchTerm - Brand and product name
  * @returns {Object} Lookup result with brand data or generic fallback
  */
 export function performBrandLookup(searchTerm) {
-  // Check premium access
-  if (!isPremiumUser()) {
-    return {
-      isBrandLookup: false,
-      requiresPremium: true,
-      message: "Brand-level verification is a premium feature. Upgrade to access brand-specific halal certification data.",
-      generic_fallback: null
-    };
-  }
-  
   // Try brand lookup first
   const brandData = lookupBrandIngredient(searchTerm);
   

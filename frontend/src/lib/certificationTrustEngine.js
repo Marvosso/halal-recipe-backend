@@ -1,7 +1,7 @@
 /**
  * Halal Certification Trust Engine
  * Provides trust scoring and certification data display
- * Premium feature for detailed certification information
+ * Certification trust and detailed certification information
  */
 
 import { getCertificationBody, getTrustLevel, calculateTrustScore } from './certificationDatabase';

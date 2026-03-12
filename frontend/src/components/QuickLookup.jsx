@@ -7,13 +7,11 @@ import { getConfidenceLevelInfo, getIngredientTypeInfo } from "../lib/ingredient
 import { getStatusExplanation, getReassuringMessage, getConfidenceDescription, getIngredientTypeDescription, getStatusSummary } from "../lib/quickLookupCopy";
 import { performBrandLookup, isBrandSearch } from "../lib/brandLookup";
 import { formatBrandLookupResponse } from "../lib/brandLookupResponseFormatter";
-import { isPremiumUser } from "../lib/subscription";
 import { detectAdditives } from "../lib/additiveDetection";
 import { formatAdditiveBreakdown } from "../lib/additiveBreakdownFormatter";
 import { getFilteredSuggestions } from "../lib/ingredientSuggestions";
 import { getRecentLookups, addRecentLookup } from "../lib/recentLookupsStorage";
 import IngredientSources from "./IngredientSources";
-import PremiumUpgradeModal from "./PremiumUpgradeModal";
 import ContextualAd from "./ContextualAd";
 import "./QuickLookup.css";
 
@@ -21,8 +19,6 @@ function QuickLookup({ onConvertClick, initialSearch = "", autoSearchOnMount = f
   const [searchTerm, setSearchTerm] = useState(initialSearch || "");
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-  const [upgradeTriggerFeature, setUpgradeTriggerFeature] = useState(null);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [recentLookups, setRecentLookups] = useState(() => getRecentLookups());
@@ -267,10 +263,7 @@ function QuickLookup({ onConvertClick, initialSearch = "", autoSearchOnMount = f
           confidenceLevel: hkmResult.confidenceLevel || "conditional",
           ingredientType: hkmResult.ingredientType || "processed",
           displayName: hkmResult.displayName,
-          // Add upgrade prompt for brand lookup
-          showBrandUpgradePrompt: true,
-          brandSearchAttempted: true,
-          premiumFeature: "brandVerification"
+          brandSearchAttempted: true
         };
       }
       
@@ -817,72 +810,22 @@ function QuickLookup({ onConvertClick, initialSearch = "", autoSearchOnMount = f
               </div>
             )}
             
-            {/* Brand Lookup Upgrade Prompt */}
-            {result.showBrandUpgradePrompt && !isPremiumUser() && (
-              <div className="upgrade-prompt-section">
-                <div className="upgrade-prompt-card">
-                  <div className="upgrade-prompt-icon">🏷️</div>
-                  <div className="upgrade-prompt-content">
-                    <h4 className="upgrade-prompt-title">Brand-Level Verification Available</h4>
-                    <p className="upgrade-prompt-message">
-                      You searched for a brand, but brand-specific halal certification data is a Premium feature. 
-                      Upgrade to see certifying body, certification number, and last verified date for specific brands.
-                    </p>
-                    <div className="upgrade-prompt-actions">
-                      <button
-                        className="upgrade-prompt-button"
-                        onClick={() => {
-                          setUpgradeTriggerFeature('brandVerification');
-                          setShowUpgradeModal(true);
-                        }}
-                      >
-                        Upgrade to Premium
-                      </button>
-                      <button
-                        className="upgrade-prompt-dismiss"
-                        onClick={() => {
-                          // Remove the prompt flag
-                          setResult({ ...result, showBrandUpgradePrompt: false });
-                        }}
-                      >
-                        Continue with Generic Lookup
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-            
-            {/* Additive Breakdown Button (Premium Feature) */}
+            {/* Additive Breakdown Button */}
             {result && result.hkmResult && (
               <div className="additive-breakdown-section">
-                {isPremiumUser() ? (
-                  <button
-                    className="additive-breakdown-button premium"
-                    onClick={() => {
-                      // Show additive breakdown
-                      const ingredientText = result.hkmResult?.notes || result.explanation || result.hkmResult?.simpleExplanation || "";
-                      if (ingredientText) {
-                        const additives = detectAdditives(ingredientText);
-                        const breakdown = formatAdditiveBreakdown(additives, result.displayName);
-                        // Store in result for display
-                        setResult({ ...result, additiveBreakdown: breakdown });
-                      }
-                    }}
-                  >
-                    📊 Show Additive Breakdown
-                  </button>
-                ) : (
-                  <button
-                    className="additive-breakdown-button free"
-                    onClick={() => {
-                      setUpgradeTriggerFeature('additiveBreakdown');
-                      setShowUpgradeModal(true);
-                    }}
-                  >
-                    📊 Additive Breakdown (Premium)
-                  </button>
-                )}
+                <button
+                  className="additive-breakdown-button premium"
+                  onClick={() => {
+                    const ingredientText = result.hkmResult?.notes || result.explanation || result.hkmResult?.simpleExplanation || "";
+                    if (ingredientText) {
+                      const additives = detectAdditives(ingredientText);
+                      const breakdown = formatAdditiveBreakdown(additives, result.displayName);
+                      setResult({ ...result, additiveBreakdown: breakdown });
+                    }
+                  }}
+                >
+                  📊 Show Additive Breakdown
+                </button>
               </div>
             )}
             
@@ -921,18 +864,6 @@ function QuickLookup({ onConvertClick, initialSearch = "", autoSearchOnMount = f
 
       {result && (
         <ContextualAd placement="ingredient_lookup" className="quick-lookup-ad" />
-      )}
-      
-      {/* Premium Upgrade Modal */}
-      {showUpgradeModal && (
-        <PremiumUpgradeModal
-          isOpen={showUpgradeModal}
-          onClose={() => {
-            setShowUpgradeModal(false);
-            setUpgradeTriggerFeature(null);
-          }}
-          triggerFeature={upgradeTriggerFeature}
-        />
       )}
     </div>
   );

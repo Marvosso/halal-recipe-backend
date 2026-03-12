@@ -1,6 +1,6 @@
 /**
  * Additive Breakdown Formatter
- * Formats additive detection results for premium users
+ * Formats additive detection results for display
  */
 
 import { categorizeAdditives, getAdditiveSummary } from './additiveDetection';

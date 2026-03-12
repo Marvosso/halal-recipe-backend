@@ -1,7 +1,7 @@
 /**
  * Halal Certification Trust Engine
  * Stores certification bodies and assigns trust levels
- * Premium feature for detailed certification data
+ * Certification data for brands and certifying bodies
  */
 
 /**

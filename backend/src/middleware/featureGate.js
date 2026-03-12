@@ -1,63 +1,29 @@
 /**
- * Feature Gating Middleware
- * Checks if user has access to premium features
+ * Feature gating middleware.
+ * All features are available to authenticated users (no premium gating).
  */
 
-import { hasPremiumAccess, canUseFeature, getFeatureLimit } from '../services/subscriptionService.js';
+import { getFeatureLimit } from '../services/subscriptionService.js';
 
 /**
- * Middleware to check premium access
- * Returns 403 if user doesn't have premium
+ * No longer gates by subscription; requires auth only.
  */
 export function requirePremium(req, res, next) {
-  const userId = req.user?.id;
-
-  if (!userId) {
+  if (!req.user?.id) {
     return res.status(401).json({ error: 'Authentication required' });
   }
-
-  hasPremiumAccess(userId)
-    .then(hasAccess => {
-      if (!hasAccess) {
-        return res.status(403).json({
-          error: 'Premium subscription required',
-          upgrade_url: '/subscription/upgrade'
-        });
-      }
-      next();
-    })
-    .catch(error => {
-      console.error('Error checking premium access:', error);
-      res.status(500).json({ error: 'Failed to check subscription status' });
-    });
+  next();
 }
 
 /**
- * Middleware to check specific feature access
- * @param {string} feature - Feature name
+ * No longer gates by feature; requires auth only.
  */
-export function requireFeature(feature) {
+export function requireFeature(_feature) {
   return (req, res, next) => {
-    const userId = req.user?.id;
-
-    if (!userId) {
+    if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
-
-    canUseFeature(userId, feature)
-      .then(hasAccess => {
-        if (!hasAccess) {
-          return res.status(403).json({
-            error: `Premium feature required: ${feature}`,
-            upgrade_url: '/subscription/upgrade'
-          });
-        }
-        next();
-      })
-      .catch(error => {
-        console.error('Error checking feature access:', error);
-        res.status(500).json({ error: 'Failed to check feature access' });
-      });
+    next();
   };
 }
 

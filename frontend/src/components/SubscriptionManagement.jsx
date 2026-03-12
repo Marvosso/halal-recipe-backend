@@ -6,18 +6,15 @@ import {
   XCircle, 
   AlertCircle, 
   RefreshCw,
-  Sparkles,
   X
 } from "lucide-react";
 import { 
   getSubscriptionStatus, 
   cancelSubscription, 
   reactivateSubscription,
-  changeSubscriptionPlan,
-  createCheckoutSession
+  changeSubscriptionPlan
 } from "../lib/subscriptionApi";
 import { trackSubscriptionCancelled, trackSubscriptionActivated } from "../lib/premiumAnalytics";
-import PremiumUpgradeModal from "./PremiumUpgradeModal";
 import "./SubscriptionManagement.css";
 
 function SubscriptionManagement() {
@@ -26,7 +23,6 @@ function SubscriptionManagement() {
   const [isChangingPlan, setIsChangingPlan] = useState(false);
   const [isCanceling, setIsCanceling] = useState(false);
   const [isReactivating, setIsReactivating] = useState(false);
-  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
@@ -127,16 +123,6 @@ function SubscriptionManagement() {
     }
   };
 
-  const handleUpgrade = async (plan) => {
-    try {
-      const checkoutUrl = await createCheckoutSession(plan);
-      window.location.href = checkoutUrl;
-    } catch (err) {
-      console.error('Error creating checkout session:', err);
-      setError('Failed to start checkout. Please try again.');
-    }
-  };
-
   const formatDate = (dateString) => {
     if (!dateString) return '—';
     const date = new Date(dateString);
@@ -184,54 +170,34 @@ function SubscriptionManagement() {
     );
   }
 
-  // Free user - show upgrade option
+  // No active subscription - show simple status
   if (!subscription || !subscription.subscribed) {
     return (
       <div className="subscription-management">
         <div className="subscription-status-card free">
           <div className="status-header">
             <div className="status-icon-wrapper">
-              <XCircle size={24} className="status-icon inactive" />
+              <CheckCircle size={24} className="status-icon active" />
             </div>
             <div className="status-info">
-              <h3 className="status-title">Free Plan</h3>
-              <p className="status-description">You're currently on the free plan</p>
+              <h3 className="status-title">Account</h3>
+              <p className="status-description">All Halal Kitchen features are included.</p>
             </div>
           </div>
-
           <div className="subscription-features">
-            <h4>Free Plan Includes:</h4>
             <ul>
-              <li>5 conversions per month</li>
-              <li>Top 2 halal alternatives</li>
-              <li>Up to 10 saved recipes</li>
-              <li>Text export</li>
+              <li>Recipe conversion & halal substitutes</li>
+              <li>Strictness levels & school of thought</li>
+              <li>Saved recipes</li>
+              <li>Export & sharing</li>
             </ul>
           </div>
-
-          <div className="subscription-actions">
-            <button
-              className="upgrade-button primary"
-              onClick={() => setShowUpgradeModal(true)}
-            >
-              <Sparkles size={18} />
-              Upgrade to Premium
-            </button>
-          </div>
         </div>
-
-        {showUpgradeModal && (
-          <PremiumUpgradeModal
-            isOpen={showUpgradeModal}
-            onClose={() => setShowUpgradeModal(false)}
-            triggerFeature="subscriptionManagement"
-          />
-        )}
       </div>
     );
   }
 
-  // Premium user - show management options
+  // Active subscription - show management options
   const { plan, status, expires_at, cancel_at_period_end } = subscription;
   const isCanceled = cancel_at_period_end || status === 'canceled';
 
@@ -264,7 +230,7 @@ function SubscriptionManagement() {
           </div>
           <div className="status-info">
             <h3 className="status-title">
-              Premium Plan - {plan === 'monthly' ? 'Monthly' : 'Yearly'}
+              Your plan — {plan === 'monthly' ? 'Monthly' : 'Yearly'}
             </h3>
             <p className="status-description" style={{ color: getStatusColor(status) }}>
               Status: {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -307,7 +273,7 @@ function SubscriptionManagement() {
         </div>
 
         <div className="subscription-features">
-          <h4>Premium Features Active:</h4>
+          <h4>Included:</h4>
           <ul>
             <li>✓ Unlimited conversions</li>
             <li>✓ All halal alternatives</li>

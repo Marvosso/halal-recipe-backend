@@ -36,10 +36,8 @@ import { convertBatchRecipes } from "./lib/batchConversion";
 import { formatIngredientName } from "./lib/ingredientDisplay";
 import { isPremiumUser, canConvert, getRemainingConversionsThisMonth, getConversionsThisMonth, trackConversion } from "./lib/subscription";
 import { checkConversionLimit, canUseAdvancedSubstitutions, canUseStrictHalalMode, canExportShoppingList } from "./lib/featureGating";
-import { trackConversionLimitHit, trackUpgradeModalView, trackUpgradeAttempt, trackConversionLimitApproach } from "./lib/premiumAnalytics";
+import { trackConversionLimitHit, trackConversionLimitApproach } from "./lib/premiumAnalytics";
 import { isAuthenticated, getUserData, getCurrentUser, clearAuth } from "./api/authApi";
-import UpgradePrompt from "./components/UpgradePrompt";
-import PremiumUpgradeModal from "./components/PremiumUpgradeModal";
 import { createRecipe, getMyRecipes, deleteRecipe as deleteRecipeApi } from "./api/recipesApi";
 import SaveHalalVersionButton from "./components/SaveHalalVersionButton";
 
@@ -71,8 +69,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [isOffline, setIsOffline] = useState(false);
   const [showCachedResult, setShowCachedResult] = useState(false);
-  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-  const [upgradeTriggerFeature, setUpgradeTriggerFeature] = useState(null);
   const [mealPlanInput, setMealPlanInput] = useState("");
   const [batchResult, setBatchResult] = useState(null);
   const [batchLoading, setBatchLoading] = useState(false);
@@ -1549,25 +1545,6 @@ White wine`;
                                                 ))
                                             )}
                                           </ul>
-                                          {/* Show upgrade prompt if more alternatives available (free users) */}
-                                          {issue.allAlternatives && 
-                                           issue.allAlternatives.length > issue.alternatives.length && 
-                                           !isPremiumUser() && (
-                                            <div className="alternatives-upgrade-hint">
-                                              <small>
-                                                Showing {issue.alternatives.length} of {issue.allAlternatives.length} alternatives.{" "}
-                                                <button 
-                                                  className="upgrade-hint-link"
-                                                  onClick={() => {
-                                                    setUpgradeTriggerFeature('limitedAlternatives');
-                                                    setShowUpgradeModal(true);
-                                                  }}
-                                                >
-                                                  Upgrade to see all
-                                                </button>
-                                              </small>
-                                            </div>
-                                          )}
                                         </div>
                                       </div>
                                     )}
@@ -1755,18 +1732,6 @@ White wine`;
         onClose={() => setShowAuthModal(false)}
         initialMode={authMode}
       />
-
-      {/* Premium Upgrade Modal */}
-      {showUpgradeModal && (
-        <PremiumUpgradeModal
-          isOpen={showUpgradeModal}
-          onClose={() => {
-            setShowUpgradeModal(false);
-            setUpgradeTriggerFeature(null);
-          }}
-          triggerFeature={upgradeTriggerFeature}
-        />
-      )}
 
       {/* Bottom Navigation */}
       <TabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
