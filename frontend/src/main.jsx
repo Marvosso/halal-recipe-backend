@@ -6,6 +6,38 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
+/** Remove Impact.com (or similar) injected site-verification text from the page. */
+function removeImpactVerificationFromDOM() {
+  const walk = (node) => {
+    if (!node || node.nodeType !== 1) return;
+    const text = (node.textContent || "").trim();
+    if (text && /Impact-Site-Verification:\s*fe2ab7e4/i.test(text)) {
+      node.remove();
+      return;
+    }
+    let child = node.lastChild;
+    while (child) {
+      const next = child.previousSibling;
+      walk(child);
+      child = next;
+    }
+  };
+  walk(document.body);
+}
+function initImpactVerificationRemoval() {
+  removeImpactVerificationFromDOM();
+  if (typeof MutationObserver !== "undefined" && document.body) {
+    const observer = new MutationObserver(() => removeImpactVerificationFromDOM());
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initImpactVerificationRemoval);
+} else {
+  initImpactVerificationRemoval();
+}
+setTimeout(removeImpactVerificationFromDOM, 1500);
+
 // #region agent log
 (function debugAdSenseVerification() {
   const hasAdSenseScript = !!document.querySelector('script[src*="adsbygoogle"]');
