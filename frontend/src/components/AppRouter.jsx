@@ -8,6 +8,9 @@ import IsItHalalPage from "../pages/IsItHalalPage";
 import HalalSubstitutesPage from "../pages/HalalSubstitutesPage";
 import HowItWorksPage from "../pages/HowItWorksPage";
 import AboutPage from "../pages/AboutPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
+import TermsOfUsePage from "../pages/TermsOfUsePage";
+import ContactPage from "../pages/ContactPage";
 import AppWrapper from "./AppWrapper";
 import SEOFooter from "./SEOFooter";
 
@@ -45,6 +48,9 @@ function AppRouter() {
           <Route path="/halal-substitutes" element={<><HalalSubstitutesPage /><SEOFooter /></>} />
           <Route path="/how-it-works" element={<><HowItWorksPage /><SEOFooter /></>} />
           <Route path="/about" element={<><AboutPage /><SEOFooter /></>} />
+          <Route path="/privacy" element={<><PrivacyPolicyPage /><SEOFooter /></>} />
+          <Route path="/terms" element={<><TermsOfUsePage /><SEOFooter /></>} />
+          <Route path="/contact" element={<><ContactPage /><SEOFooter /></>} />
           <Route path="/my-halal-recipes" element={<><MyHalalRecipesPage /><SEOFooter /></>} />
           <Route path="/share" element={<SharePage />} />
           

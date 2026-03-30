@@ -34,11 +34,26 @@ function ContextualAd({ placement, slotId, className = "" }) {
     const ins = wrapperRef.current.querySelector(".contextual-ad-ins");
     if (!ins) return;
 
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-      pushedRef.current = true;
-    } catch (e) {
-      if (import.meta.env?.DEV) console.warn("[ContextualAd] AdSense push failed:", e);
+    const doPush = () => {
+      if (pushedRef.current) return;
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        pushedRef.current = true;
+      } catch (e) {
+        if (import.meta.env?.DEV) console.warn("[ContextualAd] AdSense push failed:", e);
+      }
+    };
+
+    const script = document.querySelector('script[src*="adsbygoogle"]');
+    if (script) {
+      if (script.readyState === "complete" || script.readyState === "loaded") {
+        doPush();
+      } else {
+        script.addEventListener("load", doPush);
+        return () => script.removeEventListener("load", doPush);
+      }
+    } else {
+      window.setTimeout(doPush, 400);
     }
   }, [client, effectiveSlot]);
 

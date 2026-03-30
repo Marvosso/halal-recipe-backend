@@ -10,9 +10,9 @@ function HomePage() {
     <>
       <Helmet>
         <title>Halal Kitchen - Cook Any Recipe, Halal-Certified | Free Recipe Converter</title>
-        <meta 
-          name="description" 
-          content="Convert any recipe to halal-compliant with our free AI-powered recipe converter. Get halal substitutes, Islamic dietary guidance, and confidence scores. Start converting recipes today!" 
+        <meta
+          name="description"
+          content="Free halal recipe converter plus guides: ingredient rules, label reading, substitutes for pork and alcohol, gelatin, and vanilla. Convert recipes, scan labels, and learn halal cooking at home."
         />
         <meta name="keywords" content="halal recipe converter, halal food, halal substitutes, Islamic cooking, halal ingredients, recipe conversion" />
         <link rel="canonical" href="https://halalkitchen.app/" />
@@ -81,15 +81,94 @@ function HomePage() {
           </article>
         </section>
 
+        <section className="seo-content seo-guide" aria-labelledby="guide-heading">
+          <article>
+            <h2 id="guide-heading">Practical guide: halal cooking at home</h2>
+            <p>
+              Eating halal is not only about avoiding a short list of ingredients—it is about building habits:
+              reading labels carefully, knowing when an ingredient&apos;s <em>source</em> matters (for example
+              gelatin or enzymes), and choosing suppliers you trust. Halal Kitchen exists to speed up that
+              work: we highlight common problems in a recipe, suggest swaps, and point you to references so
+              you can decide with confidence.
+            </p>
+            <h3>Why &quot;questionable&quot; ingredients need context</h3>
+            <p>
+              Some items are halal or haram depending on how they were made. Gelatin might come from fish,
+              beef, or pork. Vanilla extract may contain alcohol as a solvent. Rennet in cheese can be
+              animal-derived or microbial. A generic recipe that says &quot;gelatin&quot; or &quot;natural flavors&quot;
+              does not tell you the source—so a good halal workflow is: identify the ambiguous line, check
+              the product label or manufacturer, and substitute when in doubt (for example agar-agar instead
+              of unknown gelatin).
+            </p>
+            <h3>Reading packaged food labels</h3>
+            <p>
+              Start with the ingredient list, not only the marketing on the front. Look for alcohol in any
+              form (wine, beer, ethyl alcohol, &quot;natural flavor&quot; carriers in some products), pork or lard,
+              and non-halal animal derivatives. If a product carries a recognized halal certification mark
+              for your market, that can reduce guesswork—but certification standards differ by country and
+              body, so many families still prefer to read ingredients for themselves.
+            </p>
+            <h3>Restaurants, shared kitchens, and cross-contact</h3>
+            <p>
+              At home you control pans, oils, and grills. In restaurants or industrial kitchens, cross-contact
+              with non-halal meat or alcohol may occur. Our converter focuses on <strong>ingredient lists in
+              recipes</strong>; it does not certify a kitchen or supply chain. When eating out, ask how food is
+              prepared if you follow strict separation.
+            </p>
+            <p>
+              For ingredient-by-ingredient reference, see our{" "}
+              <Link to="/is-it-halal">Is It Halal?</Link> guide and{" "}
+              <Link to="/halal-substitutes">halal substitutes</Link> page—then use the{" "}
+              <Link to="/app">converter</Link> when you have a full recipe ready to adapt.
+            </p>
+          </article>
+        </section>
+
+        <section className="seo-content seo-faq" aria-labelledby="faq-heading">
+          <article>
+            <h2 id="faq-heading">Frequently asked questions</h2>
+            <dl className="seo-faq-list">
+              <dt>Is Halal Kitchen a fatwa or legal authority?</dt>
+              <dd>
+                No. We provide educational tools and automated suggestions. For personal rulings on edge cases,
+                consult a qualified scholar you trust.
+              </dd>
+              <dt>Does the recipe converter work for any cuisine?</dt>
+              <dd>
+                You can paste recipes from any tradition. The tool flags common haram or doubtful ingredients
+                and suggests halal-friendly replacements; you should still verify packaged products yourself.
+              </dd>
+              <dt>Can I scan an ingredient label with my phone?</dt>
+              <dd>
+                Yes—open the app, use &quot;Scan ingredients&quot; under the recipe box, and capture or upload a clear
+                photo of the ingredient list. Results depend on photo quality and OCR.
+              </dd>
+              <dt>What does the confidence score mean?</dt>
+              <dd>
+                It reflects how strongly our rules match the ingredients we detected—lower scores often mean
+                more substitutions or more items that need manual verification.
+              </dd>
+              <dt>How do you make money?</dt>
+              <dd>
+                Halal Kitchen may show ads (for example through Google AdSense) and may use affiliate links
+                where relevant. See our <Link to="/privacy">Privacy Policy</Link> for how ads and analytics work.
+              </dd>
+            </dl>
+          </article>
+        </section>
+
         <CommunityConversions items={COMMUNITY_CONVERSIONS_MOCK} maxItems={5} />
 
         <section className="seo-links">
-          <h2>Learn More</h2>
+          <h2>Learn more</h2>
           <nav className="seo-nav">
-            <Link to="/is-it-halal">Is It Halal? - Ingredient Guide</Link>
-            <Link to="/halal-substitutes">Common Halal Substitutes</Link>
-            <Link to="/how-it-works">How Our Converter Works</Link>
+            <Link to="/is-it-halal">Is It Halal? — Ingredient guide</Link>
+            <Link to="/halal-substitutes">Common halal substitutes</Link>
+            <Link to="/how-it-works">How our converter works</Link>
             <Link to="/about">About Halal Kitchen</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Use</Link>
           </nav>
         </section>
       </main>

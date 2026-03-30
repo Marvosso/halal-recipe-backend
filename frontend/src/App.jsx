@@ -1194,6 +1194,8 @@ White wine`;
               <span>{t("convert")}</span>
             </button>
 
+            <ContextualAd placement="recipe_conversion" className="convert-tab-ad-above-lookup" />
+
             <QuickLookup onConvertClick={handleQuickLookupConvert} />
 
             <details

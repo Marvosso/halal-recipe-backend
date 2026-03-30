@@ -6,15 +6,35 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ErrorBoundary from "./components/ErrorBoundary";
 import "./App.css";
 
+const IMPACT_VERIFICATION_RE = /Impact-Site-Verification:/i;
+
 /** Remove Impact.com (or similar) injected site-verification text from the page. */
 function removeImpactVerificationFromDOM() {
-  const walk = (node) => {
-    if (!node || node.nodeType !== 1) return;
+  const removeIfVerification = (node) => {
     const text = (node.textContent || "").trim();
-    if (text && /Impact-Site-Verification:\s*fe2ab7e4/i.test(text)) {
-      node.remove();
+    if (!text || !IMPACT_VERIFICATION_RE.test(text)) return false;
+    node.remove();
+    return true;
+  };
+
+  const walk = (node) => {
+    if (!node) return;
+    // Text node: remove parent if it only holds this line, else strip the text
+    if (node.nodeType === 3) {
+      const v = node.nodeValue || "";
+      if (IMPACT_VERIFICATION_RE.test(v)) {
+        const parent = node.parentNode;
+        if (parent) {
+          if (parent.childNodes.length === 1) parent.remove();
+          else node.remove();
+        }
+      }
       return;
     }
+    if (node.nodeType !== 1) return;
+
+    if (removeIfVerification(node)) return;
+
     let child = node.lastChild;
     while (child) {
       const next = child.previousSibling;
@@ -22,13 +42,15 @@ function removeImpactVerificationFromDOM() {
       child = next;
     }
   };
-  walk(document.body);
+
+  if (document.body) walk(document.body);
+  if (document.head) walk(document.head);
 }
 function initImpactVerificationRemoval() {
   removeImpactVerificationFromDOM();
-  if (typeof MutationObserver !== "undefined" && document.body) {
+  if (typeof MutationObserver !== "undefined" && document.documentElement) {
     const observer = new MutationObserver(() => removeImpactVerificationFromDOM());
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
   }
 }
 if (document.readyState === "loading") {
@@ -37,29 +59,7 @@ if (document.readyState === "loading") {
   initImpactVerificationRemoval();
 }
 setTimeout(removeImpactVerificationFromDOM, 1500);
-
-// #region agent log
-(function debugAdSenseVerification() {
-  const hasAdSenseScript = !!document.querySelector('script[src*="adsbygoogle"]');
-  fetch("/ads.txt")
-    .then((r) => ({ status: r.status, ok: r.ok, url: r.url }))
-    .catch((e) => ({ error: e.message, status: "network_error" }))
-    .then((adsTxtResult) => {
-      fetch("http://127.0.0.1:7793/ingest/20707ad9-2a86-4e9f-9f4a-62c3b184f820", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "38872d" },
-        body: JSON.stringify({
-          sessionId: "38872d",
-          location: "main.jsx:AdSense verification check",
-          message: "AdSense/ads.txt diagnostic",
-          data: { hasAdSenseScript, adsTxtResult, origin: window.location.origin, pathname: window.location.pathname },
-          timestamp: Date.now(),
-          hypothesisId: "H1-H2",
-        }),
-      }).catch(() => {});
-    });
-})();
-// #endregion
+setTimeout(removeImpactVerificationFromDOM, 5000);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

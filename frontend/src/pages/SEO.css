@@ -303,6 +303,52 @@
   color: var(--text-color);
 }
 
+/* FAQ & policy pages */
+.seo-guide {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.seo-faq {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.seo-faq-list {
+  margin: 0;
+}
+
+.seo-faq-list dt {
+  font-weight: 600;
+  color: var(--primary-green);
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+}
+
+.seo-faq-list dt:first-child {
+  margin-top: 0;
+}
+
+.seo-faq-list dd {
+  margin: 0.5rem 0 0 0;
+  padding-left: 0;
+  line-height: 1.65;
+  color: var(--text-color);
+}
+
+.policy-article a {
+  color: var(--primary-green);
+  text-decoration: underline;
+}
+
+.policy-back {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .hero-headline {

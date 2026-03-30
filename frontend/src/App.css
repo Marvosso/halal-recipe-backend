@@ -373,18 +373,29 @@ input[type="text"]::placeholder {
   flex-wrap: wrap;
 }
 
-/* Scan ingredients: show only on mobile (camera/capture) */
+/* Scan label → OCR (visible on all viewports; desktop uses file upload in modal) */
 .scan-ingredients-btn {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.75rem 1.5rem;
+  background: var(--white, #fff);
+  color: var(--primary-green, #15803d);
+  border: 2px solid var(--primary-green, #15803d);
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
 }
-@media (max-width: 768px) {
-  .scan-ingredients-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    min-height: 40px;
-  }
+
+.scan-ingredients-btn:hover {
+  background: rgba(21, 128, 61, 0.08);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .demo-btn {
@@ -2645,6 +2656,11 @@ table tbody tr:nth-child(even):hover {
   }
 
   .demo-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .scan-ingredients-btn {
     width: 100%;
     justify-content: center;
   }
