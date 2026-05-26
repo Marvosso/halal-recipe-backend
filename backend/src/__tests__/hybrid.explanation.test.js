@@ -46,7 +46,7 @@ describe("Explanation generation", () => {
     const text = templateFallbackExplanation(input);
     assert.ok(text.length > 0);
     assert.ok(
-      text.toLowerCase().includes("not permissible") || text.toLowerCase().includes("haram") || text.toLowerCase().includes("prohibited"),
+      /not considered permissible|not permissible|haram|prohibited|avoided/i.test(text),
       "haram explanation should indicate not permissible"
     );
   });

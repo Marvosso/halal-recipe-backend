@@ -3,6 +3,9 @@
  */
 
 import { convertRecipeWithJson } from "./convertRecipeJson";
+import { performCanonicalRecipeConversion } from "./recipe/canonicalRecipeConversion";
+import { enrichIssuesWithAffiliateLinks } from "./monetization";
+import { FEATURES } from "./featureFlags";
 import { parseMealPlanInput } from "./mealPlanParser";
 
 /**
@@ -38,7 +41,22 @@ export async function convertBatchRecipes(mealPlanText, userPreferences = {}) {
   const recipes = [];
   for (const { label, text } of parsed) {
     try {
-      const result = await convertRecipeWithJson(text, userPreferences);
+      let result;
+      if (FEATURES.USE_SERVER_RECIPE_CONVERSION) {
+        const server = await performCanonicalRecipeConversion(text, userPreferences);
+        if (server.error) {
+          throw new Error(server.error.message);
+        }
+        const issues = await enrichIssuesWithAffiliateLinks(server.issues);
+        result = {
+          originalText: server.originalText,
+          convertedText: server.convertedText,
+          issues,
+          confidenceScore: server.confidenceScore,
+        };
+      } else {
+        result = await convertRecipeWithJson(text, userPreferences);
+      }
       recipes.push({
         label,
         originalText: result.originalText ?? text,

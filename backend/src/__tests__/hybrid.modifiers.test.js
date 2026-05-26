@@ -30,8 +30,14 @@ describe("Modifier detection", () => {
   it("bovine gelatin or beef gelatin has beef modifier", async () => {
     const r = await evaluateIngredient("bovine gelatin", {});
     const mods = r.modifiers || [];
-    const hasBeef = mods.some((m) => String(m).toLowerCase().includes("beef"));
-    assert.ok(hasBeef || r.base_slug === "gelatin" || r.baseSlug === "gelatin", "expected beef modifier or gelatin base");
+    const hasBovineSource = mods.some((m) => {
+      const s = String(m).toLowerCase();
+      return s.includes("beef") || s.includes("bovine");
+    });
+    assert.ok(
+      hasBovineSource || r.base_slug === "gelatin" || r.baseSlug === "gelatin",
+      "expected bovine/beef modifier or gelatin base"
+    );
   });
 
   it("halal-certified gelatin returns halal (hard override)", async () => {

@@ -10,7 +10,7 @@ import {
   isProviderAvailableInRegion,
   MAX_LINKS_PER_INGREDIENT,
   PRODUCT_FIT,
-} from '../config/affiliateProviderConfig';
+} from '../config/affiliateProviderConfig.js';
 
 /**
  * Categorize ingredient for product-fit ranking.

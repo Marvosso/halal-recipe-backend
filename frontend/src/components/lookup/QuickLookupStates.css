@@ -1,0 +1,80 @@
+.ql-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  color: var(--text-secondary, #4a5568);
+}
+
+.ql-state--loading {
+  background: var(--green-bg, #f0fff4);
+  border: 1px dashed var(--primary-green, #0a9d58);
+}
+
+.ql-state--compact {
+  padding: 1rem;
+}
+
+.ql-state__spinner {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--primary-green, #0a9d58);
+  animation: ql-spin 0.8s linear infinite;
+}
+
+@keyframes ql-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ql-state--error {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #742a2a;
+}
+
+.ql-state--offline {
+  background: #fffff0;
+  border-color: #f6e05e;
+  color: #744210;
+}
+
+.ql-state--cached {
+  margin-bottom: 0.75rem;
+}
+
+.ql-state__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.ql-state__message {
+  margin: 0;
+  line-height: 1.45;
+  max-width: 28rem;
+}
+
+.ql-state__retry {
+  min-height: 44px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  border: 2px solid currentColor;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ql-state--hint {
+  margin: 0;
+  padding: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  background: none;
+  border: none;
+}

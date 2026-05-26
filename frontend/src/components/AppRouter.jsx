@@ -14,25 +14,19 @@ import ContactPage from "../pages/ContactPage";
 import AppWrapper from "./AppWrapper";
 import SEOFooter from "./SEOFooter";
 
-// Config-driven ingredient page (e.g. /is-soy-sauce-halal, /is-gelatin-halal)
 const IsIngredientHalalPage = lazy(() => import("../pages/IsIngredientHalalPage"));
 
-// Lazy load SEO ingredient pages
-const IsGelatinHalalPage = lazy(() => import("../pages/IsGelatinHalalPage"));
-const IsBaconHalalPage = lazy(() => import("../pages/IsBaconHalalPage"));
-const IsVanillaExtractHalalPage = lazy(() => import("../pages/IsVanillaExtractHalalPage"));
-const IsWineVinegarHalalPage = lazy(() => import("../pages/IsWineVinegarHalalPage"));
-
-// Loading fallback for lazy-loaded components
 const SEOPageLoader = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '50vh',
-    fontSize: '1.125rem',
-    color: 'var(--text-secondary)'
-  }}>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "50vh",
+      fontSize: "1.125rem",
+      color: "var(--text-secondary)",
+    }}
+  >
     Loading...
   </div>
 );
@@ -42,7 +36,6 @@ function AppRouter() {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          {/* SEO Landing Pages */}
           <Route path="/" element={<><HomePage /><SEOFooter /></>} />
           <Route path="/is-it-halal" element={<><IsItHalalPage /><SEOFooter /></>} />
           <Route path="/halal-substitutes" element={<><HalalSubstitutesPage /><SEOFooter /></>} />
@@ -53,59 +46,20 @@ function AppRouter() {
           <Route path="/contact" element={<><ContactPage /><SEOFooter /></>} />
           <Route path="/my-halal-recipes" element={<><MyHalalRecipesPage /><SEOFooter /></>} />
           <Route path="/share" element={<SharePage />} />
-          
-          {/* SEO Ingredient Pages - Lazy Loaded */}
-          <Route 
-            path="/is-gelatin-halal" 
-            element={
-              <Suspense fallback={<SEOPageLoader />}>
-                <IsGelatinHalalPage />
-                <SEOFooter />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="/is-bacon-halal" 
-            element={
-              <Suspense fallback={<SEOPageLoader />}>
-                <IsBaconHalalPage />
-                <SEOFooter />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="/is-vanilla-extract-halal" 
-            element={
-              <Suspense fallback={<SEOPageLoader />}>
-                <IsVanillaExtractHalalPage />
-                <SEOFooter />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="/is-wine-vinegar-halal" 
-            element={
-              <Suspense fallback={<SEOPageLoader />}>
-                <IsWineVinegarHalalPage />
-                <SEOFooter />
-              </Suspense>
-            } 
-          />
-          <Route 
-            path="/is-:slug-halal" 
+
+          {/* Config-driven ingredient SEO pages (top 25) */}
+          <Route
+            path="/is-:slug-halal"
             element={
               <Suspense fallback={<SEOPageLoader />}>
                 <IsIngredientHalalPage />
                 <SEOFooter />
               </Suspense>
-            } 
+            }
           />
-          
-          {/* App Routes - Preserve existing behavior */}
+
           <Route path="/app" element={<AppWrapper />} />
           <Route path="/convert" element={<AppWrapper />} />
-          
-          {/* Redirect old routes to app */}
           <Route path="/feed" element={<Navigate to="/app" replace />} />
           <Route path="/profile" element={<Navigate to="/app" replace />} />
         </Routes>

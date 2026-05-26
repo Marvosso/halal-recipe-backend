@@ -1,10 +1,15 @@
 import { convertRecipe } from "../utils/halalConverter.js";
+import { convertRecipeWithIntelligence } from "../modules/recipe-conversion/index.js";
+import { isServerRecipeConversionEnabled } from "../config/consolidationFlags.js";
+import { clampConfidenceScore } from "../contracts/confidenceV1.js";
 
 /**
  * Service layer for recipe conversion
  * Handles input validation and error handling before calling converter
+ * @param {string} recipe
+ * @param {object} [options] - userId, isPremium, madhab, strictness, etc.
  */
-export const convertService = async (recipe, userPreferences = {}) => {
+export const convertService = async (recipe, options = {}) => {
   // Defensive checks for input
   if (recipe === null || recipe === undefined) {
     return {
@@ -30,22 +35,29 @@ export const convertService = async (recipe, userPreferences = {}) => {
 
   try {
     const conversionStart = Date.now();
-    // Call the converter function with user preferences
-    const result = convertRecipe(recipeText, userPreferences);
+    const { userId, isPremium, ...userPreferences } = options;
+    const result = isServerRecipeConversionEnabled()
+      ? await convertRecipeWithIntelligence(recipeText, userPreferences)
+      : convertRecipe(recipeText, userPreferences);
     const conversionTime = Date.now() - conversionStart;
 
-    // Lightweight server-side timing log (console only)
-    console.log(`[PERF] convertService - Conversion: ${conversionTime}ms, Issues: ${result.issues?.length || 0}`);
+    console.log(
+      `[PERF] convertService - ${isServerRecipeConversionEnabled() ? "intelligence" : "legacy"}: ${conversionTime}ms, Issues: ${result.issues?.length || 0}`
+    );
 
-    // Ensure result has all required fields
     return {
       originalText: result.originalText || recipeText,
       convertedText: result.convertedText || recipeText,
       issues: Array.isArray(result.issues) ? result.issues : [],
       confidenceScore:
         typeof result.confidenceScore === "number"
-          ? Math.max(0, Math.min(100, result.confidenceScore))
+          ? clampConfidenceScore(result.confidenceScore)
           : 0,
+      contract_version: result.contract_version,
+      pipeline: result.pipeline,
+      meta: result.meta,
+      ...(userId != null ? { userId } : {}),
+      ...(isPremium != null ? { isPremium } : {}),
     };
   } catch (error) {
     console.error("[PERF] convertService - Error:", error);

@@ -11,6 +11,30 @@ const SHARE_PATH = "/share";
  * @param {{ recipeTitle: string, issues: Array<{ ingredient?: string, ingredient_id?: string, replacement_id?: string, replacement?: string, wasReplaced?: boolean }>, convertedSnippet?: string }} params
  * @returns {{ title: string, haram: string[], replacements: string[] }}
  */
+import { v1ToShareUrlPayload } from "./formatters/ingredientEvaluationFormatters.js";
+
+/**
+ * Build ingredient share payload for URL encoding.
+ */
+export function buildIngredientSharePayload(data) {
+  const fromV1 = v1ToShareUrlPayload(data);
+  if (fromV1) return fromV1;
+  return {
+    type: "ingredient",
+    contract_version: "1",
+    ingredientName: data.ingredientName,
+    query: data.query,
+    statusLabel: data.statusLabel,
+    statusClass: data.statusClass,
+    statusSummary: data.statusSummary,
+    confidenceScore: data.confidenceScore,
+    modifiers: data.modifiers || [],
+    warnings: data.warnings || [],
+    substitutes: data.substitutes || [],
+    verdict: data.verdict,
+  };
+}
+
 export function buildSharePayload({ recipeTitle, issues = [], convertedSnippet = "" }) {
   const title =
     (recipeTitle || "").trim().split("\n")[0]?.trim() || "Halal Recipe";
@@ -25,6 +49,7 @@ export function buildSharePayload({ recipeTitle, issues = [], convertedSnippet =
   });
 
   return {
+    type: "recipe",
     title: title.slice(0, 120),
     haram: [...new Set(haram)].slice(0, 20),
     replacements: [...new Set(replacements)].slice(0, 20),
@@ -57,7 +82,19 @@ export function decodeSharePayload(encoded) {
     const json = decodeURIComponent(escape(atob(encoded)));
     const data = JSON.parse(json);
     return {
-      title: data?.title || "Halal Recipe",
+      type: data?.type || "recipe",
+      contract_version: data?.contract_version || (data?.type === "ingredient" ? "1" : undefined),
+      title: data?.title || data?.ingredientName || "Halal Kitchen",
+      ingredientName: data?.ingredientName,
+      query: data?.query,
+      verdict: data?.verdict,
+      statusLabel: data?.statusLabel,
+      statusClass: data?.statusClass,
+      statusSummary: data?.statusSummary,
+      confidenceScore: data?.confidenceScore,
+      modifiers: Array.isArray(data?.modifiers) ? data.modifiers : [],
+      warnings: Array.isArray(data?.warnings) ? data.warnings : [],
+      substitutes: Array.isArray(data?.substitutes) ? data.substitutes : [],
       haram: Array.isArray(data?.haram) ? data.haram : [],
       replacements: Array.isArray(data?.replacements) ? data.replacements : [],
       snippet: data?.snippet || "",

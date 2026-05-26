@@ -10,11 +10,12 @@ import { rankSubstitutes, normalizeIngredientOCR } from "./aiReasoningService.js
 import {
   ROUTE,
   resolveRoute,
-  getExplanationWithCache,
   shouldUseOCRCleanupAI,
   shouldUseSubstitutesAI,
   logFallbackAI,
 } from "./aiRoutingService.js";
+import { enhanceEvaluationWithExplanation } from "../modules/ai-enhancement/index.js";
+import { isExplanationAIEnabled } from "../config/aiFeatureFlags.js";
 import { getIngredientDetails } from "../utils/halalEngine.js";
 
 /**
@@ -99,11 +100,33 @@ export async function classifyIngredient(ingredientPhrase, options = {}) {
   // 2. Warnings from rule result (deterministic)
   const warnings = buildWarnings(ruleResult);
 
-  // 3. Explanation: cache-first for known page, else LLM or template per route
-  const explanation = await getExplanationWithCache(
-    { ...ruleResult, warnings },
-    { intent, locale: "en", useCache: intent === ROUTE.KNOWN_PAGE, context: { ocrConfidence } }
-  );
+  // 3. Explanation: AI enhancement layer (never changes verdict)
+  let explanation = ruleResult.notes || "";
+  let explanationSource = "template";
+
+  if (isExplanationAIEnabled()) {
+    const evalShape = {
+      query: inputText,
+      baseSlug: ruleResult.base_slug || ruleResult.baseSlug,
+      category: ruleResult.category,
+      modifier_slugs: ruleResult.modifiers || [],
+      modifiers: ruleResult.modifierDetails || [],
+      verdict: ruleResult.verdict || ruleResult.halal_status,
+      halal_status: ruleResult.halal_status,
+      confidence_level: ruleResult.confidence_level,
+      confidence: ruleResult.confidence,
+      warnings,
+      notes: ruleResult.notes || "",
+      references: [],
+    };
+    const enhanced = await enhanceEvaluationWithExplanation(evalShape, {
+      intent,
+      locale: "en",
+      useCache: intent === ROUTE.KNOWN_PAGE,
+    });
+    explanation = enhanced.explanation || explanation;
+    explanationSource = enhanced.explanation_source || explanationSource;
+  }
 
   // 4. Ranked substitutes only when route allows (deterministic scoring + halal filter)
   const substitutes = shouldUseSubstitutesAI(intent)
@@ -140,6 +163,7 @@ export async function classifyIngredient(ingredientPhrase, options = {}) {
     halal_status: ruleResult.halal_status,
     confidence: ruleResult.confidence != null ? ruleResult.confidence : 0.5,
     explanation: explanation || ruleResult.notes || "",
+    explanation_source: explanationSource,
     warnings,
     references,
     substitutes,

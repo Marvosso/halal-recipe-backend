@@ -91,6 +91,7 @@
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
+  min-height: 52px;
   padding: 1rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
@@ -142,6 +143,7 @@
 .ingredient-scan-primary {
   flex: 1;
   min-width: 140px;
+  min-height: 52px;
   padding: 0.75rem 1rem;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -255,6 +257,14 @@
 .ingredient-scan-explain {
   font-weight: normal;
   color: var(--text-secondary, #555);
+}
+
+.ingredient-scan-modifiers,
+.ingredient-scan-uncertain,
+.ingredient-scan-ocr-warn {
+  font-weight: normal;
+  color: var(--text-secondary, #666);
+  font-size: 0.8125rem;
 }
 
 .ingredient-scan-results .ingredient-scan-actions {

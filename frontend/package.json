@@ -5,12 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "generate:seo": "node scripts/generate-sitemap.mjs && node scripts/generate-seo-manifest.mjs",
+    "prebuild": "npm run generate:seo",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:lookup": "node --test src/lib/lookup/__tests__/lookupCache.test.js",
+    "test:recipe": "node --test src/lib/recipe/__tests__/recipeConversionModel.test.js",
+    "test:confidence": "node --test ../shared/contracts/__tests__/confidenceV1.test.js ../shared/contracts/__tests__/recipeConfidence.test.js",
+    "test:monetization": "node --test src/lib/monetization/__tests__/monetization.consolidation.test.js",
+    "test:regression": "node --test ../shared/regression/__tests__/contractValidators.test.js src/lib/regression/__tests__/regression.frontend.test.js"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.1.2",
     "axios": "^1.13.2",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.562.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

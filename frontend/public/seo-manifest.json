@@ -1,0 +1,2273 @@
+{
+  "generatedAt": "2026-05-26T00:20:49.104Z",
+  "pageCount": 25,
+  "pages": [
+    {
+      "slug": "gelatin",
+      "path": "/is-gelatin-halal",
+      "canonical": "https://halalkitchen.app/is-gelatin-halal",
+      "metadata": {
+        "title": "Is Gelatin Halal? | Halal Kitchen",
+        "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+        "keywords": "is gelatin halal, gelatin halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-gelatin-halal",
+        "path": "/is-gelatin-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Gelatin Halal? | Halal Kitchen",
+          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "url": "https://halalkitchen.app/is-gelatin-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Gelatin Halal? | Halal Kitchen",
+          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Gelatin Halal?",
+          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "url": "https://halalkitchen.app/is-gelatin-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Gelatin Halal?",
+          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "url": "https://halalkitchen.app/is-gelatin-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-gelatin-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Gelatin",
+              "item": "https://halalkitchen.app/is-gelatin-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is all gelatin haram?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not always—halal-certified or fish gelatin may be acceptable to many Muslims. Most store brands are not certified."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the best halal substitute?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Agar agar is the most common plant-based substitute for desserts and gummies."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "usually_haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "soy-sauce",
+      "path": "/is-soy-sauce-halal",
+      "canonical": "https://halalkitchen.app/is-soy-sauce-halal",
+      "metadata": {
+        "title": "Is Soy Sauce Halal? | Halal Kitchen",
+        "description": "Is Soy Sauce Halal? Soy sauce is conditional—many brands ferment with trace alcohol; halal-certified or alcohol-free options are safer.",
+        "keywords": "is soy sauce halal, soy sauce halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-soy-sauce-halal",
+        "path": "/is-soy-sauce-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Soy Sauce Halal? | Halal Kitchen",
+          "description": "Is Soy Sauce Halal? Soy sauce is conditional—many brands ferment with trace alcohol; halal-certified or alcohol-free options are safer.",
+          "url": "https://halalkitchen.app/is-soy-sauce-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Soy Sauce Halal? | Halal Kitchen",
+          "description": "Is Soy Sauce Halal? Soy sauce is conditional—many brands ferment with trace alcohol; halal-certified or alcohol-free options are safer."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Soy Sauce Halal?",
+          "description": "Is Soy Sauce Halal? Soy sauce is conditional—many brands ferment with trace alcohol; halal-certified or alcohol-free options are safer.",
+          "url": "https://halalkitchen.app/is-soy-sauce-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Soy Sauce Halal?",
+          "description": "Is Soy Sauce Halal? Soy sauce is conditional—many brands ferment with trace alcohol; halal-certified or alcohol-free options are safer.",
+          "url": "https://halalkitchen.app/is-soy-sauce-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-soy-sauce-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Soy Sauce",
+              "item": "https://halalkitchen.app/is-soy-sauce-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does soy sauce contain alcohol?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Many fermented brands contain trace alcohol; alcohol-free and certified options exist."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "bacon",
+      "path": "/is-bacon-halal",
+      "canonical": "https://halalkitchen.app/is-bacon-halal",
+      "metadata": {
+        "title": "Is Bacon Halal? | Halal Kitchen",
+        "description": "Is Bacon Halal? Bacon is haram—it is made from pork, which is clearly prohibited in Islam.",
+        "keywords": "is bacon halal, bacon halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-bacon-halal",
+        "path": "/is-bacon-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Bacon Halal? | Halal Kitchen",
+          "description": "Is Bacon Halal? Bacon is haram—it is made from pork, which is clearly prohibited in Islam.",
+          "url": "https://halalkitchen.app/is-bacon-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Bacon Halal? | Halal Kitchen",
+          "description": "Is Bacon Halal? Bacon is haram—it is made from pork, which is clearly prohibited in Islam."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Bacon Halal?",
+          "description": "Is Bacon Halal? Bacon is haram—it is made from pork, which is clearly prohibited in Islam.",
+          "url": "https://halalkitchen.app/is-bacon-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Bacon Halal?",
+          "description": "Is Bacon Halal? Bacon is haram—it is made from pork, which is clearly prohibited in Islam.",
+          "url": "https://halalkitchen.app/is-bacon-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-bacon-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Bacon",
+              "item": "https://halalkitchen.app/is-bacon-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is turkey bacon halal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, if the turkey is halal-slaughtered and certified."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "vanilla-extract",
+      "path": "/is-vanilla-extract-halal",
+      "canonical": "https://halalkitchen.app/is-vanilla-extract-halal",
+      "metadata": {
+        "title": "Is Vanilla Extract Halal? | Halal Kitchen",
+        "description": "Is Vanilla Extract Halal? Vanilla extract is conditional because most versions contain alcohol; alcohol-free extract is widely preferred.",
+        "keywords": "is vanilla extract halal, vanilla extract halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-vanilla-extract-halal",
+        "path": "/is-vanilla-extract-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Vanilla Extract Halal? | Halal Kitchen",
+          "description": "Is Vanilla Extract Halal? Vanilla extract is conditional because most versions contain alcohol; alcohol-free extract is widely preferred.",
+          "url": "https://halalkitchen.app/is-vanilla-extract-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Vanilla Extract Halal? | Halal Kitchen",
+          "description": "Is Vanilla Extract Halal? Vanilla extract is conditional because most versions contain alcohol; alcohol-free extract is widely preferred."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Vanilla Extract Halal?",
+          "description": "Is Vanilla Extract Halal? Vanilla extract is conditional because most versions contain alcohol; alcohol-free extract is widely preferred.",
+          "url": "https://halalkitchen.app/is-vanilla-extract-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Vanilla Extract Halal?",
+          "description": "Is Vanilla Extract Halal? Vanilla extract is conditional because most versions contain alcohol; alcohol-free extract is widely preferred.",
+          "url": "https://halalkitchen.app/is-vanilla-extract-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-vanilla-extract-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Vanilla Extract",
+              "item": "https://halalkitchen.app/is-vanilla-extract-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is vanilla extract with alcohol halal?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Opinions differ; many Muslims choose alcohol-free versions to avoid doubt."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "wine-vinegar",
+      "path": "/is-wine-vinegar-halal",
+      "canonical": "https://halalkitchen.app/is-wine-vinegar-halal",
+      "metadata": {
+        "title": "Is Wine Vinegar Halal? | Halal Kitchen",
+        "description": "Is Wine Vinegar Halal? Wine vinegar is usually halal after full fermentation transforms alcohol into acetic acid; some still prefer grain or apple vinegar.",
+        "keywords": "is wine vinegar halal, wine vinegar halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-wine-vinegar-halal",
+        "path": "/is-wine-vinegar-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Wine Vinegar Halal? | Halal Kitchen",
+          "description": "Is Wine Vinegar Halal? Wine vinegar is usually halal after full fermentation transforms alcohol into acetic acid; some still prefer grain or apple vinegar.",
+          "url": "https://halalkitchen.app/is-wine-vinegar-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Wine Vinegar Halal? | Halal Kitchen",
+          "description": "Is Wine Vinegar Halal? Wine vinegar is usually halal after full fermentation transforms alcohol into acetic acid; some still prefer grain or apple vinegar."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Wine Vinegar Halal?",
+          "description": "Is Wine Vinegar Halal? Wine vinegar is usually halal after full fermentation transforms alcohol into acetic acid; some still prefer grain or apple vinegar.",
+          "url": "https://halalkitchen.app/is-wine-vinegar-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Wine Vinegar Halal?",
+          "description": "Is Wine Vinegar Halal? Wine vinegar is usually halal after full fermentation transforms alcohol into acetic acid; some still prefer grain or apple vinegar.",
+          "url": "https://halalkitchen.app/is-wine-vinegar-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-wine-vinegar-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Wine Vinegar",
+              "item": "https://halalkitchen.app/is-wine-vinegar-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does wine vinegar contain alcohol?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Properly fermented vinegar should have no meaningful alcohol; check labels if concerned."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "usually_halal",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "cheese",
+      "path": "/is-cheese-halal",
+      "canonical": "https://halalkitchen.app/is-cheese-halal",
+      "metadata": {
+        "title": "Is Cheese Halal? | Halal Kitchen",
+        "description": "Is Cheese Halal? Cheese is conditional—animal rennet and lipase may be non-halal unless certified vegetarian or halal.",
+        "keywords": "is cheese halal, cheese halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-cheese-halal",
+        "path": "/is-cheese-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Cheese Halal? | Halal Kitchen",
+          "description": "Is Cheese Halal? Cheese is conditional—animal rennet and lipase may be non-halal unless certified vegetarian or halal.",
+          "url": "https://halalkitchen.app/is-cheese-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Cheese Halal? | Halal Kitchen",
+          "description": "Is Cheese Halal? Cheese is conditional—animal rennet and lipase may be non-halal unless certified vegetarian or halal."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Cheese Halal?",
+          "description": "Is Cheese Halal? Cheese is conditional—animal rennet and lipase may be non-halal unless certified vegetarian or halal.",
+          "url": "https://halalkitchen.app/is-cheese-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Cheese Halal?",
+          "description": "Is Cheese Halal? Cheese is conditional—animal rennet and lipase may be non-halal unless certified vegetarian or halal.",
+          "url": "https://halalkitchen.app/is-cheese-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-cheese-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Cheese",
+              "item": "https://halalkitchen.app/is-cheese-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "pork",
+      "path": "/is-pork-halal",
+      "canonical": "https://halalkitchen.app/is-pork-halal",
+      "metadata": {
+        "title": "Is Pork Halal? | Halal Kitchen",
+        "description": "Is Pork Halal? Pork is haram—explicitly prohibited in the Qur'an and agreed upon across schools of law.",
+        "keywords": "is pork halal, pork halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-pork-halal",
+        "path": "/is-pork-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Pork Halal? | Halal Kitchen",
+          "description": "Is Pork Halal? Pork is haram—explicitly prohibited in the Qur'an and agreed upon across schools of law.",
+          "url": "https://halalkitchen.app/is-pork-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Pork Halal? | Halal Kitchen",
+          "description": "Is Pork Halal? Pork is haram—explicitly prohibited in the Qur'an and agreed upon across schools of law."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Pork Halal?",
+          "description": "Is Pork Halal? Pork is haram—explicitly prohibited in the Qur'an and agreed upon across schools of law.",
+          "url": "https://halalkitchen.app/is-pork-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Pork Halal?",
+          "description": "Is Pork Halal? Pork is haram—explicitly prohibited in the Qur'an and agreed upon across schools of law.",
+          "url": "https://halalkitchen.app/is-pork-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-pork-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Pork",
+              "item": "https://halalkitchen.app/is-pork-halal"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are pork enzymes haram?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Enzymes from pork sources are treated as impermissible by most scholars."
+              }
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "alcohol",
+      "path": "/is-alcohol-halal",
+      "canonical": "https://halalkitchen.app/is-alcohol-halal",
+      "metadata": {
+        "title": "Is Alcohol Halal? | Halal Kitchen",
+        "description": "Is Alcohol Halal? Intoxicating alcohol as a beverage or ingredient is haram.",
+        "keywords": "is alcohol halal, alcohol halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-alcohol-halal",
+        "path": "/is-alcohol-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Alcohol Halal? | Halal Kitchen",
+          "description": "Is Alcohol Halal? Intoxicating alcohol as a beverage or ingredient is haram.",
+          "url": "https://halalkitchen.app/is-alcohol-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Alcohol Halal? | Halal Kitchen",
+          "description": "Is Alcohol Halal? Intoxicating alcohol as a beverage or ingredient is haram."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Alcohol Halal?",
+          "description": "Is Alcohol Halal? Intoxicating alcohol as a beverage or ingredient is haram.",
+          "url": "https://halalkitchen.app/is-alcohol-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Alcohol Halal?",
+          "description": "Is Alcohol Halal? Intoxicating alcohol as a beverage or ingredient is haram.",
+          "url": "https://halalkitchen.app/is-alcohol-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-alcohol-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Alcohol",
+              "item": "https://halalkitchen.app/is-alcohol-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "wine",
+      "path": "/is-wine-halal",
+      "canonical": "https://halalkitchen.app/is-wine-halal",
+      "metadata": {
+        "title": "Is Wine Halal? | Halal Kitchen",
+        "description": "Is Wine Halal? Wine is haram as an intoxicating drink; it is not a substitute for vinegar unless fully transformed.",
+        "keywords": "is wine halal, wine halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-wine-halal",
+        "path": "/is-wine-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Wine Halal? | Halal Kitchen",
+          "description": "Is Wine Halal? Wine is haram as an intoxicating drink; it is not a substitute for vinegar unless fully transformed.",
+          "url": "https://halalkitchen.app/is-wine-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Wine Halal? | Halal Kitchen",
+          "description": "Is Wine Halal? Wine is haram as an intoxicating drink; it is not a substitute for vinegar unless fully transformed."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Wine Halal?",
+          "description": "Is Wine Halal? Wine is haram as an intoxicating drink; it is not a substitute for vinegar unless fully transformed.",
+          "url": "https://halalkitchen.app/is-wine-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Wine Halal?",
+          "description": "Is Wine Halal? Wine is haram as an intoxicating drink; it is not a substitute for vinegar unless fully transformed.",
+          "url": "https://halalkitchen.app/is-wine-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-wine-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Wine",
+              "item": "https://halalkitchen.app/is-wine-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "beer",
+      "path": "/is-beer-halal",
+      "canonical": "https://halalkitchen.app/is-beer-halal",
+      "metadata": {
+        "title": "Is Beer Halal? | Halal Kitchen",
+        "description": "Is Beer Halal? Beer is haram—it is an intoxicating fermented beverage.",
+        "keywords": "is beer halal, beer halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-beer-halal",
+        "path": "/is-beer-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Beer Halal? | Halal Kitchen",
+          "description": "Is Beer Halal? Beer is haram—it is an intoxicating fermented beverage.",
+          "url": "https://halalkitchen.app/is-beer-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Beer Halal? | Halal Kitchen",
+          "description": "Is Beer Halal? Beer is haram—it is an intoxicating fermented beverage."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Beer Halal?",
+          "description": "Is Beer Halal? Beer is haram—it is an intoxicating fermented beverage.",
+          "url": "https://halalkitchen.app/is-beer-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Beer Halal?",
+          "description": "Is Beer Halal? Beer is haram—it is an intoxicating fermented beverage.",
+          "url": "https://halalkitchen.app/is-beer-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-beer-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Beer",
+              "item": "https://halalkitchen.app/is-beer-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "rennet",
+      "path": "/is-rennet-halal",
+      "canonical": "https://halalkitchen.app/is-rennet-halal",
+      "metadata": {
+        "title": "Is Rennet Halal? | Halal Kitchen",
+        "description": "Is Rennet Halal? Rennet is conditional—source must be halal-slaughtered animal, microbial, or vegetarian.",
+        "keywords": "is rennet halal, rennet halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-rennet-halal",
+        "path": "/is-rennet-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Rennet Halal? | Halal Kitchen",
+          "description": "Is Rennet Halal? Rennet is conditional—source must be halal-slaughtered animal, microbial, or vegetarian.",
+          "url": "https://halalkitchen.app/is-rennet-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Rennet Halal? | Halal Kitchen",
+          "description": "Is Rennet Halal? Rennet is conditional—source must be halal-slaughtered animal, microbial, or vegetarian."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Rennet Halal?",
+          "description": "Is Rennet Halal? Rennet is conditional—source must be halal-slaughtered animal, microbial, or vegetarian.",
+          "url": "https://halalkitchen.app/is-rennet-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Rennet Halal?",
+          "description": "Is Rennet Halal? Rennet is conditional—source must be halal-slaughtered animal, microbial, or vegetarian.",
+          "url": "https://halalkitchen.app/is-rennet-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-rennet-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Rennet",
+              "item": "https://halalkitchen.app/is-rennet-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "marshmallow",
+      "path": "/is-marshmallow-halal",
+      "canonical": "https://halalkitchen.app/is-marshmallow-halal",
+      "metadata": {
+        "title": "Is Marshmallows Halal? | Halal Kitchen",
+        "description": "Is Marshmallows Halal? Marshmallows are conditional—most contain pork gelatin unless halal or vegan.",
+        "keywords": "is marshmallows halal, marshmallow halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-marshmallow-halal",
+        "path": "/is-marshmallow-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Marshmallows Halal? | Halal Kitchen",
+          "description": "Is Marshmallows Halal? Marshmallows are conditional—most contain pork gelatin unless halal or vegan.",
+          "url": "https://halalkitchen.app/is-marshmallow-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Marshmallows Halal? | Halal Kitchen",
+          "description": "Is Marshmallows Halal? Marshmallows are conditional—most contain pork gelatin unless halal or vegan."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Marshmallows Halal?",
+          "description": "Is Marshmallows Halal? Marshmallows are conditional—most contain pork gelatin unless halal or vegan.",
+          "url": "https://halalkitchen.app/is-marshmallow-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Marshmallows Halal?",
+          "description": "Is Marshmallows Halal? Marshmallows are conditional—most contain pork gelatin unless halal or vegan.",
+          "url": "https://halalkitchen.app/is-marshmallow-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-marshmallow-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Marshmallows",
+              "item": "https://halalkitchen.app/is-marshmallow-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "glycerin",
+      "path": "/is-glycerin-halal",
+      "canonical": "https://halalkitchen.app/is-glycerin-halal",
+      "metadata": {
+        "title": "Is Glycerin Halal? | Halal Kitchen",
+        "description": "Is Glycerin Halal? Glycerin is conditional—plant-based is halal; animal glycerin needs halal source.",
+        "keywords": "is glycerin halal, glycerin halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-glycerin-halal",
+        "path": "/is-glycerin-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Glycerin Halal? | Halal Kitchen",
+          "description": "Is Glycerin Halal? Glycerin is conditional—plant-based is halal; animal glycerin needs halal source.",
+          "url": "https://halalkitchen.app/is-glycerin-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Glycerin Halal? | Halal Kitchen",
+          "description": "Is Glycerin Halal? Glycerin is conditional—plant-based is halal; animal glycerin needs halal source."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Glycerin Halal?",
+          "description": "Is Glycerin Halal? Glycerin is conditional—plant-based is halal; animal glycerin needs halal source.",
+          "url": "https://halalkitchen.app/is-glycerin-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Glycerin Halal?",
+          "description": "Is Glycerin Halal? Glycerin is conditional—plant-based is halal; animal glycerin needs halal source.",
+          "url": "https://halalkitchen.app/is-glycerin-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-glycerin-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Glycerin",
+              "item": "https://halalkitchen.app/is-glycerin-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "lard",
+      "path": "/is-lard-halal",
+      "canonical": "https://halalkitchen.app/is-lard-halal",
+      "metadata": {
+        "title": "Is Lard Halal? | Halal Kitchen",
+        "description": "Is Lard Halal? Lard is haram—it is pork fat.",
+        "keywords": "is lard halal, lard halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-lard-halal",
+        "path": "/is-lard-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Lard Halal? | Halal Kitchen",
+          "description": "Is Lard Halal? Lard is haram—it is pork fat.",
+          "url": "https://halalkitchen.app/is-lard-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Lard Halal? | Halal Kitchen",
+          "description": "Is Lard Halal? Lard is haram—it is pork fat."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Lard Halal?",
+          "description": "Is Lard Halal? Lard is haram—it is pork fat.",
+          "url": "https://halalkitchen.app/is-lard-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Lard Halal?",
+          "description": "Is Lard Halal? Lard is haram—it is pork fat.",
+          "url": "https://halalkitchen.app/is-lard-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-lard-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Lard",
+              "item": "https://halalkitchen.app/is-lard-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "ham",
+      "path": "/is-ham-halal",
+      "canonical": "https://halalkitchen.app/is-ham-halal",
+      "metadata": {
+        "title": "Is Ham Halal? | Halal Kitchen",
+        "description": "Is Ham Halal? Ham is haram—it is a pork product.",
+        "keywords": "is ham halal, ham halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-ham-halal",
+        "path": "/is-ham-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Ham Halal? | Halal Kitchen",
+          "description": "Is Ham Halal? Ham is haram—it is a pork product.",
+          "url": "https://halalkitchen.app/is-ham-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Ham Halal? | Halal Kitchen",
+          "description": "Is Ham Halal? Ham is haram—it is a pork product."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Ham Halal?",
+          "description": "Is Ham Halal? Ham is haram—it is a pork product.",
+          "url": "https://halalkitchen.app/is-ham-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Ham Halal?",
+          "description": "Is Ham Halal? Ham is haram—it is a pork product.",
+          "url": "https://halalkitchen.app/is-ham-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-ham-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Ham",
+              "item": "https://halalkitchen.app/is-ham-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "pepperoni",
+      "path": "/is-pepperoni-halal",
+      "canonical": "https://halalkitchen.app/is-pepperoni-halal",
+      "metadata": {
+        "title": "Is Pepperoni Halal? | Halal Kitchen",
+        "description": "Is Pepperoni Halal? Traditional pepperoni is haram—it is typically made from pork and beef without halal slaughter.",
+        "keywords": "is pepperoni halal, pepperoni halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-pepperoni-halal",
+        "path": "/is-pepperoni-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Pepperoni Halal? | Halal Kitchen",
+          "description": "Is Pepperoni Halal? Traditional pepperoni is haram—it is typically made from pork and beef without halal slaughter.",
+          "url": "https://halalkitchen.app/is-pepperoni-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Pepperoni Halal? | Halal Kitchen",
+          "description": "Is Pepperoni Halal? Traditional pepperoni is haram—it is typically made from pork and beef without halal slaughter."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Pepperoni Halal?",
+          "description": "Is Pepperoni Halal? Traditional pepperoni is haram—it is typically made from pork and beef without halal slaughter.",
+          "url": "https://halalkitchen.app/is-pepperoni-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Pepperoni Halal?",
+          "description": "Is Pepperoni Halal? Traditional pepperoni is haram—it is typically made from pork and beef without halal slaughter.",
+          "url": "https://halalkitchen.app/is-pepperoni-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-pepperoni-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Pepperoni",
+              "item": "https://halalkitchen.app/is-pepperoni-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "vanilla",
+      "path": "/is-vanilla-halal",
+      "canonical": "https://halalkitchen.app/is-vanilla-halal",
+      "metadata": {
+        "title": "Is Vanilla Halal? | Halal Kitchen",
+        "description": "Is Vanilla Halal? Pure vanilla beans and paste are usually halal; extract may contain alcohol—see vanilla extract page.",
+        "keywords": "is vanilla halal, vanilla halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-vanilla-halal",
+        "path": "/is-vanilla-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Vanilla Halal? | Halal Kitchen",
+          "description": "Is Vanilla Halal? Pure vanilla beans and paste are usually halal; extract may contain alcohol—see vanilla extract page.",
+          "url": "https://halalkitchen.app/is-vanilla-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Vanilla Halal? | Halal Kitchen",
+          "description": "Is Vanilla Halal? Pure vanilla beans and paste are usually halal; extract may contain alcohol—see vanilla extract page."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Vanilla Halal?",
+          "description": "Is Vanilla Halal? Pure vanilla beans and paste are usually halal; extract may contain alcohol—see vanilla extract page.",
+          "url": "https://halalkitchen.app/is-vanilla-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Vanilla Halal?",
+          "description": "Is Vanilla Halal? Pure vanilla beans and paste are usually halal; extract may contain alcohol—see vanilla extract page.",
+          "url": "https://halalkitchen.app/is-vanilla-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-vanilla-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Vanilla",
+              "item": "https://halalkitchen.app/is-vanilla-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "usually_halal",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "rice",
+      "path": "/is-rice-halal",
+      "canonical": "https://halalkitchen.app/is-rice-halal",
+      "metadata": {
+        "title": "Is Rice Halal? | Halal Kitchen",
+        "description": "Is Rice Halal? Plain rice is halal—a staple plant food with no animal ingredients.",
+        "keywords": "is rice halal, rice halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-rice-halal",
+        "path": "/is-rice-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Rice Halal? | Halal Kitchen",
+          "description": "Is Rice Halal? Plain rice is halal—a staple plant food with no animal ingredients.",
+          "url": "https://halalkitchen.app/is-rice-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Rice Halal? | Halal Kitchen",
+          "description": "Is Rice Halal? Plain rice is halal—a staple plant food with no animal ingredients."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Rice Halal?",
+          "description": "Is Rice Halal? Plain rice is halal—a staple plant food with no animal ingredients.",
+          "url": "https://halalkitchen.app/is-rice-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Rice Halal?",
+          "description": "Is Rice Halal? Plain rice is halal—a staple plant food with no animal ingredients.",
+          "url": "https://halalkitchen.app/is-rice-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-rice-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Rice",
+              "item": "https://halalkitchen.app/is-rice-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "halal",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "chicken",
+      "path": "/is-chicken-halal",
+      "canonical": "https://halalkitchen.app/is-chicken-halal",
+      "metadata": {
+        "title": "Is Chicken Halal? | Halal Kitchen",
+        "description": "Is Chicken Halal? Chicken is halal when slaughtered according to Islamic guidelines; conventional supermarket chicken may lack certification.",
+        "keywords": "is chicken halal, chicken halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-chicken-halal",
+        "path": "/is-chicken-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Chicken Halal? | Halal Kitchen",
+          "description": "Is Chicken Halal? Chicken is halal when slaughtered according to Islamic guidelines; conventional supermarket chicken may lack certification.",
+          "url": "https://halalkitchen.app/is-chicken-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Chicken Halal? | Halal Kitchen",
+          "description": "Is Chicken Halal? Chicken is halal when slaughtered according to Islamic guidelines; conventional supermarket chicken may lack certification."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Chicken Halal?",
+          "description": "Is Chicken Halal? Chicken is halal when slaughtered according to Islamic guidelines; conventional supermarket chicken may lack certification.",
+          "url": "https://halalkitchen.app/is-chicken-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Chicken Halal?",
+          "description": "Is Chicken Halal? Chicken is halal when slaughtered according to Islamic guidelines; conventional supermarket chicken may lack certification.",
+          "url": "https://halalkitchen.app/is-chicken-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-chicken-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Chicken",
+              "item": "https://halalkitchen.app/is-chicken-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "beef",
+      "path": "/is-beef-halal",
+      "canonical": "https://halalkitchen.app/is-beef-halal",
+      "metadata": {
+        "title": "Is Beef Halal? | Halal Kitchen",
+        "description": "Is Beef Halal? Beef is halal when from halal-slaughtered cattle; otherwise it is not permissible for strict observers.",
+        "keywords": "is beef halal, beef halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-beef-halal",
+        "path": "/is-beef-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Beef Halal? | Halal Kitchen",
+          "description": "Is Beef Halal? Beef is halal when from halal-slaughtered cattle; otherwise it is not permissible for strict observers.",
+          "url": "https://halalkitchen.app/is-beef-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Beef Halal? | Halal Kitchen",
+          "description": "Is Beef Halal? Beef is halal when from halal-slaughtered cattle; otherwise it is not permissible for strict observers."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Beef Halal?",
+          "description": "Is Beef Halal? Beef is halal when from halal-slaughtered cattle; otherwise it is not permissible for strict observers.",
+          "url": "https://halalkitchen.app/is-beef-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Beef Halal?",
+          "description": "Is Beef Halal? Beef is halal when from halal-slaughtered cattle; otherwise it is not permissible for strict observers.",
+          "url": "https://halalkitchen.app/is-beef-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-beef-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Beef",
+              "item": "https://halalkitchen.app/is-beef-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "fish-sauce",
+      "path": "/is-fish-sauce-halal",
+      "canonical": "https://halalkitchen.app/is-fish-sauce-halal",
+      "metadata": {
+        "title": "Is Fish Sauce Halal? | Halal Kitchen",
+        "description": "Is Fish Sauce Halal? Fish sauce is conditional—most are fish-only and halal for many scholars; check for alcohol or additives.",
+        "keywords": "is fish sauce halal, fish sauce halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-fish-sauce-halal",
+        "path": "/is-fish-sauce-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Fish Sauce Halal? | Halal Kitchen",
+          "description": "Is Fish Sauce Halal? Fish sauce is conditional—most are fish-only and halal for many scholars; check for alcohol or additives.",
+          "url": "https://halalkitchen.app/is-fish-sauce-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Fish Sauce Halal? | Halal Kitchen",
+          "description": "Is Fish Sauce Halal? Fish sauce is conditional—most are fish-only and halal for many scholars; check for alcohol or additives."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Fish Sauce Halal?",
+          "description": "Is Fish Sauce Halal? Fish sauce is conditional—most are fish-only and halal for many scholars; check for alcohol or additives.",
+          "url": "https://halalkitchen.app/is-fish-sauce-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Fish Sauce Halal?",
+          "description": "Is Fish Sauce Halal? Fish sauce is conditional—most are fish-only and halal for many scholars; check for alcohol or additives.",
+          "url": "https://halalkitchen.app/is-fish-sauce-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-fish-sauce-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Fish Sauce",
+              "item": "https://halalkitchen.app/is-fish-sauce-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "oyster-sauce",
+      "path": "/is-oyster-sauce-halal",
+      "canonical": "https://halalkitchen.app/is-oyster-sauce-halal",
+      "metadata": {
+        "title": "Is Oyster Sauce Halal? | Halal Kitchen",
+        "description": "Is Oyster Sauce Halal? Oyster sauce is conditional—shellfish opinions vary by madhab; many Hanafi Muslims avoid it.",
+        "keywords": "is oyster sauce halal, oyster sauce halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-oyster-sauce-halal",
+        "path": "/is-oyster-sauce-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Oyster Sauce Halal? | Halal Kitchen",
+          "description": "Is Oyster Sauce Halal? Oyster sauce is conditional—shellfish opinions vary by madhab; many Hanafi Muslims avoid it.",
+          "url": "https://halalkitchen.app/is-oyster-sauce-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Oyster Sauce Halal? | Halal Kitchen",
+          "description": "Is Oyster Sauce Halal? Oyster sauce is conditional—shellfish opinions vary by madhab; many Hanafi Muslims avoid it."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Oyster Sauce Halal?",
+          "description": "Is Oyster Sauce Halal? Oyster sauce is conditional—shellfish opinions vary by madhab; many Hanafi Muslims avoid it.",
+          "url": "https://halalkitchen.app/is-oyster-sauce-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Oyster Sauce Halal?",
+          "description": "Is Oyster Sauce Halal? Oyster sauce is conditional—shellfish opinions vary by madhab; many Hanafi Muslims avoid it.",
+          "url": "https://halalkitchen.app/is-oyster-sauce-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-oyster-sauce-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Oyster Sauce",
+              "item": "https://halalkitchen.app/is-oyster-sauce-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "whey",
+      "path": "/is-whey-halal",
+      "canonical": "https://halalkitchen.app/is-whey-halal",
+      "metadata": {
+        "title": "Is Whey Halal? | Halal Kitchen",
+        "description": "Is Whey Halal? Whey is conditional—depends on rennet used in cheese production and halal certification.",
+        "keywords": "is whey halal, whey halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-whey-halal",
+        "path": "/is-whey-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Whey Halal? | Halal Kitchen",
+          "description": "Is Whey Halal? Whey is conditional—depends on rennet used in cheese production and halal certification.",
+          "url": "https://halalkitchen.app/is-whey-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Whey Halal? | Halal Kitchen",
+          "description": "Is Whey Halal? Whey is conditional—depends on rennet used in cheese production and halal certification."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Whey Halal?",
+          "description": "Is Whey Halal? Whey is conditional—depends on rennet used in cheese production and halal certification.",
+          "url": "https://halalkitchen.app/is-whey-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Whey Halal?",
+          "description": "Is Whey Halal? Whey is conditional—depends on rennet used in cheese production and halal certification.",
+          "url": "https://halalkitchen.app/is-whey-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-whey-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Whey",
+              "item": "https://halalkitchen.app/is-whey-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "conditional",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "collagen",
+      "path": "/is-collagen-halal",
+      "canonical": "https://halalkitchen.app/is-collagen-halal",
+      "metadata": {
+        "title": "Is Collagen Halal? | Halal Kitchen",
+        "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+        "keywords": "is collagen halal, collagen halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-collagen-halal",
+        "path": "/is-collagen-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Collagen Halal? | Halal Kitchen",
+          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "url": "https://halalkitchen.app/is-collagen-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Collagen Halal? | Halal Kitchen",
+          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Collagen Halal?",
+          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "url": "https://halalkitchen.app/is-collagen-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Collagen Halal?",
+          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "url": "https://halalkitchen.app/is-collagen-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-collagen-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Collagen",
+              "item": "https://halalkitchen.app/is-collagen-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "usually_haram",
+      "lastReviewed": "2026-05-25"
+    },
+    {
+      "slug": "vinegar",
+      "path": "/is-vinegar-halal",
+      "canonical": "https://halalkitchen.app/is-vinegar-halal",
+      "metadata": {
+        "title": "Is Vinegar Halal? | Halal Kitchen",
+        "description": "Is Vinegar Halal? Most plain vinegars (apple, white, rice) are usually halal; wine-derived vinegar is discussed on our wine vinegar page.",
+        "keywords": "is vinegar halal, vinegar halal, halal ingredients",
+        "canonical": "https://halalkitchen.app/is-vinegar-halal",
+        "path": "/is-vinegar-halal",
+        "openGraph": {
+          "type": "article",
+          "siteName": "Halal Kitchen",
+          "title": "Is Vinegar Halal? | Halal Kitchen",
+          "description": "Is Vinegar Halal? Most plain vinegars (apple, white, rice) are usually halal; wine-derived vinegar is discussed on our wine vinegar page.",
+          "url": "https://halalkitchen.app/is-vinegar-halal",
+          "image": "https://halalkitchen.app/halal-input.png"
+        },
+        "twitter": {
+          "card": "summary_large_image",
+          "title": "Is Vinegar Halal? | Halal Kitchen",
+          "description": "Is Vinegar Halal? Most plain vinegars (apple, white, rice) are usually halal; wine-derived vinegar is discussed on our wine vinegar page."
+        },
+        "robots": "index, follow",
+        "lastReviewed": "2026-05-25"
+      },
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Is Vinegar Halal?",
+          "description": "Is Vinegar Halal? Most plain vinegars (apple, white, rice) are usually halal; wine-derived vinegar is discussed on our wine vinegar page.",
+          "url": "https://halalkitchen.app/is-vinegar-halal",
+          "inLanguage": "en",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Is Vinegar Halal?",
+          "description": "Is Vinegar Halal? Most plain vinegars (apple, white, rice) are usually halal; wine-derived vinegar is discussed on our wine vinegar page.",
+          "url": "https://halalkitchen.app/is-vinegar-halal",
+          "author": {
+            "@type": "Organization",
+            "name": "Halal Kitchen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Halal Kitchen",
+            "url": "https://halalkitchen.app"
+          },
+          "dateModified": "2026-05-25",
+          "mainEntityOfPage": "https://halalkitchen.app/is-vinegar-halal"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://halalkitchen.app"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Is It Halal?",
+              "item": "https://halalkitchen.app/is-it-halal"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Vinegar",
+              "item": "https://halalkitchen.app/is-vinegar-halal"
+            }
+          ]
+        }
+      ],
+      "verdict": "usually_halal",
+      "lastReviewed": "2026-05-25"
+    }
+  ]
+}

@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import IngredientHubIndex from "../components/seo/IngredientHubIndex";
+import { buildHubMetadata } from "../lib/seo/metadata";
 import "./SEO.css";
 
 function IsItHalalPage() {
+  const hub = buildHubMetadata();
   return (
     <>
       <Helmet>
-        <title>Is It Halal? - Complete Ingredient Guide | Halal Kitchen</title>
-        <meta 
-          name="description" 
-          content="Quick reference guide to determine if ingredients are halal. Learn about pork, alcohol, gelatin, vanilla extract, and more. Check ingredients before cooking." 
-        />
-        <meta name="keywords" content="is it halal, halal ingredients, haram ingredients, halal food guide, Islamic dietary laws" />
-        <link rel="canonical" href="https://halalkitchen.app/is-it-halal" />
+        <title>{hub.title}</title>
+        <meta name="description" content={hub.description} />
+        <meta name="keywords" content={hub.keywords} />
+        <link rel="canonical" href={hub.canonical} />
       </Helmet>
       
       <main className="seo-page">
@@ -100,6 +100,8 @@ function IsItHalalPage() {
               <li>Legumes (beans, lentils, chickpeas)</li>
               <li>Dairy products (milk, cheese, yogurt - check for non-halal enzymes)</li>
             </ul>
+
+            <IngredientHubIndex />
 
             <div className="seo-cta">
               <Link to="/app" className="cta-button">

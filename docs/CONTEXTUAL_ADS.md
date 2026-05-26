@@ -1,6 +1,21 @@
-# Light Contextual Advertising
+# Light Contextual Monetization
 
-Ads are limited to **ingredient lookup results** and **recipe conversion results**, with one ad per section. They never block core actions and use responsive placements for mobile and desktop.
+Halal Kitchen uses **contextual substitute recommendations** (affiliate, lazy-loaded) by default. **Display ads (AdSense)** are opt-in only and never appear above search or convert actions.
+
+## Feature flags
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `VITE_ENABLE_AFFILIATE_RECOMMENDATIONS` | `true` | Show “Find halal alternatives” tips after lookup when substitutes exist |
+| `VITE_ENABLE_CONTEXTUAL_ADS` | `false` | Enable AdSense slots (requires `VITE_ADSENSE_CLIENT` + slot IDs) |
+
+Affiliate UI goes through `frontend/src/lib/monetization/` (`affiliateGateway.js`).
+
+---
+
+# Light Contextual Advertising (optional)
+
+When `VITE_ENABLE_CONTEXTUAL_ADS=true`, ads are limited to **ingredient lookup results** and **recipe conversion results**, with one ad per section. They never block core actions and use responsive placements for mobile and desktop.
 
 ---
 

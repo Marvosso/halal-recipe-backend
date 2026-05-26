@@ -11,13 +11,30 @@ import { hasPremiumAccess } from '../services/subscriptionService.js';
 import { checkConversionLimit, trackConversion } from '../services/conversionLimitService.js';
 import { getPool } from '../database.js';
 import convertService from '../services/convertService.js';
-import { classifyIngredient } from '../services/halalClassificationService.js';
+import { lookupIngredient, toLegacyClassifyShape } from '../services/lookupService.js';
+import { isLegacyHybridClassifyEnabled } from '../config/consolidationFlags.js';
 import { runPhotoScanPipeline } from '../services/photoScanPipelineService.js';
 import { extractTextFromImage } from '../services/ocrAdapter.js';
-import { ROUTE, shouldUseOCRCleanupAI } from '../services/aiRoutingService.js';
-import { getAIFeatureFlags, isFallbackAIEnabled } from '../config/aiFeatureFlags.js';
+import { getAIFeatureFlags } from '../config/aiFeatureFlags.js';
+import {
+  assertConvertResponse,
+  assertClassifyResponse,
+  assertScanResponse,
+} from '../middleware/contractGuard.js';
 
 const router = express.Router();
+
+/**
+ * Map classify-ingredient request context → lookupService source (canonical pipeline).
+ * @param {{ intent?: string, useOCRNormalization?: boolean, recipeContext?: object }} ctx
+ */
+function resolveClassifyLookupSource(ctx) {
+  if (ctx.useOCRNormalization || ctx.intent === 'ocr_cleanup') return 'ocr';
+  if (ctx.recipeContext && Object.keys(ctx.recipeContext).length) return 'recipe';
+  if (ctx.intent === 'known_page' || ctx.intent === 'seo') return 'seo';
+  if (ctx.intent === 'recipe_conversion') return 'recipe';
+  return 'typed';
+}
 
 // In-memory upload for scan (no disk write)
 const scanUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 } });
@@ -32,7 +49,7 @@ const scanUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize:
 router.post('/', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.id;
-    const { recipeText } = req.body;
+    const recipeText = req.body?.recipeText ?? req.body?.recipe;
 
     if (!recipeText || typeof recipeText !== 'string') {
       return res.status(400).json({ error: 'Recipe text is required' });
@@ -55,14 +72,15 @@ router.post('/', authenticateToken, async (req, res) => {
 
     // Perform conversion
     const result = await convertService(recipeText, {
-      userId: userId,
-      isPremium: limitCheck.isPremium
+      userId,
+      isPremium: limitCheck.isPremium,
+      ...(req.body?.userPreferences || {}),
     });
 
     // Track conversion in database (for limit tracking)
     await trackConversion(userId, recipeText);
 
-    res.json(result);
+    res.json(assertConvertResponse(result));
   } catch (error) {
     console.error('Error converting recipe:', error);
     res.status(500).json({ error: 'Failed to convert recipe' });
@@ -85,6 +103,29 @@ router.post('/classify-ingredient', authenticateToken, async (req, res) => {
     if (!ingredient || typeof ingredient !== 'string') {
       return res.status(400).json({ error: 'ingredient string is required' });
     }
+
+    // Phase 1: canonical pipeline (ingredient-intelligence via lookupService).
+    const useLegacyHybrid =
+      isLegacyHybridClassifyEnabled() &&
+      (Boolean(useOCRNormalization) ||
+        Boolean(recipeContext && Object.keys(recipeContext).length));
+
+    if (!useLegacyHybrid) {
+      const source = resolveClassifyLookupSource({
+        intent,
+        useOCRNormalization,
+        recipeContext,
+      });
+      const lookup = await lookupIngredient(ingredient.trim(), {
+        source,
+        locale: 'en',
+        useAiExplanation: source !== 'ocr',
+      });
+      return res.json(assertClassifyResponse(toLegacyClassifyShape(lookup)));
+    }
+
+    // Rollback-only legacy path (blocked in production via consolidationFlags)
+    const { classifyIngredient } = await import('../services/halalClassificationService.js');
     const result = await classifyIngredient(ingredient.trim(), {
       userPreferences: userPreferences || {},
       useOCRNormalization: Boolean(useOCRNormalization),
@@ -127,19 +168,13 @@ router.post('/scan-ingredients', authenticateToken, scanUpload.single('image'), 
       });
     }
 
-    const useOCRRoute = ocrConfidence < 0.5 ? ROUTE.AMBIGUOUS_FALLBACK : ROUTE.OCR_CLEANUP;
-    const aiCleanupAllowed =
-      shouldUseOCRCleanupAI(useOCRRoute, { ocrConfidence }) ||
-      (ocrConfidence < 0.5 && isFallbackAIEnabled());
-    const useAINormalization = (body.useAINormalization !== false) && aiCleanupAllowed;
-
     const result = await runPhotoScanPipeline(rawText, {
       userPreferences: body.userPreferences || {},
       ocrConfidence,
-      useAINormalization,
+      locale: body.locale || 'en',
     });
 
-    res.json(result);
+    res.json(assertScanResponse(result));
   } catch (error) {
     console.error('Error in scan-ingredients:', error);
     res.status(500).json({ error: 'Failed to scan ingredients' });

@@ -1,10 +1,10 @@
 /**
- * Affiliate Service – provider-agnostic monetization layer.
- * Prefers backend API; fallback to client config. Single-provider (Amazon) until more are approved.
+ * Affiliate Service – internal provider layer (API + fallback).
+ * @internal Features must import from `lib/monetization` only — not this module.
  */
 
-import { getProviderById, MAX_LINKS_PER_INGREDIENT } from '../config/affiliateProviderConfig';
-import { autoRouteAffiliateLinks } from './affiliateRouting';
+import { getProviderById, MAX_LINKS_PER_INGREDIENT } from '../config/affiliateProviderConfig.js';
+import { autoRouteAffiliateLinks } from './affiliateRouting.js';
 
 /**
  * Fetch affiliate links from backend API (normalized data).

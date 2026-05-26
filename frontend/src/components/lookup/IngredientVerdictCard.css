@@ -1,0 +1,329 @@
+.verdict-card {
+  border-radius: 16px;
+  border: 2px solid var(--border-light, #e2e8f0);
+  background: var(--card-bg, #fff);
+  overflow: hidden;
+  animation: verdict-card-in 0.2s ease-out;
+}
+
+@keyframes verdict-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.verdict-card--halal {
+  border-color: var(--primary-green, #0a9d58);
+}
+
+.verdict-card--haram {
+  border-color: #c53030;
+}
+
+.verdict-card--conditional {
+  border-color: #d69e2e;
+}
+
+.verdict-card--unknown {
+  border-color: #718096;
+}
+
+.verdict-card__hero {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  align-items: flex-start;
+}
+
+.verdict-card--halal .verdict-card__hero {
+  background: linear-gradient(135deg, rgba(10, 157, 88, 0.08), transparent);
+}
+
+.verdict-card--haram .verdict-card__hero {
+  background: linear-gradient(135deg, rgba(197, 48, 48, 0.08), transparent);
+}
+
+.verdict-card--conditional .verdict-card__hero {
+  background: linear-gradient(135deg, rgba(214, 158, 46, 0.1), transparent);
+}
+
+.verdict-card__icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.verdict-card__icon--halal {
+  color: var(--primary-green, #0a9d58);
+}
+
+.verdict-card__icon--haram {
+  color: #c53030;
+}
+
+.verdict-card__icon--conditional {
+  color: #b7791f;
+}
+
+.verdict-card__icon--unknown {
+  color: #718096;
+}
+
+.verdict-card__ingredient-name {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-color, #1a202c);
+  text-transform: capitalize;
+}
+
+.verdict-card__query-trace {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #4a5568);
+}
+
+.verdict-card__badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.verdict-card__badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.verdict-card__badge--halal {
+  background: rgba(10, 157, 88, 0.15);
+  color: var(--primary-green, #0a9d58);
+}
+
+.verdict-card__badge--haram {
+  background: rgba(197, 48, 48, 0.12);
+  color: #9b2c2c;
+}
+
+.verdict-card__badge--conditional {
+  background: rgba(214, 158, 46, 0.2);
+  color: #975a16;
+}
+
+.verdict-card__badge--unknown {
+  background: rgba(113, 128, 150, 0.15);
+  color: #4a5568;
+}
+
+.verdict-card__confidence {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary, #4a5568);
+}
+
+.verdict-card__summary {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-secondary, #4a5568);
+  line-height: 1.45;
+}
+
+.verdict-card__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary, #4a5568);
+}
+
+.verdict-card__modifiers,
+.verdict-card__warnings,
+.verdict-card__explanation,
+.verdict-card__substitutes {
+  padding: 0 1.25rem 1rem;
+}
+
+.verdict-card__modifier-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.verdict-card__modifier-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 10px;
+  background: var(--green-bg, #f0fff4);
+  border: 1px solid var(--border-light, #e2e8f0);
+  min-height: 44px;
+  justify-content: center;
+}
+
+.verdict-card__modifier-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color, #1a202c);
+}
+
+.verdict-card__modifier-effect {
+  font-size: 0.6875rem;
+  color: var(--text-secondary, #4a5568);
+}
+
+.verdict-card__warning-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.verdict-card__warning {
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.verdict-card__warning--high {
+  background: #fff5f5;
+  border-left: 3px solid #c53030;
+  color: #742a2a;
+}
+
+.verdict-card__warning--medium {
+  background: #fffff0;
+  border-left: 3px solid #d69e2e;
+  color: #744210;
+}
+
+.verdict-card__explanation p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-color, #1a202c);
+}
+
+.verdict-card__substitute-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.verdict-card--compact .verdict-card__substitute-list {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
+  gap: 0.5rem;
+}
+
+.verdict-card__substitute-item {
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: var(--green-bg, #f0fff4);
+  border: 1px solid rgba(10, 157, 88, 0.25);
+  flex-shrink: 0;
+}
+
+.verdict-card__substitute-name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-transform: capitalize;
+}
+
+.verdict-card__substitute-reason {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-secondary, #4a5568);
+  margin-top: 0.15rem;
+}
+
+.verdict-card__actions {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.verdict-card__share-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--primary-green, #0a9d58);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--primary-green, #0a9d58);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.verdict-card__share-btn:hover {
+  background: rgba(10, 157, 88, 0.08);
+}
+
+.verdict-card__share-btn:focus-visible {
+  outline: 3px solid rgba(10, 157, 88, 0.45);
+  outline-offset: 2px;
+}
+
+.verdict-card__convert-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary-green, #0a9d58);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.verdict-card__convert-btn:hover {
+  filter: brightness(1.05);
+}
+
+.verdict-card__convert-btn:focus-visible {
+  outline: 3px solid rgba(10, 157, 88, 0.45);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .verdict-card__hero {
+    padding: 1rem;
+  }
+
+  .verdict-card__ingredient-name {
+    font-size: 1.125rem;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle, XCircle, AlertCircle, ChevronDown, ChevronUp, Search, RefreshCw, Link2, BookOpen } from "lucide-react";
 import AffiliateLink from "./AffiliateLink";
@@ -38,30 +38,6 @@ function SEOPageLayout({
   const shopProviders = useMemo(() => getEnabledProviders().slice(0, 2), []);
 
   const principles = scholarlyBasis.length > 0 ? scholarlyBasis : islamicEvidence;
-
-  // Inject SEO metadata
-  useEffect(() => {
-    // Set document title
-    if (title) {
-      document.title = title;
-    }
-
-    // Set meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
-    }
-    if (description) {
-      metaDescription.content = description;
-    }
-
-    // Cleanup on unmount
-    return () => {
-      // Optionally reset to default title/description
-    };
-  }, [title, description]);
 
   // Toggle FAQ item
   const toggleFaqItem = (index) => {
@@ -161,51 +137,6 @@ function SEOPageLayout({
       .filter(Boolean)
       .map((c) => ({ slug: c.slug, title: c.title || `Is ${c.ingredientName} Halal?` }));
   }, [relatedIngredients]);
-
-  const pageUrl = canonical || (typeof window !== "undefined" ? window.location.href : "");
-
-  useEffect(() => {
-    if (!pageUrl || !title) return;
-    const webPage = {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: title,
-      description: description || rulingSummary || "",
-      url: pageUrl,
-      ...(lastReviewed && { dateModified: new Date(lastReviewed).toISOString().split("T")[0] }),
-    };
-    const faqSchema =
-      faq && faq.length > 0
-        ? {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faq.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-              },
-            })),
-          }
-        : null;
-
-    const scriptId = "seo-schema-ld";
-    let script = document.getElementById(scriptId);
-    if (!script) {
-      script = document.createElement("script");
-      script.id = scriptId;
-      script.type = "application/ld+json";
-      document.head.appendChild(script);
-    }
-    const payload = faqSchema ? [webPage, faqSchema] : webPage;
-    script.textContent = JSON.stringify(payload);
-
-    return () => {
-      const el = document.getElementById(scriptId);
-      if (el) el.remove();
-    };
-  }, [pageUrl, title, description, rulingSummary, lastReviewed, faq]);
 
   return (
     <div className="seo-page-layout" role="main">
@@ -342,6 +273,8 @@ function SEOPageLayout({
             </p>
             <div className="seo-embedded-lookup">
               <QuickLookup
+                variant="embedded"
+                lookupSource="seo"
                 initialSearch={quickLookupIngredient}
                 autoSearchOnMount={true}
                 onConvertClick={() => window.location.href = "/app"}

@@ -219,6 +219,63 @@
   box-shadow: var(--shadow-gold);
 }
 
+.seo-ingredient-hub {
+  margin: 2rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light, #eee);
+}
+
+.seo-ingredient-hub h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.seo-hub-intro {
+  color: var(--text-secondary, #555);
+  font-size: 0.9375rem;
+  margin-bottom: 1.25rem;
+}
+
+.seo-hub-section {
+  margin-bottom: 1.25rem;
+}
+
+.seo-hub-section h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.seo-hub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+@media (min-width: 480px) {
+  .seo-hub-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.seo-hub-list a {
+  color: var(--primary-green, #0d9488);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.seo-hub-list a:hover {
+  text-decoration: underline;
+}
+
+.seo-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
 .seo-links {
   margin-top: 3rem;
   padding-top: 2rem;

@@ -17,7 +17,27 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.seo-footer-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+}
+
+.seo-footer-ingredients a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.seo-footer-ingredients a:hover {
+  color: var(--primary-green);
+  text-decoration: underline;
 }
 
 .seo-footer-nav a {

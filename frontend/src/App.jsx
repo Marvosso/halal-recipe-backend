@@ -14,11 +14,15 @@ import IngredientSources from "./components/IngredientSources";
 import HalalStandardPanel from "./components/HalalStandardPanel";
 import CommunityTips from "./components/CommunityTips";
 import TabNavigation from "./components/TabNavigation";
-import IngredientShopSection from "./components/IngredientShopSection";
 import AffiliateLink from "./components/AffiliateLink";
 import AffiliateLinkGroup from "./components/AffiliateLinkGroup";
 import SubstitutePurchaseCard from "./components/SubstitutePurchaseCard";
 import ContextualAd from "./components/ContextualAd";
+import {
+  isContextualAdsEnabled,
+  enrichIssuesWithAffiliateLinks,
+  extractConversionRecommendations,
+} from "./lib/monetization";
 import { MAX_LINKS_PER_INGREDIENT } from "./config/affiliateProviderConfig";
 import SocialFeed from "./components/SocialFeed";
 import UserProfile from "./components/UserProfile";
@@ -29,16 +33,23 @@ import AuthModal from "./components/AuthModal";
 import { t } from "./lib/i18n";
 import { useAnalytics } from "./hooks/useAnalytics";
 import logger from "./utils/logger";
-import { evaluateItem } from "./lib/halalEngine";
-import { FEATURES } from "./lib/featureFlags";
-import { convertRecipeWithJson } from "./lib/convertRecipeJson";
+
+import { useRecipeConversion } from "./features/conversion/useRecipeConversion";
+import ContextualSubstituteRecommendations from "./components/monetization/ContextualSubstituteRecommendations";
 import { convertBatchRecipes } from "./lib/batchConversion";
 import { formatIngredientName } from "./lib/ingredientDisplay";
-import { isPremiumUser, canConvert, getRemainingConversionsThisMonth, getConversionsThisMonth, trackConversion } from "./lib/subscription";
+import { isPremiumUser, canConvert, getRemainingConversionsThisMonth, getConversionsThisMonth } from "./lib/subscription";
 import { checkConversionLimit, canUseAdvancedSubstitutions, canUseStrictHalalMode, canExportShoppingList } from "./lib/featureGating";
-import { trackConversionLimitHit, trackConversionLimitApproach } from "./lib/premiumAnalytics";
+import { trackConversionLimitHit } from "./lib/premiumAnalytics";
 import { isAuthenticated, getUserData, getCurrentUser, clearAuth } from "./api/authApi";
-import { createRecipe, getMyRecipes, deleteRecipe as deleteRecipeApi } from "./api/recipesApi";
+import { createRecipe } from "./api/recipesApi";
+import {
+  saveHalalRecipe,
+  listSavedHalalRecipes,
+  deleteSavedHalalRecipe,
+} from "./api/savedRecipesApi";
+import { buildSavePayload, normalizeSavedRecipe } from "./lib/savedRecipes/savedRecipeModel";
+import { migrateLegacyHalalRecipes } from "./lib/savedRecipes/localStorage";
 import SaveHalalVersionButton from "./components/SaveHalalVersionButton";
 
 function App() {
@@ -46,10 +57,6 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState("");
-  const [converted, setConverted] = useState("");
-  const [issues, setIssues] = useState([]);
-  const [confidence, setConfidence] = useState(0);
-  const [error, setError] = useState("");
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [openIngredientCards, setOpenIngredientCards] = useState(new Set());
   const [openReferences, setOpenReferences] = useState(new Set());
@@ -67,8 +74,19 @@ function App() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState("login"); // "login" or "register"
   const [user, setUser] = useState(null);
-  const [isOffline, setIsOffline] = useState(false);
-  const [showCachedResult, setShowCachedResult] = useState(false);
+  const {
+    converted,
+    setConverted,
+    issues,
+    setIssues,
+    confidence,
+    setConfidence,
+    error,
+    setError,
+    isOffline,
+    showCachedResult,
+    convert: runRecipeConversion,
+  } = useRecipeConversion({ halalSettings, analytics });
   const [mealPlanInput, setMealPlanInput] = useState("");
   const [batchResult, setBatchResult] = useState(null);
   const [batchLoading, setBatchLoading] = useState(false);
@@ -122,23 +140,13 @@ function App() {
         logger.error("Error loading user:", err);
         clearAuth();
       });
-      // Load saved recipes from account when authenticated
-      getMyRecipes().then((list) => {
-        if (Array.isArray(list) && list.length > 0) {
-          const normalized = list.map((r) => ({
-            id: r.id,
-            title: r.title || "Untitled Recipe",
-            original: r.originalRecipe ?? r.original_recipe ?? r.original ?? "",
-            converted: r.convertedRecipe ?? r.converted_recipe ?? r.converted ?? "",
-            savedAt: r.createdAt ?? r.created_at ?? r.savedAt,
-            isPublic: r.isPublic ?? r.is_public ?? false,
-          }));
-          setSavedRecipes(normalized);
-          if (typeof Storage !== "undefined") {
-            localStorage.setItem("halalRecipes", JSON.stringify(normalized));
+      listSavedHalalRecipes()
+        .then((list) => {
+          if (Array.isArray(list) && list.length > 0) {
+            setSavedRecipes(list);
           }
-        }
-      }).catch(() => { /* fall back to localStorage below */ });
+        })
+        .catch(() => { /* fall back to localStorage below */ });
     } else {
       // Try loading from localStorage
       const userData = getUserData();
@@ -154,10 +162,15 @@ function App() {
         const strictness = localStorage.getItem("halalStrictnessLevel");
         const school = localStorage.getItem("halalSchoolOfThought");
         
-        if (saved && !isAuthenticated()) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed)) {
-            setSavedRecipes(parsed);
+        if (!isAuthenticated()) {
+          const local = migrateLegacyHalalRecipes();
+          if (local.length > 0) {
+            setSavedRecipes(local.map(normalizeSavedRecipe).filter(Boolean));
+          } else if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) {
+              setSavedRecipes(parsed.map(normalizeSavedRecipe).filter(Boolean));
+            }
           }
         }
         
@@ -231,335 +244,16 @@ function App() {
   }, [converted]);
 
   const handleConvert = async (recipeText = null, isAutoConvert = false) => {
-    // Determine which recipe text to use
-    // If recipeText is provided (from saved recipe), use it
-    // Otherwise, use the current recipe state
-    const recipeToConvert = recipeText !== null && recipeText !== undefined 
-      ? recipeText 
-      : recipe;
-    
-    // Defensive validation - only alert if truly empty and manual conversion
-    if (recipeToConvert === null || recipeToConvert === undefined) {
-      if (!isAutoConvert) {
-        alert("Please enter a recipe to convert.");
-      }
-      return;
-    }
-
-    // Convert to string if not already
-    const recipeString = typeof recipeToConvert === "string" 
-      ? recipeToConvert 
-      : String(recipeToConvert || "");
-
-    // Trim and check if empty
-    const trimmedRecipe = recipeString.trim();
-    
-    if (trimmedRecipe === "") {
-      if (!isAutoConvert) {
-        alert("Please enter a recipe to convert.");
-      }
-      return;
-    }
-
-    // Clear any previous errors
-    setError("");
-    setIsOffline(false);
-    setShowCachedResult(false);
-    
-    try {
-      let convertedText = "";
-      let convertedIssues = [];
-      let convertedConfidence = 0;
-      let jsonConversionUsed = false;
-      
-      // Use JSON engine as primary conversion source if enabled
-      if (FEATURES.USE_JSON_CONVERSION_PRIMARY && FEATURES.HALAL_KNOWLEDGE_ENGINE) {
-        try {
-          const jsonResult = await convertRecipeWithJson(trimmedRecipe, halalSettings);
-          convertedText = jsonResult.convertedText || "";
-          convertedIssues = Array.isArray(jsonResult.issues) ? jsonResult.issues : [];
-          // Ensure confidenceScore is never 0 unless truly 0
-          convertedConfidence = typeof jsonResult.confidenceScore === "number" && !isNaN(jsonResult.confidenceScore)
-            ? jsonResult.confidenceScore
-            : (typeof jsonResult.confidence === "number" && !isNaN(jsonResult.confidence)
-                ? Math.round(jsonResult.confidence * 100)
-                : null); // null indicates missing, not 0
-          
-          // Temporary console.log at boundary (as requested)
-          console.log("[CONFIDENCE DEBUG] Recipe conversion result:", {
-            confidenceScore: convertedConfidence,
-            hasIssues: convertedIssues.length > 0,
-            issuesWithConfidence: convertedIssues.map(i => ({
-              ingredient: i.ingredient_id || i.ingredient,
-              confidenceScore: i.confidenceScore || i.engineResult?.confidenceScore
-            }))
-          });
-          
-          jsonConversionUsed = true;
-        } catch (jsonError) {
-          console.warn("JSON conversion failed, falling back to backend API:", jsonError);
-          // Fall through to backend API
-        }
-      }
-      
-      // Fallback to backend API if JSON conversion not used or failed
-      if (!jsonConversionUsed) {
-        const api = await getAxiosInstance();
-        const res = await api.post("/convert", { recipe: trimmedRecipe });
-        
-        // Check if the response contains an error
-        if (res.data?.error) {
-          setError(res.data.error);
-          setConverted("");
-          setIssues([]);
-          setConfidence(0);
-          setIsAccordionOpen(false);
-          setOpenIngredientCards(new Set());
-          return;
-        }
-        
-        // Update state with response data
-        convertedText = res.data?.convertedText || "";
-        convertedIssues = Array.isArray(res.data?.issues) ? res.data.issues : [];
-        convertedConfidence = typeof res.data?.confidenceScore === "number" ? res.data.confidenceScore : 0;
-      }
-      
-      // Enhance backend results with JSON engine data (if not already using JSON conversion)
-      // JSON conversion already includes all engine data, so skip enhancement
-      if (!jsonConversionUsed && FEATURES.HALAL_KNOWLEDGE_ENGINE && convertedIssues.length > 0) {
-        // Enhance with Halal Knowledge Model (if enabled)
-        let inheritanceFlags = 0;
-        let preferenceEnforcedFlags = 0;
-        let maxConfidenceReduction = 1;
-        
-        // Process each ingredient through HKM
-        convertedIssues = convertedIssues.map((issue) => {
-          const existingResult = issue; // Preserve all CSV data
-          
-          if (FEATURES.HALAL_KNOWLEDGE_ENGINE && issue?.ingredient) {
-            const normalizedIngredient = issue.ingredient.toLowerCase().trim().replace(/\s+/g, "_");
-            const engineResult = evaluateItem(normalizedIngredient, {
-              madhab: halalSettings?.schoolOfThought || "no-preference",
-              strictness: halalSettings?.strictnessLevel || "standard"
-            });
-            
-            // Track if preferences were enforced
-            if (engineResult.enforcedBy === "user_preferences") {
-              preferenceEnforcedFlags++;
-            }
-            
-            // Safe Mode: Only downgrade, never upgrade
-            if (FEATURES.HALAL_ENGINE_SAFE_MODE && engineResult.status === "haram") {
-              inheritanceFlags++;
-              // Track minimum confidence from inheritance
-              maxConfidenceReduction = Math.min(maxConfidenceReduction, engineResult.confidence);
-              
-              // Determine validation state
-              let validationState = "derived_haram";
-              if (existingResult.ingredient && issue.ingredient) {
-                // Check if it was in CSV (explicit)
-                validationState = "explicit_haram";
-              } else if (engineResult.enforcedBy === "user_preferences") {
-                validationState = "preference_based";
-              }
-              
-              return {
-                ...existingResult,
-                status: "haram",
-                reason: engineResult.eli5 || existingResult.notes,
-                trace: engineResult.trace || [],
-                confidence: Math.min(existingResult.confidence || 1, engineResult.confidence),
-                hkmResult: engineResult,
-                validationState,
-                preferencesApplied: engineResult.preferences,
-                // Add knowledge model fields
-                inheritedFrom: engineResult.inheritedFrom || existingResult.inheritedFrom,
-                alternatives: engineResult.alternatives || existingResult.alternatives || [],
-                notes: engineResult.notes || existingResult.notes,
-                eli5: engineResult.eli5 || existingResult.eli5,
-                tags: engineResult.tags || existingResult.tags,
-                references: engineResult.references || [],
-                // Map references to quranReference and hadithReference for backward compatibility
-                quranReference: existingResult.quranReference || (engineResult.references && engineResult.references.filter(r => r.toLowerCase().includes("qur'an") || r.toLowerCase().includes("quran"))[0]) || undefined,
-                hadithReference: existingResult.hadithReference || (engineResult.references && engineResult.references.filter(r => r.toLowerCase().includes("hadith") || r.toLowerCase().includes("bukhari") || r.toLowerCase().includes("muslim")).join("; ")) || undefined
-              };
-            } else if (engineResult.status === "conditional" && engineResult.trace?.length > 1) {
-              // Track conditional items with inheritance chains
-              inheritanceFlags++;
-              maxConfidenceReduction = Math.min(maxConfidenceReduction, engineResult.confidence);
-              
-              let validationState = "needs_review";
-              if (engineResult.enforcedBy === "user_preferences") {
-                validationState = "preference_based";
-              }
-              
-              return {
-                ...existingResult,
-                trace: engineResult.trace || [],
-                hkmResult: engineResult,
-                hasInheritance: true,
-                validationState,
-                preferencesApplied: engineResult.preferences,
-                // Add knowledge model fields
-                inheritedFrom: engineResult.inheritedFrom || existingResult.inheritedFrom,
-                alternatives: engineResult.alternatives || existingResult.alternatives || [],
-                notes: engineResult.notes || existingResult.notes,
-                eli5: engineResult.eli5 || existingResult.eli5,
-                tags: engineResult.tags || existingResult.tags,
-                references: engineResult.references || []
-              };
-            } else {
-              // Preserve existing result, but add HKM data if available
-              let validationState = existingResult.ingredient ? "explicit_haram" : undefined;
-              if (engineResult.enforcedBy === "user_preferences") {
-                validationState = "preference_based";
-              }
-              
-              return {
-                ...existingResult,
-                trace: engineResult.trace || existingResult.trace || [],
-                hkmResult: engineResult.status !== "unknown" ? engineResult : undefined,
-                validationState,
-                preferencesApplied: engineResult.preferences,
-                // Add knowledge model fields
-                inheritedFrom: engineResult.inheritedFrom || existingResult.inheritedFrom,
-                alternatives: engineResult.alternatives || existingResult.alternatives || [],
-                notes: engineResult.notes || existingResult.notes,
-                eli5: engineResult.eli5 || existingResult.eli5,
-                tags: engineResult.tags || existingResult.tags,
-                references: engineResult.references || []
-              };
-            }
-          }
-          
-          // For CSV-only results, mark as explicit
-          if (issue.ingredient && !issue.hkmResult) {
-            return {
-              ...existingResult,
-              validationState: "explicit_haram"
-            };
-          }
-          
-          return existingResult;
-        });
-        
-        // Minor adjustments for inheritance flags and preference enforcement
-        // Only apply small reductions since we're already accounting for replacements in base score
-        if (inheritanceFlags > 0 && preferenceEnforcedFlags > 0) {
-          // Both inheritance and preference enforcement: apply small combined reduction
-          convertedConfidence = Math.round(convertedConfidence * 0.95); // Was 0.75, now less severe
-          // Also apply min confidence from HKM (if applicable)
-          if (maxConfidenceReduction < 1) {
-            convertedConfidence = Math.round(convertedConfidence * Math.max(0.95, maxConfidenceReduction));
-          }
-        } else if (inheritanceFlags > 0) {
-          // Only inheritance flags - smaller penalty since replacements exist
-          if (inheritanceFlags === 1) {
-            convertedConfidence = Math.round(convertedConfidence * 0.95); // Was 0.85
-          } else {
-            convertedConfidence = Math.round(convertedConfidence * 0.92); // Was 0.7
-          }
-          // Also apply min confidence from HKM (if applicable)
-          if (maxConfidenceReduction < 1) {
-            convertedConfidence = Math.round(convertedConfidence * Math.max(0.95, maxConfidenceReduction));
-          }
-        } else if (preferenceEnforcedFlags > 0) {
-          // Only preference enforcement - very small reduction
-          convertedConfidence = Math.round(convertedConfidence * 0.98); // Was 0.9
-        }
-      }
-      
-      setConverted(convertedText);
-      setIssues(convertedIssues);
-      setConfidence(convertedConfidence);
-      
-      // Cache successful conversion
-      try {
-        const cacheData = {
-          recipe: trimmedRecipe,
-          converted: convertedText,
-          issues: convertedIssues,
-          confidence: convertedConfidence,
-          timestamp: new Date().toISOString(),
-        };
-        localStorage.setItem("lastConversionCache", JSON.stringify(cacheData));
-      } catch (cacheErr) {
-        logger.warn("Failed to cache conversion:", cacheErr);
-      }
-      
-      // Track conversion (increment counter for free users)
-      const conversionResult = trackConversion();
-      
-      // Track conversion analytics
-      analytics.trackConversion({
-        hasIssues: convertedIssues.length > 0,
-        confidenceScore: convertedConfidence,
-      });
-      
-      // Track conversion limit approach
-      if (!isPremiumUser() && conversionResult.remaining <= 2 && conversionResult.remaining > 0) {
-        trackConversionLimitApproach(conversionResult.used, conversionResult.limit, conversionResult.remaining);
-      }
-      
-      // Reset accordion state when new conversion happens
+    const result = await runRecipeConversion(recipeText, {
+      currentRecipe: recipe,
+      isAutoConvert,
+    });
+    if (result?.resetAccordionHints) {
       setIsAccordionOpen(false);
       setOpenIngredientCards(new Set());
-      
-      // Only reset viewingRecipe if this is a manual conversion
-      if (!isAutoConvert) {
-        setViewingRecipe(null);
-      }
-    } catch (err) {
-      logger.error("Conversion error:", err);
-      
-      // Determine error message based on error type
-      let errorMessage = "Unable to connect to the server. Please check your internet connection.";
-      let isNetworkError = false;
-      
-      if (err.response) {
-        // Server responded with error status
-        errorMessage = err.response.data?.error || `Server error: ${err.response.status}`;
-      } else if (err.request || err.code === "ECONNREFUSED" || err.message?.includes("Network Error")) {
-        // Request was made but no response received (network error)
-        isNetworkError = true;
-        errorMessage = "Unable to connect to the server. Please check your internet connection and try again.";
-        
-        // Check for cached result
-        try {
-          const cached = localStorage.getItem("lastConversionCache");
-          if (cached) {
-            const cacheData = JSON.parse(cached);
-            // Only show cached if it's recent (within 24 hours)
-            const cacheAge = Date.now() - new Date(cacheData.timestamp).getTime();
-            if (cacheAge < 24 * 60 * 60 * 1000) {
-              setIsOffline(true);
-              setShowCachedResult(true);
-              setConverted(cacheData.converted);
-              setIssues(cacheData.issues || []);
-              setConfidence(cacheData.confidence || 0);
-              errorMessage = "You're offline. Showing your last successful conversion. Please reconnect to convert a new recipe.";
-            }
-          }
-        } catch (cacheErr) {
-          logger.warn("Failed to load cached conversion:", cacheErr);
-        }
-      } else if (err.message) {
-        // Something else happened
-        errorMessage = err.message;
-      }
-      
-      // Set error state
-      setError(errorMessage);
-      
-      // Only clear converted recipe if we don't have a cached result
-      if (!showCachedResult) {
-        setConverted("");
-        setIssues([]);
-        setConfidence(0);
-      }
-      
-      setIsAccordionOpen(false);
-      setOpenIngredientCards(new Set());
+    }
+    if (result?.clearViewingRecipe) {
+      setViewingRecipe(null);
     }
   };
 
@@ -618,69 +312,26 @@ function App() {
       return;
     }
 
-    const titleFromRecipe = originalText.split(/\n/)[0]?.trim() || "Converted Recipe";
-    const title = titleFromRecipe.length > 80 ? titleFromRecipe.slice(0, 77) + "..." : titleFromRecipe;
-
-    // Build substitutions_used from current issues (ingredient, replacement, alternatives, status)
-    const substitutionsUsed = Array.isArray(issues) ? issues.map((issue) => ({
-      ingredient: issue.ingredient ?? issue.haramIngredient ?? issue.normalizedName,
-      replacement: issue.replacement ?? issue.replacement_id,
-      alternatives: issue.alternatives ?? [],
-      status: issue.status ?? issue.halal_status,
-      notes: issue.notes ?? issue.explanation,
-    })) : [];
-
     try {
-      if (isAuthenticated()) {
-        const recipeData = {
-          title,
-          originalRecipe: originalText,
-          convertedRecipe: convertedText,
-          ingredients: [],
-          instructions: "",
-          confidenceScore: confidence,
-          substitutionsUsed,
-          isPublic: false,
-          visibility: "private",
-        };
-        const saved = await createRecipe(recipeData);
-        const newRecipe = {
-          id: saved?.id || Date.now().toString(),
-          title: saved?.title || title,
-          original: saved?.originalRecipe ?? saved?.original_recipe ?? originalText,
-          converted: saved?.convertedRecipe ?? saved?.converted_recipe ?? convertedText,
-          savedAt: saved?.createdAt ?? saved?.created_at ?? new Date().toISOString(),
-          issues: saved?.substitutions_used ?? saved?.substitutionsUsed ?? saved?.issues ?? substitutionsUsed,
-          confidenceScore: saved?.confidence_score ?? saved?.confidenceScore ?? confidence,
-          isPublic: false,
-        };
-        const updated = [...savedRecipes, newRecipe];
-        setSavedRecipes(updated);
-        if (typeof Storage !== "undefined") {
-          localStorage.setItem("halalRecipes", JSON.stringify(updated));
+      const payload = buildSavePayload({
+        recipe: originalText,
+        converted: convertedText,
+        confidence,
+        issues,
+      });
+      const saved = await saveHalalRecipe(payload);
+      const newRecipe = normalizeSavedRecipe(saved);
+      setSavedRecipes((prev) => {
+        if (prev.some((r) => r.id === newRecipe.id)) {
+          return prev.map((r) => (r.id === newRecipe.id ? newRecipe : r));
         }
-        alert("Halal version saved to your account!");
-        return;
-      }
-
-      if (typeof Storage !== "undefined") {
-        const newRecipe = {
-          id: Date.now().toString(),
-          original: originalText,
-          converted: convertedText,
-          title,
-          savedAt: new Date().toISOString(),
-          issues: substitutionsUsed,
-          confidenceScore: confidence,
-          isPublic: false,
-        };
-        const updated = [...savedRecipes, newRecipe];
-        setSavedRecipes(updated);
-        localStorage.setItem("halalRecipes", JSON.stringify(updated));
-        alert("Recipe saved locally. Log in to save to your account and sync across devices.");
-      } else {
-        alert("LocalStorage is not available in your browser.");
-      }
+        return [newRecipe, ...prev];
+      });
+      alert(
+        isAuthenticated()
+          ? "Halal version saved to your account!"
+          : "Recipe saved on this device. Log in to sync across devices."
+      );
     } catch (err) {
       logger.error("Error saving recipe:", err);
       const msg = err?.error || err?.message || "Error saving recipe. Please try again.";
@@ -777,14 +428,9 @@ function App() {
           localStorage.setItem("halalPublicRecipes", JSON.stringify(updated));
         }
       } else {
-        if (isAuthenticated()) {
-          await deleteRecipeApi(id);
-        }
+        await deleteSavedHalalRecipe(id);
         const updated = savedRecipes.filter((r) => r?.id !== id);
         setSavedRecipes(updated);
-        if (typeof Storage !== "undefined") {
-          localStorage.setItem("halalRecipes", JSON.stringify(updated));
-        }
       }
       if (viewingRecipe === id) {
         setViewingRecipe(null);
@@ -913,21 +559,6 @@ White wine`;
       });
     }
     alert(isPositive ? "Thank you for your positive feedback!" : "Thank you for your feedback. We'll work to improve!");
-  };
-
-  const adjustConfidenceScore = (baseScore) => {
-    // Adjust confidence based on halal settings
-    let adjustedScore = baseScore;
-    
-    if (halalSettings.strictnessLevel === "strict") {
-      // Reduce score for strict mode (more conservative)
-      adjustedScore = Math.max(0, adjustedScore - 5);
-    } else if (halalSettings.strictnessLevel === "flexible") {
-      // Increase score for flexible mode (more lenient)
-      adjustedScore = Math.min(100, adjustedScore + 5);
-    }
-    
-    return adjustedScore;
   };
 
   const handleShareToCommunity = () => {
@@ -1194,8 +825,6 @@ White wine`;
               <span>{t("convert")}</span>
             </button>
 
-            <ContextualAd placement="recipe_conversion" className="convert-tab-ad-above-lookup" />
-
             <QuickLookup onConvertClick={handleQuickLookupConvert} />
 
             <details
@@ -1311,16 +940,12 @@ White wine`;
                   </div>
                 </div>
 
-                {/* Shop Ingredients Section - Only shows for replaced ingredients */}
-                {safeIssues && safeIssues.length > 0 && (
-                  <IngredientShopSection 
-                    replacements={safeIssues.filter(issue => 
-                      issue?.wasReplaced && 
-                      issue?.replacement_id && 
-                      issue.replacement_id !== "Halal alternative needed"
-                    )}
-                  />
-                )}
+                <ContextualSubstituteRecommendations
+                  context="conversion"
+                  recommendations={extractConversionRecommendations(safeIssues, {
+                    maxItems: 3,
+                  })}
+                />
 
                 <div className="confidence-section">
                   <div className="confidence-header">
@@ -1328,7 +953,7 @@ White wine`;
                       {t("confidenceScore")}: {
                         safeConfidence === null || safeConfidence === undefined
                           ? "Confidence unavailable — evaluation error"
-                          : `${adjustConfidenceScore(safeConfidence)}%`
+                          : `${safeConfidence}%`
                       }
                     </h3>
                     {(() => {
@@ -1337,13 +962,13 @@ White wine`;
                         return null;
                       }
                       
-                      const adjustedScore = adjustConfidenceScore(safeConfidence);
+                      const displayScore = safeConfidence;
                       let badgeText = "";
                       let badgeClass = "";
-                      if (adjustedScore >= 80) {
+                      if (displayScore >= 80) {
                         badgeText = "🟢 High Confidence";
                         badgeClass = "confidence-badge high";
-                      } else if (adjustedScore >= 50) {
+                      } else if (displayScore >= 50) {
                         badgeText = "🟡 Needs Review";
                         badgeClass = "confidence-badge medium";
                       } else {
@@ -1359,7 +984,7 @@ White wine`;
                       style={{ 
                         width: safeConfidence === null || safeConfidence === undefined
                           ? "0%"
-                          : `${adjustConfidenceScore(safeConfidence)}%`
+                          : `${safeConfidence}%`
                       }}
                     ></div>
                   </div>
@@ -1669,7 +1294,9 @@ White wine`;
                   )}
                 </div>
 
-                <ContextualAd placement="recipe_conversion" className="conversion-results-ad" />
+                {isContextualAdsEnabled() && (
+                  <ContextualAd placement="recipe_conversion" className="conversion-results-ad" />
+                )}
               </div>
             )}
 
@@ -1716,7 +1343,7 @@ White wine`;
         onPost={handlePostCreated}
         originalRecipe={recipe}
         convertedRecipe={converted}
-        confidenceScore={adjustConfidenceScore(safeConfidence)}
+        confidenceScore={safeConfidence}
         issues={safeIssues}
         halalSettings={halalSettings}
       />
@@ -1728,6 +1355,7 @@ White wine`;
         recipe={recipe}
         converted={converted}
         issues={safeIssues}
+        confidence={safeConfidence}
       />
 
       {/* Ingredient scan (mobile): camera → OCR → halal summary */}

@@ -5,12 +5,27 @@
 
 import { getPool } from "../database.js";
 
+let dbUnavailable = false;
+
+/** DB-backed rules are opt-in: set INGREDIENT_INTELLIGENCE_DB=1 when Postgres is migrated. */
+function isDbEnabled() {
+  return process.env.INGREDIENT_INTELLIGENCE_DB === "1";
+}
+
 function safeGetPool() {
+  if (!isDbEnabled() || dbUnavailable) {
+    return null;
+  }
   try {
     return getPool();
   } catch {
+    dbUnavailable = true;
     return null;
   }
+}
+
+function markDbUnavailable() {
+  dbUnavailable = true;
 }
 
 /**
@@ -63,7 +78,7 @@ export async function getRule(baseSlug, modifierSlug = "unspecified") {
       alternatives: Array.isArray(r.alternatives) ? r.alternatives : JSON.parse(r.alternatives || "[]"),
     };
   } catch (err) {
-    console.error("[ingredientRules] getRule error:", err.message);
+    markDbUnavailable();
     return null;
   }
 }
@@ -80,7 +95,7 @@ export async function getBaseSlugs() {
     const result = await pool.query("SELECT slug FROM ingredient_rule_bases ORDER BY slug");
     return result.rows.map((r) => r.slug);
   } catch (err) {
-    console.error("[ingredientRules] getBaseSlugs error:", err.message);
+    markDbUnavailable();
     return [];
   }
 }

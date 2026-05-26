@@ -1,8 +1,12 @@
 /**
- * Quick Lookup Response Formatter
- * Formats evaluation results into standardized API response contract
- * Ensures all responses include: halal_status, confidence_level, short_explanation, warnings
+ * @deprecated Phase 2 — prefer IngredientEvaluationV1 via POST /api/lookup.
+ * Brand lookup still uses this for generic_fallback from client evaluateItem until Phase 3.
+ *
+ * Quick Lookup Response Formatter — legacy subset of V1 fields.
  */
+
+import { evaluationToIngredientEvaluationV1 } from "../contracts/ingredientEvaluationV1.js";
+import { v1ToLegacyQuickLookupShape } from "./formatters/ingredientEvaluationFormatters.js";
 
 /**
  * Format evaluation result into quick lookup API response
@@ -10,6 +14,12 @@
  * @returns {Object} Formatted API response
  */
 export function formatQuickLookupResponse(evaluationResult) {
+  if (evaluationResult?.contract_version === "1") {
+    return v1ToLegacyQuickLookupShape(evaluationResult);
+  }
+  if (evaluationResult?.verdict && evaluationResult?.confidence) {
+    return v1ToLegacyQuickLookupShape(evaluationResult);
+  }
   const {
     status,
     confidenceLevel,

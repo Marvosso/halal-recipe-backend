@@ -2,8 +2,11 @@ import React from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { decodeSharePayload } from "../lib/shareUtils";
-import { formatIngredientName } from "../lib/ingredientDisplay";
+import { buildRecipeShareData } from "../lib/shareCards/buildRecipeShareData";
+import IngredientShareCard from "../components/share/IngredientShareCard";
+import RecipeConversionShareCard from "../components/share/RecipeConversionShareCard";
 import "./SharePage.css";
+import "../components/share/ShareCards.css";
 
 function SharePage() {
   const [searchParams] = useSearchParams();
@@ -20,35 +23,58 @@ function SharePage() {
         <div className="share-page-card share-page-error">
           <h1>Invalid or expired link</h1>
           <p>This share link may be broken or outdated.</p>
-          <Link to="/app" className="share-page-cta">Convert your own recipe</Link>
+          <Link to="/app" className="share-page-cta">
+            Convert your own recipe
+          </Link>
         </div>
       </main>
     );
   }
 
+  const isIngredient = payload.type === "ingredient";
+  const recipeData = isIngredient
+    ? null
+    : buildRecipeShareData({
+        recipe: payload.title,
+        converted: payload.snippet,
+        issues: payload.haram.map((h, i) => ({
+          ingredient: h,
+          replacement: payload.replacements[i],
+        })),
+      });
+
+  const ingredientData = isIngredient
+    ? {
+        type: "ingredient",
+        ingredientName: payload.ingredientName || payload.title,
+        query: payload.query || "",
+        statusLabel: payload.statusLabel || "Checked",
+        statusClass: payload.statusClass || "unknown",
+        statusSummary: payload.statusSummary || "",
+        confidenceScore: payload.confidenceScore || 0,
+        modifiers: payload.modifiers || [],
+        warnings: payload.warnings || [],
+        substitutes: payload.substitutes || [],
+      }
+    : null;
+
   return (
     <main className="share-page">
       <Helmet>
-        <title>{payload.title} - Converted with Halal Kitchen</title>
-        <meta name="description" content={`Halal version: ${payload.title}. ${payload.replacements.length ? `Swapped to: ${payload.replacements.join(", ")}.` : ""} Converted with Halal Kitchen.`} />
+        <title>
+          {isIngredient ? payload.ingredientName : payload.title} - Halal Kitchen
+        </title>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <div className="share-page-card">
-        <h1 className="share-page-recipe-title">{payload.title}</h1>
-        {payload.haram.length > 0 && (
-          <div className="share-page-section">
-            <span className="share-page-label">Original ingredients (swapped)</span>
-            <p className="share-page-list">{payload.haram.map((n) => formatIngredientName(n)).join(", ")}</p>
-          </div>
+      <div className="share-page-visual">
+        {isIngredient ? (
+          <IngredientShareCard data={ingredientData} formatId="feed" />
+        ) : (
+          <RecipeConversionShareCard data={recipeData} formatId="feed" />
         )}
-        {payload.replacements.length > 0 && (
-          <div className="share-page-section">
-            <span className="share-page-label">Halal replacements</span>
-            <p className="share-page-list">{payload.replacements.map((n) => formatIngredientName(n)).join(", ")}</p>
-          </div>
-        )}
-        <p className="share-page-branding">Converted with Halal Kitchen</p>
-        <Link to="/app" className="share-page-cta">Convert your own recipe</Link>
+        <Link to="/app" className="share-page-cta">
+          Check your own ingredients
+        </Link>
       </div>
     </main>
   );

@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { getIngredientDetails, buildIngredientLookup } from "./halalEngine.js";
 import { evaluateIngredient } from "../services/ingredientRuleEngine.js";
+import { calculateRecipeConfidenceScore } from "../contracts/confidenceV1.js";
 
 // Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -250,64 +251,6 @@ const convertIngredients = (recipeText, detectedIngredients) => {
 };
 
 /**
- * PURE FUNCTION: Calculate confidence score based on FINAL conversion state
- * 
- * SEPARATION OF CONCERNS: This function ONLY calculates confidence, never performs replacement
- * Confidence reflects the FINAL state after all replacements are complete
- * 
- * Rules:
- * - Start at 100
- * - -20 for each unresolved haram ingredient
- * - -10 for questionable/conditional ingredients without replacement
- * - 0 penalty if haram ingredient was successfully replaced (never penalize if replacement exists)
- * 
- * @param {Object} conversionResult - Result from convertIngredients()
- *   - originalIngredients: Array of detected ingredients
- *   - replacements: Array of successfully replaced ingredients
- *   - unresolved: Array of ingredients without replacements
- * @returns {number} Confidence score 0-100 (100 = perfect, all haram ingredients replaced)
- */
-const calculateConfidenceScore = ({ originalIngredients, replacements, unresolved }) => {
-  // Guard: If no ingredients evaluated, return null (not 100%)
-  if (!Array.isArray(originalIngredients) || originalIngredients.length === 0) {
-    return null; // null indicates no evaluation, not a perfect score
-  }
-
-  // Start at 100% confidence
-  let score = 100;
-  
-  // Count resolved vs unresolved ingredients by status
-  const unresolvedHaram = unresolved.filter(item => item.status === "haram").length;
-  const unresolvedQuestionable = unresolved.filter(item => 
-    item.status === "questionable" || item.status === "conditional"
-  ).length;
-  
-  // Apply penalties based on final state (AFTER replacements)
-  // -20 points per unresolved haram ingredient
-  score -= (unresolvedHaram * 20);
-  
-  // -10 points per unresolved questionable/conditional ingredient
-  score -= (unresolvedQuestionable * 10);
-  
-  // Ensure score is within valid range (0-100)
-  score = Math.max(0, Math.min(100, Math.round(score)));
-  
-  // Special case: If all haram ingredients were successfully replaced, score should be 100%
-  // This ensures demo recipe with full replacements shows 100%
-  const totalHaram = originalIngredients.filter(item => 
-    item.status === "haram"
-  ).length;
-  const replacedHaram = replacements.filter(item => item.status === "haram").length;
-  
-  if (totalHaram > 0 && replacedHaram === totalHaram && unresolvedHaram === 0) {
-    // All haram ingredients were successfully replaced
-    score = 100;
-  }
-  
-  return score;
-};
-
-/**
  * Main conversion function (sync, legacy)
  * Converts recipe text by detecting and replacing haram ingredients using JSON knowledge base
  * Supports user preferences for strictness and school of thought
@@ -354,11 +297,14 @@ export const convertRecipe = (recipeText, userPreferences = {}) => {
     // STEP 3: CALCULATE confidence score (pure scoring, uses FINAL conversion state)
     // Scoring happens AFTER all replacements are complete
     const scoreStart = Date.now();
-    const confidenceScore = calculateConfidenceScore({
-      originalIngredients: detectedIngredients,
-      replacements: replacements,
-      unresolved: unresolved
-    });
+    const confidenceScore = calculateRecipeConfidenceScore(
+      {
+        originalIngredients: detectedIngredients,
+        replacements,
+        unresolved,
+      },
+      { emptyScore: null, allowFullReplacementBoost: true }
+    );
     const scoreTime = Date.now() - scoreStart;
     
     const totalTime = Date.now() - pipelineStart;
@@ -458,11 +404,14 @@ export const convertRecipeHybrid = async (recipeText, userPreferences = {}) => {
     const convertTime = Date.now() - convertStart;
 
     const scoreStart = Date.now();
-    const confidenceScore = calculateConfidenceScore({
-      originalIngredients: detectedIngredients,
-      replacements,
-      unresolved,
-    });
+    const confidenceScore = calculateRecipeConfidenceScore(
+      {
+        originalIngredients: detectedIngredients,
+        replacements,
+        unresolved,
+      },
+      { emptyScore: null, allowFullReplacementBoost: true }
+    );
     const scoreTime = Date.now() - scoreStart;
     const totalTime = Date.now() - pipelineStart;
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import SEOPageLayout from "../components/SEOPageLayout";
+import IngredientPageHead from "../components/seo/IngredientPageHead";
+import SchemaMarkup from "../components/seo/SchemaMarkup";
 import { getIngredientPageBySlug } from "../data/ingredientPageConfig";
 import "../pages/SEO.css";
 
 /**
- * SEO-friendly ingredient page driven by config.
- * URL: /is-:slug-halal (e.g. /is-gelatin-halal, /is-soy-sauce-halal)
- * Content and metadata come from ingredientPageConfig.js.
+ * Config-driven SEO ingredient page.
+ * URL: /is-:slug-halal
  */
 function IsIngredientHalalPage() {
   const { slug } = useParams();
@@ -20,23 +20,16 @@ function IsIngredientHalalPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{config.metaTitle}</title>
-        <meta name="description" content={config.metaDescription} />
-        {config.keywords && <meta name="keywords" content={config.keywords} />}
-        {config.canonical && <link rel="canonical" href={config.canonical} />}
-        <meta property="og:title" content={config.metaTitle} />
-        <meta property="og:description" content={config.metaDescription} />
-        <meta property="og:url" content={config.canonical} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={config.metaTitle} />
-        <meta name="twitter:description" content={config.metaDescription} />
-      </Helmet>
+      <IngredientPageHead config={config} />
+      <SchemaMarkup config={config} />
 
       <div className="seo-page-wrapper">
         <nav className="seo-nav" aria-label="Navigation">
+          <Link to="/is-it-halal" className="seo-nav-link">
+            ← All ingredients
+          </Link>
           <Link to="/app" className="seo-nav-link">
-            ← Back to Halal Kitchen
+            Open app
           </Link>
         </nav>
 

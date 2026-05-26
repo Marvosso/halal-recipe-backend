@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import { getAdSenseClient, isContextualAdsEnabled } from "../lib/monetization";
 import "./ContextualAd.css";
-
-/** Default AdSense client (HK publisher). Env VITE_ADSENSE_CLIENT overrides. */
-const DEFAULT_ADSENSE_CLIENT = "ca-pub-7752228611815749";
-/** Default ad slot (HK Ad 1). Env VITE_ADSENSE_SLOT_* or props.slotId override. */
-const DEFAULT_ADSENSE_SLOT = "2237029216";
 
 /**
  * Light contextual ad slot. One per page section; never blocks core actions.
@@ -19,14 +15,16 @@ function ContextualAd({ placement, slotId, className = "" }) {
   const wrapperRef = useRef(null);
   const pushedRef = useRef(false);
 
-  const client =
-    (typeof import.meta !== "undefined" && import.meta.env?.VITE_ADSENSE_CLIENT) ||
-    DEFAULT_ADSENSE_CLIENT;
+  if (!isContextualAdsEnabled()) {
+    return null;
+  }
+
+  const client = getAdSenseClient();
   const effectiveSlot =
     slotId ||
     (placement === "ingredient_lookup" && import.meta.env?.VITE_ADSENSE_SLOT_LOOKUP) ||
     (placement === "recipe_conversion" && import.meta.env?.VITE_ADSENSE_SLOT_CONVERSION) ||
-    DEFAULT_ADSENSE_SLOT;
+    "";
 
   useEffect(() => {
     if (!client || !effectiveSlot || !wrapperRef.current || pushedRef.current) return;

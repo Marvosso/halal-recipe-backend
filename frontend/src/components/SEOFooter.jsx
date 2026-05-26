@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { getIngredientPageBySlug } from "../data/ingredientPageConfig";
+import { FEATURED_INGREDIENT_SLUGS } from "../lib/seo/internalLinks";
+import { getIngredientPagePath } from "../lib/seo/urls";
 import "./SEOFooter.css";
 
 function SEOFooter() {
+  const featured = useMemo(
+    () =>
+      FEATURED_INGREDIENT_SLUGS.map((slug) => getIngredientPageBySlug(slug)).filter(Boolean),
+    []
+  );
+
   return (
     <footer className="seo-footer">
       <div className="seo-footer-content">
@@ -18,6 +27,15 @@ function SEOFooter() {
           <Link to="/privacy">Privacy Policy</Link>
           <Link to="/terms">Terms of Use</Link>
         </nav>
+        {featured.length > 0 && (
+          <nav className="seo-footer-ingredients" aria-label="Popular ingredient guides">
+            {featured.map((page) => (
+              <Link key={page.slug} to={getIngredientPagePath(page.slug)}>
+                {page.ingredientName}
+              </Link>
+            ))}
+          </nav>
+        )}
         <p className="seo-footer-copyright">
           © {new Date().getFullYear()} Halal Kitchen - Making recipes halal-compliant
         </p>

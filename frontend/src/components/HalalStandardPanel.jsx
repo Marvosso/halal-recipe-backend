@@ -166,7 +166,7 @@ function HalalStandardPanel({ onSettingsChange }) {
                   </div>
                 )}
                 <p className="helper-text">
-                  <em>Note: These preferences currently adjust confidence scoring and explanations only. Full jurisprudential rule differentiation is planned for a future update.</em>
+                  <em>Note: These preferences currently affect explanations and display context only. Confidence scores come from the server evaluation engine.</em>
                 </p>
               </div>
 
@@ -192,7 +192,7 @@ function HalalStandardPanel({ onSettingsChange }) {
                   </div>
                 )}
                 <p className="helper-text">
-                  <em>Note: These preferences currently adjust confidence scoring and explanations only. Full jurisprudential rule differentiation is planned for a future update.</em>
+                  <em>Note: These preferences currently affect explanations and display context only. Confidence scores come from the server evaluation engine.</em>
                 </p>
               </div>
 

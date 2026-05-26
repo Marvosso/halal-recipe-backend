@@ -12,10 +12,9 @@ import { evaluateItem } from "./halalEngine";
 import { FEATURES } from "./featureFlags";
 import halalKnowledge from "../data/halal_knowledge.json";
 import { formatIngredientName } from "./ingredientDisplay";
-import { getAffiliateLinksForSubstitutes, buildAffiliateUrl } from "./affiliateService";
-import { MAX_LINKS_PER_INGREDIENT } from "../config/affiliateProviderConfig";
 import { applySubstitutionLimit, shouldShowAdvancedSubstitutionFeatures } from "./featureGating";
 import { getRankedSubstitutes } from "./substitutionRanking";
+import { calculateRecipeConfidenceScore } from "../contracts/confidenceV1.js";
 
 /**
  * Normalize ingredient name for lookup
@@ -262,62 +261,9 @@ function convertIngredients(recipeText, detectedIngredients) {
 }
 
 /**
- * PURE FUNCTION: Calculate confidence score based on FINAL conversion state
- * 
- * SEPARATION OF CONCERNS: This function ONLY calculates confidence, never performs replacement
- * Confidence reflects the FINAL state after all replacements are complete
- * 
- * Rules:
- * - Start at 100
- * - -20 for each unresolved haram ingredient
- * - -10 for questionable/conditional ingredients without replacement
- * - 0 penalty if haram ingredient was successfully replaced (never penalize if replacement exists)
- * 
- * @param {Object} conversionResult - Result from convertIngredients()
- *   - originalIngredients: Array of detected ingredients
- *   - replacements: Array of successfully replaced ingredients
- *   - unresolved: Array of ingredients without replacements
- * @returns {number} Confidence score 0-100 (100 = perfect, all haram ingredients replaced)
- */
-function calculateConfidenceScore({ originalIngredients, replacements, unresolved }) {
-  // Start at 100% confidence
-  let score = 100;
-  
-  // Count resolved vs unresolved ingredients by status
-  const unresolvedHaram = unresolved.filter(item => item.status === "haram").length;
-  const unresolvedQuestionable = unresolved.filter(item => 
-    item.status === "questionable" || item.status === "conditional"
-  ).length;
-  
-  // Apply penalties based on final state (AFTER replacements)
-  // -20 points per unresolved haram ingredient
-  score -= (unresolvedHaram * 20);
-  
-  // -10 points per unresolved questionable/conditional ingredient
-  score -= (unresolvedQuestionable * 10);
-  
-  // Ensure score is within valid range (0-100)
-  score = Math.max(0, Math.min(100, Math.round(score)));
-  
-  // Special case: If all haram ingredients were successfully replaced, score should be 100%
-  // This ensures demo recipe with full replacements shows 100%
-  const totalHaram = originalIngredients.filter(item => 
-    item.status === "haram" || item.engineResult?.status === "haram"
-  ).length;
-  const replacedHaram = replacements.filter(item => item.status === "haram").length;
-  
-  if (totalHaram > 0 && replacedHaram === totalHaram && unresolvedHaram === 0) {
-    // All haram ingredients were successfully replaced
-    score = 100;
-  }
-  
-  return score;
-}
-
-/**
  * Main conversion function using JSON knowledge engine
  * 
- * PIPELINE: Detect → Convert → Fetch Affiliate Links → Calculate Score
+ * PIPELINE: Detect → Convert → Calculate Score → (deferred) Affiliate via monetization gateway
  * Each step is independent and runs fully regardless of previous step results
  * 
  * MONETIZATION: Affiliate links are ONLY attached to halal substitutes, NEVER to haram ingredients
@@ -364,39 +310,16 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
     console.log("[CONVERSION DEBUG] Replacements:", replacements.length);
     console.log("[CONVERSION DEBUG] Unresolved:", unresolved.length);
     
-    // STEP 2.5: FETCH AFFILIATE LINKS for substitutes (monetization)
-    // CRITICAL: ONLY fetch links for halal substitutes, NEVER for haram ingredients
-    const substituteIds = detectedIngredients
-      .filter(item => {
-        const replacementId = item.replacement_id || item.replacement;
-        return replacementId && 
-               replacementId !== "Halal alternative needed" && 
-               replacementId.trim() !== "";
-      })
-      .map(item => item.replacement_id || item.replacement)
-      .filter((id, index, self) => self.indexOf(id) === index); // Unique IDs only
-    
-    // Also include all alternatives (for showing 1-3 substitutes)
-    const allAlternativeIds = detectedIngredients
-      .flatMap(item => item.alternatives || [])
-      .filter((id, index, self) => self.indexOf(id) === index);
-    
-    const allSubstituteIds = [...new Set([...substituteIds, ...allAlternativeIds])];
-    
-    // Fetch affiliate links (limit per substitute from config; single-provider mode = 1)
-    const affiliateLinksMap = await getAffiliateLinksForSubstitutes(
-      allSubstituteIds, 
-      'US', // TODO: Get from user preferences or geolocation
-      MAX_LINKS_PER_INGREDIENT
-    );
-    
     // STEP 3: CALCULATE confidence score (pure scoring, uses FINAL conversion state)
     // Scoring happens AFTER all replacements are complete
-    const confidenceScore = calculateConfidenceScore({
-      originalIngredients: detectedIngredients,
-      replacements: replacements,
-      unresolved: unresolved
-    });
+    const confidenceScore = calculateRecipeConfidenceScore(
+      {
+        originalIngredients: detectedIngredients,
+        replacements,
+        unresolved,
+      },
+      { allowFullReplacementBoost: true }
+    );
     
     // Check if any substitutions occurred (for confidence_type classification)
     const hasSubstitutions = convertedText !== trimmedText;
@@ -422,28 +345,8 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
                 ? Math.round(item.engineResult.confidence * 100)
                 : undefined));
       
-      // Get replacement ID for affiliate link lookup
+      // Get replacement ID for substitute display (affiliate links via monetization gateway — deferred)
       const replacementId = item.replacement_id || item.replacement;
-      
-      // CRITICAL: Only attach affiliate links to SUBSTITUTES, NEVER to haram ingredients
-      // Fetch affiliate links for the primary replacement (if it exists and is valid)
-      let substituteAffiliateLinks = [];
-      if (replacementId && 
-          replacementId !== "Halal alternative needed" && 
-          replacementId.trim() !== "" &&
-          affiliateLinksMap[replacementId]) {
-        // Get affiliate links for this substitute (limit from config; 1 in single-provider mode)
-        const links = affiliateLinksMap[replacementId].slice(0, MAX_LINKS_PER_INGREDIENT);
-        substituteAffiliateLinks = links.map(link => ({
-          id: link.id,
-          platform: link.platform?.name ?? link.platform,
-          platform_display: link.platform?.display_name ?? link.platform_display,
-          platform_color: link.platform?.color_hex ?? link.platform_color,
-          url: link.url || buildAffiliateUrl(link),
-          search_query: link.search_query,
-          is_featured: link.is_featured || false
-        }));
-      }
       
       // Build clear explanation for why ingredient is haram
       // Priority: explanation > eli5 > simpleExplanation > notes
@@ -477,7 +380,6 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
 
       const substitutesWithLinks = substituteList.map((sub) => {
         const altId = typeof sub === "string" ? sub : sub.id;
-        const altLinks = affiliateLinksMap[altId] || [];
         return {
           id: altId,
           name: formatIngredientName(altId),
@@ -485,15 +387,7 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
           rank_score: typeof sub === "object" && sub.rank_score != null ? sub.rank_score : undefined,
           flavor_similarity: typeof sub === "object" && sub.flavor_similarity != null ? sub.flavor_similarity : undefined,
           availability: typeof sub === "object" && sub.availability ? sub.availability : undefined,
-          affiliate_links: altLinks.slice(0, MAX_LINKS_PER_INGREDIENT).map(link => ({
-            id: link.id,
-            platform: link.platform?.name ?? link.platform,
-            platform_display: link.platform?.display_name ?? link.platform_display,
-            platform_color: link.platform?.color_hex ?? link.platform_color,
-            url: link.url || buildAffiliateUrl(link),
-            search_query: link.search_query,
-            is_featured: link.is_featured || false
-          }))
+          affiliate_links: [],
         };
       });
       
@@ -503,10 +397,9 @@ export async function convertRecipeWithJson(recipeText, userPreferences = {}) {
         replacement_id: replacementId, // Replacement ID
         replacement: replacementId, // Keep for backward compatibility
         
-        // MONETIZATION: Affiliate links ONLY on substitutes
-        // NEVER attach affiliate links to haram ingredients themselves
-        substitute_affiliate_links: substituteAffiliateLinks, // Links for primary replacement
-        substitutes_with_links: substitutesWithLinks, // All alternatives with links (1-3)
+        // Affiliate links attached via enrichIssuesWithAffiliateLinks (monetization gateway)
+        substitute_affiliate_links: [],
+        substitutes_with_links: substitutesWithLinks,
         
         // Replacement ratio and culinary notes
         replacementRatio: item.replacementRatio || item.engineResult?.replacementRatio || null,
