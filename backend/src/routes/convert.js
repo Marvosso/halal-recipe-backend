@@ -5,7 +5,7 @@
 
 import express from 'express';
 import multer from 'multer';
-import { authenticateToken } from '../middleware/auth.js';
+import { authenticateToken, optionalAuthenticateToken } from '../middleware/auth.js';
 import { requirePremium, attachFeatureLimits } from '../middleware/featureGate.js';
 import { hasPremiumAccess } from '../services/subscriptionService.js';
 import { checkConversionLimit, trackConversion } from '../services/conversionLimitService.js';
@@ -41,44 +41,54 @@ const scanUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize:
 
 /**
  * POST /convert
- * Convert recipe with premium gating
- * 
+ * Convert recipe — public for guests; logged-in users get limit tracking.
+ *
+ * Guests: unlimited (MVP free to try)
  * Free users: 5 conversions per month
  * Premium users: Unlimited conversions
  */
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', optionalAuthenticateToken, async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user?.id || req.user?.userId || null;
     const recipeText = req.body?.recipeText ?? req.body?.recipe;
 
     if (!recipeText || typeof recipeText !== 'string') {
       return res.status(400).json({ error: 'Recipe text is required' });
     }
 
-    // Check conversion limit before conversion
-    const limitCheck = await checkConversionLimit(userId);
-    
-    if (!limitCheck.canConvert) {
-      return res.status(403).json({
-        error: 'Monthly conversion limit reached',
-        message: `You've used all ${limitCheck.limit} free conversions this month. Upgrade to Premium for unlimited conversions.`,
-        limit: limitCheck.limit,
-        used: limitCheck.used,
-        remaining: limitCheck.remaining,
-        upgrade_required: true,
-        upgrade_url: '/subscription/upgrade'
-      });
+    let limitCheck = {
+      canConvert: true,
+      limit: Infinity,
+      used: 0,
+      remaining: Infinity,
+      isPremium: false,
+    };
+
+    if (userId) {
+      limitCheck = await checkConversionLimit(userId);
+
+      if (!limitCheck.canConvert) {
+        return res.status(403).json({
+          error: 'Monthly conversion limit reached',
+          message: `You've used all ${limitCheck.limit} free conversions this month. Upgrade to Premium for unlimited conversions.`,
+          limit: limitCheck.limit,
+          used: limitCheck.used,
+          remaining: limitCheck.remaining,
+          upgrade_required: true,
+          upgrade_url: '/subscription/upgrade'
+        });
+      }
     }
 
-    // Perform conversion
     const result = await convertService(recipeText, {
       userId,
       isPremium: limitCheck.isPremium,
       ...(req.body?.userPreferences || {}),
     });
 
-    // Track conversion in database (for limit tracking)
-    await trackConversion(userId, recipeText);
+    if (userId) {
+      await trackConversion(userId, recipeText);
+    }
 
     res.json(assertConvertResponse(result));
   } catch (error) {

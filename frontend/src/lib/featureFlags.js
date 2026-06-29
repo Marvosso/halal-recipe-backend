@@ -34,4 +34,8 @@ export const FEATURES = {
    * When false, scan shows an error instead of client evaluateItem.
    */
   USE_SERVER_SCAN: true,
+  /** MVP launch: label scan UI (deferred) */
+  ENABLE_INGREDIENT_SCAN: import.meta.env.VITE_ENABLE_INGREDIENT_SCAN === "true",
+  /** MVP launch: social feed/create tabs (deferred) */
+  ENABLE_SOCIAL_FEATURES: import.meta.env.VITE_ENABLE_SOCIAL_FEATURES === "true",
 };

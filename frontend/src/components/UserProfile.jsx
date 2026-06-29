@@ -14,6 +14,8 @@ import { getProfile } from "../api/profileApi";
 import { getMyRecipes } from "../api/recipesApi";
 import LanguageSwitcher from "./LanguageSwitcher";
 import logger from "../utils/logger";
+import { migrateLegacyHalalRecipes } from "../lib/savedRecipes/localStorage";
+import { normalizeSavedRecipe } from "../lib/savedRecipes/savedRecipeModel";
 import "./UserProfile.css";
 
 function UserProfile() {
@@ -70,12 +72,9 @@ function UserProfile() {
   
   const loadSavedRecipes = () => {
     try {
-      const saved = localStorage.getItem("halalRecipes");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setSavedRecipes(parsed);
-        }
+      const parsed = migrateLegacyHalalRecipes();
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        setSavedRecipes(parsed.map(normalizeSavedRecipe).filter(Boolean));
       }
     } catch (error) {
       logger.error("Error loading saved recipes:", error);

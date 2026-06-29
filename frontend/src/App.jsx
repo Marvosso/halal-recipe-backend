@@ -49,7 +49,8 @@ import {
   deleteSavedHalalRecipe,
 } from "./api/savedRecipesApi";
 import { buildSavePayload, normalizeSavedRecipe } from "./lib/savedRecipes/savedRecipeModel";
-import { migrateLegacyHalalRecipes } from "./lib/savedRecipes/localStorage";
+import { migrateLegacyHalalRecipes, addLocalSavedRecipe } from "./lib/savedRecipes/localStorage";
+import { FEATURES } from "./lib/featureFlags";
 import SaveHalalVersionButton from "./components/SaveHalalVersionButton";
 
 function App() {
@@ -157,23 +158,17 @@ function App() {
 
     try {
       if (typeof Storage !== "undefined") {
-        const saved = localStorage.getItem("halalRecipes");
         const publicRecipesData = localStorage.getItem("halalPublicRecipes");
         const strictness = localStorage.getItem("halalStrictnessLevel");
         const school = localStorage.getItem("halalSchoolOfThought");
-        
+
         if (!isAuthenticated()) {
           const local = migrateLegacyHalalRecipes();
           if (local.length > 0) {
             setSavedRecipes(local.map(normalizeSavedRecipe).filter(Boolean));
-          } else if (saved) {
-            const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed)) {
-              setSavedRecipes(parsed.map(normalizeSavedRecipe).filter(Boolean));
-            }
           }
         }
-        
+
         if (publicRecipesData) {
           const parsed = JSON.parse(publicRecipesData);
           if (Array.isArray(parsed)) {
@@ -598,20 +593,16 @@ White wine`;
           setActiveTab("feed");
           alert("Recipe saved locally. Log in to post publicly and sync across devices.");
         } else {
-          // Save as private recipe (localStorage)
-          const privateRecipe = {
-            id: post.id,
+          // Save as private recipe (localStorage — canonical halalSavedRecipes key)
+          const local = addLocalSavedRecipe({
             title: post.title,
-            ingredients: post.convertedRecipe || post.originalRecipe || "",
-            instructions: post.description || "",
-            notes: "",
-            savedAt: post.createdAt || new Date().toISOString(),
-            isPublic: false,
-          };
-          
-          const updated = [...savedRecipes, privateRecipe];
-          setSavedRecipes(updated);
-          localStorage.setItem("halalRecipes", JSON.stringify(updated));
+            original: post.originalRecipe || "",
+            converted: post.convertedRecipe || post.originalRecipe || "",
+            issues: post.issues || [],
+            confidenceScore: post.confidenceScore || 0,
+          });
+          const normalized = normalizeSavedRecipe(local);
+          setSavedRecipes((prev) => [normalized, ...prev.filter((r) => r.id !== normalized.id)]);
           alert("Recipe saved privately!");
         }
       }
@@ -632,7 +623,7 @@ White wine`;
     // Track tab/page changes
     analytics.trackPageView(tab);
     
-    if (tab === "create") {
+    if (FEATURES.ENABLE_SOCIAL_FEATURES && tab === "create") {
       // If user has a converted recipe, open create modal
       if (converted) {
         setShowCreatePostModal(true);
@@ -808,15 +799,17 @@ White wine`;
                   <Play className="button-icon-inline" aria-hidden="true" />
                   <span>{t("tryExample")}</span>
                 </button>
-                <button
-                  type="button"
-                  className="scan-ingredients-btn"
-                  onClick={() => setShowScanModal(true)}
-                  aria-label="Scan ingredients from label photo"
-                >
-                  <Camera className="button-icon-inline" aria-hidden="true" />
-                  <span>Scan ingredients</span>
-                </button>
+                {FEATURES.ENABLE_INGREDIENT_SCAN && (
+                  <button
+                    type="button"
+                    className="scan-ingredients-btn"
+                    onClick={() => setShowScanModal(true)}
+                    aria-label="Scan ingredients from label photo"
+                  >
+                    <Camera className="button-icon-inline" aria-hidden="true" />
+                    <span>Scan ingredients</span>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -910,10 +903,12 @@ White wine`;
                       <span>{t("download")}</span>
                     </button>
                     <SaveHalalVersionButton disabled={!converted} onClick={saveRecipe} />
-                    <button onClick={handleShareToCommunity} className="share-community-btn" aria-label="Share to community">
-                      <Share2 className="button-icon-inline" aria-hidden="true" />
-                      <span>Share to Feed</span>
-                    </button>
+                    {FEATURES.ENABLE_SOCIAL_FEATURES && (
+                      <button onClick={handleShareToCommunity} className="share-community-btn" aria-label="Share to community">
+                        <Share2 className="button-icon-inline" aria-hidden="true" />
+                        <span>Share to Feed</span>
+                      </button>
+                    )}
                     <button onClick={() => setShowShareHalalModal(true)} className="share-halal-version-btn" aria-label="Share halal version">
                       <Share2 className="button-icon-inline" aria-hidden="true" />
                       <span>Share Halal Version</span>
@@ -1327,26 +1322,27 @@ White wine`;
           </>
         )}
 
-        {activeTab === "feed" && <SocialFeed />}
+        {FEATURES.ENABLE_SOCIAL_FEATURES && activeTab === "feed" && <SocialFeed />}
         {activeTab === "profile" && <UserProfile />}
       </div>
 
-      {/* Create Post Modal */}
-      <CreatePostModal
-        isOpen={showCreatePostModal}
-        onClose={() => {
-          setShowCreatePostModal(false);
-          if (activeTab === "create") {
-            setActiveTab("convert");
-          }
-        }}
-        onPost={handlePostCreated}
-        originalRecipe={recipe}
-        convertedRecipe={converted}
-        confidenceScore={safeConfidence}
-        issues={safeIssues}
-        halalSettings={halalSettings}
-      />
+      {FEATURES.ENABLE_SOCIAL_FEATURES && (
+        <CreatePostModal
+          isOpen={showCreatePostModal}
+          onClose={() => {
+            setShowCreatePostModal(false);
+            if (activeTab === "create") {
+              setActiveTab("convert");
+            }
+          }}
+          onPost={handlePostCreated}
+          originalRecipe={recipe}
+          convertedRecipe={converted}
+          confidenceScore={safeConfidence}
+          issues={safeIssues}
+          halalSettings={halalSettings}
+        />
+      )}
 
       {/* Share Halal Version Modal */}
       <ShareHalalModal
@@ -1358,8 +1354,9 @@ White wine`;
         confidence={safeConfidence}
       />
 
-      {/* Ingredient scan (mobile): camera → OCR → halal summary */}
-      <IngredientScanModal open={showScanModal} onClose={() => setShowScanModal(false)} />
+      {FEATURES.ENABLE_INGREDIENT_SCAN && (
+        <IngredientScanModal open={showScanModal} onClose={() => setShowScanModal(false)} />
+      )}
 
       {/* Auth Modal */}
       <AuthModal

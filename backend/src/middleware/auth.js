@@ -63,4 +63,37 @@ export const optionalAuth = (req, res, next) => {
   next();
 };
 
+/**
+ * Optional auth with full user load (for routes that accept guests + logged-in users).
+ * Invalid/missing token → req.user undefined; conversion proceeds as guest.
+ */
+export const optionalAuthenticateToken = async (req, res, next) => {
+  try {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!token) {
+      return next();
+    }
+
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const user = await getUserById(decoded.userId);
+
+    if (user) {
+      req.user = {
+        userId: user.id,
+        id: user.id,
+        email: user.email,
+        displayName: user.display_name || user.email.split("@")[0],
+        username: user.display_name || user.email.split("@")[0],
+        profile_image_url: user.profile_image_url,
+      };
+    }
+
+    next();
+  } catch (error) {
+    next();
+  }
+};
+
 export { JWT_SECRET };

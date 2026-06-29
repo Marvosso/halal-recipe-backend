@@ -16,6 +16,8 @@
     "test:regression": "node --test ../shared/regression/__tests__/contractValidators.test.js src/lib/regression/__tests__/regression.frontend.test.js"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.2",
     "@vitejs/plugin-react": "^5.1.2",
     "axios": "^1.13.2",
     "html2canvas": "^1.4.1",

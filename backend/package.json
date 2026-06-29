@@ -10,9 +10,12 @@
     "test": "node --test ../shared/contracts/__tests__/ingredientEvaluationV1.test.js ../shared/contracts/__tests__/confidenceV1.test.js ../shared/contracts/__tests__/recipeConfidence.test.js ../shared/regression/__tests__/contractValidators.test.js src/__tests__/modifiers.system.test.js src/__tests__/intelligence.engine.test.js src/__tests__/phase1.canonical.lookup.test.js src/__tests__/phase2.response.contract.test.js src/__tests__/phase3.recipe.conversion.test.js src/__tests__/confidence.consolidation.test.js src/__tests__/regression.hardening.test.js src/__tests__/architecture.hardening.test.js src/__tests__/ai.explanation.layer.test.js src/__tests__/ocr.scan.mvp.test.js src/__tests__/saved.recipes.test.js src/__tests__/hybrid.deterministic.test.js src/__tests__/hybrid.modifiers.test.js src/__tests__/hybrid.explanation.test.js src/__tests__/hybrid.substitution.test.js src/__tests__/hybrid.ocr.test.js src/__tests__/hybrid.regression.test.js src/__tests__/hybrid.integration.test.js",
     "test:regression": "node --test ../shared/regression/__tests__/contractValidators.test.js src/__tests__/regression.hardening.test.js",
     "test:architecture": "node --test src/__tests__/architecture.hardening.test.js ../shared/regression/__tests__/contractValidators.test.js",
+    "migrate:core": "node scripts/run-migration.js src/migrations/00_create_core_tables.sql",
     "migrate:intelligence": "node scripts/run-migration.js src/migrations/13_ingredient_intelligence_phase1.sql",
     "migrate:ai-explanation": "node scripts/run-migration.js src/migrations/14_ai_explanation_cache.sql",
-    "migrate:saved-recipes": "node scripts/run-migration.js src/migrations/15_saved_halal_recipes.sql"
+    "migrate:saved-recipes": "node scripts/run-migration.js src/migrations/15_saved_halal_recipes.sql",
+    "migrate:conversion-history": "node scripts/run-migration.js src/migrations/create_conversion_history_table.sql",
+    "migrate:mvp": "node scripts/run-mvp-migrations.js"
   },
   "dependencies": {
     "axios": "^1.13.2",

@@ -1,12 +1,17 @@
 import React from "react";
 import { RefreshCw, Home, Plus, User } from "lucide-react";
+import { FEATURES } from "../lib/featureFlags";
 import "./TabNavigation.css";
 
 function TabNavigation({ activeTab, onTabChange }) {
   const tabs = [
     { id: "convert", label: "Convert", icon: RefreshCw },
-    { id: "feed", label: "Feed", icon: Home },
-    { id: "create", label: "Create", icon: Plus },
+    ...(FEATURES.ENABLE_SOCIAL_FEATURES
+      ? [
+          { id: "feed", label: "Feed", icon: Home },
+          { id: "create", label: "Create", icon: Plus },
+        ]
+      : []),
     { id: "profile", label: "Profile", icon: User },
   ];
 

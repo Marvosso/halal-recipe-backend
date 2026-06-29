@@ -1,4 +1,7 @@
 const STORAGE_KEY = "halalSavedRecipes";
+const LEGACY_STORAGE_KEY = "halalRecipes";
+
+export { STORAGE_KEY, LEGACY_STORAGE_KEY };
 
 export function loadLocalSavedRecipes() {
   try {
@@ -23,17 +26,27 @@ export function saveLocalSavedRecipes(recipes) {
 /** Migrate legacy halalRecipes key into dedicated storage once */
 export function migrateLegacyHalalRecipes() {
   try {
-    const legacy = localStorage.getItem("halalRecipes");
-    if (!legacy) return loadLocalSavedRecipes();
-    const parsed = JSON.parse(legacy);
-    if (!Array.isArray(parsed) || parsed.length === 0) return loadLocalSavedRecipes();
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
     const current = loadLocalSavedRecipes();
-    if (current.length > 0) return current;
+    if (!legacy) return current;
+
+    const parsed = JSON.parse(legacy);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+      return current;
+    }
+
+    if (current.length > 0) {
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+      return current;
+    }
+
     const normalized = parsed.map((r) => ({
       ...r,
       recipeKind: "saved",
     }));
     saveLocalSavedRecipes(normalized);
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
     return normalized;
   } catch {
     return loadLocalSavedRecipes();
