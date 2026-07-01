@@ -38,4 +38,6 @@ export const FEATURES = {
   ENABLE_INGREDIENT_SCAN: import.meta.env.VITE_ENABLE_INGREDIENT_SCAN === "true",
   /** MVP launch: social feed/create tabs (deferred) */
   ENABLE_SOCIAL_FEATURES: import.meta.env.VITE_ENABLE_SOCIAL_FEATURES === "true",
+  /** MVP launch: meal-plan batch convert (deferred) */
+  ENABLE_BATCH_CONVERT: import.meta.env.VITE_ENABLE_BATCH_CONVERT === "true",
 };

@@ -72,11 +72,24 @@ export async function performCanonicalRecipeConversion(recipeText, userPreferenc
       error: null,
     };
   } catch (err) {
-    const message =
+    const status = err.response?.status;
+    let message =
       err.response?.data?.message ||
       err.response?.data?.error ||
       err.message ||
       "Recipe conversion failed. Check your connection and try again.";
+
+    if (status === 401 || status === 403) {
+      message =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        (status === 403
+          ? "Conversion limit reached for your account. Try again next month or sign in with a different account."
+          : "Conversion is temporarily unavailable. Please refresh and try again.");
+    } else if (!err.response) {
+      message =
+        "Cannot reach the conversion server. Check your internet connection or try again in a moment.";
+    }
 
     return {
       originalText: trimmed,

@@ -12,7 +12,7 @@ function HomePage() {
         <title>Halal Kitchen - Cook Any Recipe, Halal-Certified | Free Recipe Converter</title>
         <meta
           name="description"
-          content="Free halal recipe converter plus guides: ingredient rules, label reading, substitutes for pork and alcohol, gelatin, and vanilla. Convert recipes, scan labels, and learn halal cooking at home."
+          content="Free halal recipe converter plus ingredient guides: substitutes for pork and alcohol, gelatin, vanilla, and more. Convert recipes and check ingredients with Quick Lookup."
         />
         <meta name="keywords" content="halal recipe converter, halal food, halal substitutes, Islamic cooking, halal ingredients, recipe conversion" />
         <link rel="canonical" href="https://halalkitchen.app/" />
@@ -62,12 +62,12 @@ function HomePage() {
               <li><strong>Halal Substitutes:</strong> Automatic ingredient replacements with Islamic references</li>
               <li><strong>Confidence Scores:</strong> Know how confident we are in each conversion</li>
               <li><strong>Quick Lookup:</strong> Check if individual ingredients are halal before cooking</li>
-              <li><strong>Community Tips:</strong> Learn from other users' substitution experiences</li>
+              <li><strong>Ingredient guides:</strong> SEO pages for common halal questions (gelatin, soy sauce, wine, and more)</li>
             </ul>
 
             <h3>How It Works</h3>
             <p>
-              Our AI-powered converter analyzes your recipe ingredients and identifies 
+              Our converter analyzes your recipe ingredients and identifies 
               non-halal items like pork, alcohol, and non-halal gelatin. We then suggest 
               halal alternatives that maintain flavor and texture, backed by Qur'anic and 
               Hadith references.
@@ -138,10 +138,10 @@ function HomePage() {
                 You can paste recipes from any tradition. The tool flags common haram or doubtful ingredients
                 and suggests halal-friendly replacements; you should still verify packaged products yourself.
               </dd>
-              <dt>Can I scan an ingredient label with my phone?</dt>
+              <dt>How do I check a single ingredient?</dt>
               <dd>
-                Yes—open the app, use &quot;Scan ingredients&quot; under the recipe box, and capture or upload a clear
-                photo of the ingredient list. Results depend on photo quality and OCR.
+                Open the <Link to="/app#quick-lookup">converter app</Link> and use Quick Lookup below
+                the recipe box—type an ingredient like gelatin or soy sauce for an instant ruling.
               </dd>
               <dt>What does the confidence score mean?</dt>
               <dd>

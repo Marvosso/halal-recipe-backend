@@ -818,8 +818,14 @@ White wine`;
               <span>{t("convert")}</span>
             </button>
 
-            <QuickLookup onConvertClick={handleQuickLookupConvert} />
+            <section id="quick-lookup" className="quick-lookup-section" aria-label="Quick ingredient lookup">
+              <p className="quick-lookup-intro">
+                Not sure about one ingredient? Look it up below before you convert a full recipe.
+              </p>
+              <QuickLookup onConvertClick={handleQuickLookupConvert} />
+            </section>
 
+            {FEATURES.ENABLE_BATCH_CONVERT && (
             <details
               className="batch-convert-section"
               open={batchSectionOpen}
@@ -882,6 +888,7 @@ White wine`;
                 )}
               </div>
             </details>
+            )}
 
             {safeConverted && (
               <div className="results fade-in">
