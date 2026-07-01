@@ -6,6 +6,7 @@ import {
   migrateLegacyHalalRecipes,
   removeLocalSavedRecipe,
   saveLocalSavedRecipes,
+  notifySavedRecipesUpdated,
 } from "../lib/savedRecipes/localStorage";
 import { normalizeSavedRecipe } from "../lib/savedRecipes/savedRecipeModel";
 
@@ -47,7 +48,9 @@ export async function saveHalalRecipe(payload) {
   }
 
   const data = await response.json();
-  return normalizeSavedRecipe(data.recipe);
+  const saved = normalizeSavedRecipe(data.recipe);
+  notifySavedRecipesUpdated();
+  return saved;
 }
 
 /**

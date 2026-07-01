@@ -13,7 +13,7 @@ function SaveHalalVersionButton({ disabled, onClick, label = "Save Halal Version
       onClick={onClick}
       disabled={disabled}
       className={`gold-outline save-halal-version-btn ${className}`.trim()}
-      aria-label="Save halal version to your account"
+      aria-label="Save halal version to My Halal Recipes"
     >
       <Bookmark className="button-icon-inline" aria-hidden="true" />
       <span>{label}</span>

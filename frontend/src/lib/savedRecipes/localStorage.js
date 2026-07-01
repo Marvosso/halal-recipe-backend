@@ -3,6 +3,14 @@ const LEGACY_STORAGE_KEY = "halalRecipes";
 
 export { STORAGE_KEY, LEGACY_STORAGE_KEY };
 
+export const SAVED_RECIPES_UPDATED_EVENT = "recipesUpdated";
+
+export function notifySavedRecipesUpdated() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(SAVED_RECIPES_UPDATED_EVENT));
+  }
+}
+
 export function loadLocalSavedRecipes() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -17,6 +25,7 @@ export function loadLocalSavedRecipes() {
 export function saveLocalSavedRecipes(recipes) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
+    notifySavedRecipesUpdated();
     return true;
   } catch {
     return false;

@@ -6,6 +6,7 @@ import {
 } from "../api/savedRecipesApi";
 import { buildSavePayload } from "../lib/savedRecipes/savedRecipeModel";
 import { isAuthenticated } from "../api/authApi";
+import { SAVED_RECIPES_UPDATED_EVENT } from "../lib/savedRecipes/localStorage";
 
 /**
  * Saved halal recipes list + actions for My Halal Recipes page.
@@ -33,6 +34,14 @@ export function useSavedRecipes() {
 
   useEffect(() => {
     refresh();
+  }, [refresh]);
+
+  useEffect(() => {
+    const onUpdate = () => {
+      refresh();
+    };
+    window.addEventListener(SAVED_RECIPES_UPDATED_EVENT, onUpdate);
+    return () => window.removeEventListener(SAVED_RECIPES_UPDATED_EVENT, onUpdate);
   }, [refresh]);
 
   const saveConversion = useCallback(

@@ -2128,6 +2128,26 @@ table tbody tr:nth-child(even):hover {
   text-decoration: underline;
 }
 
+.saved-recipes-section--slim {
+  margin-top: 1.5rem;
+}
+
+.saved-recipes-sync-note {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #5c5c5c);
+}
+
+.saved-recipes-sync-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent-gold, #c9a227);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
 .saved-recipes-list {
   display: flex;
   flex-direction: column;

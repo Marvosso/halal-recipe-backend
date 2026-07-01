@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { User, BookOpen, Heart, Users, Settings, Moon, Sun, Bell, Shield, HelpCircle, LogOut, Camera, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
+import { User, BookOpen, Heart, Users, Settings, Moon, Sun, Bell, Shield, HelpCircle, LogOut, Camera, CreditCard, Bookmark } from "lucide-react";
 import RecipePost from "./RecipePost";
 import { useTheme } from "../contexts/ThemeContext";
 import HelpModal from "./HelpModal";
@@ -14,8 +15,7 @@ import { getProfile } from "../api/profileApi";
 import { getMyRecipes } from "../api/recipesApi";
 import LanguageSwitcher from "./LanguageSwitcher";
 import logger from "../utils/logger";
-import { migrateLegacyHalalRecipes } from "../lib/savedRecipes/localStorage";
-import { normalizeSavedRecipe } from "../lib/savedRecipes/savedRecipeModel";
+import { FEATURES } from "../lib/featureFlags";
 import "./UserProfile.css";
 
 function UserProfile() {
@@ -29,8 +29,9 @@ function UserProfile() {
   });
   const [userPosts, setUserPosts] = useState([]);
   const [savedPosts, setSavedPosts] = useState([]);
-  const [savedRecipes, setSavedRecipes] = useState([]);
-  const [activeProfileTab, setActiveProfileTab] = useState("recipes"); // "recipes", "saved", or "subscription"
+  const [activeProfileTab, setActiveProfileTab] = useState(
+    FEATURES.ENABLE_SOCIAL_FEATURES ? "recipes" : "saved"
+  );
   const [profile, setProfile] = useState({
     displayName: "",
     bio: "",
@@ -50,36 +51,17 @@ function UserProfile() {
   useEffect(() => {
     loadUserData();
     loadProfileData();
-    loadSavedRecipes();
     
     // Listen for profile updates
     const handleProfileUpdate = () => {
       loadProfileData();
     };
     
-    // Listen for saved recipes updates
-    const handleRecipesUpdate = () => {
-      loadSavedRecipes();
-    };
-    
     window.addEventListener("profileUpdated", handleProfileUpdate);
-    window.addEventListener("recipesUpdated", handleRecipesUpdate);
     return () => {
       window.removeEventListener("profileUpdated", handleProfileUpdate);
-      window.removeEventListener("recipesUpdated", handleRecipesUpdate);
     };
   }, []);
-  
-  const loadSavedRecipes = () => {
-    try {
-      const parsed = migrateLegacyHalalRecipes();
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        setSavedRecipes(parsed.map(normalizeSavedRecipe).filter(Boolean));
-      }
-    } catch (error) {
-      logger.error("Error loading saved recipes:", error);
-    }
-  };
 
   const loadUserData = async () => {
     try {
@@ -349,12 +331,14 @@ function UserProfile() {
 
       {/* Tabs */}
       <div className="profile-tabs">
+        {FEATURES.ENABLE_SOCIAL_FEATURES && (
         <button 
           className={`profile-tab ${activeProfileTab === "recipes" ? "active" : ""}`}
           onClick={() => setActiveProfileTab("recipes")}
         >
           My Recipes
         </button>
+        )}
         <button 
           className={`profile-tab ${activeProfileTab === "saved" ? "active" : ""}`}
           onClick={() => setActiveProfileTab("saved")}
@@ -477,41 +461,17 @@ function UserProfile() {
             </div>
           )
         ) : (
-          savedRecipes.length === 0 ? (
-            <div className="empty-state">
-              <Heart className="empty-icon" />
-              <h3>No saved recipes yet</h3>
-              <p>Save recipes from the Convert tab to view them here!</p>
-            </div>
-          ) : (
-            <div className="posts-list">
-              {savedRecipes.map((recipe) => (
-                <div key={recipe.id || recipe.title} className="saved-recipe-card">
-                  <h4>{recipe.title || "Untitled Recipe"}</h4>
-                  <p className="saved-recipe-preview">
-                    {recipe.originalText ? recipe.originalText.substring(0, 150) + "..." : "No preview available"}
-                  </p>
-                  <button
-                    className="load-recipe-btn"
-                    onClick={() => {
-                      // Load recipe into converter
-                      window.dispatchEvent(new CustomEvent("loadRecipe", { 
-                        detail: { 
-                          recipe: recipe.originalText || recipe.originalRecipe || "",
-                          converted: recipe.convertedText || recipe.convertedRecipe || "",
-                          issues: recipe.issues || []
-                        } 
-                      }));
-                      // Switch to convert tab
-                      window.dispatchEvent(new CustomEvent("switchTab", { detail: { tab: "convert" } }));
-                    }}
-                  >
-                    Load Recipe
-                  </button>
-                </div>
-              ))}
-            </div>
-          )
+          <div className="empty-state">
+            <Bookmark className="empty-icon" />
+            <h3>My Halal Recipes</h3>
+            <p>Saved conversions live on a dedicated page — open, reopen, or delete anytime.</p>
+            {!isAuthenticated() && (
+              <p className="profile-saved-guest-note">Recipes are saved on this device until you log in.</p>
+            )}
+            <Link to="/my-halal-recipes" className="load-recipe-btn">
+              Open My Halal Recipes
+            </Link>
+          </div>
         )}
       </div>
       )}

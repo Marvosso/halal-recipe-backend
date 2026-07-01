@@ -49,7 +49,7 @@ import {
   deleteSavedHalalRecipe,
 } from "./api/savedRecipesApi";
 import { buildSavePayload, normalizeSavedRecipe } from "./lib/savedRecipes/savedRecipeModel";
-import { migrateLegacyHalalRecipes, addLocalSavedRecipe } from "./lib/savedRecipes/localStorage";
+import { migrateLegacyHalalRecipes, addLocalSavedRecipe, SAVED_RECIPES_UPDATED_EVENT } from "./lib/savedRecipes/localStorage";
 import { FEATURES } from "./lib/featureFlags";
 import SaveHalalVersionButton from "./components/SaveHalalVersionButton";
 
@@ -129,6 +129,22 @@ function App() {
     };
   }, []);
 
+  const refreshSavedRecipesList = async () => {
+    try {
+      if (isAuthenticated()) {
+        const list = await listSavedHalalRecipes();
+        if (Array.isArray(list)) {
+          setSavedRecipes(list);
+        }
+        return;
+      }
+      const local = migrateLegacyHalalRecipes();
+      setSavedRecipes(local.map(normalizeSavedRecipe).filter(Boolean));
+    } catch (err) {
+      logger.error("Error refreshing saved recipes:", err);
+    }
+  };
+
   // Load user data and saved recipes on mount
   useEffect(() => {
     // Check authentication and load user
@@ -141,20 +157,14 @@ function App() {
         logger.error("Error loading user:", err);
         clearAuth();
       });
-      listSavedHalalRecipes()
-        .then((list) => {
-          if (Array.isArray(list) && list.length > 0) {
-            setSavedRecipes(list);
-          }
-        })
-        .catch(() => { /* fall back to localStorage below */ });
     } else {
-      // Try loading from localStorage
       const userData = getUserData();
       if (userData) {
         setUser(userData);
       }
     }
+
+    refreshSavedRecipesList();
 
     try {
       if (typeof Storage !== "undefined") {
@@ -162,14 +172,7 @@ function App() {
         const strictness = localStorage.getItem("halalStrictnessLevel");
         const school = localStorage.getItem("halalSchoolOfThought");
 
-        if (!isAuthenticated()) {
-          const local = migrateLegacyHalalRecipes();
-          if (local.length > 0) {
-            setSavedRecipes(local.map(normalizeSavedRecipe).filter(Boolean));
-          }
-        }
-
-        if (publicRecipesData) {
+        if (FEATURES.ENABLE_SOCIAL_FEATURES && publicRecipesData) {
           const parsed = JSON.parse(publicRecipesData);
           if (Array.isArray(parsed)) {
             setPublicRecipes(parsed);
@@ -190,6 +193,14 @@ function App() {
     
     // Track initial page view
     analytics.trackPageView(activeTab);
+  }, []);
+
+  useEffect(() => {
+    const onSavedRecipesUpdated = () => {
+      refreshSavedRecipesList();
+    };
+    window.addEventListener(SAVED_RECIPES_UPDATED_EVENT, onSavedRecipesUpdated);
+    return () => window.removeEventListener(SAVED_RECIPES_UPDATED_EVENT, onSavedRecipesUpdated);
   }, []);
 
   // When navigating from "My Halal Recipes" with a recipe to load, open it in the converter
@@ -1302,7 +1313,7 @@ White wine`;
               </div>
             )}
 
-            {safePublicRecipes.length > 0 && (
+            {FEATURES.ENABLE_SOCIAL_FEATURES && safePublicRecipes.length > 0 && (
               <div className="public-recipes-section">
                 <h2>
                   <Star className="section-icon-inline" aria-hidden="true" />
@@ -1315,14 +1326,31 @@ White wine`;
             )}
 
             {safeSavedRecipes.length > 0 && (
-              <div className="saved-recipes-section">
+              <div className="saved-recipes-section saved-recipes-section--slim">
                 <h2>
-                  <Star className="section-icon-inline" aria-hidden="true" />
-                  <span>{t("savedRecipes")}</span>
-                  <Link to="/my-halal-recipes" className="saved-recipes-view-all">View all</Link>
+                  <img src={halalSavedIcon} alt="" className="section-icon" aria-hidden="true" />
+                  <span>Recent saves</span>
+                  <Link to="/my-halal-recipes" className="saved-recipes-view-all">
+                    My Halal Recipes{safeSavedRecipes.length > 3 ? ` (${safeSavedRecipes.length})` : ""}
+                  </Link>
                 </h2>
+                {!isAuthenticated() && (
+                  <p className="saved-recipes-sync-note">
+                    Saved on this device.{" "}
+                    <button
+                      type="button"
+                      className="saved-recipes-sync-link"
+                      onClick={() => {
+                        setAuthMode("login");
+                        setShowAuthModal(true);
+                      }}
+                    >
+                      Log in to sync
+                    </button>
+                  </p>
+                )}
                 <div className="saved-recipes-list">
-                  {safeSavedRecipes.map((recipeItem) => renderRecipeCard(recipeItem, false))}
+                  {safeSavedRecipes.slice(0, 3).map((recipeItem) => renderRecipeCard(recipeItem, false))}
                 </div>
               </div>
             )}
