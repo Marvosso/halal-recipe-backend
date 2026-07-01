@@ -19,7 +19,7 @@ export async function evaluateRules({
   modifierSlugs,
   taxonomyDefaults,
 }) {
-  const override = applyModifierOverrides(modifierSlugs, category);
+  const override = applyModifierOverrides(modifierSlugs, category, baseSlug);
   if (override) return override;
 
   if (baseSlug) {

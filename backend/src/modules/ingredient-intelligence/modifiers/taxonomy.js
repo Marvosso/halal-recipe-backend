@@ -69,7 +69,7 @@ export const MODIFIER_TAXONOMY = Object.freeze({
     rules: [
       {
         id: "wine_1",
-        exact: [/\b(?:red|white|cooking|rice)\s+wine\b/i, /\bwine\b/i],
+        exact: [/\b(?:red|white|cooking|rice)\s+wine\b/i, /\bwine\b(?!(\s*)?vinegar)/i],
         fuzzy: ["wne", "win"],
         priority: 0,
       },

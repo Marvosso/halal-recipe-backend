@@ -33,6 +33,7 @@ export const BASE_CATEGORIES = Object.freeze({
   lard: "pork",
   bacon: "pork",
   ham: "pork",
+  pepperoni: "pork",
   pork: "pork",
   beef: "meat",
   chicken: "meat",
@@ -66,6 +67,8 @@ export const BASE_CATEGORIES = Object.freeze({
   water: "plain_plant",
   marshmallow: "processed_plant",
   vinegar: "fermentation_derived",
+  wine_vinegar: "fermentation_derived",
+  collagen: "animal_byproduct",
   glycerin: "animal_byproduct",
   glycerine: "animal_byproduct",
 });
@@ -145,6 +148,7 @@ export const HARD_OVERRIDES = Object.freeze([
 ]);
 
 export const BASE_KEYWORDS = Object.freeze([
+  { slug: "wine_vinegar", pattern: /\bwine\s+vinegar\b/i, category: "fermentation_derived" },
   { slug: "vinegar", pattern: /\bvinegar\b/i, category: "fermentation_derived" },
   { slug: "glycerin", pattern: /\bglycerin(e)?\b/i, category: "animal_byproduct" },
   { slug: "gelatin", pattern: /\bgelatin(e)?\b/i, category: "animal_byproduct" },
@@ -156,6 +160,10 @@ export const BASE_KEYWORDS = Object.freeze([
   { slug: "marshmallow", pattern: /\bmarshmallow\b/i, category: "processed_plant" },
   { slug: "alcohol", pattern: /\b(alcohol|wine|beer|liquor|spirit)\b/i, category: "alcohol" },
   { slug: "bacon", pattern: /\bbacon\b/i, category: "pork" },
+  { slug: "lard", pattern: /\blard\b/i, category: "pork" },
+  { slug: "ham", pattern: /\bham\b/i, category: "pork" },
+  { slug: "pepperoni", pattern: /\bpepperoni\b/i, category: "pork" },
+  { slug: "collagen", pattern: /\bcollagen\b/i, category: "animal_byproduct" },
   { slug: "pork", pattern: /\bpork\b/i, category: "pork" },
   { slug: "beef", pattern: /\bbeef\b/i, category: "meat" },
   { slug: "chicken", pattern: /\bchicken\b/i, category: "meat" },
@@ -209,5 +217,22 @@ export const INLINE_RULES = Object.freeze({
     plant: { verdict: "halal", confidence: "high", notes: "Plant-based glycerin; permissible.", alternatives: [] },
     plant_based: { verdict: "halal", confidence: "high", notes: "Plant-based glycerin; permissible.", alternatives: [] },
     pork: { verdict: "haram", confidence: "high", notes: "Pork-derived glycerin is not permissible.", alternatives: ["vegetable_glycerin"] },
+  },
+  wine_vinegar: {
+    unspecified: {
+      verdict: "usually_halal",
+      confidence: "medium",
+      notes: "Wine vinegar is generally accepted after full fermentation to acetic acid; some prefer grain or apple vinegar.",
+      alternatives: ["apple_cider_vinegar", "rice_vinegar"],
+    },
+  },
+  collagen: {
+    unspecified: {
+      verdict: "conditional",
+      confidence: "medium",
+      notes: "Animal-derived collagen; source must be halal-certified. Pork and non-halal bovine sources are common.",
+      alternatives: ["halal_certified_collagen", "plant_based_gelatin"],
+    },
+    pork: { verdict: "haram", confidence: "high", notes: "Pork-derived collagen is not permissible.", alternatives: [] },
   },
 });

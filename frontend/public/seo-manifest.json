@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T02:27:48.712Z",
+  "generatedAt": "2026-07-01T19:29:54.250Z",
   "pageCount": 25,
   "pages": [
     {
@@ -8,7 +8,7 @@
       "canonical": "https://halalkitchen.app/is-gelatin-halal",
       "metadata": {
         "title": "Is Gelatin Halal? | Halal Kitchen",
-        "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+        "description": "Is Gelatin Halal? Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified.",
         "keywords": "is gelatin halal, gelatin halal, halal ingredients",
         "canonical": "https://halalkitchen.app/is-gelatin-halal",
         "path": "/is-gelatin-halal",
@@ -16,14 +16,14 @@
           "type": "article",
           "siteName": "Halal Kitchen",
           "title": "Is Gelatin Halal? | Halal Kitchen",
-          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "description": "Is Gelatin Halal? Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified.",
           "url": "https://halalkitchen.app/is-gelatin-halal",
           "image": "https://halalkitchen.app/halal-input.png"
         },
         "twitter": {
           "card": "summary_large_image",
           "title": "Is Gelatin Halal? | Halal Kitchen",
-          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals."
+          "description": "Is Gelatin Halal? Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified."
         },
         "robots": "index, follow",
         "lastReviewed": "2026-05-25"
@@ -33,7 +33,7 @@
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Is Gelatin Halal?",
-          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "description": "Is Gelatin Halal? Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified.",
           "url": "https://halalkitchen.app/is-gelatin-halal",
           "inLanguage": "en",
           "isPartOf": {
@@ -47,7 +47,7 @@
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "Is Gelatin Halal?",
-          "description": "Is Gelatin Halal? Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+          "description": "Is Gelatin Halal? Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified.",
           "url": "https://halalkitchen.app/is-gelatin-halal",
           "author": {
             "@type": "Organization",
@@ -108,7 +108,7 @@
           ]
         }
       ],
-      "verdict": "usually_haram",
+      "verdict": "conditional",
       "lastReviewed": "2026-05-25"
     },
     {
@@ -2101,7 +2101,7 @@
       "canonical": "https://halalkitchen.app/is-collagen-halal",
       "metadata": {
         "title": "Is Collagen Halal? | Halal Kitchen",
-        "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+        "description": "Is Collagen Halal? Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source.",
         "keywords": "is collagen halal, collagen halal, halal ingredients",
         "canonical": "https://halalkitchen.app/is-collagen-halal",
         "path": "/is-collagen-halal",
@@ -2109,14 +2109,14 @@
           "type": "article",
           "siteName": "Halal Kitchen",
           "title": "Is Collagen Halal? | Halal Kitchen",
-          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "description": "Is Collagen Halal? Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source.",
           "url": "https://halalkitchen.app/is-collagen-halal",
           "image": "https://halalkitchen.app/halal-input.png"
         },
         "twitter": {
           "card": "summary_large_image",
           "title": "Is Collagen Halal? | Halal Kitchen",
-          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources."
+          "description": "Is Collagen Halal? Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source."
         },
         "robots": "index, follow",
         "lastReviewed": "2026-05-25"
@@ -2126,7 +2126,7 @@
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Is Collagen Halal?",
-          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "description": "Is Collagen Halal? Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source.",
           "url": "https://halalkitchen.app/is-collagen-halal",
           "inLanguage": "en",
           "isPartOf": {
@@ -2140,7 +2140,7 @@
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "Is Collagen Halal?",
-          "description": "Is Collagen Halal? Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+          "description": "Is Collagen Halal? Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source.",
           "url": "https://halalkitchen.app/is-collagen-halal",
           "author": {
             "@type": "Organization",
@@ -2179,7 +2179,7 @@
           ]
         }
       ],
-      "verdict": "usually_haram",
+      "verdict": "conditional",
       "lastReviewed": "2026-05-25"
     },
     {

@@ -16,6 +16,16 @@ export function identifyBaseIngredient(resolvedText, dbBaseSlugs = []) {
   }
 
   const tCompact = t.replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
+  const slugCandidate = t.replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+
+  if (BASE_CATEGORIES[slugCandidate]) {
+    return {
+      baseSlug: slugCandidate,
+      category: BASE_CATEGORIES[slugCandidate],
+      displayName: t,
+      matchQuality: "exact",
+    };
+  }
 
   for (const base of dbBaseSlugs) {
     const baseNorm = base.replace(/_/g, " ");

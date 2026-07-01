@@ -9,10 +9,10 @@ export const TOP_25_INGREDIENT_DEFINITIONS = [
     slug: "gelatin",
     ingredientName: "Gelatin",
     quickLookupIngredient: "gelatin",
-    verdict: VERDICT.USUALLY_HARAM,
+    verdict: VERDICT.CONDITIONAL,
     priority: 0.95,
     rulingSummary:
-      "Gelatin is usually haram unless halal-certified. Most commercial gelatin is from pork or non-halal animals.",
+      "Gelatin is conditional—source matters. Most commercial gelatin is from pork or non-halal animals unless halal-certified.",
     whyExplanation:
       "Gelatin is extracted from animal collagen. Most products use pork or non-halal sources. Halal-certified beef or fish gelatin and plant-based gels (agar agar) are common alternatives.",
     warnings: [
@@ -294,8 +294,9 @@ export const TOP_25_INGREDIENT_DEFINITIONS = [
     slug: "collagen",
     ingredientName: "Collagen",
     quickLookupIngredient: "collagen",
-    verdict: VERDICT.USUALLY_HARAM,
-    rulingSummary: "Collagen supplements and additives are usually haram unless from halal-certified fish or halal bovine sources.",
+    verdict: VERDICT.CONDITIONAL,
+    rulingSummary:
+      "Collagen is conditional—animal-derived supplements need a halal-certified fish or bovine source.",
     whyExplanation: "Like gelatin, collagen is animal-derived. Pork and non-halal bovine sources are common in supplements.",
     relatedIngredients: ["gelatin"],
   },

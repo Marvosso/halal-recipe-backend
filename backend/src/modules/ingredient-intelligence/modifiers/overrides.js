@@ -30,7 +30,8 @@ const OVERRIDE_HANDLERS = Object.freeze({
   },
   wine: {
     id: "wine",
-    when: (mods) => mods.includes("wine"),
+    when: (mods, category, baseSlug) =>
+      mods.includes("wine") && baseSlug !== "wine_vinegar" && category !== "fermentation_derived",
     apply: () => ({
       verdict: "usually_haram",
       confidence: "high",
@@ -94,14 +95,14 @@ const OVERRIDE_HANDLERS = Object.freeze({
  * @param {string|null} category
  * @returns {OverrideResult|null}
  */
-export function applyModifierOverrides(modifierSlugs, category) {
+export function applyModifierOverrides(modifierSlugs, category, baseSlug = null) {
   const mods = modifierSlugs || [];
   const sortedIds = OVERRIDE_RULE_PRIORITY.map((r) => r.id);
 
   for (const id of sortedIds) {
     const handler = OVERRIDE_HANDLERS[id];
-    if (!handler || !handler.when(mods, category)) continue;
-    const result = handler.apply(mods, category);
+    if (!handler || !handler.when(mods, category, baseSlug)) continue;
+    const result = handler.apply(mods, category, baseSlug);
     return {
       ...result,
       ruleSource: "hard_rule",
@@ -116,8 +117,8 @@ export function applyModifierOverrides(modifierSlugs, category) {
  * @param {string[]} modifierSlugs
  * @param {string|null} category
  */
-export function hasVerdictOverride(modifierSlugs, category) {
-  return applyModifierOverrides(modifierSlugs, category) != null;
+export function hasVerdictOverride(modifierSlugs, category, baseSlug = null) {
+  return applyModifierOverrides(modifierSlugs, category, baseSlug) != null;
 }
 
 /**
